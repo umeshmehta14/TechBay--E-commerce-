@@ -1,42 +1,22 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import logo from "./logo.png";
+import { useProducts } from "./Contexts/DataContext";
+import loader from "./Images-Gifs/loader.gif";
+import Error from "./Pages/Error/Error";
+import Home from "./Pages/Home/Home";
 
 function App() {
+  const {error,loading} = useProducts();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
-      </header>
-    </div>
+    <>
+      {loading && <img className="loader" src={loader} alt="Loading..."/>}
+      {!error && <Error/>}
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/error" element={<Error/>}/>
+        <Route path="/" element={<Home/>}/>
+      </Routes>
+    </>
   );
 }
 

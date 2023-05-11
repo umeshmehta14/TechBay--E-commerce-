@@ -1,0 +1,66 @@
+.navbar{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #7d7dff;
+    align-items: center;
+    color: white;
+    box-shadow: 2px 2px 8px gray;
+}
+
+.logo{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+
+.nav-links-mobile{
+    position: absolute;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: gray;
+    width: 100%;
+    left: 0rem;
+    height: 30vh;
+    align-items: center;
+    list-style: none;
+    transition: all 5s ease-out ;
+}
+
+.nav-links{
+    display: none;
+}
+
+
+.link-name{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem;
+}
+.link-name:hover{
+    border: 1px solid;
+    text-decoration: underline;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .logo{
+        width: 40%;
+        margin: auto;
+    }
+    .nav-links{
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        width: 50%;
+        font-size: 18px;
+        margin: 1rem;
+    }
+    .hamburger-menu{
+        display: none;
+    }
+  }
