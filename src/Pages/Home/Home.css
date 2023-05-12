@@ -56,6 +56,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .feature-img-box span {
@@ -69,12 +70,28 @@
     border-radius: 12px 0px 0px 10px;
 }
 
+.feature-img-box::before{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 0%;
+    left: 0rem;
+    height: 100%;
+    background-color: rgb(0 0 0 / 32%);
+    transition: width 0.5s ease-in-out;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -ms-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+}
+
 .feature-item-detail {
     display: flex;
     justify-content: space-between;
 }
 
 .feature-item {
+    position: relative;
     width: 25%;
     min-width: 350px;
     text-align: center;
@@ -84,6 +101,13 @@
     flex-direction: column;
     background-color: white;
     cursor: pointer;
+
+}
+
+
+
+.feature-item:hover .feature-img-box::before {
+    width: 100%;
 }
 
 .feature-item:hover {
@@ -93,7 +117,13 @@
 
 .feature-item-img {
     width: 250px;
+    transition: transform 0.3s ease-in-out;
 }
+
+.feature-item:hover .feature-item-img {
+    transform: scale(1.1);
+}
+
 
 .feature-item-detail {
     width: 70%;
@@ -130,6 +160,7 @@
 }
 
 .category-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -138,14 +169,38 @@
     padding: 1rem;
     min-height: 340px;
     justify-content: center;
+    cursor: pointer;
 }
-
+.category-item:hover:before {
+    content: "Click To See Product > ";
+    position: absolute;
+    z-index: 1;
+    color: rgb(130, 130, 130);
+    -webkit-text-stroke: 0.3px black;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    top: 3rem;
+}
 
 
 .category-img {
     width: 300px;
     min-height: 280px;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+
 }
+
+.category-item:hover .category-img {
+    filter: blur(3px);
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+
 
 .category-item h2 {
     margin: 1rem auto;

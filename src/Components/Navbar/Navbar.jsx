@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import "./Navbar.css";
-import { FaShoppingBag,ImCart,RxCross1,GiHamburgerMenu,AiOutlineHeart,GrLogin } from "../../Icons/Icons";
+import { FaShoppingBag,ImCart,RxCross1,GiHamburgerMenu,AiOutlineHeart,AiOutlineLogin } from "../../Icons/Icons";
 
 const Navbar = () => {
     const [showBurger, setShowBurger] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
             <li><NavLink style={getStyle} className="link-name" to="/k" title='Product'><FaShoppingBag/></NavLink></li>
             <li><NavLink style={getStyle} className="link-name" to="/g" title='Cart'><ImCart/></NavLink></li>
             <li><NavLink style={getStyle} className="link-name" to="/j" title='WishList'><AiOutlineHeart/></NavLink></li>
-            <li><NavLink style={getStyle} className="link-name" to="/j" title='Login'><GrLogin/></NavLink></li>
+            <li><NavLink style={getStyle} className="link-name" to="/j" title='Login'><AiOutlineLogin/></NavLink></li>
         </ul>
         <div className="hamburger-menu" onClick={()=> setShowBurger(!showBurger)}>
             { showBurger ? <RxCross1 className='hamburger-icon'/>:<GiHamburgerMenu className='hamburger-icon'/>}
