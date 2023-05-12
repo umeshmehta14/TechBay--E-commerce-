@@ -1,9 +1,12 @@
 import {ImCart} from "react-icons/im";
-import {FaShoppingBag} from "react-icons/fa";
+import {FaShoppingBag, FaHandHoldingUsd} from "react-icons/fa";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {AiOutlineHeart} from "react-icons/ai";
 import {GrLogin} from "react-icons/gr";
 import {RxCross1} from "react-icons/rx";
+import {TbTruckDelivery} from "react-icons/tb";
+import {IoShieldHalf} from "react-icons/io5";
+import {RiSecurePaymentLine} from "react-icons/ri";
 
 
-export {ImCart, RxCross1, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,GrLogin};
+export {ImCart, RxCross1, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,GrLogin,TbTruckDelivery,IoShieldHalf,FaHandHoldingUsd,RiSecurePaymentLine};
