@@ -16,29 +16,27 @@
 }
 
 .hamburger-menu{
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
-.hamburger-cross{
+/* .hamburger-cross{
     position: absolute;
     right: 1.5rem;
-}
+    z-index: 1;
+} */
 
 
 .nav-links-mobile {
     position: absolute;
-    top: 0rem;
-    font-size: 2rem;
+    top: 4.4rem;
+    right: 0rem;
+    font-size: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     background-color: white;
-    width: 100%;
-    left: 0rem;
-    height: 100vh;
     align-items: center;
     list-style: none;
-    /* transition: all 5s ease-out; */
 }
 .nav-links-mobile li{
     margin: 1rem;
