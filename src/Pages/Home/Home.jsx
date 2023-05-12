@@ -13,6 +13,7 @@ const Home = () => {
       <span>Welcome To</span>
       <h1>TechBay</h1>
       <p>Unleash Your Tech Potential with TechBay: Choose from a Wide Range of Phones, TVs, Laptops, Speakers and More</p>
+      <button className='btn'>Shop Now</button>
     </div>
     </>
   )
