@@ -1,0 +1,18 @@
+.main-image{
+    width: 100%;
+}
+
+.welcome-message{
+    height: 180px;
+    padding: 1rem;
+}
+
+.welcome-message span , .welcome-message p{
+    color: gray;
+}
+.welcome-message h1{
+    font-size: 2.5rem;
+}
+.welcome-message p{
+    margin: 0.7rem auto;
+}

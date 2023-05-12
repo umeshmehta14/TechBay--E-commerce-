@@ -23,7 +23,7 @@ export const DataProvider = ({children}) => {
 
   useEffect(()=>{
     getData();
-  })
+  },[]);
   return (
     <DataContext.Provider value={{state, loading, error}}>
       {children}
