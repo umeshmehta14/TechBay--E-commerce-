@@ -13,17 +13,15 @@ const Home = () => {
     state: { products, category },
   } = useProducts();
 
-  
-
   return (
     <>
       <Navbar />
       <div className="container">
-        <HeroSection/>
-        <FeatureSection products={products}/>
-        <CategorySection category={category}/>
-        <DeliveryInfo/>
-        <CompanyInfo/>
+        <HeroSection />
+        <FeatureSection products={products} />
+        <CategorySection category={category} />
+        <DeliveryInfo />
+        <CompanyInfo />
       </div>
     </>
   );
