@@ -51,7 +51,7 @@
 }
 
 .category-item:hover:before {
-    content: "Click To See Product > ";
+    content: "Click To See Products > ";
     position: absolute;
     z-index: 1;
     color: rgb(130, 130, 130);

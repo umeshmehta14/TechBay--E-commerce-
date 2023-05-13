@@ -62,7 +62,7 @@ import { v4 as uuid } from "uuid";
     title: "Sennheiser HD 660 S",
     description: "High-end open-back headphones for audiophiles from Sennheiser",
     price: 499,
-    discountPercentage: 0,
+    discountPercentage: 10,
     rating: 4.7,
     inStock: true,
     brand: "Sennheiser",
@@ -72,7 +72,6 @@ import { v4 as uuid } from "uuid";
     quantity: 1,
     trending: true,
     feature:"best",
-
   },
 
 
@@ -127,7 +126,7 @@ import { v4 as uuid } from "uuid";
     title: "Bose SoundLink Revolve",
     description: "The Bose SoundLink Revolve is a portable Bluetooth speaker with 360-degree sound.",
     price: 199,
-    discountPercentage: 0,
+    discountPercentage: 10,
     rating: 4.6,
     inStock: true,
     brand: "Bose",
@@ -217,7 +216,7 @@ import { v4 as uuid } from "uuid";
     title: "Sony WH-1000XM4",
     description: "Premium noise-cancelling headphones with long battery life",
     price: 349,
-    discountPercentage: 0,
+    discountPercentage: 10,
     rating: 4.9,
     inStock: true,
     brand: "Sony",
@@ -621,7 +620,7 @@ import { v4 as uuid } from "uuid";
       title: "Sennheiser HD 660 S",
       description: "High-end open-back headphones for audiophiles from Sennheiser",
       price: 499,
-      discountPercentage: 0,
+      discountPercentage: 10,
       rating: 4.7,
       inStock: true,
       brand: "Sennheiser",

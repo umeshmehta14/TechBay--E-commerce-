@@ -1,12 +1,18 @@
 .navbar {
     background:  linear-gradient(109deg, rgba(215,220,255,1) 17%, rgba(55,84,113) 59%);
-    height: 4.44rem;
+    /* max-height: 4.44rem; */
     width: 100%;
     position: fixed;
     z-index: 11;
     display: flex;
+    flex-direction:column ;
     justify-content: space-between;
     padding: 1rem;
+}
+
+.nav-top-section{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 .logo {
@@ -16,6 +22,22 @@
     cursor: pointer;
 }
 
+.navbar-icons-section{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.search-icon{
+    font-size: 1.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    
+}
+
+
+
 .hamburger-menu {
     font-size: 1.8rem;
     cursor: pointer;
@@ -24,7 +46,7 @@
 
 .nav-links-mobile {
     position: absolute;
-    top: 4.4rem;
+    top: 5.08rem;
     right: 0rem;
     font-size: 1.5rem;
     display: flex;
@@ -59,25 +81,73 @@
 
 }
 
+.search-input-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    top: 4.474rem;
+    text-align: center;
+    width: 100%;
+}
+
+.search-input-box label svg{
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-right: 0.2rem;
+}
+
+.search-btn{
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.disp-none{
+    display: none;
+}
+
 @media (min-width: 768px) {
     .logo {
         width: 40%;
     }
 
+    .search-icon{
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 50%;
+    }
+
+    .search-icon:hover{
+        border: 1px solid;
+        text-decoration: underline;
+        color: white;
+}
+    .navbar-icons-section{
+        width: 50%;
+    }
+
     .nav-links {
         list-style: none;
-        display: flex;
-        justify-content: space-evenly;
-        width: 30%;
-        font-size: 18px;
-        margin: 1rem;
-        color: gray;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    font-size: 18px;
+    color: gray;
     }
 
     .link-name {
         color: white;
     font-size: 1.5rem;
     }
+    .search-input-box label svg{
+        font-size: 1.5rem;
+        }
+
 
     .hamburger-menu {
         display: none;

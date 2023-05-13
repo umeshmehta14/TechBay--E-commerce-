@@ -24,6 +24,7 @@ const CategorySection = ({ category }) => {
   };
   const curCategory = category[categoryIndex];
 
+
   return (
     <>
       <div className="category-section">

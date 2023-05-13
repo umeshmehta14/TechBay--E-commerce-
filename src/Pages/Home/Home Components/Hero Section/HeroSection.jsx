@@ -1,7 +1,9 @@
 import React from "react";
 import "./HeroSection.css";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="hero-box">
@@ -19,7 +21,7 @@ const HeroSection = () => {
             Unleash Your Tech Potential with TechBay: Choose from a Wide Range
             of Phones, TVs, Laptops, Speakers and More
           </p>
-          <button className="btn">Shop Now</button>
+          <button onClick={()=>navigate("/products")} className="btn">Shop Now</button>
         </div>
       </div>
     </>
