@@ -7,6 +7,7 @@ import FeatureSection from "./Home Components/Feature Section/FeatureSection";
 import CategorySection from "./Home Components/Category Section/CategorySection";
 import DeliveryInfo from "./Home Components/DeliveryInfo Section/DeliveryInfo";
 import CompanyInfo from "./Home Components/CompanyInfo Section/CompanyInfo";
+import Footer from "../../Components/Footer/Footer";
 
 const Home = () => {
   const {
@@ -23,6 +24,7 @@ const Home = () => {
         <DeliveryInfo />
         <CompanyInfo />
       </div>
+        <Footer/>
     </>
   );
 };
