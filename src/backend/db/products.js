@@ -6,7 +6,6 @@ import { v4 as uuid } from "uuid";
  * */
 
 
-
  export const products = [
   //Best Feature
   {
@@ -20,7 +19,6 @@ import { v4 as uuid } from "uuid";
     brand: "OnePlus",
     category: "Smartphone",
     image: "https://tse1.mm.bing.net/th?id=OIP.5_2uU83seT7lKchCoom0zgHaEK&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true,
     feature:"best"
@@ -36,7 +34,6 @@ import { v4 as uuid } from "uuid";
     brand: "Asus",
     category: "Laptop",
     image: "https://tse3.mm.bing.net/th?id=OIP.-_jPyAwruttOWut2FDjYGgHaFG&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true,
     feature:"best"
@@ -52,7 +49,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category: "Television",
     image: "https://tse3.mm.bing.net/th?id=OIP.p67Ii19ZVd6TsTSB36kgQgHaE6&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true,
     feature:"best",
@@ -68,7 +64,6 @@ import { v4 as uuid } from "uuid";
     brand: "Sennheiser",
     category : "Headphone",
     image: "https://tse1.mm.bing.net/th?id=OIP.l0H5yurqu1f-jtaUjfSgxQHaE8&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true,
     feature:"best",
@@ -87,7 +82,6 @@ import { v4 as uuid } from "uuid";
     brand: "Samsung",
     category: "Smartphone",
     image: "https://cdn.wccftech.com/wp-content/uploads/2020/12/Galaxy-S21-lineup-1030x845.jpg.webp",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -102,7 +96,6 @@ import { v4 as uuid } from "uuid";
     brand: "Dell",
     category: "Laptop",
     image: "https://tse2.mm.bing.net/th?id=OIP.unbf-0rI0E7vvl0CpBbZRgHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -117,7 +110,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category: "Television",
     image: "https://tse2.mm.bing.net/th?id=OIP.vuoEdJTao0XR3qqMaIgZjQHaFU&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -132,7 +124,6 @@ import { v4 as uuid } from "uuid";
     brand: "Bose",
     category: "Speaker",
     image: "https://tse3.mm.bing.net/th?id=OIP.X2QiQOaqZFSqVUV5aMbcvQAAAA&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -147,7 +138,6 @@ import { v4 as uuid } from "uuid";
     brand: "Sony",
     category: "Headphone",
     image: "https://tse2.mm.bing.net/th?id=OIP.TVnToERTo6OvGSRzlWnugAHaFX&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -162,7 +152,6 @@ import { v4 as uuid } from "uuid";
     brand: "Samsung",
     category: "Smartphone",
     image: "https://tse1.mm.bing.net/th?id=OIP.qUEkzvgxjQC72s6JwSnGrwHaDt&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -177,7 +166,6 @@ import { v4 as uuid } from "uuid";
     brand: "Dell",
     category: "Laptop",
     image: "https://tse2.mm.bing.net/th?id=OIP.unbf-0rI0E7vvl0CpBbZRgHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -192,7 +180,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category: "Television",
     image: "https://tse3.mm.bing.net/th?id=OIP.cm56LYy8pbKy-TaxZlMTQAHaEj&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -207,7 +194,6 @@ import { v4 as uuid } from "uuid";
     brand: "Bose",
     category: "Speaker",
     image: "https://tse3.mm.bing.net/th?id=OIP.X2QiQOaqZFSqVUV5aMbcvQAAAA&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -222,7 +208,6 @@ import { v4 as uuid } from "uuid";
     brand: "Sony",
     category: "Headphone",
     image: "https://tse2.mm.bing.net/th?id=OIP.TVnToERTo6OvGSRzlWnugAHaFX&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },{
@@ -236,7 +221,6 @@ import { v4 as uuid } from "uuid";
     brand: "Dell",
     category: "Laptop",
     image: "https://tse4.mm.bing.net/th?id=OIP.q4BX9OeXPfwTTEDm-faivgHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -251,7 +235,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category: "Television",
     image: "https://tse3.mm.bing.net/th?id=OIP.p67Ii19ZVd6TsTSB36kgQgHaE6&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -266,7 +249,6 @@ import { v4 as uuid } from "uuid";
     brand: "Bose",
     category: "Headphone",
     image: "https://tse4.mm.bing.net/th?id=OIP.hsFJ-FY3zm2zdgejV5AmTAHaFY&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -281,7 +263,6 @@ import { v4 as uuid } from "uuid";
     brand: "JBL",
     category: "Speaker",
     image: "https://tse1.mm.bing.net/th?id=OIP.3eZ05ZpVkO7tKYhRIa8EvAHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -296,7 +277,6 @@ import { v4 as uuid } from "uuid";
     brand: "OnePlus",
     category: "Smartphone",
     image: "https://tse1.mm.bing.net/th?id=OIP.5_2uU83seT7lKchCoom0zgHaEK&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -311,7 +291,6 @@ import { v4 as uuid } from "uuid";
     brand: "Samsung",
     category: "Tablet",
     image: "https://tse3.mm.bing.net/th?id=OIP.SvWqMUNLJkrcGBn2LhQvkQHaGk&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -326,7 +305,6 @@ import { v4 as uuid } from "uuid";
     brand: "HP",
     category: "Laptop",
     image: "https://tse3.mm.bing.net/th?id=OIP.p7i_DnK7tqXL08DO0cRomgHaFj&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -341,7 +319,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category: "Television",
     image: "https://tse1.mm.bing.net/th?id=OIP.ewh-IuQiNIjRxp2a-D8p3gHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -356,7 +333,6 @@ import { v4 as uuid } from "uuid";
     brand: "Bose",
     category : "Headphone",
     image: "https://tse4.mm.bing.net/th?id=OIP.hsFJ-FY3zm2zdgejV5AmTAHaFY&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -371,7 +347,6 @@ import { v4 as uuid } from "uuid";
     brand: "Sonos",
     category: "Speaker",
     image: "https://tse3.mm.bing.net/th?id=OIP.jou46qIRkv_zyJd_vF4UZgHaHa&pid=Api&P=0",
-    wishList: false,
     quantity: 1,
     trending: true
   },
@@ -386,7 +361,6 @@ import { v4 as uuid } from "uuid";
     brand: "Sony",
     category : "Headphone",
     image: "https://tse2.mm.bing.net/th?id=OIP.TVnToERTo6OvGSRzlWnugAHaFX&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -401,7 +375,6 @@ import { v4 as uuid } from "uuid";
     brand: "LG",
     category : "Television",
     image: "https://tse1.mm.bing.net/th?id=OIP._fwhtRXzJa8u4W5N7kaPnQHaE6&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -416,7 +389,6 @@ import { v4 as uuid } from "uuid";
     brand: "Dell",
     category: "Laptop",
     image: "https://tse2.mm.bing.net/th?id=OIP.unbf-0rI0E7vvl0CpBbZRgHaHa&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -431,7 +403,6 @@ import { v4 as uuid } from "uuid";
     brand: "JBL",
     category : "Speaker",
     image: "https://tse1.mm.bing.net/th?id=OIP.4xdW8j8UUydtyzbNZQTvSgHaHa&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -446,7 +417,6 @@ import { v4 as uuid } from "uuid";
     brand: "Bose",
     category : "Headphone",
     image: "https://tse4.mm.bing.net/th?id=OIP.hsFJ-FY3zm2zdgejV5AmTAHaFY&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -461,7 +431,6 @@ import { v4 as uuid } from "uuid";
     brand: "Samsung",
     category : "Television",
     image: "https://tse3.mm.bing.net/th?id=OIP.pPSOt3eH7u44w9bIdDDlWwHaEK&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -476,7 +445,6 @@ import { v4 as uuid } from "uuid";
     brand: "Lenovo",
     category: "Laptop",
     image: "https://tse3.mm.bing.net/th?id=OIP.ufYDmDtilN86d9M_QqigAwHaFj&pid=Api&P=0",
-    wishList : false,
     quantity : 1,
     trending : true
   },
@@ -491,7 +459,7 @@ import { v4 as uuid } from "uuid";
       brand: "Apple",
       category: "Laptop",
       image: "https://tse4.mm.bing.net/th?id=OIP.1Tmm-aMTgClsZU2km4NxfQHaE8&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -506,7 +474,7 @@ import { v4 as uuid } from "uuid";
       brand: "Bose",
       category: "Headphone",
       image: "https://tse4.mm.bing.net/th?id=OIP.hsFJ-FY3zm2zdgejV5AmTAHaFY&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -521,7 +489,7 @@ import { v4 as uuid } from "uuid";
       brand: "Sony",
       category: "Television",
       image: "https://tse2.mm.bing.net/th?id=OIP.sIWJPt7FxBRKvTzHWbWRnAHaFj&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -536,7 +504,7 @@ import { v4 as uuid } from "uuid";
       brand: "Google",
       category: "Speaker",
       image: "https://tse3.mm.bing.net/th?id=OIP.qxgQWAOX9gLazZ3VHQ0FvwHaF7&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -551,7 +519,7 @@ import { v4 as uuid } from "uuid";
       brand: "Dell",
       category: "Laptop",
       image: "https://tse3.mm.bing.net/th?id=OIP.Q0c_UwBDsHGu_lfFflKFkAHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -566,7 +534,7 @@ import { v4 as uuid } from "uuid";
       brand: "Samsung",
       category: "Headphone",
       image: "https://tse4.mm.bing.net/th?id=OIP.oCkT99j3aaQabe4zncRgrgHaFj&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -581,7 +549,7 @@ import { v4 as uuid } from "uuid";
       brand: "Dell",
       category: "Laptop",
       image: "https://tse2.mm.bing.net/th?id=OIP.unbf-0rI0E7vvl0CpBbZRgHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -596,7 +564,7 @@ import { v4 as uuid } from "uuid";
       brand: "Sony",
       category: "Television",
       image: "https://tse1.mm.bing.net/th?id=OIP.BxjunoH7PKg2Y_9KfPvQ2QHaEK&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -611,7 +579,7 @@ import { v4 as uuid } from "uuid";
       brand: "Bose",
       category: "Speaker",
       image: "https://tse3.mm.bing.net/th?id=OIP.X2QiQOaqZFSqVUV5aMbcvQAAAA&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -626,7 +594,7 @@ import { v4 as uuid } from "uuid";
       brand: "Sennheiser",
       category : "Headphone",
       image: "https://tse1.mm.bing.net/th?id=OIP.l0H5yurqu1f-jtaUjfSgxQHaE8&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -641,7 +609,7 @@ import { v4 as uuid } from "uuid";
       brand: "Samsung",
       category: "Smartphone",
       image: "https://tse2.mm.bing.net/th?id=OIP.KAF37TJSmM06YuNGM7SRMQHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -656,7 +624,7 @@ import { v4 as uuid } from "uuid";
       brand: "Asus",
       category: "Laptop",
       image: "https://tse3.mm.bing.net/th?id=OIP.-_jPyAwruttOWut2FDjYGgHaFG&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -671,7 +639,7 @@ import { v4 as uuid } from "uuid";
       brand: "Apple",
       category: "Laptop",
       image: "https://tse2.explicit.bing.net/th?id=OIP.8RNPKuSjnWn7bfwInPy3WAHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -686,7 +654,7 @@ import { v4 as uuid } from "uuid";
       brand: "LG",
       category: "Television",
       image: "https://tse1.mm.bing.net/th?id=OIP.2Hht5ZNCH3FbCpPFyiY4zAHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -701,7 +669,7 @@ import { v4 as uuid } from "uuid";
       brand: "Bose",
       category: "Speaker",
       image: "https://tse3.mm.bing.net/th?id=OIP.7cUSp0IzXfbsDWPhYdrVWgHaHa&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -716,7 +684,7 @@ import { v4 as uuid } from "uuid";
       brand: "Sony",
       category : "Headphone",
       image: "https://tse2.mm.bing.net/th?id=OIP.TVnToERTo6OvGSRzlWnugAHaFX&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
@@ -731,7 +699,7 @@ import { v4 as uuid } from "uuid";
       brand: "Google",
       category: "Smartphone",
       image: "https://tse1.mm.bing.net/th?id=OIP.VBZto4L811G9f0vNvK9whgHaFj&pid=Api&P=0",
-      wishList: false,
+
       quantity: 1,
       trending: true
     },
