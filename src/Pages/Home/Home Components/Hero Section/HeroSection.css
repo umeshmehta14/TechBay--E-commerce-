@@ -1,0 +1,70 @@
+.main-image {
+    width: 100%;
+}
+
+.welcome-message {
+    box-shadow: 1px 7px 10px rgb(223 221 221);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome-message span,
+.welcome-message p {
+    color: gray;
+}
+
+.welcome-message h1 {
+    font-size: 2.5rem;
+}
+
+.welcome-message p {
+    margin: 0.7rem 0px;
+}
+
+.btn {
+    font-size: 1rem;
+    width: 7rem;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/* Responsive Design */
+
+@media (min-width: 768px) {
+
+    .main-image {
+        height: 100%;
+    }
+
+    .hero-image-box {
+        position: absolute;
+        height: 80vh;
+    }
+
+    .welcome-message {
+        position: absolute;
+        font-weight: bold;
+        top: 1.5rem;
+        left: 2rem;
+        background: #ffffffcf;
+        width: 40%;
+        box-shadow: 1px 7px 10px rgb(0, 0, 0);
+        text-shadow: 0px 1px 0px black;
+    }
+    
+
+    
+}
