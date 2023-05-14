@@ -128,7 +128,7 @@ import { v4 as uuid } from "uuid";
     original_price: 250,
     discountPercentage: 10,
     rating: 4.6,
-    inStock: true,
+    inStock: false,
     brand: "Bose",
     category: "Speaker",
     image: "https://tse3.mm.bing.net/th?id=OIP.X2QiQOaqZFSqVUV5aMbcvQAAAA&pid=Api&P=0",
@@ -442,7 +442,7 @@ import { v4 as uuid } from "uuid";
     original_price: 489,
     discountPercentage : 10,
     rating: 4.8,
-    inStock : true,
+    inStock : false,
     brand: "Bose",
     category : "Headphone",
     image: "https://tse4.mm.bing.net/th?id=OIP.hsFJ-FY3zm2zdgejV5AmTAHaFY&pid=Api&P=0",
@@ -550,7 +550,7 @@ import { v4 as uuid } from "uuid";
       original_price: 899,
       discountPercentage: 12,
       rating: 4.2,
-      inStock: true,
+      inStock: false,
       brand: "Dell",
       category: "Laptop",
       image: "https://tse3.mm.bing.net/th?id=OIP.Q0c_UwBDsHGu_lfFflKFkAHaHa&pid=Api&P=0",
@@ -611,7 +611,7 @@ import { v4 as uuid } from "uuid";
       original_price: 259,
       discountPercentage: 5,
       rating: 4.4,
-      inStock: true,
+      inStock :false,
       brand: "Bose",
       category: "Speaker",
       image: "https://tse3.mm.bing.net/th?id=OIP.X2QiQOaqZFSqVUV5aMbcvQAAAA&pid=Api&P=0",
@@ -713,7 +713,7 @@ import { v4 as uuid } from "uuid";
       image: "https://tse3.mm.bing.net/th?id=OIP.7cUSp0IzXfbsDWPhYdrVWgHaHa&pid=Api&P=0",
 
       quantity: 1,
-      trending: true
+      trending: false
     },
     {
       id: uuid(),

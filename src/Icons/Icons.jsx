@@ -7,8 +7,10 @@ import {TbTruckDelivery} from "react-icons/tb";
 import {IoShieldHalf} from "react-icons/io5";
 import {RiSecurePaymentLine} from "react-icons/ri";
 import {FiInstagram,FiTwitter,} from "react-icons/fi";
+import {HiOutlineFilter} from "react-icons/hi";
+import {MdOutlineFilterAltOff} from "react-icons/md";
 
 
 
-export {ImCart, RxCross1, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,TbTruckDelivery,IoShieldHalf,FaHandHoldingUsd,RiSecurePaymentLine,AiOutlineLogin, AiOutlineArrowLeft,AiOutlineArrowRight,FiInstagram,FiTwitter,AiOutlineLinkedin, AiOutlineSearch, AiFillStar};
+export {ImCart, RxCross1, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,TbTruckDelivery,IoShieldHalf,FaHandHoldingUsd,RiSecurePaymentLine,AiOutlineLogin, AiOutlineArrowLeft,AiOutlineArrowRight,FiInstagram,FiTwitter,AiOutlineLinkedin, AiOutlineSearch, AiFillStar, HiOutlineFilter, MdOutlineFilterAltOff};
 
