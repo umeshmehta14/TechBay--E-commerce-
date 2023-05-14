@@ -4,6 +4,8 @@
     --primary-font: 'Source Sans Pro', sans-serif;
     --secondary-font: 'Cedarville Cursive', cursive;
     --primary-color: #4b79b0;
+
+    --label-color:#7272ff;
 }
 
 * {
@@ -16,7 +18,6 @@ body {
     font-size: 14px;
     font-family: var(--primary-font);
     background-color: aliceblue;
-
 }
 
 .container{

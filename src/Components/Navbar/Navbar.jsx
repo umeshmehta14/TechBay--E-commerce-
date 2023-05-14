@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import "./Navbar.css";
 import { FaShoppingBag,ImCart,RxCross1,GiHamburgerMenu,AiOutlineHeart,AiOutlineLogin, AiOutlineSearch } from "../../Icons/Icons";
@@ -10,6 +10,19 @@ const Navbar = () => {
     const getStyle = ({isActive}) =>{
       return isActive ? {border:"1px solid white"}:{};
     }
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    
+    useEffect(()=>{
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    // useEffect(()=>{
+    //     // Code that depends on the screenWidth
+    // }, [screenWidth]);
   return (
     <header>
       <nav className='navbar'>
@@ -19,9 +32,11 @@ const Navbar = () => {
         
         <div className="navbar-icons-section">
 
-        <div onClick={()=> setShowSearch(!showSearch)} className="search-icon"><AiOutlineSearch/></div>
+        {screenWidth < 768 ? <div onClick={()=> setShowSearch(!showSearch)} className="search-icon"><AiOutlineSearch/></div>:""}
 
-        <ul className={showBurger ? "nav-links-mobile" : "nav-links"} onClick={()=> setShowBurger(false)}>
+        <ul className={"nav-links"} style={screenWidth < 768 ? {height: showBurger ? "250px" :"0px", transition: "height 0.7s ease"}:{}}  onClick={()=> setShowBurger(false)}>
+        {screenWidth > 768 ? <li onClick={()=> setShowSearch(!showSearch)} className="link-name" id="f-search"><AiOutlineSearch/></li> :""}
+
             <li><NavLink style={getStyle} className="link-name" to="/products" title='Product'><FaShoppingBag/></NavLink></li>
             <li><NavLink style={getStyle} className="link-name" to="/g" title='Cart'><ImCart/></NavLink></li>
             <li><NavLink style={getStyle} className="link-name" to="/j" title='WishList'><AiOutlineHeart/></NavLink></li>
