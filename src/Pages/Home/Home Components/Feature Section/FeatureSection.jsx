@@ -13,21 +13,7 @@ const FeatureSection = ({ products }) => {
           {products
             .filter(({ feature }) => feature)
             .map((product) => {
-              const {
-                id,
-                title,
-                description,
-                price,
-                discountPercentage,
-                rating,
-                inStock,
-                brand,
-                category,
-                image,
-                wishList,
-                quantity,
-                trending,
-              } = product;
+              const { id, title, price, category, image } = product;
               return (
                 <div key={id} className="feature-item">
                   <div className="feature-img-box">

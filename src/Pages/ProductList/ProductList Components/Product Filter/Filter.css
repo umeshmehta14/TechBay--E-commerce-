@@ -1,0 +1,121 @@
+.filter-container{
+    position: fixed;
+    top: 5rem;
+    width: 0%;
+    background-color: rgb(255, 255, 255);
+    max-height: 100vh;
+    z-index: 2;
+    padding: 1rem;
+    overflow: scroll;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+.v-0{
+    visibility: hidden;
+}
+
+.w-90{
+    width: 90%;
+}
+
+.filter-heading{
+    display: none;
+}
+
+.filter-clear-section{
+    display: flex;
+    justify-content: space-between;
+}
+.filter-clr-btn{
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+    width: 90px;
+    text-align: center;
+    background-color: #ff4a4a;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cross-filter{
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+.category-filter , .brand-filter , .trending-filter, .ratings-sort, .price-filter, .stock-filter{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    border-bottom: 1px solid;
+    padding: 1rem 0px;
+}
+
+
+.category-filter{
+    height: 30vh;
+}
+
+.ratings-sort{
+    height: 25vh;
+}
+
+.trending-filter, .stock-filter{
+    height: 10vh;
+}
+.brand-filter{
+    height: 70vh;
+    margin-bottom: 7rem;
+}
+
+
+
+
+.v-1{
+    visibility: 1;
+}
+
+.b-l{
+    border-left: 0.5px solid;
+}
+
+@media (min-width: 768px){
+    .filter-button{
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .filter-toggle-btn{
+        display: none;
+    }
+    .sort-price {
+        display: flex;
+        justify-content: flex-start;
+        width: 71%;
+    }
+    .filter-heading{
+        display: block;
+    }
+
+    .filter-container{
+        display: inline-block;
+        position: static;
+        max-height: fit-content;
+        overflow: hidden;
+        width: 30%;
+        max-width: 300px;
+    }
+
+    .v-0{
+        visibility: visible;
+    }
+    .d-none{
+        display: none;
+    }
+}
+

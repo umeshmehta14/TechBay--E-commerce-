@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <HeroSection />
         <FeatureSection products={products} />
@@ -24,7 +23,7 @@ const Home = () => {
         <DeliveryInfo />
         <CompanyInfo />
       </div>
-        <Footer/>
+        {/* <Footer/> */}
     </>
   );
 };
