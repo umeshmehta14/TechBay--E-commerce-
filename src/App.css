@@ -22,16 +22,25 @@ body {
 
 .container{
     position: relative;
-    top: 5.02rem;
 }
 
 .w-90{
     width: 90%;
 }
 
+.m-auto{
+    margin: auto;
+}
+
 .p-1{
     padding: 1rem;
 }
+
+.top-5{
+    top: 5.02rem;
+}
+
+
 
 @media (min-width: 768px) {
     body {

@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
+    box-shadow: 0px 4px 10px #acacac;
 }
 
 .nav-top-section {

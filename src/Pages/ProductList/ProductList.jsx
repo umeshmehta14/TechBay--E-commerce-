@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useProducts } from "../../Contexts/DataContext";
-
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";
@@ -21,7 +20,7 @@ const ProductList = () => {
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="container wpl-90">
+    <div className="container wpl-90 top-5">
       <SortByPrice setShowFilter={setShowFilter} showFilter={showFilter} />
       <div className="main-product-page">
         <Filters

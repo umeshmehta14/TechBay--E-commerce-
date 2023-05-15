@@ -3,6 +3,8 @@
     .container {
         width: 80%;
         margin: auto;
+    }
+    .top-6{
         top: 6rem;
     }
 }
