@@ -25,6 +25,13 @@ body {
     top: 5.02rem;
 }
 
+.w-90{
+    width: 90%;
+}
+
+.p-1{
+    padding: 1rem;
+}
 
 @media (min-width: 768px) {
     body {

@@ -13,46 +13,16 @@
     -ms-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
 }
-.p-0{
+.v-0{
     visibility: hidden;
 }
-.filter-button{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0.5rem;
+
+.w-90{
+    width: 90%;
 }
 
-.filter-toggle-btn{
-    background-color: var(--secondary-color);
-    padding: 0.5rem 0.8rem;
-    font-size: 1rem;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 5.7rem;
-    border: none;
-    border-radius: 0px 10px 0px 10px;
-}
-
-.sort-price{
-    display: flex;
-    justify-content: space-between;
-    width: 71%;
-}
-
-.sort-btn{
-    padding: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid gray;
-}
-
-.sort-btn:focus{
-    border-bottom: 3px solid var(--secondary-color) ;
+.filter-heading{
+    display: none;
 }
 
 .filter-clear-section{
@@ -101,10 +71,51 @@
 }
 .brand-filter{
     height: 70vh;
-    margin-bottom: 10rem;
+    margin-bottom: 7rem;
 }
-.w-90{
-    width: 90%;
-    padding: 1rem;
+
+
+
+
+.v-1{
     visibility: 1;
 }
+
+.b-l{
+    border-left: 0.5px solid;
+}
+
+@media (min-width: 768px){
+    .filter-button{
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .filter-toggle-btn{
+        display: none;
+    }
+    .sort-price {
+        display: flex;
+        justify-content: flex-start;
+        width: 71%;
+    }
+    .filter-heading{
+        display: block;
+    }
+
+    .filter-container{
+        display: inline-block;
+        position: static;
+        max-height: fit-content;
+        overflow: hidden;
+        width: 30%;
+        max-width: 300px;
+    }
+
+    .v-0{
+        visibility: visible;
+    }
+    .d-none{
+        display: none;
+    }
+}
+

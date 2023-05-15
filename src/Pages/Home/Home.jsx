@@ -23,7 +23,7 @@ const Home = () => {
         <DeliveryInfo />
         <CompanyInfo />
       </div>
-        <Footer/>
+        {/* <Footer/> */}
     </>
   );
 };

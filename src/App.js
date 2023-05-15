@@ -6,6 +6,7 @@ import Error from "./Pages/Error/Error";
 import Home from "./Pages/Home/Home";
 import ProductList from "./Pages/ProductList/ProductList";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const {error,loading} = useProducts();
@@ -19,6 +20,7 @@ function App() {
         <Route path="/products" element={<ProductList/>}/>
         <Route path="/error" element={<Error/>}/>
       </Routes>
+      <Footer/>
     </>
   );
 }
