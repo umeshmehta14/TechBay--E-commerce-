@@ -1,7 +1,9 @@
 import React from "react";
 import "./FeatureSection.css";
+import { useNavigate } from "react-router-dom";
 
 const FeatureSection = ({ products }) => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="feature-services">
@@ -15,7 +17,7 @@ const FeatureSection = ({ products }) => {
             .map((product) => {
               const { id, title, price, category, image } = product;
               return (
-                <div key={id} className="feature-item">
+                <div key={id} className="feature-item" onClick={()=>navigate(`/singleProduct/${id}`)}>
                   <div className="feature-img-box">
                     <img
                       className="feature-item-img"

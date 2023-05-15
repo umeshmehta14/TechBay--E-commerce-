@@ -42,6 +42,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.8s ease-in-out;
+    -webkit-transition: background-color 0.8s ease-in-out;
+    -moz-transition: background-color 0.8s ease-in-out;
+    -ms-transition: background-color 0.8s ease-in-out;
+    -o-transition: background-color 0.8s ease-in-out;
+}
+
+.filter-clr-btn:hover{
+    background-color: #7f3636;
 }
 
 .cross-filter{

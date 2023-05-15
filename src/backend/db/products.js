@@ -161,7 +161,7 @@ import { v4 as uuid } from "uuid";
     inStock: true,
     brand: "Samsung",
     category: "Smartphone",
-    image: "https://tse1.mm.bing.net/th?id=OIP.qUEkzvgxjQC72s6JwSnGrwHaDt&pid=Api&P=0",
+    image: "https://tse4.mm.bing.net/th?id=OIP.b9cZ7yuu68vDadmDV88uagHaHa&pid=Api&P=0",
     quantity: 1,
     trending: true
   },

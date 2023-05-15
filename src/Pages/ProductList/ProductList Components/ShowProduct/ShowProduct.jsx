@@ -2,8 +2,10 @@ import React from "react";
 import {  AiFillStar, AiOutlineHeart } from "../../../../Icons/Icons";
 
 import "./ShowProduct.css";
+import { useNavigate } from "react-router-dom";
 
 const ShowProduct = ({ item }) => {
+  const navigate = useNavigate();
   const {
     id,
     title,
@@ -23,10 +25,10 @@ const ShowProduct = ({ item }) => {
         className={`product-card ${!inStock ? "stock-checker" : ""}`}
       >
         <AiOutlineHeart className="wishList-icon" />
-        <div className="product-card-img">
+        <div className="product-card-img" onClick={()=> navigate(`/singleProduct/${id}`)}>
           <img src={image} alt="Stay Tuned" width={"100px"} />
           {inStock ? (
-            <span className={trending && "trending"}>
+            <span className={trending ? "trending":""}>
               {trending && "Trending"}
             </span>
           ) : (
@@ -34,7 +36,7 @@ const ShowProduct = ({ item }) => {
           )}
         </div>
         <div className="disp-info-pc">
-          <div className="product-card-info">
+          <div className="product-card-info" onClick={()=> navigate(`/singleProduct/${id}`)}>
             <span className="rating">
               {rating}
               <AiFillStar />
@@ -48,8 +50,8 @@ const ShowProduct = ({ item }) => {
             </div>
           </div>
           <div className="btn-box">
-            <button className="btn w-fit m-0">Add to Cart</button>
-            <button className="btn w-fit m-0 byn-btn">Buy Now</button>
+            <button className="btn btn-p-w w-fit m-0">Add to Cart</button>
+            <button className="btn btn-p-w  w-fit m-0 byn-btn">Buy Now</button>
           </div>
         </div>
       </div>

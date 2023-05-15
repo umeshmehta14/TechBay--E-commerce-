@@ -29,8 +29,7 @@
 
 .btn {
     font-size: 1rem;
-    width: 7rem;
-    padding: 0.8rem;
+    padding: 1rem 1.5rem;
     background-color: var(--primary-color);
     border: none;
     color: white;
@@ -46,6 +45,10 @@
 /* Responsive Design */
 
 @media (min-width: 768px) {
+
+    .top-6{
+        top: 6rem;
+    }
 
     .main-image {
         height: 100%;
