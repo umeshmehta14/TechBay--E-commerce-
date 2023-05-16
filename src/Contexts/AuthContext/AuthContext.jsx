@@ -24,9 +24,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpHandler = async ({name, lastName, email, password})=>{
+  const signUpHandler = async ({firstName, lastName, email, password})=>{
     try {
-      const {status, data:{createdUser, encodedToken}} = await createUser(name, lastName, email, password);
+      const {status, data:{createdUser, encodedToken}} = await createUser(firstName, lastName, email, password);
       if(status === 201 || status === 200)
       {
         setCurrentUser(createdUser);

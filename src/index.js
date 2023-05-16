@@ -7,6 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { DataContext, DataProvider } from "./Contexts/DataContext/DataContext";
 import {
+  WishListContext,
+  WishListProvider,
+} from "./Contexts/WishListContext/WishListContext";
+import {
   AuthContext,
   AuthProvider,
 } from "./Contexts/AuthContext/AuthContext.jsx";
@@ -19,7 +23,9 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <DataProvider>
-          <App />
+          <WishListProvider>
+            <App />
+          </WishListProvider>
         </DataProvider>
       </AuthProvider>
     </Router>
@@ -29,3 +35,4 @@ ReactDOM.render(
 
 export { DataContext };
 export { AuthContext };
+export { WishListContext };

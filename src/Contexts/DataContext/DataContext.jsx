@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState, useReducer, useContext } from 'react'
 import { DataReducer, initialState } from '../../DataReducer/DataReducer';
 import { getAllCategory, getAllProduct } from './DataApi';
+import { category, products } from '../../DataReducer/Constants';
 
 export const DataContext = createContext();
 
@@ -8,26 +9,17 @@ export const DataProvider = ({children}) => {
   const [state, dispatch] = useReducer(DataReducer, initialState);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const getProducts =async ()=>{
+  const getData =async ()=>{
     try {
       const productResponse = await getAllProduct();
       if(productResponse.status === 200)
       {
-        dispatch({type:"products", payload: productResponse.data.products});
+        dispatch({type:products, payload: productResponse.data.products});
       }
-    } catch (err) {
-      setError(error);
-    }
-    finally{
-      setLoading(false);
-    }
-  }
-  const getCategory =async ()=>{
-    try {
       const categoryResponse = await getAllCategory();
       if(categoryResponse.status === 200)
       {
-        dispatch({type:"category", payload: categoryResponse.data.categories});
+        dispatch({type:category, payload: categoryResponse.data.categories});
       }
     } catch (err) {
       setError(error);
@@ -38,15 +30,14 @@ export const DataProvider = ({children}) => {
   }
 
   useEffect(()=>{
-    getProducts();
-    getCategory();
-  },[0])
+    getData();
+  },[])
   return (
-    <DataContext.Provider value={{state, loading, error}}>
+    <DataContext.Provider value={{state, loading, error, dispatch}}>
       {children}
     </DataContext.Provider>
   )
 }
 
-export const useProducts = () => useContext(DataContext);
+export const useData = () => useContext(DataContext);
 

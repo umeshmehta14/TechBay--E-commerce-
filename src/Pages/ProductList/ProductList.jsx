@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useProducts } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";
@@ -9,7 +9,7 @@ import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPr
 const ProductList = () => {
   const {
     state: { products, category },
-  } = useProducts();
+  } = useData();
 
   const [currentPage, setCurrentPage] = useState(1);
 

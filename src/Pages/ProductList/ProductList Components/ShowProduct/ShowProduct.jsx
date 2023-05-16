@@ -3,18 +3,20 @@ import {  AiFillStar, AiOutlineHeart, AiFillHeart } from "../../../../Icons/Icon
 
 import "./ShowProduct.css";
 import { useNavigate } from "react-router-dom";
+import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
 
 const ShowProduct = ({ item }) => {
+  const {handleWishList} = useWishList();
   const navigate = useNavigate();
   const {
-    id,
+    _id,
     title,
     description,
     price,
     discountPercentage,
     original_price,
     rating,
-    wished,
+    inWishlist,
     inStock,
     image,
     trending,
@@ -22,12 +24,12 @@ const ShowProduct = ({ item }) => {
   return (
     <>
       <div
-        key={id}
+        key={_id}
         className={`product-card ${!inStock ? "stock-checker" : ""}`}
       >
-        {wished ? <AiFillHeart className="wishList-icon bg-red"/>:<AiOutlineHeart className="wishList-icon" />}
-        <div className="product-card-img" onClick={()=> navigate(`/singleProduct/${id}`)}>
-          <img src={image} alt="Stay Tuned" width={"100px"} />
+        {inWishlist ? <AiFillHeart className="c-red wishList-icon" onClick={()=> handleWishList(item)}/>:<AiOutlineHeart className="wishList-icon" onClick={()=> handleWishList(item)}/>}
+        <div className="product-card-img" onClick={()=> navigate(`/singleProduct/${_id}`)}>
+          <img src={image} alt="Stay Tuned" />
           {inStock ? (
             <span className={trending ? "trending":""}>
               {trending && "Trending"}
@@ -37,7 +39,7 @@ const ShowProduct = ({ item }) => {
           )}
         </div>
         <div className="disp-info-pc">
-          <div className="product-card-info" onClick={()=> navigate(`/singleProduct/${id}`)}>
+          <div className="product-card-info" onClick={()=> navigate(`/singleProduct/${_id}`)}>
             <span className="rating">
               {rating}
               <AiFillStar />

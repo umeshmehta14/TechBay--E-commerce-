@@ -1,5 +1,5 @@
 import React from "react";
-import { useProducts } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart } from "../../Icons/Icons";
 import "./SingleProduct.css";
@@ -7,10 +7,9 @@ import "./SingleProduct.css";
 const SingleProduct = () => {
   const {
     state: { products },
-  } = useProducts();
-  console.log(products);
+  } = useData();
   const { productId } = useParams();
-  const selectedProduct = products.find(({ id }) => id === productId);
+  const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
     title,
     description,
