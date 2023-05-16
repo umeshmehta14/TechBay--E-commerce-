@@ -5,7 +5,11 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { DataContext, DataProvider } from "./Contexts/DataContext";
+import { DataContext, DataProvider } from "./Contexts/DataContext/DataContext";
+import {
+  AuthContext,
+  AuthProvider,
+} from "./Contexts/AuthContext/AuthContext.jsx";
 
 // Call make Server
 makeServer();
@@ -13,12 +17,15 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <DataProvider>
-        <App />
-      </DataProvider>
+      <AuthProvider>
+        <DataProvider>
+          <App />
+        </DataProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
 export { DataContext };
+export { AuthContext };

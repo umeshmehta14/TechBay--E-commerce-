@@ -1,5 +1,5 @@
 import React from "react";
-import { useProducts } from "../../Contexts/DataContext";
+import { useProducts } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart } from "../../Icons/Icons";
 import "./SingleProduct.css";

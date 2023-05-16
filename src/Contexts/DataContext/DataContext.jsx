@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, useReducer, useContext } from 'react'
-import { DataReducer, initialState } from '../DataReducer/DataReducer';
-import { getAllCategory, getAllProduct } from './Services/Services';
+import { DataReducer, initialState } from '../../DataReducer/DataReducer';
+import { getAllCategory, getAllProduct } from './DataApi';
 
 export const DataContext = createContext();
 

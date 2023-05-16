@@ -67,8 +67,6 @@
 
 }
 
-
-
 .feature-item:hover .feature-img-box::before {
     width: 100%;
 }
