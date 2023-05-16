@@ -9,8 +9,9 @@ import {RiSecurePaymentLine} from "react-icons/ri";
 import {FiInstagram,FiTwitter,} from "react-icons/fi";
 import {HiOutlineFilter} from "react-icons/hi";
 import {MdOutlineFilterAltOff} from "react-icons/md";
+import {BiUserCircle} from "react-icons/bi";
 
 
 
-export {ImCart, RxCross1, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,AiFillHeart, TbTruckDelivery,IoShieldHalf,FaHandHoldingUsd,RiSecurePaymentLine,AiOutlineLogin, AiOutlineArrowLeft,AiOutlineArrowRight,FiInstagram,FiTwitter,AiOutlineLinkedin, AiOutlineSearch, AiFillStar, HiOutlineFilter, MdOutlineFilterAltOff, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineLogout};
+export {ImCart, RxCross1,BiUserCircle, FaShoppingBag,GiHamburgerMenu,AiOutlineHeart,AiFillHeart, TbTruckDelivery,IoShieldHalf,FaHandHoldingUsd,RiSecurePaymentLine,AiOutlineLogin, AiOutlineArrowLeft,AiOutlineArrowRight,FiInstagram,FiTwitter,AiOutlineLinkedin, AiOutlineSearch, AiFillStar, HiOutlineFilter, MdOutlineFilterAltOff, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineLogout};
 

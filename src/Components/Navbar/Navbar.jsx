@@ -9,7 +9,7 @@ import {
   AiOutlineHeart,
   AiOutlineLogin,
   AiOutlineSearch,
-  AiOutlineLogout
+  BiUserCircle
 } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 
@@ -109,9 +109,9 @@ const Navbar = () => {
                   style={getStyle}
                   className="link-name"
                   to={token ? "/logout" : "/login"}
-                  title={token ? "Logout" : "Login"}
+                  title={token ? "Profile" : "Login"}
                 >
-                  {token ? <AiOutlineLogout/> : <AiOutlineLogin />}
+                  {token ? <BiUserCircle/> : <AiOutlineLogin />}
                 </NavLink>
               </li>
             </ul>

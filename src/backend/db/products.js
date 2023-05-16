@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
  export const products = [
   //Best Feature
   {
-    id: uuid(),
+    _id: uuid(),
     title: "OnePlus Nord CE 5G",
     description: "Fast and reliable 5G smartphone with stunning display",
     price: 399,
@@ -25,7 +25,7 @@ import { v4 as uuid } from "uuid";
     feature:"best"
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Asus ROG Zephyrus S17",
     description: "A high-end gaming laptop with advanced features from Asus",
     price: 2799,
@@ -41,7 +41,7 @@ import { v4 as uuid } from "uuid";
     feature:"best"
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG 55 inch 4K UHD Smart TV",
     description: "Immersive viewing experience with vivid colors and deep contrast",
     price: 899,
@@ -57,7 +57,7 @@ import { v4 as uuid } from "uuid";
     feature:"best",
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Sennheiser HD 660 S",
     description: "High-end open-back headphones for audiophiles from Sennheiser",
     price: 499,
@@ -76,7 +76,7 @@ import { v4 as uuid } from "uuid";
 
   // Product List
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Samsung Galaxy S21",
     description: "The Samsung Galaxy S21 is a powerful and stylish smartphone.",
     price: 799,
@@ -91,7 +91,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Dell XPS 13",
     description: "The Dell XPS 13 is a powerful and portable laptop for work or play.",
     price: 1299,
@@ -106,7 +106,7 @@ import { v4 as uuid } from "uuid";
     trending: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG CX 55-inch OLED TV",
     description: "The LG CX 55-inch OLED TV delivers stunning picture quality with deep blacks and vibrant colors.",
     price: 1599,
@@ -121,7 +121,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Bose SoundLink Revolve",
     description: "The Bose SoundLink Revolve is a portable Bluetooth speaker with 360-degree sound.",
     price: 199,
@@ -136,7 +136,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Sony WH-1000XM4",
     description: "The Sony WH-1000XM4 are premium noise-cancelling headphones with excellent sound quality.",
     price: 349,
@@ -151,7 +151,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Samsung Galaxy S20",
     description: "A high-end smartphone with 5G support",
     price: 799,
@@ -166,7 +166,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Dell XPS 13",
     description: "A high-performance laptop with an InfinityEdge display",
     price: 1299,
@@ -181,7 +181,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG CX Series 4K OLED TV",
     description: "A stunning OLED TV with HDMI 2.1 and G-Sync support",
     price: 1799,
@@ -196,7 +196,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Bose SoundLink Revolve+",
     description: "A powerful Bluetooth speaker with 360-degree sound",
     price: 299,
@@ -211,7 +211,7 @@ import { v4 as uuid } from "uuid";
     trending: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Sony WH-1000XM4",
     description: "Premium noise-cancelling headphones with long battery life",
     price: 349,
@@ -225,7 +225,7 @@ import { v4 as uuid } from "uuid";
     quantity: 1,
     trending: true
   },{
-    id: uuid(),
+    _id: uuid(),
     title: "Dell Inspiron 15 5000",
     description: "A powerful laptop for work and play",
     price: 799,
@@ -240,7 +240,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG 55 inch 4K UHD Smart TV",
     description: "Immersive viewing experience with vivid colors and deep contrast",
     price: 899,
@@ -255,7 +255,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Bose QuietComfort 35 II",
     description: "Wireless noise-cancelling headphones for a truly immersive experience",
     price: 299,
@@ -270,7 +270,7 @@ import { v4 as uuid } from "uuid";
     trending: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "JBL Flip 5 Waterproof Portable Bluetooth Speaker",
     description: "Powerful and portable speaker with waterproof design",
     price: 119,
@@ -285,7 +285,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "OnePlus Nord CE 5G",
     description: "Fast and reliable 5G smartphone with stunning display",
     price: 399,
@@ -300,7 +300,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Samsung Galaxy Tab S7",
     description: "Powerful tablet with stunning display and S Pen included",
     price: 649,
@@ -315,7 +315,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "HP Spectre x360",
     description: "A premium 2-in-1 laptop with a sleek design and powerful performance",
     price: 1499,
@@ -330,7 +330,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG OLED55C1PUB",
     description: "A high-end 55-inch OLED TV with stunning picture quality and smart features",
     price: 1999,
@@ -345,7 +345,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Bose QuietComfort 35 II",
     description: "Premium noise-cancelling headphones with superb sound quality and comfort",
     price: 349,
@@ -360,7 +360,7 @@ import { v4 as uuid } from "uuid";
     trending: true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Sonos One (Gen 2)",
     description: "A smart speaker with great sound and voice control for your home",
     price: 199,
@@ -375,7 +375,7 @@ import { v4 as uuid } from "uuid";
     trending: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Sony WH-1000XM4",
     description: "Industry leading wireless noise cancelling headphones",
     price: 349,
@@ -390,7 +390,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "LG 65UN7300PUF",
     description: "65 inch 4K Ultra HD Smart LED TV",
     price: 799,
@@ -405,7 +405,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Dell XPS 13",
     description: "13.3 inch 4K Ultra HD Touchscreen Laptop",
     price: 1399,
@@ -420,7 +420,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "JBL Flip 5",
     description: "Portable Waterproof Bluetooth Speaker",
     price: 119,
@@ -435,7 +435,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Bose QuietComfort 35 II Wireless Headphones",
     description: "Wireless headphones with noise cancelling technology",
     price: 299,
@@ -450,7 +450,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Samsung 75\" Class Q90T QLED 4K UHD HDR Smart TV",
     description: "75 inch 4K UHD HDR Smart TV with Quantum Processor 4K",
     price: 3999,
@@ -465,7 +465,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: "Lenovo ThinkPad X1 Carbon Gen 9",
     description: "14 inch business laptop with Intel Core i7 processor",
     price: 1849,
@@ -480,7 +480,7 @@ import { v4 as uuid } from "uuid";
     trending : true
   },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Apple MacBook Pro",
       description: "Powerful laptop with a stunning display",
       price: 1299,
@@ -496,7 +496,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Bose QuietComfort 35 II",
       description: "Wireless noise-cancelling headphones",
       price: 299,
@@ -512,7 +512,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Sony BRAVIA XBR",
       description: "4K HDR television with built-in Google Assistant",
       price: 1399,
@@ -528,7 +528,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Google Nest Audio",
       description: "Smart speaker with powerful sound",
       price: 99,
@@ -543,7 +543,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Dell Inspiron 15",
       description: "Affordable laptop with decent specs",
       price: 599,
@@ -559,7 +559,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Samsung Galaxy Buds Pro",
       description: "Wireless earbuds with great sound quality",
       price: 199,
@@ -574,7 +574,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Dell XPS 13",
       description: "A sleek and powerful laptop from Dell",
       price: 1199,
@@ -589,7 +589,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Sony BRAVIA X8000H",
       description: "A 4K smart TV with incredible picture quality from Sony",
       price: 849,
@@ -604,7 +604,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Bose SoundLink Revolve",
       description: "A portable Bluetooth speaker with 360 degree sound from Bose",
       price: 199,
@@ -620,7 +620,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Sennheiser HD 660 S",
       description: "High-end open-back headphones for audiophiles from Sennheiser",
       price: 499,
@@ -636,7 +636,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Samsung Galaxy A52",
       description: "A mid-range smartphone from Samsung with great camera features",
       price: 349,
@@ -652,7 +652,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Asus ROG Zephyrus S17",
       description: "A high-end gaming laptop with advanced features from Asus",
       price: 2799,
@@ -668,7 +668,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Apple MacBook Air",
       description: "A thin and light laptop with impressive performance",
       price: 1199,
@@ -684,7 +684,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "LG 65-Inch 4K Ultra HD Smart LED TV",
       description: "A large, high-quality TV with smart features",
       price: 999,
@@ -700,7 +700,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Bose SoundLink Mini II",
       description: "A portable Bluetooth speaker with excellent sound",
       price: 199,
@@ -716,7 +716,7 @@ import { v4 as uuid } from "uuid";
       trending: false
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Sony WH-1000XM4 Wireless Noise-Canceling Headphones",
       description: "High-quality wireless headphones with noise cancellation",
       price: 349,
@@ -732,7 +732,7 @@ import { v4 as uuid } from "uuid";
       trending: true
     },
     {
-      id: uuid(),
+      _id: uuid(),
       title: "Google Pixel 5",
       description: "A high-performance smartphone with a great camera",
       price: 799,

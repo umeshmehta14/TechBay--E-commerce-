@@ -4,6 +4,8 @@
     background-color: white;
 }
 
+
+
 .product-card-img::before{
     content: "";
     position: absolute;
@@ -44,6 +46,8 @@
     cursor: not-allowed;
     text-shadow: 3px 1px 3px black;
 }
+
+
 
 .wishList-icon {
     position: absolute;
@@ -182,6 +186,10 @@
 
 .byn-btn {
     display: none;
+}
+
+.c-red{
+    color: red;
 }
 
 @media (min-width: 768px) {

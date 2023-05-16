@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import { useProducts } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 import HeroSection from "./Home Components/Hero Section/HeroSection";
 import FeatureSection from "./Home Components/Feature Section/FeatureSection";
 import CategorySection from "./Home Components/Category Section/CategorySection";
@@ -10,7 +10,7 @@ import CompanyInfo from "./Home Components/CompanyInfo Section/CompanyInfo";
 const Home = () => {
   const {
     state: { products, category },
-  } = useProducts();
+  } = useData();
 
   return (
     <>
