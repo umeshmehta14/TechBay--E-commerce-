@@ -19,11 +19,13 @@ const Login = () => {
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);
-      navigate(location?.state?.from.pathname || '/');
   };
-useEffect(()=>{
-  navigate(location?.state?.from.pathname);
-},[token]);
+
+useEffect(() => {
+  if (token) {
+    navigate(location?.state?.from.pathname || "/", { replace: true });
+  }
+}, [token, navigate, location?.state?.from.pathname]);
   return (
     <div className="container main-login top-6">
       <div className="auth-box">
