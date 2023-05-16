@@ -1,5 +1,5 @@
 import React from "react";
-import {  AiFillStar, AiOutlineHeart } from "../../../../Icons/Icons";
+import {  AiFillStar, AiOutlineHeart, AiFillHeart } from "../../../../Icons/Icons";
 
 import "./ShowProduct.css";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const ShowProduct = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
+    wished,
     inStock,
     image,
     trending,
@@ -24,7 +25,7 @@ const ShowProduct = ({ item }) => {
         key={id}
         className={`product-card ${!inStock ? "stock-checker" : ""}`}
       >
-        <AiOutlineHeart className="wishList-icon" />
+        {wished ? <AiFillHeart className="wishList-icon bg-red"/>:<AiOutlineHeart className="wishList-icon" />}
         <div className="product-card-img" onClick={()=> navigate(`/singleProduct/${id}`)}>
           <img src={image} alt="Stay Tuned" width={"100px"} />
           {inStock ? (

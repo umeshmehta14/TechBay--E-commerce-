@@ -1,0 +1,85 @@
+.main-login{
+    top: 4rem;
+}
+
+.main-signup{
+    height: 80vh;
+}
+
+.auth-box {
+    font-size: 1.2rem;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.auth-form {
+    height: 70%;
+    width: 80%;
+}
+
+.detail-inp-box{
+    position: relative;
+}
+
+.detail-inp-box {
+    width: 100%;
+}
+
+.email-inp,
+.password-inp {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    margin: 0.2rem 0px;
+    border:none;
+    outline: 0.5px solid var(--secondary-color);
+    border-radius: 12px;
+}
+
+.password-inp{
+    padding-right: 2.5rem;
+}
+
+.email-inp:hover,
+.password-inp:hover {
+    outline: 1px solid gray;
+}
+.email-inp:focus,
+.password-inp:focus{
+    outline: 1px solid gray;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.eye-icon{
+    position: absolute;
+    top: 2rem;
+    font-size: 1.5rem;
+    right: 0.5rem;
+    color: rgb(125, 125, 125);
+    cursor: pointer;
+}
+
+.auth-form .btn {
+    width: 70%;
+    padding: 0.6rem 3rem;
+    margin: 0px auto;
+}
+
+@media (min-width: 768px) {
+    .auth-box {
+        width: 60%;
+        height: 70vh;
+        margin: auto;
+        max-width: 561px;
+    }
+    .main-signup{
+        height: 80vh;
+    }
+}

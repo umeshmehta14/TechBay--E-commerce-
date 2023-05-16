@@ -4,7 +4,7 @@
     width: 0%;
     background-color: rgb(255, 255, 255);
     max-height: 100vh;
-    z-index: 2;
+    z-index: 5;
     padding: 1rem;
     overflow: scroll;
     transition: all 0.5s ease-in-out;

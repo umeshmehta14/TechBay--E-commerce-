@@ -39,7 +39,9 @@ body {
 .top-5{
     top: 5.02rem;
 }
-
+.bg-red{
+    background-color: red;
+}
 
 
 @media (min-width: 768px) {
