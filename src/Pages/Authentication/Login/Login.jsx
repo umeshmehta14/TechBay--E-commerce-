@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Icons/Icons";
 import "../Authentications.css";
@@ -19,12 +19,13 @@ const Login = () => {
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);
-    if(token)
-    {
-      navigate(location?.state?.from.pathname || '/');
-    }
   };
-0
+
+useEffect(() => {
+  if (token) {
+    navigate(location?.state?.from.pathname || "/", { replace: true });
+  }
+}, [token, navigate, location?.state?.from.pathname]);
   return (
     <div className="container main-login top-6">
       <div className="auth-box">

@@ -9,14 +9,16 @@ import {
   AiOutlineHeart,
   AiOutlineLogin,
   AiOutlineSearch,
-  AiOutlineLogout
+  BiUserCircle
 } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 
 const Navbar = () => {
   const {token} = useAuth();
   const [showBurger, setShowBurger] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const {state:{wishlist}} = useData();
   const navigate = useNavigate();
   const getStyle = ({ isActive }) => {
     return isActive ? { border: "1px solid white" } : {};
@@ -102,6 +104,7 @@ const Navbar = () => {
                   title="WishList"
                 >
                   <AiOutlineHeart />
+                  {wishlist?.length > 0 && <span>{wishlist?.length}</span>}
                 </NavLink>
               </li>
               <li>
@@ -109,9 +112,9 @@ const Navbar = () => {
                   style={getStyle}
                   className="link-name"
                   to={token ? "/logout" : "/login"}
-                  title={token ? "Logout" : "Login"}
+                  title={token ? "Profile" : "Login"}
                 >
-                  {token ? <AiOutlineLogout/> : <AiOutlineLogin />}
+                  {token ? <BiUserCircle/> : <AiOutlineLogin />}
                 </NavLink>
               </li>
             </ul>

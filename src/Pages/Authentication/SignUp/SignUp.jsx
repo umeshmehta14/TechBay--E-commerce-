@@ -11,7 +11,7 @@ const SignUp = () => {
   const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
-    name: "",
+    firstName: "",
     lastName: "",
   });
 
@@ -37,7 +37,7 @@ const SignUp = () => {
               className="email-inp"
               placeholder="Umesh"
               onChange={(event) =>
-                setUserDetail({ ...userDetail, name: event.target.value })
+                setUserDetail({ ...userDetail, firstName: event.target.value })
               }
               required
             />

@@ -66,12 +66,24 @@
 }
 
 
-
 .link-name {
+    position: relative;
     text-decoration: none;
     color: black;
     font-weight: 600;
     padding: 0.5rem;
+}
+
+.link-name span{
+    position: absolute;
+    top: 0rem;
+    font-weight: 300;
+    font-size: 1rem;
+    left: 1.5rem;
+    padding: 0rem 0.3rem;
+    border-radius: 50%;
+    background-color: var(--third-color);
+    color: whitesmoke;
 }
 
 .search-input-box {

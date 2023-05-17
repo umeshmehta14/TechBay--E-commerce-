@@ -1,16 +1,17 @@
 import React from "react";
-import { useProducts } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
-import { AiFillStar, AiOutlineHeart } from "../../Icons/Icons";
+import { AiFillStar, AiOutlineHeart, AiFillHeart, ImCart } from "../../Icons/Icons";
 import "./SingleProduct.css";
+import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 
 const SingleProduct = () => {
   const {
     state: { products },
-  } = useProducts();
-  console.log(products);
+  } = useData();
+  const {wishDisable, handleWishList} = useWishList();
   const { productId } = useParams();
-  const selectedProduct = products.find(({ id }) => id === productId);
+  const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
     title,
     description,
@@ -21,13 +22,26 @@ const SingleProduct = () => {
     brand,
     rating,
     inStock,
+    inWishlist,
     image,
     trending,
   } = selectedProduct;
   return (
      <div className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card">
-      <AiOutlineHeart className="wishList-icon" />
+      {inWishlist ? (
+          <AiFillHeart
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+            onClick={() => handleWishList(selectedProduct)}
+          />
+        ) : (
+          <AiOutlineHeart
+            className={`wishList-icon ${wishDisable && "cursor-disable"} ${
+              !inStock ? "cursor-disable" : ""
+            }`}
+            onClick={() => (inStock ? handleWishList(selectedProduct) : null)}
+          />
+        )}
         <div className="product-image-box">
             <img src={image} alt="Currently Not Available" />
             <span className={trending && "trending s-trending"}>
@@ -52,7 +66,7 @@ const SingleProduct = () => {
             <p className="s-price price">${price}</p>
           </div>
           <div className="s-btn-box">
-            <button className="btn w-fit m-0">Add to Cart</button>
+            <button className="btn w-fit m-0"><ImCart/> Add to Cart</button>
             <button className="btn w-fit m-0 s-byn-btn">Buy Now</button>
           </div>
         </div>

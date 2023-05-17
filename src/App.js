@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useProducts } from "./Contexts/DataContext/DataContext";
+import { useData } from "./Contexts/DataContext/DataContext";
 import loader from "./Images-Gifs/loader.gif";
 import Error from "./Pages/Error/Error";
 import Home from "./Pages/Home/Home";
@@ -16,12 +16,11 @@ import RequiredAuth from "./Components/RequiredAuth/RequiredAuth";
 import WishList from "./Pages/Wishlist/WishList";
 
 function App() {
-  const {error,loading} = useProducts();
+  const {error,loading} = useData();
   return (
     <>
     {/* <Mockman/> */}
       {error ? <Error/> : <Navbar/>}
-      
       {loading ? <img className="loader" src={loader} alt="Loading..."/>:<> <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/products" element={<ProductList/>}/>

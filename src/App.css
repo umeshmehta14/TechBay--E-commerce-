@@ -5,6 +5,7 @@
     --secondary-font: 'Cedarville Cursive', cursive;
     --primary-color: #4b79b0;
     --secondary-color:#4f4bb0;
+    --third-color:#162434;
     --label-color:#7272ff;
 }
 
@@ -38,9 +39,6 @@ body {
 
 .top-5{
     top: 5.02rem;
-}
-.bg-red{
-    background-color: red;
 }
 
 
