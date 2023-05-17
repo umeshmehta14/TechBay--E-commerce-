@@ -6,6 +6,11 @@
     margin-bottom: 8rem;
     min-height: 60vh;
 }
+
+.product-container-wishlist{
+    padding-top:1.5rem;
+        margin-top: 0rem;
+}
 .wishlist-description {
     display: none;
 }

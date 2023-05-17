@@ -6,12 +6,17 @@
     max-height: 100vh;
     z-index: 5;
     padding: 1rem;
+    max-width: 300px;
     overflow: scroll;
     transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -ms-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
+}
+
+.filter-container label{
+    padding: 0.3rem 0rem;
 }
 .v-0{
     visibility: hidden;
@@ -68,7 +73,7 @@
 }
 
 
-.category-filter{
+/* .category-filter{
     height: 30vh;
 }
 
@@ -78,9 +83,9 @@
 
 .trending-filter, .stock-filter{
     height: 10vh;
-}
+} */
 .brand-filter{
-    height: 70vh;
+    /* height: 70vh; */
     margin-bottom: 7rem;
 }
 

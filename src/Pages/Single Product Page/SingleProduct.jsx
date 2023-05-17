@@ -1,7 +1,7 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
-import { AiFillStar, AiOutlineHeart, AiFillHeart } from "../../Icons/Icons";
+import { AiFillStar, AiOutlineHeart, AiFillHeart, ImCart } from "../../Icons/Icons";
 import "./SingleProduct.css";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 
@@ -66,7 +66,7 @@ const SingleProduct = () => {
             <p className="s-price price">${price}</p>
           </div>
           <div className="s-btn-box">
-            <button className="btn w-fit m-0">Add to Cart</button>
+            <button className="btn w-fit m-0"><ImCart/> Add to Cart</button>
             <button className="btn w-fit m-0 s-byn-btn">Buy Now</button>
           </div>
         </div>
