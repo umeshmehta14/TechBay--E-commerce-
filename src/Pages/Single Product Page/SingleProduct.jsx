@@ -1,13 +1,15 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
-import { AiFillStar, AiOutlineHeart } from "../../Icons/Icons";
+import { AiFillStar, AiOutlineHeart, AiFillHeart } from "../../Icons/Icons";
 import "./SingleProduct.css";
+import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 
 const SingleProduct = () => {
   const {
     state: { products },
   } = useData();
+  const {wishDisable, handleWishList} = useWishList();
   const { productId } = useParams();
   const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
@@ -20,13 +22,26 @@ const SingleProduct = () => {
     brand,
     rating,
     inStock,
+    inWishlist,
     image,
     trending,
   } = selectedProduct;
   return (
      <div className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card">
-      <AiOutlineHeart className="wishList-icon" />
+      {inWishlist ? (
+          <AiFillHeart
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+            onClick={() => handleWishList(selectedProduct)}
+          />
+        ) : (
+          <AiOutlineHeart
+            className={`wishList-icon ${wishDisable && "cursor-disable"} ${
+              !inStock ? "cursor-disable" : ""
+            }`}
+            onClick={() => (inStock ? handleWishList(selectedProduct) : null)}
+          />
+        )}
         <div className="product-image-box">
             <img src={image} alt="Currently Not Available" />
             <span className={trending && "trending s-trending"}>

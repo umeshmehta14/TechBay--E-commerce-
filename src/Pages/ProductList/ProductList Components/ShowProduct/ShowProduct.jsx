@@ -1,12 +1,17 @@
 import React from "react";
-import {  AiFillStar, AiOutlineHeart, AiFillHeart } from "../../../../Icons/Icons";
+import {
+  AiFillStar,
+  AiOutlineHeart,
+  AiFillHeart,
+ ImCart
+} from "../../../../Icons/Icons";
 
 import "./ShowProduct.css";
 import { useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
 
 const ShowProduct = ({ item }) => {
-  const {handleWishList} = useWishList();
+  const { handleWishList, wishDisable } = useWishList();
   const navigate = useNavigate();
   const {
     _id,
@@ -25,13 +30,28 @@ const ShowProduct = ({ item }) => {
     <>
       <div
         key={_id}
-        className={`product-card ${!inStock ? "stock-checker" : ""}`}
+        className={`product-card  ${!inStock ? "stock-checker" : ""}`}
       >
-        {inWishlist ? <AiFillHeart className="c-red wishList-icon" onClick={()=> handleWishList(item)}/>:<AiOutlineHeart className="wishList-icon" onClick={()=> handleWishList(item)}/>}
-        <div className="product-card-img" onClick={()=> navigate(`/singleProduct/${_id}`)}>
+        {inWishlist ? (
+          <AiFillHeart
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+            onClick={() => handleWishList(item)}
+          />
+        ) : (
+          <AiOutlineHeart
+            className={`wishList-icon ${wishDisable && "cursor-disable"} ${
+              !inStock ? "cursor-disable" : ""
+            }`}
+            onClick={() => (inStock ? handleWishList(item) : null)}
+          />
+        )}
+        <div
+          className="product-card-img"
+          onClick={() => navigate(`/singleProduct/${_id}`)}
+        >
           <img src={image} alt="Stay Tuned" />
           {inStock ? (
-            <span className={trending ? "trending":""}>
+            <span className={trending ? "trending" : ""}>
               {trending && "Trending"}
             </span>
           ) : (
@@ -39,7 +59,10 @@ const ShowProduct = ({ item }) => {
           )}
         </div>
         <div className="disp-info-pc">
-          <div className="product-card-info" onClick={()=> navigate(`/singleProduct/${_id}`)}>
+          <div
+            className="product-card-info"
+            onClick={() => navigate(`/singleProduct/${_id}`)}
+          >
             <span className="rating">
               {rating}
               <AiFillStar />
@@ -53,7 +76,7 @@ const ShowProduct = ({ item }) => {
             </div>
           </div>
           <div className="btn-box">
-            <button className="btn btn-p-w w-fit m-0">Add to Cart</button>
+            <button className="btn btn-p-w w-fit m-0"><ImCart/> Add to Cart</button>
             <button className="btn btn-p-w  w-fit m-0 byn-btn">Buy Now</button>
           </div>
         </div>

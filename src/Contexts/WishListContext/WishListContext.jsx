@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { deleteWishlist, getWishList, postWishList } from "./WishListApi";
 import { useData } from "../DataContext/DataContext";
 import { updateProductWishlist, wishlist } from "../../DataReducer/Constants";
@@ -12,6 +12,8 @@ export const WishListProvider = ({ children }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [wishDisable, setWishDisable] = useState(false);
+
   useEffect(() => {
     async () => {
       try {
@@ -26,7 +28,7 @@ export const WishListProvider = ({ children }) => {
   }, [token]);
 
   const handleWishList = async (product) => {
-    console.log("in whish");
+    setWishDisable(true);
     try {
       if (!token) {
         navigate("/login", { state: { from: location } });
@@ -35,15 +37,16 @@ export const WishListProvider = ({ children }) => {
       let wishlistRes = null;
       if (product.inWishlist) {
         wishlistRes = await deleteWishlist({productId: product._id,encodedToken: token});
-        if (wishlistRes.status === 201 || wishlistRes.status === 200) {
-          console.log("in delete  ",wishlistRes);
-        }
+        
       } else {
         wishlistRes = await postWishList({product,encodedToken: token});
         console.log(wishlistRes.data.wishlist);
       }
-      dispatch({ type: wishlist, payload: wishlistRes.data.wishlist });
-      dispatch({ type: updateProductWishlist });
+      if (wishlistRes.status === 201 || wishlistRes.status === 200) {
+        dispatch({ type: wishlist, payload: wishlistRes.data.wishlist });
+        dispatch({ type: updateProductWishlist });
+      }
+      setWishDisable(false);
       if (product.inWishlist) {
         // successfully added
       } else {
@@ -54,7 +57,7 @@ export const WishListProvider = ({ children }) => {
     }
   };
   return (
-    <WishListContext.Provider value={{ handleWishList }}>
+    <WishListContext.Provider value={{ handleWishList, wishDisable }}>
       {children}
     </WishListContext.Provider>
   );
