@@ -1,10 +1,14 @@
-
+.landing{
+    position: relative;
+    top: 6rem;
+    width: 100%;
+}
 @media (min-width: 768px) {
     .container {
         width: 80%;
         margin: auto;
     }
     .top-6{
-        top: 6rem;
+        top: 5rem;
     }
 }

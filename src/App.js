@@ -14,6 +14,7 @@ import LogOut from "./Pages/Authentication/LogOut/LogOut";
 import Mockman from "mockman-js";
 import RequiredAuth from "./Components/RequiredAuth/RequiredAuth";
 import WishList from "./Pages/Wishlist/WishList";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   const {error,loading} = useData();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<LogOut/>}/>
         <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/cart" element={<Cart/>}/>
 
         <Route path="/wishlist" element={
         <RequiredAuth>

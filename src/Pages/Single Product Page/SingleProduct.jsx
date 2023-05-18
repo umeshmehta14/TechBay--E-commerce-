@@ -31,12 +31,12 @@ const SingleProduct = () => {
       <div className="s-product-information-card">
       {inWishlist ? (
           <AiFillHeart
-            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+            className={`c-red wishList-icon ${wishDisable ? "cursor-disable":""}`}
             onClick={() => handleWishList(selectedProduct)}
           />
         ) : (
           <AiOutlineHeart
-            className={`wishList-icon ${wishDisable && "cursor-disable"} ${
+            className={`wishList-icon ${wishDisable ? "cursor-disable":""} ${
               !inStock ? "cursor-disable" : ""
             }`}
             onClick={() => (inStock ? handleWishList(selectedProduct) : null)}

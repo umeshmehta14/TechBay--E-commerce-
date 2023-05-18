@@ -4,6 +4,35 @@
     z-index: -5;
 }
 
+.fade-up-heading {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fadeUp 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .slick-slide div{
+    width: 100%;
+    display: inline-block;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0.8;
+}
+
 .welcome-message {
     box-shadow: 1px 7px 10px rgb(223 221 221);
     padding: 1rem;
@@ -32,9 +61,14 @@
     padding: 1rem 1.5rem;
     background-color: var(--primary-color);
     border: none;
+    border-radius: 5px;
     color: white;
     font-weight: 550;
     cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 

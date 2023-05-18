@@ -6,28 +6,26 @@ import {
   ImCart,
   RxCross1,
   GiHamburgerMenu,
-  AiOutlineHeart,
+  FaRegHeart,
   AiOutlineLogin,
-  AiOutlineSearch,
-  BiUserCircle
+  IoSearch,
+  FaRegUserCircle
 } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../Contexts/DataContext/DataContext";
+import { setShowSearch, setShowBurger, setScreenWidth } from "../../DataReducer/Constants";
 
 const Navbar = () => {
   const {token} = useAuth();
-  const [showBurger, setShowBurger] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const {state:{wishlist}} = useData();
+  const {state:{wishlist, cart, showBurger, showSearch, screenWidth}, dispatch} = useData();
   const navigate = useNavigate();
   const getStyle = ({ isActive }) => {
     return isActive ? { border: "1px solid white" } : {};
   };
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenWidth(window.innerWidth);
+      dispatch({type:setScreenWidth})
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -43,10 +41,10 @@ const Navbar = () => {
           <div className="navbar-icons-section">
             {screenWidth < 768 ? (
               <div
-                onClick={() => setShowSearch(!showSearch)}
+                onClick={() => dispatch({type:setShowSearch})}
                 className="search-icon"
               >
-                <AiOutlineSearch />
+                <IoSearch />
               </div>
             ) : (
               ""
@@ -62,15 +60,15 @@ const Navbar = () => {
                     }
                   : {}
               }
-              onClick={() => setShowBurger(false)}
+              onClick={() => dispatch({type:setShowBurger})}
             >
               {screenWidth > 768 ? (
                 <li
-                  onClick={() => setShowSearch(!showSearch)}
+                  onClick={() => dispatch({type:setShowSearch})}
                   className="link-name"
                   id="f-search"
                 >
-                  <AiOutlineSearch />
+                  <IoSearch />
                 </li>
               ) : (
                 ""
@@ -90,10 +88,11 @@ const Navbar = () => {
                 <NavLink
                   style={getStyle}
                   className="link-name"
-                  to="/g"
+                  to="/cart"
                   title="Cart"
                 >
                   <ImCart />
+                  {token && cart?.length > 0 && <span>{cart?.length}</span>}
                 </NavLink>
               </li>
               <li>
@@ -103,8 +102,8 @@ const Navbar = () => {
                   to="/wishlist"
                   title="WishList"
                 >
-                  <AiOutlineHeart />
-                  {wishlist?.length > 0 && <span>{wishlist?.length}</span>}
+                  <FaRegHeart />
+                  {token && wishlist?.length > 0 && <span>{wishlist?.length}</span>}
                 </NavLink>
               </li>
               <li>
@@ -114,14 +113,14 @@ const Navbar = () => {
                   to={token ? "/logout" : "/login"}
                   title={token ? "Profile" : "Login"}
                 >
-                  {token ? <BiUserCircle/> : <AiOutlineLogin />}
+                  {token ? <FaRegUserCircle/> : <AiOutlineLogin />}
                 </NavLink>
               </li>
             </ul>
 
             <div
               className="hamburger-menu"
-              onClick={() => setShowBurger(!showBurger)}
+              onClick={() => dispatch({type:setShowBurger})}
             >
               {showBurger ? (
                 <RxCross1 className="hamburger-icon" />
@@ -133,7 +132,7 @@ const Navbar = () => {
         </div>
         <div className={showSearch ? "search-input-box" : "disp-none"}>
           <label htmlFor="search">
-            <AiOutlineSearch />
+            <IoSearch />
           </label>
           <input
             type="text"

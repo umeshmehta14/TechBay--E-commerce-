@@ -1,12 +1,12 @@
 .navbar {
-    background: linear-gradient(109deg, rgba(215, 220, 255, 1) 17%, rgba(55, 84, 113) 59%);
+    background: var(--primary-color);
     width: 100%;
     position: fixed;
     z-index: 11;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     box-shadow: 0px 4px 10px #acacac;
 }
 
@@ -21,6 +21,7 @@
     font-weight: bold;
     font-family: var(--secondary-font);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .navbar-icons-section {
@@ -46,7 +47,7 @@
 
 .nav-links {
     position: absolute;
-    top: 5.08rem;
+    top: 4.08rem;
     right: 0rem;
     font-size: 1.5rem;
     height: 0px;
@@ -159,7 +160,7 @@
         font-size: 1.5rem;
         cursor: pointer;
         padding: 0.5rem;
-        border-radius: 50%;
+        border-radius: 12px;
         font-weight: 600;
     }
 

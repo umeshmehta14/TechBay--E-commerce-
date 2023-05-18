@@ -5,18 +5,18 @@ import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";
 import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
+import { filterAllProducts } from "../../Utils/Utils";
 
 const ProductList = () => {
   const {
-    state: { products, category },
+    state: { products, category, currentPage },
   } = useData();
-
-  const [currentPage, setCurrentPage] = useState(1);
+  const filteredProducts = filterAllProducts();
 
   const productsPerPage = 10;
   const lastPostIndex = currentPage * productsPerPage;
   const firstPostIndex = lastPostIndex - productsPerPage;
-  const displayedProducts = products.slice(firstPostIndex, lastPostIndex);
+  const displayedProducts = filteredProducts.slice(firstPostIndex, lastPostIndex);
   const [showFilter, setShowFilter] = useState(false);
 
   return (
@@ -37,9 +37,8 @@ const ProductList = () => {
       </div>
 
       <Pagination
-        totalProducts={products.length}
+        totalProducts={filteredProducts.length}
         productsPerPage={productsPerPage}
-        setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
     </div>

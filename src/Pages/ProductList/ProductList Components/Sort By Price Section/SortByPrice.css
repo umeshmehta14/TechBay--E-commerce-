@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem 0.5rem;
-    padding-top: 2rem;
 }
 
 .w-90{
@@ -39,7 +38,7 @@
     cursor: pointer;
 }
 
-.sort-btn:focus{
+.sort-btn-focus{
     border-bottom: 3px solid var(--secondary-color) ;
 }
 

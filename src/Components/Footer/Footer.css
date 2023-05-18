@@ -9,7 +9,7 @@ footer{
     margin-top: 2rem;    
     position: relative;
     top: 4rem;
-
+    font-family: var(--third-font);
 }
 
 .footer-info{

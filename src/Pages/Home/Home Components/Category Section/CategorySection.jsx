@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
 } from "../../../../Icons/Icons";
 import "./CategorySection.css";
+import { clearFilter, setCategoryFilter } from "../../../../DataReducer/Constants";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../../../Contexts/DataContext/DataContext";
 
 const CategorySection = ({ category }) => {
   const [categoryIndex, setCategoryIndex] = useState(0);
+  const {dispatch} = useData();
+  const navigate = useNavigate();
 
   const nextSlide = () => {
     if (categoryIndex === category.length - 1) {
@@ -23,7 +28,12 @@ const CategorySection = ({ category }) => {
     }
   };
   const curCategory = category[categoryIndex];
-
+  useEffect(()=>{
+    setInterval(() => {
+      setCategoryIndex((prev)=> prev === category.length - 1 ? 0 : prev + 1);
+    }, 2000);
+    
+},[])
 
   return (
     <>
@@ -51,7 +61,12 @@ const CategorySection = ({ category }) => {
         <div className="category-container">
           {category.map(({ id, categoryName, image }) => {
             return (
-              <div className="category-item" key={id}>
+              <div className="category-item" key={id} onClick={()=> {
+                dispatch({type:clearFilter});
+                dispatch({type:setCategoryFilter, payload: categoryName});
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate('/products');
+              }}>
                 <img className="category-img" src={image} alt="Categories" />
                 <h2>{categoryName}</h2>
               </div>

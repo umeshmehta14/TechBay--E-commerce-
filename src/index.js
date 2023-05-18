@@ -14,25 +14,29 @@ import {
   AuthContext,
   AuthProvider,
 } from "./Contexts/AuthContext/AuthContext.jsx";
+import { CartProvider, CartContext } from "./Contexts/CartContext/CartContext";
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Router>
       <AuthProvider>
         <DataProvider>
-          <WishListProvider>
-            <App />
-          </WishListProvider>
+          <CartProvider>
+            <WishListProvider>
+              <App />
+            </WishListProvider>
+          </CartProvider>
         </DataProvider>
       </AuthProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+  // </React.StrictMode>
+  ,document.getElementById("root")
 );
 
 export { DataContext };
 export { AuthContext };
 export { WishListContext };
+export { CartContext };
