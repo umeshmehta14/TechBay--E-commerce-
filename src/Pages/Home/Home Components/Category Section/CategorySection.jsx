@@ -31,7 +31,7 @@ const CategorySection = ({ category }) => {
   useEffect(()=>{
     setInterval(() => {
       setCategoryIndex((prev)=> prev === category.length - 1 ? 0 : prev + 1);
-    }, 2000);
+    }, 3000);
     
 },[])
 
@@ -43,7 +43,12 @@ const CategorySection = ({ category }) => {
           <h1>Categories</h1>
         </div>
         <div className="category-container-mobile">
-          <div className="category-item" key={curCategory?.id}>
+          <div className="category-item" key={curCategory?.id} onClick={()=> {
+                dispatch({type:clearFilter});
+                dispatch({type:setCategoryFilter, payload: curCategory?.categoryName});
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate('/products');
+              }}>
             <img
               className="category-img"
               src={curCategory?.image}

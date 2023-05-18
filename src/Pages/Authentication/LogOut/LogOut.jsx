@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { useAuth } from '../../../Contexts/AuthContext/AuthContext'
-import {  useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 
 const LogOut = () => {
   const {token} = useAuth();
   const {logoutHandler, currentUser} = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if(!token){
-      navigate('/');
+      navigate(location?.pathname?.from?.state || '/');
     }
   },[token]);
   return (

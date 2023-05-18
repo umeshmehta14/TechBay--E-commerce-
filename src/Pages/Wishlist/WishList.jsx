@@ -15,7 +15,7 @@ const WishList = () => {
     state: { products },
   } = useData();
   const { handleWishList, wishDisable } = useWishList();
-  const {handleCart} = useCart();
+  const { handleCart } = useCart();
   const navigate = useNavigate();
 
   const wishlistData = products.filter(({ inWishlist }) => inWishlist);
@@ -50,10 +50,7 @@ const WishList = () => {
             trending,
           } = item;
           return (
-            <div
-              key={_id}
-              className={`product-card product-card-wishlist`}
-            >
+            <div key={_id} className={`product-card product-card-wishlist`}>
               {inWishlist ? (
                 <AiFillHeart
                   className={`c-red wishList-icon ${
@@ -63,10 +60,8 @@ const WishList = () => {
                 />
               ) : (
                 <AiOutlineHeart
-                  className={`wishList-icon ${
-                    wishDisable && "cursor-disable"
-                  }`}
-                  onClick={() =>   handleWishList(item)}
+                  className={`wishList-icon ${wishDisable && "cursor-disable"}`}
+                  onClick={() => handleWishList(item)}
                 />
               )}
               <div
@@ -74,9 +69,9 @@ const WishList = () => {
                 onClick={() => navigate(`/singleProduct/${_id}`)}
               >
                 <img src={image} alt="Stay Tuned" />
-                  <span className={trending ? "trending" : ""}>
-                    {trending && "Trending"}
-                  </span>
+                <span className={trending ? "trending" : ""}>
+                  {trending && "Trending"}
+                </span>
               </div>
               <div className="disp-info-pc disp-info-pc-wishlist">
                 <div
@@ -96,10 +91,19 @@ const WishList = () => {
                   </div>
                 </div>
                 <div className="btn-box">
-                  <button className="btn btn-p-w w-fit m-0"
-                  onClick={() => (inCart ? navigate("/cart") : handleCart(item))}
+                  <button
+                    className="btn btn-p-w w-fit m-0"
+                    onClick={() =>
+                      inCart ? navigate("/cart") : handleCart(item)
+                    }
                   >
-                    {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
+                    {inCart ? (
+                      "Go to Cart"
+                    ) : (
+                      <>
+                        <ImCart /> Add to Cart
+                      </>
+                    )}
                   </button>
                   <button className="btn btn-p-w  w-fit m-0 byn-btn">
                     Buy Now

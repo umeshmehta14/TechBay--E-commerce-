@@ -3,11 +3,14 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Icons/Icons";
 import "../Authentications.css";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
+import { useData } from "../../../Contexts/DataContext/DataContext";
+import { setShowPassword } from "../../../DataReducer/Constants";
 
 const Login = () => {
   const { loginHandler, token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const {state:{showPassword}, dispatch} = useData();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -15,7 +18,6 @@ const Login = () => {
 
   const guestEmail = "ishaanmehta782@gmail.com";
   const guestPassword = "password";
-  const [showPassword, setShowPassword] = useState(false);
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);
@@ -63,13 +65,13 @@ useEffect(() => {
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => dispatch({type:setShowPassword})}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => dispatch({type:setShowPassword})}
               />
             )}
           </div>

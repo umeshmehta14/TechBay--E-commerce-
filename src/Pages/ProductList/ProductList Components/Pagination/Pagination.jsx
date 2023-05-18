@@ -3,8 +3,8 @@ import "./Pagination.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 import { setCurrentPage } from "../../../../DataReducer/Constants";
 
-const Pagination = ({ totalProducts, productsPerPage, currentPage }) => {
-  const { dispatch } = useData();
+const Pagination = ({ totalProducts, productsPerPage }) => {
+  const { state:{currentPage}, dispatch } = useData();
   let pages = [];
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pages.push(i);

@@ -2,8 +2,8 @@ import React from "react";
 import { HiOutlineFilter } from "../../../../Icons/Icons";
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
-import { setArrangeType } from "../../../../DataReducer/Constants";
-const SortByPrice = ({ setShowFilter, showFilter }) => {
+import { setArrangeType, setShowFilter } from "../../../../DataReducer/Constants";
+const SortByPrice = () => {
   const {
     dispatch,
     state: { filters },
@@ -14,7 +14,7 @@ const SortByPrice = ({ setShowFilter, showFilter }) => {
         <div className="filter-button">
           <button
             className="filter-toggle-btn"
-            onClick={() => setShowFilter(!showFilter)}
+            onClick={() => dispatch({type:setShowFilter})}
           >
             Filter <HiOutlineFilter />
           </button>

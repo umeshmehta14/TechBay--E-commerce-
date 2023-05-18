@@ -18,3 +18,6 @@ export const setShowBurger = "setShowBurger";
 export const setShowSearch = "setShowSearch";
 export const setCurrentPage = "setCurrentPage";
 export const setScreenWidth = "setScreenWidth";
+export const setShowPassword = "setShowPassword";
+export const setShowSignUpPassword = "setShowSignUpPassword";
+export const setShowFilter = "setShowFilter";

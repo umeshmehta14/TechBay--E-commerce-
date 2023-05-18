@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
@@ -9,26 +9,23 @@ import { filterAllProducts } from "../../Utils/Utils";
 
 const ProductList = () => {
   const {
-    state: { products, category, currentPage },
+    state: { currentPage },
   } = useData();
   const filteredProducts = filterAllProducts();
 
   const productsPerPage = 10;
   const lastPostIndex = currentPage * productsPerPage;
   const firstPostIndex = lastPostIndex - productsPerPage;
-  const displayedProducts = filteredProducts.slice(firstPostIndex, lastPostIndex);
-  const [showFilter, setShowFilter] = useState(false);
+  const displayedProducts = filteredProducts.slice(
+    firstPostIndex,
+    lastPostIndex
+  );
 
   return (
     <div className="container wpl-90 top-5">
-      <SortByPrice setShowFilter={setShowFilter} showFilter={showFilter} />
+      <SortByPrice />
       <div className="main-product-page">
-        <Filters
-          category={category}
-          products={products}
-          showFilter={showFilter}
-          setShowFilter={setShowFilter}
-        />
+        <Filters />
         <div className="product-container">
           {displayedProducts.map((item) => (
             <ShowProduct key={item.id} item={item} />
@@ -36,11 +33,14 @@ const ProductList = () => {
         </div>
       </div>
 
-      <Pagination
-        totalProducts={filteredProducts.length}
-        productsPerPage={productsPerPage}
-        currentPage={currentPage}
-      />
+      {filteredProducts.length > 10 ? (
+        <Pagination
+          totalProducts={filteredProducts.length}
+          productsPerPage={productsPerPage}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

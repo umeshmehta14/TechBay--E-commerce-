@@ -10,7 +10,7 @@ import {
   AiFillStar,
 } from "../../Icons/Icons";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { decrement, increment } from "../../DataReducer/Constants";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
@@ -23,8 +23,8 @@ const Cart = () => {
   const { handleCart, cartDisable, handleCartQuantity } = useCart();
   const { handleWishList, wishDisable } = useWishList();
   const navigate = useNavigate();
+  const location = useLocation();
   const cartData = products.filter(({ inCart }) => inCart);
-  console.log(cartData);
   return (
     <>
       <div className="container cart-top-6">
@@ -37,7 +37,7 @@ const Cart = () => {
             <div className="cart-login-info">
              <h2>Missing Cart items?</h2>
               <h3>Login to see the items you added previously</h3>
-              <button className="btn" onClick={()=> navigate('/login')}>Login</button>
+              <button className="btn" onClick={()=> navigate('/login',{ state: { from: location }})}>Login</button>
             </div>
           </div>
         ) : cartData.length > 0 ? (

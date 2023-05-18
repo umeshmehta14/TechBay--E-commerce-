@@ -228,9 +228,9 @@
 
     .description {
         display: block;
-        width: 90%;
         height: 44.8px;
         cursor: pointer;
+        overflow: hidden;
     }
 
     .price-box {

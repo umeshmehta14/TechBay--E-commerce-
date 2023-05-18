@@ -11,7 +11,10 @@ import {
   setPrice,
   setScreenWidth,
   setShowBurger,
+  setShowFilter,
+  setShowPassword,
   setShowSearch,
+  setShowSignUpPassword,
   setTrending,
   sortByRating,
   updateProductCart,
@@ -143,7 +146,7 @@ export const DataReducer = (state, action) => {
       };
 
     case setShowBurger:
-      return { ...state, showBurger: !state.showBurger };
+      return { ...state, showBurger: action?.payload || !state.showBurger };
     case setShowSearch:
       return { ...state, showSearch: !state.showSearch };
 
@@ -156,6 +159,13 @@ export const DataReducer = (state, action) => {
       return { ...state, currentPage: action.payload };
     case setScreenWidth:
       return { ...state, screenWidth: window.innerWidth };
+
+    case setShowPassword:
+      return { ...state, showPassword: !state.showPassword };
+    case setShowSignUpPassword:
+      return { ...state, showSignUpPassword: !state.showSignUpPassword };
+    case setShowFilter:
+      return { ...state, showFilter: !state.showFilter };
   }
 };
 
@@ -177,4 +187,7 @@ export const initialState = {
   showSearch: false,
   currentPage: 1,
   screenWidth: window.innerWidth,
+  showPassword: false,
+  showFilter: false,
+  showSignUpPassword:false,
 };
