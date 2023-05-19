@@ -1,22 +1,31 @@
 import { useData } from "../Contexts/DataContext/DataContext";
 
-
 export const filterAllProducts = () => {
-    const {
-      state: { filters, products }
-    } = useData();
-    const {
-      rating,
-      categoryFilter,
-      brandFilter,
-      price,
-      trending,
-      includeOutStock,
-      arrangeType
-    } = filters;
+  const {
+    state: {
+      filters,
+      products,
+      searchValue,
+      searchedProducts,
+      showSearchedProducts,
+    },
+  } = useData();
+  const {
+    rating,
+    categoryFilter,
+    brandFilter,
+    price,
+    trending,
+    includeOutStock,
+    arrangeType,
+  } = filters;
+  
+  const searchData =
+    searchValue && showSearchedProducts ? searchedProducts : products;
+
   const stockData = includeOutStock
-    ? products
-    : products.filter(({ inStock }) => inStock);
+    ? searchData
+    : searchData.filter(({ inStock }) => inStock);
 
   const trendingData = trending
     ? stockData.filter(({ trending }) => trending)
@@ -43,8 +52,12 @@ export const filterAllProducts = () => {
   const sortedPrice = price
     ? sortRating.filter((product) => product.price <= price)
     : sortRating;
-  
-  const arrangeByPrice = arrangeType ? [...sortedPrice].sort((a,b) => arrangeType === "LTH" ? a.price - b.price : b.price - a.price) : sortedPrice;
+
+  const arrangeByPrice = arrangeType
+    ? [...sortedPrice].sort((a, b) =>
+        arrangeType === "LTH" ? a.price - b.price : b.price - a.price
+      )
+    : sortedPrice;
 
   return arrangeByPrice;
 };

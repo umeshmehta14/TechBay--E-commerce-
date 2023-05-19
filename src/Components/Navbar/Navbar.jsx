@@ -19,6 +19,7 @@ import {
   setShowBurger,
   setScreenWidth,
 } from "../../DataReducer/Constants";
+import SearchBox from "./Search-Box/SearchBox";
 
 const Navbar = () => {
   const { token } = useAuth();
@@ -141,17 +142,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className={`search-input-box ${showSearch ? "show slide-in" : "slide-out"}`}>
-          <label htmlFor="search">
-            <IoSearch />
-          </label>
-          <input
-            type="text"
-            className="search-btn"
-            id="search"
-            placeholder="What are you looking for?"
-          />
-        </div>
+        <SearchBox/>
       </nav>
     </header>
   );

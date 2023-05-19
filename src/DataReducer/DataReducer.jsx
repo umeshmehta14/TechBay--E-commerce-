@@ -10,10 +10,12 @@ import {
   setOutOfStock,
   setPrice,
   setScreenWidth,
+  setSearchValue,
   setShowBurger,
   setShowFilter,
   setShowPassword,
   setShowSearch,
+  setShowSearchedProducts,
   setShowSignUpPassword,
   setTrending,
   sortByRating,
@@ -145,8 +147,24 @@ export const DataReducer = (state, action) => {
         },
       };
 
+      case setSearchValue:
+        const searchValue = action.payload.toLowerCase();
+        const searchedProducts = searchValue === "" ? [] : state.products.filter(
+          ({ title, description,price, category, brand }) =>
+            title.toLowerCase().includes(searchValue) ||
+            category.toLowerCase().includes(searchValue) ||
+            brand.toLowerCase().includes(searchValue) ||
+            description.toLowerCase().includes(searchValue) ||
+            Number(action.payload) > price
+            );
+      
+        return {
+          ...state,
+          searchValue: action.payload,
+          searchedProducts,
+        };
     case setShowBurger:
-      return { ...state, showBurger: action?.payload || !state.showBurger };
+      return { ...state, showBurger: action.payload !== undefined ? action.payload : !state.showBurger };
     case setShowSearch:
       return { ...state, showSearch: !state.showSearch };
 
@@ -166,6 +184,9 @@ export const DataReducer = (state, action) => {
       return { ...state, showSignUpPassword: !state.showSignUpPassword };
     case setShowFilter:
       return { ...state, showFilter: !state.showFilter };
+
+    case setShowSearchedProducts:
+      return {...state, showSearchedProducts: action.payload};
   }
 };
 
@@ -183,11 +204,14 @@ export const initialState = {
     includeOutStock: false,
     arrangeType: "",
   },
+  searchValue: "",
+  searchedProducts: [],
   showBurger: false,
   showSearch: false,
   currentPage: 1,
   screenWidth: window.innerWidth,
   showPassword: false,
   showFilter: false,
-  showSignUpPassword:false,
+  showSignUpPassword: false,
+  showSearchedProducts:false
 };

@@ -1,4 +1,6 @@
-
+.main-product-page{
+    margin-top: 3rem;
+}
 
 .product-container {
     display: grid;
@@ -9,6 +11,7 @@
 
 @media (min-width: 460px) {
     .wpl-90 {
+        top: 6rem;
         width: 90%;
         margin: auto;
     }
@@ -26,6 +29,7 @@
     .main-product-page {
         display: flex;
         justify-content: space-around;
+        margin:0;
     }
 
     .product-container {

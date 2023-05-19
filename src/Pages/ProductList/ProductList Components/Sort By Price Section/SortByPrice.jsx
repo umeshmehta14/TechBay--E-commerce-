@@ -6,7 +6,7 @@ import { setArrangeType, setShowFilter } from "../../../../DataReducer/Constants
 const SortByPrice = () => {
   const {
     dispatch,
-    state: { filters },
+    state: { filters, searchValue },
   } = useData();
   return (
     <>
@@ -19,6 +19,9 @@ const SortByPrice = () => {
             Filter <HiOutlineFilter />
           </button>
           <div className="sort-price">
+            <h3>{searchValue ? `Search Result for ${searchValue}`: "Showing all products"}</h3>
+            <div className="sort-by-price-main-btn-box">
+
             <button
               className={`sort-btn ${
                 filters.arrangeType === "LTH" ? "sort-btn-focus" : ""
@@ -35,6 +38,8 @@ const SortByPrice = () => {
             >
               Price- High to Low
             </button>
+            </div>
+
           </div>
         </div>
       </div>

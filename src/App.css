@@ -8,6 +8,7 @@
     --secondary-color:#4f4bb0;
     --third-color:#162434;
     --label-color:#7272ff;
+    --primary-font-color:rgb(88, 84, 102);
 }
 
 * {
@@ -55,11 +56,18 @@ body::-webkit-scrollbar {
     margin: auto;
 }
 
+.pfc{
+    color: var(--primary-font-color);
+}
+
 .p-1{
     padding: 1rem;
 }
 
 .top-5{
+    top: 5.02rem;
+}
+.top-4{
     top: 4.02rem;
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -10,10 +10,11 @@ import {
 import "./SingleProduct.css";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
+import { setShowBurger } from "../../DataReducer/Constants";
 
 const SingleProduct = () => {
   const {
-    state: { products },
+    state: { products },dispatch
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
   const { handleCart } = useCart();

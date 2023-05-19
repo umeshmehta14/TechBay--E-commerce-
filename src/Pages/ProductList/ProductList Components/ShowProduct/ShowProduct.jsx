@@ -33,7 +33,7 @@ const ShowProduct = ({ item }) => {
     <>
       <div
         key={_id}
-        className={`product-card  ${!inStock ? "stock-checker" : ""}`}
+        className={`product-card  ${!inStock ? "stock-checker cursor-disable" : ""}`}
         title={title}
       >
         {inWishlist ? (
@@ -54,7 +54,7 @@ const ShowProduct = ({ item }) => {
         )}
         <div
           className="product-card-img"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => inStock ? navigate(`/singleProduct/${_id}`) : null }
         >
           <img src={image} alt="Stay Tuned" />
           {inStock ? (

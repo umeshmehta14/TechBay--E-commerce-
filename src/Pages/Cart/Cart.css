@@ -29,9 +29,7 @@
 
 .cart-details {
     width: 40%;
-    /* max-height: 80vh; */
     padding: 1rem;
-    /* overflow: auto; */
     min-width: 400px;
     margin: auto;
     font-family: var(--third-font);
@@ -125,7 +123,6 @@
 
 .cart-btn-box {
     text-align: center;
-    /* margin: 0px 0.5rem; */
     outline: 1px solid black;
 }
 

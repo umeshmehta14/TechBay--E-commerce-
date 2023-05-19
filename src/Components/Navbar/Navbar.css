@@ -6,11 +6,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
     box-shadow: 0px 4px 10px #acacac;
 }
 
 .nav-top-section {
+    padding: 0rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,6 +52,7 @@
     right: 0rem;
     font-size: 1.5rem;
     height: 0px;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -85,70 +87,6 @@
     border-radius: 50%;
     background-color: var(--third-color);
     color: whitesmoke;
-}
-
-.search-input-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 4.474rem;
-    text-align: center;
-    width: 100%;
-    opacity: 0;
-    height: 0px;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-.search-input-box.show {
-    opacity: 1;
-    visibility: visible;
-    height: auto;
-    margin-top: 0.5rem;
-}
-
-.slide-in {
-    animation: slideIn 0.5s forwards;
-}
-
-.slide-out {
-    animation: slideOut 0.5s forwards;
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateY(-20px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideOut {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-20px);
-    }
-}
-
-
-
-
-.search-input-box label svg {
-    font-size: 1.8rem;
-    cursor: pointer;
-    margin-right: 0.2rem;
-}
-
-.search-btn {
-    width: 70%;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: none;
 }
 
 
@@ -205,22 +143,12 @@
 
     #f-search {
         font-size: 2rem;
-
         padding: 2px 4px;
 
     }
 
     .link-name:hover {
         outline: 1px solid white;
-    }
-
-    .search-input-box {
-        width: 50%;
-        margin: auto;
-    }
-
-    .search-input-box label svg {
-        font-size: 1.5rem;
     }
 
     .hamburger-menu {

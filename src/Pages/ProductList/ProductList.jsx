@@ -10,7 +10,7 @@ import { setCurrentPage } from "../../DataReducer/Constants";
 
 const ProductList = () => {
   const {
-    state: { currentPage },
+    state: { currentPage, searchValue },
     dispatch,
   } = useData();
   const filteredProducts = filterAllProducts();
@@ -41,6 +41,9 @@ const ProductList = () => {
       <SortByPrice />
       <div className="main-product-page">
         <Filters />
+        {
+           displayedProducts.length === 0 ? <h1>{searchValue ? "We couldn't find what you were looking for" :"No Products available in this category"}</h1> : null
+        }
         <div className="product-container">
           {displayedProducts.map((item) => (
             <ShowProduct key={item.id} item={item} />
