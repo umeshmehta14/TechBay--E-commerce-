@@ -37,13 +37,14 @@ const SingleProduct = () => {
   } = selectedProduct;
   return (
     <div className="container w-90 m-auto s-top-6">
-      <div className="s-product-information-card">
+      <div className="s-product-information-card" title={title}>
         {inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${
               wishDisable ? "cursor-disable" : ""
             }`}
             onClick={() => handleWishList(selectedProduct)}
+            title="Remove from wishlist"
           />
         ) : (
           <AiOutlineHeart
@@ -51,6 +52,8 @@ const SingleProduct = () => {
               !inStock ? "cursor-disable" : ""
             }`}
             onClick={() => (inStock ? handleWishList(selectedProduct) : null)}
+            title="Add to wishlist"
+
           />
         )}
         <div className="product-image-box">
@@ -94,10 +97,11 @@ const SingleProduct = () => {
             <button
               className="btn w-fit m-0"
               onClick={() => (inCart ? navigate("/cart") : handleCart(selectedProduct))}
+              title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
             </button>
-            <button className="btn w-fit m-0 s-byn-btn">Buy Now</button>
+            <button className="btn w-fit m-0 s-byn-btn" title="Buy Now">Buy Now</button>
           </div>
         </div>
       </div>

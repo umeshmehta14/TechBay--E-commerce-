@@ -180,7 +180,7 @@
 
 .btn-p-w{
     width: 80%;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 0.8rem;
 }
 
 
@@ -251,6 +251,8 @@
 
     .w-fit {
         width: fit-content;
+        min-width: 132px;
+        text-align: center;
     }
 
     .m-0 {

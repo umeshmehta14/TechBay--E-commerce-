@@ -4,13 +4,16 @@ import {
   AiOutlineArrowRight,
 } from "../../../../Icons/Icons";
 import "./CategorySection.css";
-import { clearFilter, setCategoryFilter } from "../../../../DataReducer/Constants";
+import {
+  clearFilter,
+  setCategoryFilter,
+} from "../../../../DataReducer/Constants";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 
 const CategorySection = ({ category }) => {
   const [categoryIndex, setCategoryIndex] = useState(0);
-  const {dispatch} = useData();
+  const { dispatch } = useData();
   const navigate = useNavigate();
 
   const nextSlide = () => {
@@ -28,12 +31,11 @@ const CategorySection = ({ category }) => {
     }
   };
   const curCategory = category[categoryIndex];
-  useEffect(()=>{
+  useEffect(() => {
     setInterval(() => {
-      setCategoryIndex((prev)=> prev === category.length - 1 ? 0 : prev + 1);
-    }, 3000);
-    
-},[])
+      setCategoryIndex((prev) => (prev === category.length - 1 ? 0 : prev + 1));
+    }, 2500);
+  }, []);
 
   return (
     <>
@@ -43,12 +45,19 @@ const CategorySection = ({ category }) => {
           <h1>Categories</h1>
         </div>
         <div className="category-container-mobile">
-          <div className="category-item" key={curCategory?.id} onClick={()=> {
-                dispatch({type:clearFilter});
-                dispatch({type:setCategoryFilter, payload: curCategory?.categoryName});
+          <div
+            className="category-item"
+            key={curCategory?.id}
+            onClick={() => {
+              dispatch({ type: clearFilter });
+              dispatch({
+                type: setCategoryFilter,
+                payload: curCategory?.categoryName,
+              });
               window.scrollTo({ top: 0, behavior: "smooth" });
-              navigate('/products');
-              }}>
+              navigate("/products");
+            }}
+          >
             <img
               className="category-img"
               src={curCategory?.image}
@@ -66,12 +75,16 @@ const CategorySection = ({ category }) => {
         <div className="category-container">
           {category.map(({ id, categoryName, image }) => {
             return (
-              <div className="category-item" key={id} onClick={()=> {
-                dispatch({type:clearFilter});
-                dispatch({type:setCategoryFilter, payload: categoryName});
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              navigate('/products');
-              }}>
+              <div
+                className="category-item"
+                key={id}
+                onClick={() => {
+                  dispatch({ type: clearFilter });
+                  dispatch({ type: setCategoryFilter, payload: categoryName });
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  navigate("/products");
+                }}
+              >
                 <img className="category-img" src={image} alt="Categories" />
                 <h2>{categoryName}</h2>
               </div>

@@ -72,13 +72,14 @@ const Cart = () => {
                 trending,
               } = item;
               return (
-                <div key={_id} className="cart-product-card">
+                <div key={_id} className="cart-product-card" title={title}>
                   {inWishlist ? (
                     <AiFillHeart
                       className={`c-red wishList-icon ${
                         wishDisable ? "cursor-disable" : ""
                       }`}
                       onClick={() => handleWishList(item)}
+                      title="Remove from wishlist"
                     />
                   ) : (
                     <AiOutlineHeart
@@ -86,6 +87,7 @@ const Cart = () => {
                         wishDisable ? "cursor-disable" : ""
                       } ${!inStock ? "cursor-disable" : ""}`}
                       onClick={() => (inStock ? handleWishList(item) : null)}
+                      title="Add to wishlist"
                     />
                   )}
                   <div
@@ -144,7 +146,7 @@ const Cart = () => {
                         disabled={cartDisable}
                         onClick={() => handleCart(item)}
                       >
-                        <span className="icon">
+                        <span className="icon" title="Remove from Cart">
                           <RiDeleteBin5Line />
                         </span>
                       </button>

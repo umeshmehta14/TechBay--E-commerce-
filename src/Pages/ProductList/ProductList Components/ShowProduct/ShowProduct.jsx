@@ -34,11 +34,13 @@ const ShowProduct = ({ item }) => {
       <div
         key={_id}
         className={`product-card  ${!inStock ? "stock-checker" : ""}`}
+        title={title}
       >
         {inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
             onClick={() => handleWishList(item)}
+            title="Remove from wishlist"
           />
         ) : (
           <AiOutlineHeart
@@ -46,6 +48,8 @@ const ShowProduct = ({ item }) => {
               !inStock ? "cursor-disable" : ""
             }`}
             onClick={() => (inStock ? handleWishList(item) : null)}
+            title="Add to wishlist"
+
           />
         )}
         <div
@@ -83,10 +87,11 @@ const ShowProduct = ({ item }) => {
             disabled={cartDisable}
               className="btn btn-p-w w-fit m-0"
               onClick={() => (inCart ? navigate("/cart") : handleCart(item))}
+              title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
             </button>
-            <button className="btn btn-p-w  w-fit m-0 byn-btn">Buy Now</button>
+            <button className="btn btn-p-w  w-fit m-0 byn-btn" title="Buy Now">Buy Now</button>
           </div>
         </div>
       </div>

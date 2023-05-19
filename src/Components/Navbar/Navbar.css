@@ -75,7 +75,7 @@
     padding: 0.5rem;
 }
 
-.link-name span{
+.link-name span {
     position: absolute;
     top: 0rem;
     font-weight: 300;
@@ -91,11 +91,52 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5rem;
     top: 4.474rem;
     text-align: center;
     width: 100%;
+    opacity: 0;
+    height: 0px;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
+
+.search-input-box.show {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    margin-top: 0.5rem;
+}
+
+.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+
+
 
 .search-input-box label svg {
     font-size: 1.8rem;
@@ -110,9 +151,7 @@
     border: none;
 }
 
-.disp-none {
-    display: none;
-}
+
 
 @media (min-width: 768px) {
     .logo {
@@ -166,13 +205,18 @@
 
     #f-search {
         font-size: 2rem;
-        
-    padding: 2px 4px;
+
+        padding: 2px 4px;
 
     }
 
     .link-name:hover {
         outline: 1px solid white;
+    }
+
+    .search-input-box {
+        width: 50%;
+        margin: auto;
     }
 
     .search-input-box label svg {

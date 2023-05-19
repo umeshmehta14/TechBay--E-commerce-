@@ -9,15 +9,23 @@ import {
   FaRegHeart,
   AiOutlineLogin,
   IoSearch,
-  FaRegUserCircle
+  FaRegUserCircle,
+  TbSearchOff,
 } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import { setShowSearch, setShowBurger, setScreenWidth } from "../../DataReducer/Constants";
+import {
+  setShowSearch,
+  setShowBurger,
+  setScreenWidth,
+} from "../../DataReducer/Constants";
 
 const Navbar = () => {
-  const {token} = useAuth();
-  const {state:{wishlist, cart, showBurger, showSearch, screenWidth}, dispatch} = useData();
+  const { token } = useAuth();
+  const {
+    state: { wishlist, cart, showBurger, showSearch, screenWidth },
+    dispatch,
+  } = useData();
   const navigate = useNavigate();
   const getStyle = ({ isActive }) => {
     return isActive ? { border: "1px solid white" } : {};
@@ -25,7 +33,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      dispatch({type:setScreenWidth})
+      dispatch({ type: setScreenWidth });
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -41,10 +49,10 @@ const Navbar = () => {
           <div className="navbar-icons-section">
             {screenWidth < 768 ? (
               <div
-                onClick={() => dispatch({type:setShowSearch})}
+                onClick={() => dispatch({ type: setShowSearch })}
                 className="search-icon"
               >
-                <IoSearch />
+                {showSearch ? <TbSearchOff /> : <IoSearch />}
               </div>
             ) : (
               ""
@@ -60,15 +68,16 @@ const Navbar = () => {
                     }
                   : {}
               }
-              onClick={() => dispatch({type:setShowBurger})}
+              onClick={() => dispatch({ type: setShowBurger })}
             >
               {screenWidth > 768 ? (
                 <li
-                  onClick={() => dispatch({type:setShowSearch})}
+                  onClick={() => dispatch({ type: setShowSearch })}
                   className="link-name"
                   id="f-search"
+                  title="Search"
                 >
-                  <IoSearch />
+                  {showSearch ? <TbSearchOff /> : <IoSearch />}
                 </li>
               ) : (
                 ""
@@ -103,7 +112,9 @@ const Navbar = () => {
                   title="WishList"
                 >
                   <FaRegHeart />
-                  {token && wishlist?.length > 0 && <span>{wishlist?.length}</span>}
+                  {token && wishlist?.length > 0 && (
+                    <span>{wishlist?.length}</span>
+                  )}
                 </NavLink>
               </li>
               <li>
@@ -113,14 +124,14 @@ const Navbar = () => {
                   to={token ? "/logout" : "/login"}
                   title={token ? "Profile" : "Login"}
                 >
-                  {token ? <FaRegUserCircle/> : <AiOutlineLogin />}
+                  {token ? <FaRegUserCircle /> : <AiOutlineLogin />}
                 </NavLink>
               </li>
             </ul>
 
             <div
               className="hamburger-menu"
-              onClick={() => dispatch({type:setShowBurger})}
+              onClick={() => dispatch({ type: setShowBurger })}
             >
               {showBurger ? (
                 <RxCross1 className="hamburger-icon" />
@@ -130,7 +141,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className={showSearch ? "search-input-box" : "disp-none"}>
+        <div className={`search-input-box ${showSearch ? "show slide-in" : "slide-out"}`}>
           <label htmlFor="search">
             <IoSearch />
           </label>
