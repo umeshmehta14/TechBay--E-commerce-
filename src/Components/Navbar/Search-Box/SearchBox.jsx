@@ -16,7 +16,6 @@ const SearchBox = () => {
     dispatch,
   } = useData();
   const navigate = useNavigate();
-  console.log(showSearchedProducts);
   return (
     <>
       <div
@@ -47,11 +46,13 @@ const SearchBox = () => {
             }}
             placeholder="What are you looking for ?"
           />
-          {searchValue && <RxCross1
-            className="search-clr"
-            onClick={() => dispatch({ type: setSearchValue, payload: "" })}
-            title="Clear Search"
-          />}
+          {searchValue && (
+            <RxCross1
+              className="search-clr"
+              onClick={() => dispatch({ type: setSearchValue, payload: "" })}
+              title="Clear Search"
+            />
+          )}
           {searchValue && showSearch ? (
             <>
               {" "}

@@ -15,7 +15,7 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Smartphone",
-    image: "https://tse1.mm.bing.net/th?id=OIP.oAN1BYI3xsq9WvrQKQIA0wHaEz&pid=Api&P=0"
+    image: "https://tse2.explicit.bing.net/th?id=OIP.6slSa8HsFP11adHk0lStWAHaHa&pid=Api&P=0&h=180"
   },
   {
     _id: uuid(),

@@ -7,14 +7,20 @@ import {
 } from "../../../../Icons/Icons";
 
 import "./ShowProduct.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../../../Contexts/CartContext/CartContext";
+import { useAuth } from "../../../../Contexts/AuthContext/AuthContext";
+import { useData } from "../../../../Contexts/DataContext/DataContext";
 
 const ShowProduct = ({ item }) => {
+  const {token} = useAuth();
+  const {state:{cart}} = useData();
   const { handleWishList, wishDisable } = useWishList();
   const { handleCart, cartDisable } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(cart);
   const {
     _id,
     title,
@@ -86,7 +92,7 @@ const ShowProduct = ({ item }) => {
             <button
             disabled={cartDisable}
               className="btn btn-p-w w-fit m-0"
-              onClick={() => (inCart ? navigate("/cart") : handleCart(item))}
+              onClick={() => !token ? navigate('/login',{state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(item)) }
               title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}

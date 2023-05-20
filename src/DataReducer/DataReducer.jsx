@@ -3,6 +3,7 @@ import {
   category,
   clearFilter,
   products,
+  setAddressList,
   setArrangeType,
   setBrandFilter,
   setCategoryFilter,
@@ -11,6 +12,8 @@ import {
   setPrice,
   setScreenWidth,
   setSearchValue,
+  setSelectedAddress,
+  setShowAddressModal,
   setShowBurger,
   setShowFilter,
   setShowPassword,
@@ -147,24 +150,31 @@ export const DataReducer = (state, action) => {
         },
       };
 
-      case setSearchValue:
-        const searchValue = action.payload.toLowerCase();
-        const searchedProducts = searchValue === "" ? [] : state.products.filter(
-          ({ title, description,price, category, brand }) =>
-            title.toLowerCase().includes(searchValue) ||
-            category.toLowerCase().includes(searchValue) ||
-            brand.toLowerCase().includes(searchValue) ||
-            description.toLowerCase().includes(searchValue) ||
-            Number(action.payload) > price
+    case setSearchValue:
+      const searchValue = action.payload.toLowerCase();
+      const searchedProducts =
+        searchValue === ""
+          ? []
+          : state.products.filter(
+              ({ title, description, price, category, brand }) =>
+                title.toLowerCase().includes(searchValue) ||
+                category.toLowerCase().includes(searchValue) ||
+                brand.toLowerCase().includes(searchValue) ||
+                description.toLowerCase().includes(searchValue) ||
+                Number(action.payload) > price
             );
-      
-        return {
-          ...state,
-          searchValue: action.payload,
-          searchedProducts,
-        };
+
+      return {
+        ...state,
+        searchValue: action.payload,
+        searchedProducts,
+      };
     case setShowBurger:
-      return { ...state, showBurger: action.payload !== undefined ? action.payload : !state.showBurger };
+      return {
+        ...state,
+        showBurger:
+          action.payload !== undefined ? action.payload : !state.showBurger,
+      };
     case setShowSearch:
       return { ...state, showSearch: !state.showSearch };
 
@@ -186,7 +196,16 @@ export const DataReducer = (state, action) => {
       return { ...state, showFilter: !state.showFilter };
 
     case setShowSearchedProducts:
-      return {...state, showSearchedProducts: action.payload};
+      return { ...state, showSearchedProducts: action.payload };
+    case setAddressList:
+      return {
+        ...state,
+        addressList: [...state.addressList, { ...action.payload }],
+      };
+    case setShowAddressModal:
+      return { ...state, showAddressModal: !state.showAddressModal };
+    case setSelectedAddress:
+      return { ...state, selectedAddress: action.payload };
   }
 };
 
@@ -213,5 +232,19 @@ export const initialState = {
   showPassword: false,
   showFilter: false,
   showSignUpPassword: false,
-  showSearchedProducts:false
+  showSearchedProducts: false,
+  addressList: [
+    {
+      id: "2354drtgf4d-7555-49cb--4b09711yujd",
+      name: "Donald Modi",
+      address: "194 america main road near San Francisco",
+      city: "Indore",
+      mobile: 1011121314,
+      alternatemobile: 123456789,
+      pincode: "99988",
+      state: "Moscow Pradesh",
+    },
+  ],
+  showAddressModal: false,
+  selectedAddress: "2354drtgf4d-7555-49cb--4b09711yujd",
 };

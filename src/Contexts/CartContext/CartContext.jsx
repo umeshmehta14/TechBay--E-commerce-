@@ -66,7 +66,6 @@ export const CartProvider = ({ children }) => {
       const updatedCart = await updateCartQuantity({type:updateType, productId: product._id, encodedToken: token});
       if (updatedCart.status === 201 || updatedCart.status === 200) {
         dispatch({ type: cart, payload: updatedCart.data.cart });
-        console.log(updatedCart)
         dispatch({ type: updateProductCart });
       }
     } catch (err) {

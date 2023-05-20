@@ -11,16 +11,15 @@ import SingleProduct from "./Pages/Single Product Page/SingleProduct";
 import Login from "./Pages/Authentication/Login/Login";
 import SignUp from "./Pages/Authentication/SignUp/SignUp";
 import LogOut from "./Pages/Authentication/LogOut/LogOut";
-import Mockman from "mockman-js";
 import RequiredAuth from "./Components/RequiredAuth/RequiredAuth";
 import WishList from "./Pages/Wishlist/WishList";
 import Cart from "./Pages/Cart/Cart";
+import CheckOut from "./Pages/CheckOut/CheckOut";
 
 function App() {
   const {error,loading} = useData();
   return (
     <>
-    {/* <Mockman/> */}
       {error ? <Error/> : <Navbar/>}
       {loading ? <img className="loader" src={loader} alt="Loading..."/>:<> <Routes>
         <Route path="/" element={<Home/>}/>
@@ -31,11 +30,13 @@ function App() {
         <Route path="/logout" element={<LogOut/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/checkout" element={<CheckOut/>}/>
 
         <Route path="/wishlist" element={
         <RequiredAuth>
           <WishList/>
-        </RequiredAuth>}
+        </RequiredAuth>
+        }
         />
       </Routes>
       <Footer/></>}

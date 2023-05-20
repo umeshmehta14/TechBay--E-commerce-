@@ -6,16 +6,19 @@ import {
   AiFillHeart,
   ImCart,
 } from "../../Icons/Icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./WishList.css";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
+import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 const WishList = () => {
   const {
     state: { products },
   } = useData();
   const { handleWishList, wishDisable } = useWishList();
   const { handleCart } = useCart();
+  const { token } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const wishlistData = products.filter(({ inWishlist }) => inWishlist);
@@ -93,9 +96,7 @@ const WishList = () => {
                 <div className="btn-box">
                   <button
                     className="btn btn-p-w w-fit m-0"
-                    onClick={() =>
-                      inCart ? navigate("/cart") : handleCart(item)
-                    }
+                    onClick={() => !token ? navigate('/login',{state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(item)) }
                   >
                     {inCart ? (
                       "Go to Cart"

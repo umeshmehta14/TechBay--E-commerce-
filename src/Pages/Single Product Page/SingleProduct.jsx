@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -10,16 +10,18 @@ import {
 import "./SingleProduct.css";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
-import { setShowBurger } from "../../DataReducer/Constants";
+import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 
 const SingleProduct = () => {
   const {
-    state: { products },dispatch
+    state: { products }
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
   const { handleCart } = useCart();
   const { productId } = useParams();
+  const {token} = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
     title,
@@ -97,7 +99,7 @@ const SingleProduct = () => {
           <div className="s-btn-box">
             <button
               className="btn w-fit m-0"
-              onClick={() => (inCart ? navigate("/cart") : handleCart(selectedProduct))}
+              onClick={() => !token ? navigate('/login', {state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(selectedProduct)) }
               title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}

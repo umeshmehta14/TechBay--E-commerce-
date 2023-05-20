@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
  export const products = [
   //Best Feature
   {
-    _id: uuid(),
+    _id: "1e3fcd59-9572-483c-b30c-80836a3decba",
     title: "OnePlus Nord CE 5G",
     description: "Fast and reliable 5G smartphone with stunning display",
     price: 399,
@@ -25,7 +25,7 @@ import { v4 as uuid } from "uuid";
     feature:"best"
   },
   {
-    _id: uuid(),
+    _id: "1168f3c5-db4a-46b9-8768-f2efb7e0e72b",
     title: "Asus ROG Zephyrus S17",
     description: "A high-end gaming laptop with advanced features from Asus",
     price: 2799,

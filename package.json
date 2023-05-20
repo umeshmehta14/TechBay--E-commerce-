@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dayjs": "^1.11.7",
+    "faker": "^6.6.6",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.47",
@@ -35,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.1"
   }
 }

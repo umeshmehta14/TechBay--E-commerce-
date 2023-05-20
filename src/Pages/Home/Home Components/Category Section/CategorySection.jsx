@@ -7,6 +7,7 @@ import "./CategorySection.css";
 import {
   clearFilter,
   setCategoryFilter,
+  setSearchValue,
 } from "../../../../DataReducer/Constants";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
@@ -49,6 +50,7 @@ const CategorySection = ({ category }) => {
             className="category-item"
             key={curCategory?.id}
             onClick={() => {
+              dispatch({ type: setSearchValue, payload: "" });
               dispatch({ type: clearFilter });
               dispatch({
                 type: setCategoryFilter,
@@ -79,6 +81,7 @@ const CategorySection = ({ category }) => {
                 className="category-item"
                 key={id}
                 onClick={() => {
+                  dispatch({ type: setSearchValue, payload: "" });
                   dispatch({ type: clearFilter });
                   dispatch({ type: setCategoryFilter, payload: categoryName });
                   window.scrollTo({ top: 0, behavior: "smooth" });

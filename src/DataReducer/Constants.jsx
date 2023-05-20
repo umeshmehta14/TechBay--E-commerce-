@@ -24,3 +24,6 @@ export const setShowPassword = "setShowPassword";
 export const setShowSignUpPassword = "setShowSignUpPassword";
 export const setShowFilter = "setShowFilter";
 export const setShowSearchedProducts = "setShowSearchedProducts";
+export const setAddressList = "setAddressList";
+export const setShowAddressModal = "setShowAddressModal";
+export const setSelectedAddress = "setSelectedAddress";
