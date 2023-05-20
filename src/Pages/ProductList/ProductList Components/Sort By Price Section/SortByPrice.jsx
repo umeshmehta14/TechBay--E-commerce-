@@ -1,22 +1,50 @@
-import React from 'react'
-import {  HiOutlineFilter } from "../../../../Icons/Icons";
+import React from "react";
+import { HiOutlineFilter } from "../../../../Icons/Icons";
 import "./SortByPrice.css";
-const SortByPrice = ({setShowFilter ,showFilter}) => {
+import { useData } from "../../../../Contexts/DataContext/DataContext";
+import { setArrangeType, setShowFilter } from "../../../../DataReducer/Constants";
+const SortByPrice = () => {
+  const {
+    dispatch,
+    state: { filters, searchValue },
+  } = useData();
   return (
     <>
       <div className="sort-section">
         <div className="filter-button">
-          <button className="filter-toggle-btn" onClick={()=> setShowFilter(!showFilter)}>
+          <button
+            className="filter-toggle-btn"
+            onClick={() => dispatch({type:setShowFilter})}
+          >
             Filter <HiOutlineFilter />
           </button>
           <div className="sort-price">
-          <button  className="sort-btn">Price- Low to High</button>
-          <button className="sort-btn b-l">Price- High to Low</button>
-        </div>
+            <h3>{searchValue ? `Search Result for ${searchValue}`: "Showing all products"}</h3>
+            <div className="sort-by-price-main-btn-box">
+
+            <button
+              className={`sort-btn ${
+                filters.arrangeType === "LTH" ? "sort-btn-focus" : ""
+              }`}
+              onClick={() => dispatch({ type: setArrangeType, payload: "LTH" })}
+            >
+              Price- Low to High
+            </button>
+            <button
+              className={`sort-btn b-l ${
+                filters.arrangeType === "HTL" ? "sort-btn-focus" : ""
+              }`}
+              onClick={() => dispatch({ type: setArrangeType, payload: "HTL" })}
+            >
+              Price- High to Low
+            </button>
+            </div>
+
+          </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SortByPrice
+export default SortByPrice;

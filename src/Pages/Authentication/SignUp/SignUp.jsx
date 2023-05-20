@@ -3,9 +3,11 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Icons/Icons";
 import "../Authentications.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
+import { useData } from "../../../Contexts/DataContext/DataContext";
+import { setShowSignUpPassword } from "../../../DataReducer/Constants";
 const SignUp = () => {
   const { signUpHandler } = useAuth();
-  const [showSignUpPassword, setShowSignUpPassword] = useState(false);
+  const {state:{showSignUpPassword}, dispatch} = useData();
   const navigate = useNavigate();
   const location = useLocation();
   const [userDetail, setUserDetail] = useState({
@@ -27,7 +29,7 @@ const SignUp = () => {
         <form
           action=""
           className="auth-form d-flex"
-          onSubmit={() => signupFormHandler()}
+          onSubmit={signupFormHandler}
         >
           <div className="detail-inp-box">
             <label htmlFor="first-name">First Name</label>
@@ -78,20 +80,20 @@ const SignUp = () => {
               onChange={(event) =>
                 setUserDetail({ ...userDetail, password: event.target.value })
               }
-              autocomplete="current-password"
+              autoComplete="current-password"
               required
             />
             {showSignUpPassword ? (
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() => setShowSignUpPassword(!showSignUpPassword)}
+                onClick={() =>dispatch({type:setShowSignUpPassword})}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() => setShowSignUpPassword(!showSignUpPassword)}
+                onClick={() =>dispatch({type:setShowSignUpPassword})}
               />
             )}
           </div>

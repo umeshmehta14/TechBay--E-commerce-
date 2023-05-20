@@ -1,16 +1,17 @@
 .navbar {
-    background: linear-gradient(109deg, rgba(215, 220, 255, 1) 17%, rgba(55, 84, 113) 59%);
+    background: var(--primary-color);
     width: 100%;
     position: fixed;
     z-index: 11;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0.5rem 0rem;
     box-shadow: 0px 4px 10px #acacac;
 }
 
 .nav-top-section {
+    padding: 0rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,6 +22,7 @@
     font-weight: bold;
     font-family: var(--secondary-font);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .navbar-icons-section {
@@ -46,10 +48,11 @@
 
 .nav-links {
     position: absolute;
-    top: 5.08rem;
+    top: 4.08rem;
     right: 0rem;
     font-size: 1.5rem;
     height: 0px;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -74,7 +77,7 @@
     padding: 0.5rem;
 }
 
-.link-name span{
+.link-name span {
     position: absolute;
     top: 0rem;
     font-weight: 300;
@@ -86,32 +89,7 @@
     color: whitesmoke;
 }
 
-.search-input-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.5rem;
-    top: 4.474rem;
-    text-align: center;
-    width: 100%;
-}
 
-.search-input-box label svg {
-    font-size: 1.8rem;
-    cursor: pointer;
-    margin-right: 0.2rem;
-}
-
-.search-btn {
-    width: 70%;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: none;
-}
-
-.disp-none {
-    display: none;
-}
 
 @media (min-width: 768px) {
     .logo {
@@ -159,23 +137,18 @@
         font-size: 1.5rem;
         cursor: pointer;
         padding: 0.5rem;
-        border-radius: 50%;
+        border-radius: 12px;
         font-weight: 600;
     }
 
     #f-search {
         font-size: 2rem;
-        
-    padding: 2px 4px;
+        padding: 2px 4px;
 
     }
 
     .link-name:hover {
         outline: 1px solid white;
-    }
-
-    .search-input-box label svg {
-        font-size: 1.5rem;
     }
 
     .hamburger-menu {

@@ -3,15 +3,17 @@ import {
   AiFillStar,
   AiOutlineHeart,
   AiFillHeart,
- ImCart
+  ImCart,
 } from "../../../../Icons/Icons";
 
 import "./ShowProduct.css";
 import { useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
+import { useCart } from "../../../../Contexts/CartContext/CartContext";
 
 const ShowProduct = ({ item }) => {
   const { handleWishList, wishDisable } = useWishList();
+  const { handleCart, cartDisable } = useCart();
   const navigate = useNavigate();
   const {
     _id,
@@ -22,6 +24,7 @@ const ShowProduct = ({ item }) => {
     original_price,
     rating,
     inWishlist,
+    inCart,
     inStock,
     image,
     trending,
@@ -30,12 +33,14 @@ const ShowProduct = ({ item }) => {
     <>
       <div
         key={_id}
-        className={`product-card  ${!inStock ? "stock-checker" : ""}`}
+        className={`product-card  ${!inStock ? "stock-checker cursor-disable" : ""}`}
+        title={title}
       >
         {inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
             onClick={() => handleWishList(item)}
+            title="Remove from wishlist"
           />
         ) : (
           <AiOutlineHeart
@@ -43,11 +48,13 @@ const ShowProduct = ({ item }) => {
               !inStock ? "cursor-disable" : ""
             }`}
             onClick={() => (inStock ? handleWishList(item) : null)}
+            title="Add to wishlist"
+
           />
         )}
         <div
           className="product-card-img"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => inStock ? navigate(`/singleProduct/${_id}`) : null }
         >
           <img src={image} alt="Stay Tuned" />
           {inStock ? (
@@ -76,8 +83,15 @@ const ShowProduct = ({ item }) => {
             </div>
           </div>
           <div className="btn-box">
-            <button className="btn btn-p-w w-fit m-0"><ImCart/> Add to Cart</button>
-            <button className="btn btn-p-w  w-fit m-0 byn-btn">Buy Now</button>
+            <button
+            disabled={cartDisable}
+              className="btn btn-p-w w-fit m-0"
+              onClick={() => (inCart ? navigate("/cart") : handleCart(item))}
+              title={inCart ? "go to cart" : "Add to cart"}
+            >
+              {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
+            </button>
+            <button className="btn btn-p-w  w-fit m-0 byn-btn" title="Buy Now">Buy Now</button>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
     position: relative;
     outline: 0.5px solid rgb(204, 204, 204);
     background-color: white;
+    font-family: var(--third-font);
 }
 
 
@@ -54,7 +55,7 @@
     font-size: 1.5rem;
     top: 0.4rem;
     cursor: pointer;
-    z-index: 4;
+    z-index: 3;
     right: 0.3rem;
     color: gray;
 }
@@ -82,7 +83,7 @@
     top: 0rem;
     left: 0;
     background-color: #ff772e;
-    font-weight: bold;
+    font-size: 0.8rem;
     color: white;
     padding: 0.2rem 0.3rem;
     border-radius: 0px 12px 0px 12px;
@@ -98,10 +99,11 @@
     align-items: center;
     justify-content: center;
 }
-
+.disp-info-pc{
+    padding: 0.8rem;
+}
 
 .product-card-info {
-    padding: 0.8rem;
     display: grid;
     grid-template-rows: repeat(3, 0.9fr);
     grid-template-columns: 1fr;
@@ -156,6 +158,11 @@
     text-align: center;
 }
 
+.btn-box .btn{
+    margin: 0.8rem auto 0px;
+
+}
+
 .btn {
     font-size: 1rem;
     background-color: var(--primary-color);
@@ -173,14 +180,12 @@
 
 .btn-p-w{
     width: 80%;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 0.8rem;
 }
 
 
 .btn:hover {
-    background-color: white;
-    color: black;
-    outline: 1px solid gray;
+    background-color: black;
 }
 
 .byn-btn {
@@ -223,9 +228,9 @@
 
     .description {
         display: block;
-        width: 90%;
         height: 44.8px;
         cursor: pointer;
+        overflow: hidden;
     }
 
     .price-box {
@@ -235,7 +240,6 @@
     .btn-box {
         display: flex;
         justify-content: space-evenly;
-
         padding-bottom: 0.5rem;
 
     }
@@ -247,6 +251,8 @@
 
     .w-fit {
         width: fit-content;
+        min-width: 132px;
+        text-align: center;
     }
 
     .m-0 {

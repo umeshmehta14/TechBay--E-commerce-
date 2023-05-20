@@ -6,10 +6,10 @@ footer{
     flex-direction: column;
     justify-content: space-between;
     min-height: 200px;
-    margin-top: 2rem;    
+    margin-top: 6rem;    
     position: relative;
     top: 4rem;
-
+    font-family: var(--third-font);
 }
 
 .footer-info{

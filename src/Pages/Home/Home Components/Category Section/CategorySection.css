@@ -1,7 +1,9 @@
 .category-section {
     padding-top: 1rem;
     margin-bottom: 2rem;
+    
 }
+
 
 .category-heading {
     width: fit-content;
@@ -44,7 +46,29 @@
     min-height: 340px;
     justify-content: center;
     cursor: pointer;
+    animation: fadeIn 0.5s;
+    animation: fadeOut 1s ease-in-out 1s;
+    -webkit-animation: fadeIn 0.5s;
 }
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
 
 .category-item h2{
     text-align: center;

@@ -27,14 +27,15 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 45vh;
+    height: 50vh;
+    padding: 0.5rem;
 }
 
 .s-product-info{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 30vh;
+    height: 35vh;
 }
 
 .s-product-info h1{

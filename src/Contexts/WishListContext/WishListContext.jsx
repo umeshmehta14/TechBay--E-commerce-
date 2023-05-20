@@ -20,6 +20,7 @@ export const WishListProvider = ({ children }) => {
         const wishlistResponse = await getWishList({encodedToken: token});
         if (wishlistResponse.status === 200) {
           dispatch({ type: wishlist, payload: wishlistResponse.data.wishlist });
+        dispatch({ type: updateProductWishlist });
         }
       } catch (err) {
         console.error(err);
@@ -37,10 +38,8 @@ export const WishListProvider = ({ children }) => {
       let wishlistRes = null;
       if (product.inWishlist) {
         wishlistRes = await deleteWishlist({productId: product._id,encodedToken: token});
-        
       } else {
         wishlistRes = await postWishList({product,encodedToken: token});
-        console.log(wishlistRes.data.wishlist);
       }
       if (wishlistRes.status === 201 || wishlistRes.status === 200) {
         dispatch({ type: wishlist, payload: wishlistRes.data.wishlist });
