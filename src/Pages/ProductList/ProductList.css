@@ -7,6 +7,14 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     margin-top: 1.5rem;
 }
+.no-product-heading{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    text-align: center;
+}
 
 
 @media (min-width: 460px) {
@@ -31,7 +39,9 @@
         justify-content: space-around;
         margin:0;
     }
-
+    .no-product-heading{
+        height: 40%;
+    }
     .product-container {
         display: inline-block;
         flex-direction: column;

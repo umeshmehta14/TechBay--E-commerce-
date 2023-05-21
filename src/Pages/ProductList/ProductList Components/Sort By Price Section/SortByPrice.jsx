@@ -3,7 +3,7 @@ import { HiOutlineFilter } from "../../../../Icons/Icons";
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 import { setArrangeType, setShowFilter } from "../../../../DataReducer/Constants";
-const SortByPrice = () => {
+const SortByPrice = ({displayedProducts}) => {
   const {
     dispatch,
     state: { filters, searchValue },
@@ -19,7 +19,7 @@ const SortByPrice = () => {
             Filter <HiOutlineFilter />
           </button>
           <div className="sort-price">
-            <h3>{searchValue ? `Search Result for ${searchValue}`: "Showing all products"}</h3>
+            <h3>{searchValue ? `Search Result for ${searchValue}`: displayedProducts.length === 0 ?"": "Showing all products"}</h3>
             <div className="sort-by-price-main-btn-box">
 
             <button

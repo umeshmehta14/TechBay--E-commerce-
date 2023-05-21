@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
@@ -14,12 +14,12 @@ import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 
 const SingleProduct = () => {
   const {
-    state: { products }
+    state: { products },
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
   const { handleCart } = useCart();
   const { productId } = useParams();
-  const {token} = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const selectedProduct = products.find(({ _id }) => _id === productId);
@@ -56,7 +56,6 @@ const SingleProduct = () => {
             }`}
             onClick={() => (inStock ? handleWishList(selectedProduct) : null)}
             title="Add to wishlist"
-
           />
         )}
         <div className="product-image-box">
@@ -93,18 +92,41 @@ const SingleProduct = () => {
           </div>
           <div className="s-price-box price-box">
             <h3 className="s-discount discount">{discountPercentage}% off</h3>
-            <p className="s-original-price original-price">${original_price}</p>
-            <p className="s-price price">${price}</p>
+            <p className="s-original-price original-price">
+              &#8377;{original_price}
+            </p>
+            <p className="s-price price">&#8377;{price}</p>
           </div>
           <div className="s-btn-box">
             <button
               className="btn w-fit m-0"
-              onClick={() => !token ? navigate('/login', {state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(selectedProduct)) }
+              onClick={() =>
+                !token
+                  ? navigate("/login", { state: { from: location } })
+                  : inCart
+                  ? navigate("/cart")
+                  : handleCart(selectedProduct)
+              }
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
+              {inCart ? (
+                "Go to Cart"
+              ) : (
+                <>
+                  <ImCart /> Add to Cart
+                </>
+              )}
             </button>
-            <button className="btn w-fit m-0 s-byn-btn" title="Buy Now">Buy Now</button>
+            <button
+              className="btn w-fit m-0 s-byn-btn"
+              title="Buy Now"
+              onClick={() => {
+                handleCart(selectedProduct, true);
+                navigate("/checkout");
+              }}
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </div>

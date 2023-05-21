@@ -1,0 +1,22 @@
+.logout-box h2{
+    text-align: center;
+    margin: 1rem auto;
+
+}
+
+.logout-form{
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.logout-form .btn{
+    background-color: aliceblue;
+    color: red;
+    border: 1px solid gray;
+}
+.logout-form .btn:hover{
+    background-color: red;
+    color: aliceblue;
+}

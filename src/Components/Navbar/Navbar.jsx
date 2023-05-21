@@ -122,7 +122,7 @@ const Navbar = () => {
                 <NavLink
                   style={getStyle}
                   className="link-name"
-                  to={token ? "/logout" : "/login"}
+                  to={token ? "/profile/logout" : "/login"}
                   title={token ? "Profile" : "Login"}
                 >
                   {token ? <FaRegUserCircle /> : <AiOutlineLogin />}

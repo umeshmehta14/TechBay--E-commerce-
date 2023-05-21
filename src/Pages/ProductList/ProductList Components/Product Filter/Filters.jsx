@@ -93,7 +93,7 @@ const Filters = () => {
                 id={item + "rs"}
                 onChange={() => dispatch({ type: setPrice, payload: item })}
               />
-              Less Than $ {item}
+              Less Than &#8377;{item}
             </label>
           ))}
         </div>

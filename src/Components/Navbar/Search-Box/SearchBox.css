@@ -96,28 +96,6 @@
     -webkit-animation: slideIn 0.5s forwards;
 }
 
-.searchedOutput-container::-webkit-scrollbar {
-    width: 8px;
-    background-color: #f5f5f5;
-  }
-  
-  .searchedOutput-container::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color);
-    border-radius: 4px;
-  }
-  
-  .searchedOutput-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-  }
-  
-  .searchedOutput-container::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
-  }
-  
-  .searchedOutput-container::-webkit-scrollbar-track:hover {
-    background-color: var(--primary-color);
-  }
-
 .searchedOutput-container h1{
     text-align: center;
 }

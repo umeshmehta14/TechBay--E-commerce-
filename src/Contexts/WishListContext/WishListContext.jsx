@@ -4,6 +4,7 @@ import { useData } from "../DataContext/DataContext";
 import { updateProductWishlist, wishlist } from "../../DataReducer/Constants";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const WishListContext = createContext();
 
@@ -17,10 +18,10 @@ export const WishListProvider = ({ children }) => {
   useEffect(() => {
     async () => {
       try {
-        const wishlistResponse = await getWishList({encodedToken: token});
+        const wishlistResponse = await getWishList({ encodedToken: token });
         if (wishlistResponse.status === 200) {
           dispatch({ type: wishlist, payload: wishlistResponse.data.wishlist });
-        dispatch({ type: updateProductWishlist });
+          dispatch({ type: updateProductWishlist });
         }
       } catch (err) {
         console.error(err);
@@ -37,20 +38,24 @@ export const WishListProvider = ({ children }) => {
       }
       let wishlistRes = null;
       if (product.inWishlist) {
-        wishlistRes = await deleteWishlist({productId: product._id,encodedToken: token});
+        wishlistRes = await deleteWishlist({
+          productId: product._id,
+          encodedToken: token,
+        });
+        toast.info(`${product.title} Removed From Wishlist`, {
+          theme: "colored",
+        });
       } else {
-        wishlistRes = await postWishList({product,encodedToken: token});
+        wishlistRes = await postWishList({ product, encodedToken: token });
+        toast.success(`${product.title} Removed From Wishlist`, {
+          theme: "colored",
+        });
       }
       if (wishlistRes.status === 201 || wishlistRes.status === 200) {
         dispatch({ type: wishlist, payload: wishlistRes.data.wishlist });
         dispatch({ type: updateProductWishlist });
       }
       setWishDisable(false);
-      if (product.inWishlist) {
-        // successfully added
-      } else {
-        // deleted successfully
-      }
     } catch (err) {
       console.error(err);
     }

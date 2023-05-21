@@ -15,31 +15,72 @@ import RequiredAuth from "./Components/RequiredAuth/RequiredAuth";
 import WishList from "./Pages/Wishlist/WishList";
 import Cart from "./Pages/Cart/Cart";
 import CheckOut from "./Pages/CheckOut/CheckOut";
+import Profile from "./Pages/Profile/Profile";
+import Addresses from "./Pages/Profile/Addresses/Addresses";
+import OrderDetails from "./Pages/Profile/OrderDetail/OrderDetails";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const {error,loading} = useData();
+  const { error, loading } = useData();
   return (
     <>
-      {error ? <Error/> : <Navbar/>}
-      {loading ? <img className="loader" src={loader} alt="Loading..."/>:<> <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/products" element={<ProductList/>}/>
-        <Route path="/singleProduct/:productId" element={<SingleProduct/>}/>
-        <Route path="/error" element={<Error/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/logout" element={<LogOut/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/checkout" element={<CheckOut/>}/>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      {error ? <Error /> : <Navbar />}
+      {loading ? (
+        <img className="loader" src={loader} alt="Loading..." />
+      ) : (
+        <>
+          {" "}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route
+              path="/singleProduct/:productId"
+              element={<SingleProduct />}
+            />
+            <Route path="/error" element={<Error />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<CheckOut />} />
 
-        <Route path="/wishlist" element={
-        <RequiredAuth>
-          <WishList/>
-        </RequiredAuth>
-        }
-        />
-      </Routes>
-      <Footer/></>}
+            <Route
+              path="/wishlist"
+              element={
+                <RequiredAuth>
+                  <WishList />
+                </RequiredAuth>
+              }
+            />
+
+            <Route
+              path="/profile"
+              element={
+                <RequiredAuth>
+                  <Profile />
+                </RequiredAuth>
+              }
+            >
+              <Route path="logout" element={<LogOut />} />
+              <Route path="addresses" element={<Addresses />} />
+              <Route path="orderDetail" element={<OrderDetails />} />
+            </Route>
+          </Routes>
+          <Footer />
+        </>
+      )}
     </>
   );
 }

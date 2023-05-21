@@ -31,7 +31,7 @@ const Cart = () => {
   );
   const totalCost =
     cart.reduce((acc, { price, qty }) => (acc += price * qty), 0) + 79;
-  const discountedPrice = originalPrice - totalCost;
+  const discountedPrice = totalCost < originalPrice ? originalPrice - totalCost : (originalPrice + 50) - originalPrice ;
   return (
     <>
       <div className="container cart-top-6">
@@ -69,9 +69,9 @@ const Cart = () => {
             <h1 className="cart-heading">Your cart is currently empty.</h1>
           </>
         )}
-        {token && (
+        {token ?  cart.length > 0 ?(
           <div className="cart-container">
-            <div className="cart-details">
+             <div className="cart-details">
               {cartData.map((item) => {
                 const {
                   _id,
@@ -133,8 +133,8 @@ const Cart = () => {
                           <h3 className="discount">
                             {discountPercentage}% off
                           </h3>
-                          <p className="original-price">${original_price}</p>
-                          <p className="price">${price}</p>
+                          <p className="original-price">&#8377;{original_price}</p>
+                          <p className="price">&#8377;{price}</p>
                         </div>
                       </div>
 
@@ -154,6 +154,7 @@ const Cart = () => {
                           <span className="btn-para">{qty}</span>
 
                           <button
+                          disabled={cartDisable}
                             className="quantity-btn bl"
                             onClick={() => handleCartQuantity(increment, item)}
                           >
@@ -185,29 +186,29 @@ const Cart = () => {
                 <div className="price-cost-section">
                   <p>
                     <span>Price ({cart.length} items)</span>{" "}
-                    <span>${originalPrice}</span>
+                    <span>&#8377;{originalPrice}</span>
                   </p>
                   <p>
-                    <span>Discount</span> <span className="green">- ${discountedPrice}</span>
+                    <span>Discount</span> <span className="green">&#8377;{discountedPrice}</span>
                   </p>
                   <p>
-                    <span>Delivery Charges</span> <span>$40</span>
+                    <span>Delivery Charges</span> <span>&#8377;40</span>
                   </p>
                   <p>
-                    <span>Secured Packaging Fee</span> <span>$29</span>{" "}
+                    <span>Secured Packaging Fee</span> <span>&#8377;29</span>{" "}
                   </p>
                 </div>
                 <div className="total-cost-heading">
                   <h3>
                     <span>Total Cost</span>
-                    <span>${totalCost}</span>
+                    <span>&#8377;{totalCost}</span>
                   </h3>
                 </div>
 
                 <div className="save-price-section">
-                  <p className="green">You will save ${discountedPrice - 79} on this order</p>
+                  <p className="green">You will save &#8377;{discountedPrice} on this order</p>
                 </div>
-                <button className="btn" onClick={() => navigate('/checkout')}>
+                <button className="btn" onClick={() => navigate('/checkout',{state:{from:location}})}>
                   CHECKOUT
                 </button>
               </div>
@@ -215,7 +216,7 @@ const Cart = () => {
               ""
             )}
           </div>
-        )}
+        ):"":""}
       </div>
     </>
   );

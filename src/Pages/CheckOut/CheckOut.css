@@ -8,6 +8,17 @@
     margin: auto;
 }
 
+.order-placed-msg-box{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
 .top-6-checkout{
     top: 6rem;
     height: fit-content;

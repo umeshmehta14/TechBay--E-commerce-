@@ -27,3 +27,5 @@ export const setShowSearchedProducts = "setShowSearchedProducts";
 export const setAddressList = "setAddressList";
 export const setShowAddressModal = "setShowAddressModal";
 export const setSelectedAddress = "setSelectedAddress";
+export const setDeleteAddress = "setDeleteAddress";
+export const setOrderDetails = "setOrderDetails";

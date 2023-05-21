@@ -2,8 +2,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useData } from "../DataContext/DataContext";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { deleteCartList, getCartList, postCartList, updateCartQuantity } from "./CartApi";
+import {
+  deleteCartList,
+  getCartList,
+  postCartList,
+  updateCartQuantity,
+} from "./CartApi";
 import { cart, updateProductCart } from "../../DataReducer/Constants";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -12,11 +18,12 @@ export const CartProvider = ({ children }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { state } = useData();
 
   const [cartDisable, setCartDisable] = useState(false);
 
   useEffect(() => {
-    async () => {
+    (async () => {
       try {
         const cartResponse = await getCartList({ encodedToken: token });
         if (cartResponse.status === 200 || cartResponse.status === 201) {
@@ -26,10 +33,10 @@ export const CartProvider = ({ children }) => {
       } catch (err) {
         console.error(err);
       }
-    };
+    })();
   }, [token]);
 
-  const handleCart = async (product) => {
+  const handleCart = async (product, buyNow) => {
     setCartDisable(true);
     try {
       if (!token) {
@@ -38,32 +45,37 @@ export const CartProvider = ({ children }) => {
       }
       let cartRes = null;
       if (product.inCart) {
+        if (buyNow) {
+          setCartDisable(false);
+          return;
+        }
         cartRes = await deleteCartList({
           productId: product._id,
           encodedToken: token,
         });
+        toast.info(`${product.title} Removed From Cart`, { theme: "colored" });
       } else {
         cartRes = await postCartList({ product, encodedToken: token });
+        toast.success(`${product.title} Added To Cart`, { theme: "colored" });
       }
       if (cartRes.status === 201 || cartRes.status === 200) {
         dispatch({ type: cart, payload: cartRes.data.cart });
         dispatch({ type: updateProductCart });
       }
       setCartDisable(false);
-      if (product.inCart) {
-        // successfully added
-      } else {
-        // deleted successfully
-      }
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleCartQuantity = async (updateType, product) =>{
+  const handleCartQuantity = async (updateType, product) => {
     console.log(updateType);
     try {
-      const updatedCart = await updateCartQuantity({type:updateType, productId: product._id, encodedToken: token});
+      const updatedCart = await updateCartQuantity({
+        type: updateType,
+        productId: product._id,
+        encodedToken: token,
+      });
       if (updatedCart.status === 201 || updatedCart.status === 200) {
         dispatch({ type: cart, payload: updatedCart.data.cart });
         dispatch({ type: updateProductCart });
@@ -71,13 +83,20 @@ export const CartProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
+
+  const clearCart = () => {
+    state.cart.forEach((element) => {
+      handleCart(element);
+    });
+  };
   return (
-    <CartContext.Provider value={{ handleCart, cartDisable, handleCartQuantity }}>
+    <CartContext.Provider
+      value={{ handleCart, cartDisable, clearCart, handleCartQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
-
 
 export const useCart = () => useContext(CartContext);

@@ -23,29 +23,37 @@ body {
     background-color: aliceblue;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 8px;
     background-color: #f5f5f5;
   }
   
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 4px;
   }
   
-  body::-webkit-scrollbar-thumb:hover {
+  *::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
   
-  body::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background-color: #f5f5f5;
   }
   
-  body::-webkit-scrollbar-track:hover {
+  *::-webkit-scrollbar-track:hover {
     background-color: var(--primary-color);
   }
 .container{
     position: relative;
+    min-height: 60vh;
+}
+
+.btn:disabled{
+    background-color: gray;
+}
+.btn:disabled:hover{
+    background-color: gray;
 }
 
 .w-90{

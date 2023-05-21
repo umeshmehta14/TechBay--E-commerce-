@@ -39,17 +39,17 @@ const ProductList = () => {
 
   return (
     <div className="container wpl-90 top-5">
-      <SortByPrice />
+      <SortByPrice displayedProducts={displayedProducts}/>
       <div className="main-product-page">
         <Filters />
+        <div className="product-container">
         {displayedProducts.length === 0 ? (
-          <h1>
+          <h1 className="no-product-heading">
             {searchValue
               ? "We couldn't find what you were looking for"
               : "No Products available in this category"}
           </h1>
         ) : null}
-        <div className="product-container">
           {displayedProducts.map((item) => (
             <ShowProduct key={item.id} item={item} />
           ))}

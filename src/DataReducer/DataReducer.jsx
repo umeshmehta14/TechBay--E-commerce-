@@ -8,6 +8,8 @@ import {
   setBrandFilter,
   setCategoryFilter,
   setCurrentPage,
+  setDeleteAddress,
+  setOrderDetails,
   setOutOfStock,
   setPrice,
   setScreenWidth,
@@ -206,6 +208,10 @@ export const DataReducer = (state, action) => {
       return { ...state, showAddressModal: !state.showAddressModal };
     case setSelectedAddress:
       return { ...state, selectedAddress: action.payload };
+    case setDeleteAddress:
+      return { ...state, addressList: state.addressList.filter(({id})=> id !== action.payload) };
+    case setOrderDetails:
+      return {...state, orderDetails: [...state.orderDetails, {...action.payload}]};
   }
 };
 
@@ -239,7 +245,7 @@ export const initialState = {
       name: "Donald Modi",
       address: "194 america main road near San Francisco",
       city: "Indore",
-      mobile: 1011121314,
+      mobile: 9302101111,
       alternatemobile: 123456789,
       pincode: "99988",
       state: "Moscow Pradesh",
@@ -247,4 +253,9 @@ export const initialState = {
   ],
   showAddressModal: false,
   selectedAddress: "2354drtgf4d-7555-49cb--4b09711yujd",
+  deleteAddress:[],
+  orderDetails:[]
 };
+
+
+//824686

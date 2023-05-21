@@ -1,0 +1,48 @@
+.main-profile-container{
+    height: 70vh;
+    max-width: 577px;
+    margin: auto;
+}
+
+.top-6-profile{
+    top: 6rem;
+}
+.profile-nav-box{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    border: 1px solid;
+    width: 90%;
+    margin: auto;
+    background-color: #6495ED;
+}
+
+.profile-nav-box a{
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: whitesmoke;
+    outline: 1px solid gray;
+    flex-grow: 1;
+    transition: background-color 0.4s ease-in-out;
+}
+.profile-nav-box a:hover, .active-box{
+    background-color: #041E42;
+    color: white;
+}
+
+.outlet{
+    width: 90%;
+    margin: auto;
+    height: auto;
+    min-height: 30vh;
+    max-height: 65vh;
+    overflow: auto;
+    padding: 0.5rem 0;
+    box-shadow: 0px 1px 8px rgb(171, 171, 171);
+}
+
+.outlet::-webkit-scrollbar{
+    display: none;
+}

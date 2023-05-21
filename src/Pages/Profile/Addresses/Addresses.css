@@ -1,0 +1,39 @@
+.profile-address-btn{
+    text-align: center;
+}
+
+.profile-address-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+
+.profile-address{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px dotted var(--primary-color);
+}
+
+.address-dlt{
+    text-align: center;
+}
+
+.address-dlt svg{
+    background-color: red;
+    color: white;
+    width: 40px;
+    border-radius: 12px;
+    padding: 0.2rem 0rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.address-dlt svg:hover{
+    color: red;
+    background-color: white;
+}

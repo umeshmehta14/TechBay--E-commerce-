@@ -14,13 +14,14 @@ import { useAuth } from "../../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 
 const ShowProduct = ({ item }) => {
-  const {token} = useAuth();
-  const {state:{cart}} = useData();
+  const { token } = useAuth();
+  const {
+    state: { cart },
+  } = useData();
   const { handleWishList, wishDisable } = useWishList();
-  const { handleCart, cartDisable } = useCart();
+  const { handleCart, cartDisable, clearCart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(cart);
   const {
     _id,
     title,
@@ -39,7 +40,9 @@ const ShowProduct = ({ item }) => {
     <>
       <div
         key={_id}
-        className={`product-card  ${!inStock ? "stock-checker cursor-disable" : ""}`}
+        className={`product-card  ${
+          !inStock ? "stock-checker cursor-disable" : ""
+        }`}
         title={title}
       >
         {inWishlist ? (
@@ -55,12 +58,11 @@ const ShowProduct = ({ item }) => {
             }`}
             onClick={() => (inStock ? handleWishList(item) : null)}
             title="Add to wishlist"
-
           />
         )}
         <div
           className="product-card-img"
-          onClick={() => inStock ? navigate(`/singleProduct/${_id}`) : null }
+          onClick={() => (inStock ? navigate(`/singleProduct/${_id}`) : null)}
         >
           <img src={image} alt="Stay Tuned" />
           {inStock ? (
@@ -84,20 +86,44 @@ const ShowProduct = ({ item }) => {
             <p className="description">{description}</p>
             <div className="price-box">
               <h3 className="discount">{discountPercentage}% off</h3>
-              <p className="original-price">${original_price}</p>
-              <p className="price">${price}</p>
+              <p className="original-price">&#8377; {original_price}</p>
+              <p className="price">&#8377; {price}</p>
             </div>
           </div>
           <div className="btn-box">
             <button
-            disabled={cartDisable}
-              className="btn btn-p-w w-fit m-0"
-              onClick={() => !token ? navigate('/login',{state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(item)) }
+              disabled={cartDisable}
+              className={`btn btn-p-w w-fit m-0 ${
+                cartDisable ? "cursor-disable" : ""
+              }`}
+              onClick={() =>
+                !token
+                  ? navigate("/login", { state: { from: location } })
+                  : inCart
+                  ? navigate("/cart")
+                  : handleCart(item)
+              }
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {inCart ? "Go to Cart" : <><ImCart /> Add to Cart</>}
+              {inCart ? (
+                "Go to Cart"
+              ) : (
+                <>
+                  <ImCart /> Add to Cart
+                </>
+              )}
             </button>
-            <button className="btn btn-p-w  w-fit m-0 byn-btn" title="Buy Now">Buy Now</button>
+            <button
+            disabled={cartDisable}
+              className="btn btn-p-w  w-fit m-0 byn-btn"
+              title="Buy Now"
+              onClick={() => {
+                handleCart(item, true);
+                !cartDisable && navigate("/checkout");
+              }}
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </div>

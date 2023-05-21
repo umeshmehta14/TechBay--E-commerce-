@@ -89,8 +89,8 @@ const WishList = () => {
                   <p className="wishlist-description">{description}</p>
                   <div className="price-box price-box-wishlist">
                     <h3 className="discount">{discountPercentage}% off</h3>
-                    <p className="original-price">${original_price}</p>
-                    <p className="price">${price}</p>
+                    <p className="original-price">&#8377;{original_price}</p>
+                    <p className="price">&#8377;{price}</p>
                   </div>
                 </div>
                 <div className="btn-box">
