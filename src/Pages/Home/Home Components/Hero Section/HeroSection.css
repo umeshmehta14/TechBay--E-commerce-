@@ -12,20 +12,21 @@
     transform: translate(-50%, -50%);
     opacity: 0;
     animation: fadeUp 1s ease-in-out forwards;
-  }
-  
-  @keyframes fadeUp {
-    0% {
-      opacity: 0;
-      transform: translate(-50%, 100%);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-  }
+}
 
-  .slick-slide div{
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.slick-slide div {
     width: 100%;
     display: inline-block;
     display: flex;
@@ -75,8 +76,8 @@
 
 @media (min-width: 768px) {
 
-    .top-6{
-        top: 6rem;
+    .top-6 {
+        top: 4rem;
     }
 
     .main-image {
@@ -93,12 +94,17 @@
         font-weight: bold;
         top: 1.5rem;
         left: 2rem;
+        min-width: 395px;
         background: #ffffffcf;
         width: 40%;
         box-shadow: 1px 7px 10px rgb(0, 0, 0);
         text-shadow: 0px 1px 0px black;
     }
-    
+}
 
-    
+@media (min-width: 1024px) {
+
+    .top-6 {
+        top: 5rem;
+    }
 }

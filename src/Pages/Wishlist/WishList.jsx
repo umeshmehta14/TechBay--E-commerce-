@@ -16,7 +16,7 @@ const WishList = () => {
     state: { products },
   } = useData();
   const { handleWishList, wishDisable } = useWishList();
-  const { handleCart } = useCart();
+  const { handleCart, cartDisable } = useCart();
   const { token } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const WishList = () => {
           } = item;
           return (
             <div key={_id} className={`product-card product-card-wishlist`}>
-              {inWishlist ? (
+              {token && inWishlist ? (
                 <AiFillHeart
                   className={`c-red wishList-icon ${
                     wishDisable && "cursor-disable"
@@ -96,9 +96,15 @@ const WishList = () => {
                 <div className="btn-box">
                   <button
                     className="btn btn-p-w w-fit m-0"
-                    onClick={() => !token ? navigate('/login',{state:{from : location}}) : (inCart ? navigate("/cart") : handleCart(item)) }
+                    onClick={() =>
+                      !token
+                        ? navigate("/login", { state: { from: location } })
+                        : inCart
+                        ? navigate("/cart")
+                        : handleCart(item)
+                    }
                   >
-                    {inCart ? (
+                    {token && inCart ? (
                       "Go to Cart"
                     ) : (
                       <>
@@ -106,7 +112,16 @@ const WishList = () => {
                       </>
                     )}
                   </button>
-                  <button className="btn btn-p-w  w-fit m-0 byn-btn">
+                  <button
+                    className={`btn btn-p-w  w-fit m-0 byn-btn${
+                      cartDisable ? "cursor-disable" : ""
+                    } ${token && inCart ? "third-color": ""}`}
+                    onClick={() =>
+                      !token
+                        ? navigate("/login", { state: { from: location } })
+                        : handleCart(item, true)
+                    }
+                  >
                     Buy Now
                   </button>
                 </div>

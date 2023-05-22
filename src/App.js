@@ -26,6 +26,22 @@ function App() {
   return (
     <>
       <ToastContainer
+        enableMultiContainer
+        containerId={"A"}
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <ToastContainer
+        enableMultiContainer
+        containerId={"B"}
         position="bottom-right"
         autoClose={2000}
         hideProgressBar={false}

@@ -200,6 +200,10 @@
     cursor:not-allowed;
 }
 
+.third-color{
+    background-color: var(--third-color);
+}
+
 @media (min-width: 768px) {
     .product-card {
         display: flex;

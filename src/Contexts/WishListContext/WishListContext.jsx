@@ -33,6 +33,11 @@ export const WishListProvider = ({ children }) => {
     setWishDisable(true);
     try {
       if (!token) {
+        toast.warning(`Need To Login First`, {
+          containerId: "A",
+          theme: "colored",
+        });
+        console.log("toast");
         navigate("/login", { state: { from: location } });
         return;
       }
@@ -43,11 +48,13 @@ export const WishListProvider = ({ children }) => {
           encodedToken: token,
         });
         toast.info(`${product.title} Removed From Wishlist`, {
+          containerId: "B",
           theme: "colored",
         });
       } else {
         wishlistRes = await postWishList({ product, encodedToken: token });
-        toast.success(`${product.title} Removed From Wishlist`, {
+        toast.success(`${product.title} Added to Wishlist`, {
+          containerId: "B",
           theme: "colored",
         });
       }

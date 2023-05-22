@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { getLoginInformation, createUser } from "./AuthApi";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -21,6 +22,7 @@ export const AuthProvider = ({ children }) => {
         );
         setCurrentUser(foundUser);
         setToken(encodedToken);
+        toast.success(`Welcome Back ${foundUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
       }
       // successfully logged in
     } catch (err) {
@@ -28,12 +30,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpHandler = async ({ firstName, lastName, email, password }) => {
+  const signUpHandler = async (firstName, lastName, email, password) => {
     try {
+      const response = await createUser(firstName, lastName, email, password);
+      console.log(response);
       const {
         status,
         data: { createdUser, encodedToken },
-      } = await createUser(firstName, lastName, email, password);
+      } = response;
       if (status === 201 || status === 200) {
         localStorage.setItem(
           "loginDetails",
@@ -41,12 +45,10 @@ export const AuthProvider = ({ children }) => {
         );
         setCurrentUser(createdUser);
         setToken(encodedToken);
+        toast.success(`Welcome ${createdUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
       }
     } catch (err) {
-      if (err.status === 422) {
-        console.error("User already exists");
-      }
-      console.error(err);
+        toast.error(`Email Already Exist`, { containerId: 'A', theme: "colored" });
     }
   };
 

@@ -5,6 +5,15 @@
 }
 @media (min-width: 768px) {
     .container {
+        width: 100%;
+        margin: auto;
+    }
+    .top-6{
+        top: 4rem;
+    }
+}
+@media (min-width: 1024px) {
+    .container {
         width: 80%;
         margin: auto;
     }

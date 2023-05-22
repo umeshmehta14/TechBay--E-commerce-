@@ -30,7 +30,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    gap: 1rem;
 }
 
 .cart-details {
@@ -232,14 +232,19 @@
 }
 
 @media (min-width: 768px) {
+    .cart-container{
+        justify-content: center;
+        gap: 3rem;
+    }
 
     .cart-details {
         width: 50%;
         max-height: 80vh;
-        padding: 0.1rem 1rem;
+        padding: 1rem;
         overflow: auto;
         min-width: 400px;
-        margin: auto;
+        height: fit-content;
+        margin: 0;
         font-family: var(--third-font);
     }
 

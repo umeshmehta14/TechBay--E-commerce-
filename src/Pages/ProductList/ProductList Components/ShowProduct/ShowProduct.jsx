@@ -45,7 +45,7 @@ const ShowProduct = ({ item }) => {
         }`}
         title={title}
       >
-        {inWishlist ? (
+        {token && inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
             onClick={() => handleWishList(item)}
@@ -95,17 +95,17 @@ const ShowProduct = ({ item }) => {
               disabled={cartDisable}
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
-              }`}
+              } ${token && inCart ? "third-color": ""}`}
               onClick={() =>
                 !token
-                  ? navigate("/login", { state: { from: location } })
+                  ? handleCart(item)
                   : inCart
                   ? navigate("/cart")
                   : handleCart(item)
               }
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {inCart ? (
+              {  token && inCart ? (
                 "Go to Cart"
               ) : (
                 <>
@@ -117,10 +117,8 @@ const ShowProduct = ({ item }) => {
             disabled={cartDisable}
               className="btn btn-p-w  w-fit m-0 byn-btn"
               title="Buy Now"
-              onClick={() => {
-                handleCart(item, true);
-                !cartDisable && navigate("/checkout");
-              }}
+              onClick={() =>!token
+                ? navigate("/login", { state: { from: location } }) : handleCart(item, true)}
             >
               Buy Now
             </button>

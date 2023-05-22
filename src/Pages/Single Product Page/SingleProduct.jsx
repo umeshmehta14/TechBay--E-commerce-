@@ -17,7 +17,7 @@ const SingleProduct = () => {
     state: { products },
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
-  const { handleCart } = useCart();
+  const { handleCart, cartDisable } = useCart();
   const { productId } = useParams();
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const SingleProduct = () => {
   return (
     <div className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card" title={title}>
-        {inWishlist ? (
+        {token && inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${
               wishDisable ? "cursor-disable" : ""
@@ -99,7 +99,10 @@ const SingleProduct = () => {
           </div>
           <div className="s-btn-box">
             <button
-              className="btn w-fit m-0"
+              disabled={cartDisable}
+              className={`btn w-fit m-0 ${token && cartDisable ? "cursor-disable" : ""} ${
+                inCart ? "third-color" : ""
+              }`}
               onClick={() =>
                 !token
                   ? navigate("/login", { state: { from: location } })
@@ -109,7 +112,7 @@ const SingleProduct = () => {
               }
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {inCart ? (
+              {token && inCart ? (
                 "Go to Cart"
               ) : (
                 <>
@@ -120,10 +123,11 @@ const SingleProduct = () => {
             <button
               className="btn w-fit m-0 s-byn-btn"
               title="Buy Now"
-              onClick={() => {
-                handleCart(selectedProduct, true);
-                navigate("/checkout");
-              }}
+              onClick={() =>
+                !token
+                  ? navigate("/login", { state: { from: location } })
+                  : handleCart(selectedProduct, true)
+              }
             >
               Buy Now
             </button>
