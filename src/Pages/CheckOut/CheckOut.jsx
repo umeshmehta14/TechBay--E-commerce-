@@ -8,7 +8,7 @@ import {
   setSelectedAddress,
   setShowAddressModal,
 } from "../../DataReducer/Constants";
-import {FaPlus} from "../../Icons/Icons";
+import { FaPlus } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { popper } from "../../Utils/Popper";
@@ -19,7 +19,7 @@ const CheckOut = () => {
     dispatch,
   } = useData();
   const { currentUser } = useAuth();
-  const {  clearCart } = useCart();
+  const { clearCart } = useCart();
   const { email } = currentUser;
   const navigate = useNavigate();
   const [paymentResponse, setPaymentResponse] = useState(false);
@@ -28,7 +28,7 @@ const CheckOut = () => {
     0
   );
   const totalCost =
-    cart.reduce((acc, { price, qty }) => (acc += price * qty), 0) + 79;
+    cart.reduce((acc, { price, qty }) => (acc += price * qty), 0);
   const discountedPrice = originalPrice - totalCost;
   const selectedMobileNo = addressList.find(({ id }) => id === selectedAddress);
 
@@ -40,14 +40,14 @@ const CheckOut = () => {
         id: response.razorpay_payment_id,
         orderList: [...cart],
         address: selectedMobileNo,
-        amount:totalCost,
+        amount: totalCost,
         date: new Date(),
       },
     });
     popper();
     clearCart();
     setTimeout(() => {
-      navigate('/profile/orderDetail');
+      navigate("/profile/orderDetail");
     }, 3000);
   };
 
@@ -77,9 +77,9 @@ const CheckOut = () => {
     razorpayInstance.open();
   };
 
-  // useEffect(() => {
-  //   if (cart.length === 0) navigate("/products");
-  // }, []);
+  useEffect(() => {
+    if (cart.length === 0) navigate("/products");
+  }, []);
 
   return (
     <>
@@ -92,15 +92,7 @@ const CheckOut = () => {
           <div className="main-checkout-box">
             <div className="address-container">
               {addressList.map(
-                ({
-                  id,
-                  name,
-                  address,
-                  city,
-                  mobile,
-                  pincode,
-                  state,
-                }) => (
+                ({ id, name, address, city, mobile, pincode, state }) => (
                   <div
                     key={id}
                     className={`address-box ${
@@ -128,12 +120,14 @@ const CheckOut = () => {
                   </div>
                 )
               )}
-              <button
-                className="add-address-btn"
-                onClick={() => dispatch({ type: setShowAddressModal })}
-              >
-                <FaPlus/> Add New Address
-              </button>
+              <div className="add-address-btn-box">
+                <button
+                  className="add-address-btn"
+                  onClick={() => dispatch({ type: setShowAddressModal })}
+                >
+                  <FaPlus /> Add New Address
+                </button>
+              </div>
             </div>
             <div className="order-detail-container">
               <div className="c-cart-price-box ">
@@ -174,14 +168,14 @@ const CheckOut = () => {
                 <div className="total-cost-heading">
                   <h3>
                     <span>Total Cost</span>
-                    <span>&#8377;{totalCost}</span>
+                    <span>&#8377;{totalCost + 79}</span>
                   </h3>
                 </div>
 
                 <div className="save-price-section">
                   <p className="green">
                     Your Total Saving on this order &#8377;
-                    {discountedPrice - 79}
+                    {discountedPrice}
                   </p>
                 </div>
                 <button className="btn" onClick={() => handlePayment()}>

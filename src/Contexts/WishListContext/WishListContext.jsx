@@ -16,6 +16,8 @@ export const WishListProvider = ({ children }) => {
   const [wishDisable, setWishDisable] = useState(false);
 
   useEffect(() => {
+    dispatch({ type: wishlist, payload: [] });
+          dispatch({ type: updateProductWishlist });
     async () => {
       try {
         const wishlistResponse = await getWishList({ encodedToken: token });

@@ -62,8 +62,9 @@
 }
 
 .order-img-box img{
-    object-fit: cover;
-    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    max-height: 100%;
 }
 
 .order-cart-detail-box{

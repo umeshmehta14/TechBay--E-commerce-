@@ -32,6 +32,7 @@ function App() {
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
+        limit={2}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
@@ -46,6 +47,7 @@ function App() {
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
+        limit={4}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

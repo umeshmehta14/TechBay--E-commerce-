@@ -1,25 +1,19 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import {
-  AiFillStar,
   AiOutlineHeart,
-  AiFillHeart,
-  ImCart,
 } from "../../Icons/Icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./WishList.css";
-import { useWishList } from "../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import WishlistCard from "./wishlist componet/WishlistCard";
+
 const WishList = () => {
   const {
     state: { products },
   } = useData();
-  const { handleWishList, wishDisable } = useWishList();
-  const { handleCart, cartDisable } = useCart();
-  const { token } = useAuth();
-  const location = useLocation();
+
   const navigate = useNavigate();
+  console.log(products);
 
   const wishlistData = products.filter(({ inWishlist }) => inWishlist);
   return (
@@ -35,101 +29,11 @@ const WishList = () => {
           </button>
         </div>
       ) : (
-        ""
+        <h1 className="empty-wishlist">WishList</h1>
       )}
-      <div className="product-container product-container-wishlist">
-        {wishlistData.map((item) => {
-          const {
-            _id,
-            title,
-            description,
-            price,
-            discountPercentage,
-            original_price,
-            rating,
-            inWishlist,
-            inCart,
-            image,
-            trending,
-          } = item;
-          return (
-            <div key={_id} className={`product-card product-card-wishlist`}>
-              {token && inWishlist ? (
-                <AiFillHeart
-                  className={`c-red wishList-icon ${
-                    wishDisable && "cursor-disable"
-                  }`}
-                  onClick={() => handleWishList(item)}
-                />
-              ) : (
-                <AiOutlineHeart
-                  className={`wishList-icon ${wishDisable && "cursor-disable"}`}
-                  onClick={() => handleWishList(item)}
-                />
-              )}
-              <div
-                className="product-card-img product-card-img-wishlist"
-                onClick={() => navigate(`/singleProduct/${_id}`)}
-              >
-                <img src={image} alt="Stay Tuned" />
-                <span className={trending ? "trending" : ""}>
-                  {trending && "Trending"}
-                </span>
-              </div>
-              <div className="disp-info-pc disp-info-pc-wishlist">
-                <div
-                  className="product-card-info product-card-info-wishlist"
-                  onClick={() => navigate(`/singleProduct/${_id}`)}
-                >
-                  <span className="rating">
-                    {rating}
-                    <AiFillStar />
-                  </span>
-                  <h3 className="product-title">{title}</h3>
-                  <p className="wishlist-description">{description}</p>
-                  <div className="price-box price-box-wishlist">
-                    <h3 className="discount">{discountPercentage}% off</h3>
-                    <p className="original-price">&#8377;{original_price}</p>
-                    <p className="price">&#8377;{price}</p>
-                  </div>
-                </div>
-                <div className="btn-box">
-                  <button
-                    className="btn btn-p-w w-fit m-0"
-                    onClick={() =>
-                      !token
-                        ? navigate("/login", { state: { from: location } })
-                        : inCart
-                        ? navigate("/cart")
-                        : handleCart(item)
-                    }
-                  >
-                    {token && inCart ? (
-                      "Go to Cart"
-                    ) : (
-                      <>
-                        <ImCart /> Add to Cart
-                      </>
-                    )}
-                  </button>
-                  <button
-                    className={`btn btn-p-w  w-fit m-0 byn-btn${
-                      cartDisable ? "cursor-disable" : ""
-                    } ${token && inCart ? "third-color": ""}`}
-                    onClick={() =>
-                      !token
-                        ? navigate("/login", { state: { from: location } })
-                        : handleCart(item, true)
-                    }
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+          <div className="product-container product-container-wishlist">
+        {wishlistData.map((item) => <WishlistCard key={item._id} item={item}/> )}
+          </div>
     </div>
   );
 };

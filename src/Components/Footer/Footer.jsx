@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="copyright-info">
-        <div className="dev-name">&copy; 2023 Developed by UMESH MEHTA. All rights reserved.</div>
+        <div className="dev-name">&copy; {new Date().getFullYear()} Developed by UMESH MEHTA. All rights reserved.</div>
         <div className="terms">PRIVACY POLICY TERMS AND CONDITION</div>
       </div>
     </footer>

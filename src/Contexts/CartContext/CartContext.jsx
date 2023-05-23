@@ -23,6 +23,8 @@ export const CartProvider = ({ children }) => {
   const [cartDisable, setCartDisable] = useState(false);
 
   useEffect(() => {
+    dispatch({ type: cart, payload: [] });
+        dispatch({ type: updateProductCart });
     (async () => {
       try {
         const cartResponse = await getCartList({ encodedToken: token });
@@ -79,7 +81,16 @@ export const CartProvider = ({ children }) => {
   };
 
   const handleCartQuantity = async (updateType, product) => {
-    console.log(updateType);
+    setCartDisable(true);
+    if(product.qty >= 10){
+      toast.warning(
+        "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
+        { containerId: "A", theme: "colored" }
+        )
+    setCartDisable(false);
+
+        return;
+      }
     try {
       const updatedCart = await updateCartQuantity({
         type: updateType,
@@ -93,6 +104,7 @@ export const CartProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
+    setCartDisable(false);
   };
 
   const clearCart = () => {
@@ -100,9 +112,19 @@ export const CartProvider = ({ children }) => {
       handleCart(element);
     });
   };
+
+  const handleCartButton = (inCart, item, buyNow) => {
+    if(inCart && !buyNow) 
+    {
+      navigate("/cart")
+    }
+    else{
+        handleCart(item, buyNow);
+    }
+  };
   return (
     <CartContext.Provider
-      value={{ handleCart, cartDisable, clearCart, handleCartQuantity }}
+      value={{ handleCart, cartDisable, clearCart, handleCartQuantity, handleCartButton }}
     >
       {children}
     </CartContext.Provider>

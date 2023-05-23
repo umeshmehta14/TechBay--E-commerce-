@@ -17,10 +17,9 @@ const SingleProduct = () => {
     state: { products },
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
-  const { handleCart, cartDisable } = useCart();
+  const { cartDisable, handleCartButton } = useCart();
   const { productId } = useParams();
   const { token } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
   const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
@@ -73,15 +72,15 @@ const SingleProduct = () => {
             </span>
             <h3 className="s-description">
               {" "}
-              <em> Description </em>: {description}
+               <em className="pfc"> Description </em> : {description}
             </h3>
             <h4 className="s-description">
               {" "}
-              <em> Brand </em>: {brand}
+              <em className="pfc"> Brand </em>: {brand}
             </h4>
             <h4 className="s-description">
               {" "}
-              <em> Category </em>: {category}
+              <em className="pfc"> Category </em>: {category}
             </h4>
             {inStock && (
               <p>
@@ -100,19 +99,13 @@ const SingleProduct = () => {
           <div className="s-btn-box">
             <button
               disabled={cartDisable}
-              className={`btn w-fit m-0 ${token && cartDisable ? "cursor-disable" : ""} ${
+              className={`btn w-fit m-0 ${ cartDisable ? "cursor-disable" : ""} ${
                 inCart ? "third-color" : ""
               }`}
-              onClick={() =>
-                !token
-                  ? navigate("/login", { state: { from: location } })
-                  : inCart
-                  ? navigate("/cart")
-                  : handleCart(selectedProduct)
-              }
+              onClick={()=>handleCartButton(inCart, selectedProduct)}
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {token && inCart ? (
+              { inCart ? (
                 "Go to Cart"
               ) : (
                 <>
@@ -123,11 +116,7 @@ const SingleProduct = () => {
             <button
               className="btn w-fit m-0 s-byn-btn"
               title="Buy Now"
-              onClick={() =>
-                !token
-                  ? navigate("/login", { state: { from: location } })
-                  : handleCart(selectedProduct, true)
-              }
+              onClick={() => handleCartButton(inCart, selectedProduct, true)}
             >
               Buy Now
             </button>

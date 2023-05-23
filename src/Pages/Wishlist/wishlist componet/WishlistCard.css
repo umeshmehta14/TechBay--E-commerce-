@@ -1,0 +1,53 @@
+
+.wishlist-description {
+    display: none;
+}
+
+@media (min-width: 768px) {
+
+    .product-card-wishlist{
+        max-height: 25rem;
+    }
+
+
+
+    .product-card-wishlist {
+        display: block;
+        max-height: auto;
+    }
+
+    .product-card-img-wishlist {
+        position: relative;
+        text-align: center;
+        padding: 0.9rem;
+        padding-top: 2rem;
+        padding-bottom: 0rem;
+        height: 200px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .product-card-img-wishlist img {
+        width: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card-info-wishlist {
+        padding: 0.8rem;
+        display: grid;
+        grid-template-rows: repeat(3, 0.9fr);
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
+    .disp-info-pc-wishlist {
+        width: 100%;
+    }
+
+    .price-box-wishlist {
+        width: 80%;
+    }
+
+}

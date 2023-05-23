@@ -40,6 +40,13 @@
     min-height: 100px;
 }
 
+.add-address-btn-box{
+    text-align: center;
+    background-color: aliceblue;
+    position: sticky;
+    bottom: -1rem;
+}
+
 .add-address-btn{
     padding: 0.5rem;
     font-size: 1rem;

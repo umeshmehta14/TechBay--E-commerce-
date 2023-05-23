@@ -19,9 +19,10 @@ const ShowProduct = ({ item }) => {
     state: { cart },
   } = useData();
   const { handleWishList, wishDisable } = useWishList();
-  const { handleCart, cartDisable, clearCart } = useCart();
+  const {cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+
   const {
     _id,
     title,
@@ -95,17 +96,11 @@ const ShowProduct = ({ item }) => {
               disabled={cartDisable}
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
-              } ${token && inCart ? "third-color": ""}`}
-              onClick={() =>
-                !token
-                  ? handleCart(item)
-                  : inCart
-                  ? navigate("/cart")
-                  : handleCart(item)
-              }
+              } ${inCart ? "third-color" : ""}`}
+              onClick={() => handleCartButton(inCart, item)}
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              {  token && inCart ? (
+              {inCart ? (
                 "Go to Cart"
               ) : (
                 <>
@@ -114,11 +109,10 @@ const ShowProduct = ({ item }) => {
               )}
             </button>
             <button
-            disabled={cartDisable}
+              disabled={cartDisable}
               className="btn btn-p-w  w-fit m-0 byn-btn"
               title="Buy Now"
-              onClick={() =>!token
-                ? navigate("/login", { state: { from: location } }) : handleCart(item, true)}
+              onClick={() => handleCartButton(inCart, item, true)}
             >
               Buy Now
             </button>
