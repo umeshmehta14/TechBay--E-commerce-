@@ -20,7 +20,6 @@ const SingleProduct = () => {
   const { cartDisable, handleCartButton } = useCart();
   const { productId } = useParams();
   const { token } = useAuth();
-  const location = useLocation();
   const selectedProduct = products.find(({ _id }) => _id === productId);
   const {
     title,

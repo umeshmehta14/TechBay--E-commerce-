@@ -5,7 +5,6 @@ import {
   AiFillHeart,
   ImCart,
 } from "../../../../Icons/Icons";
-
 import "./ShowProduct.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";

@@ -253,7 +253,6 @@ export const initialState = {
   ],
   showAddressModal: false,
   selectedAddress: "2354drtgf4d-7555-49cb--4b09711yujd",
-  deleteAddress:[],
   orderDetails:[]
 };
 

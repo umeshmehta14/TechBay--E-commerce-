@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: cart, payload: [] });
-        dispatch({ type: updateProductCart });
+    dispatch({ type: updateProductCart });
     (async () => {
       try {
         const cartResponse = await getCartList({ encodedToken: token });
@@ -60,10 +60,16 @@ export const CartProvider = ({ children }) => {
           productId: product._id,
           encodedToken: token,
         });
-        toast.info(`${product.title} Removed From Cart`, { containerId: 'B', theme: "colored" });
+        toast.info(`${product.title} Removed From Cart`, {
+          containerId: "B",
+          theme: "colored",
+        });
       } else {
         cartRes = await postCartList({ product, encodedToken: token });
-        toast.success(`${product.title} Added To Cart`, { containerId: 'B', theme: "colored" });
+        toast.success(`${product.title} Added To Cart`, {
+          containerId: "B",
+          theme: "colored",
+        });
       }
       if (cartRes.status === 201 || cartRes.status === 200) {
         dispatch({ type: cart, payload: cartRes.data.cart });
@@ -82,15 +88,15 @@ export const CartProvider = ({ children }) => {
 
   const handleCartQuantity = async (updateType, product) => {
     setCartDisable(true);
-    if(product.qty >= 10){
+    if (product.qty >= 10) {
       toast.warning(
         "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
         { containerId: "A", theme: "colored" }
-        )
-    setCartDisable(false);
+      );
+      setCartDisable(false);
 
-        return;
-      }
+      return;
+    }
     try {
       const updatedCart = await updateCartQuantity({
         type: updateType,
@@ -113,18 +119,18 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const handleCartButton = (inCart, item, buyNow) => {
-    if(inCart && !buyNow) 
-    {
-      navigate("/cart")
-    }
-    else{
-        handleCart(item, buyNow);
-    }
-  };
+  const handleCartButton = (inCart, item, buyNow) =>
+    inCart && !buyNow ? navigate("/cart") : handleCart(item, buyNow);
+
   return (
     <CartContext.Provider
-      value={{ handleCart, cartDisable, clearCart, handleCartQuantity, handleCartButton }}
+      value={{
+        handleCart,
+        cartDisable,
+        clearCart,
+        handleCartQuantity,
+        handleCartButton,
+      }}
     >
       {children}
     </CartContext.Provider>

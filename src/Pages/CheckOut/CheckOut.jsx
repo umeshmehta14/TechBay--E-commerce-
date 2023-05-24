@@ -139,8 +139,8 @@ const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart.map(({ title, qty }) => (
-                    <p>
+                  {cart.map(({_id, title, qty }) => (
+                    <p key={_id}>
                       <span>{title}</span>
                       <span>{qty}</span>
                     </p>

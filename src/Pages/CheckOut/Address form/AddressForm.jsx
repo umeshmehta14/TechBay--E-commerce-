@@ -152,7 +152,7 @@ const AddressForm = () => {
               Choose State
             </option>
             {statesData.map((state) => (
-              <option value={state}>{state}</option>
+              <option key={state} value={state}>{state}</option>
             ))}
           </select>
         </div>
