@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState, useReducer, useContext } from 'react'
-import { DataReducer, initialState } from '../../DataReducer/DataReducer';
+import { DataReducer } from '../../DataReducer/DataReducer';
+import { initialState } from '../../DataReducer/InitialState';
 import { getAllCategory, getAllProduct } from './DataApi';
 import { category, products } from '../../DataReducer/Constants';
 

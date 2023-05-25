@@ -22,8 +22,14 @@ const Footer = () => {
          <a href="https://www.linkedin.com/in/umesh-mehta-57b979250/"><AiOutlineLinkedin /></a>
         </div>
         <div className="contact-no">
+          <div className="contact-phone">
           <p>Contact Us</p>
           <p>+00 123-456-789</p>
+          </div>
+          <div className="contact-email">
+            <p>For Any Queries Mail Us</p>
+            <p>TechBay@gmail.com</p>
+          </div>
         </div>
       </div>
       <div className="copyright-info">

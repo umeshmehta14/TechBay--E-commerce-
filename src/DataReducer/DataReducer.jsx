@@ -158,11 +158,12 @@ export const DataReducer = (state, action) => {
         searchValue === ""
           ? []
           : state.products.filter(
-              ({ title, description, price, category, brand }) =>
+              ({ title, description, price, category, brand, rating }) =>
                 title.toLowerCase().includes(searchValue) ||
                 category.toLowerCase().includes(searchValue) ||
                 brand.toLowerCase().includes(searchValue) ||
                 description.toLowerCase().includes(searchValue) ||
+                rating < Number(searchValue) ||
                 Number(action.payload) > price
             );
 
@@ -209,52 +210,17 @@ export const DataReducer = (state, action) => {
     case setSelectedAddress:
       return { ...state, selectedAddress: action.payload };
     case setDeleteAddress:
-      return { ...state, addressList: state.addressList.filter(({id})=> id !== action.payload) };
+      return {
+        ...state,
+        addressList: state.addressList.filter(
+          ({ id }) => id !== action.payload
+        ),
+      };
     case setOrderDetails:
-      return {...state, orderDetails: [...state.orderDetails, {...action.payload}]};
+      return {
+        ...state,
+        orderDetails: [...state.orderDetails, { ...action.payload }],
+      };
   }
 };
 
-export const initialState = {
-  products: [],
-  category: [],
-  wishlist: [],
-  cart: [],
-  filters: {
-    rating: 5,
-    categoryFilter: [],
-    brandFilter: [],
-    price: null,
-    trending: false,
-    includeOutStock: false,
-    arrangeType: "",
-  },
-  searchValue: "",
-  searchedProducts: [],
-  showBurger: false,
-  showSearch: false,
-  currentPage: 1,
-  screenWidth: window.innerWidth,
-  showPassword: false,
-  showFilter: false,
-  showSignUpPassword: false,
-  showSearchedProducts: false,
-  addressList: [
-    {
-      id: "2354drtgf4d-7555-49cb--4b09711yujd",
-      name: "Donald Modi",
-      address: "194 america main road near San Francisco",
-      city: "Indore",
-      mobile: 9302101111,
-      alternatemobile: 123456789,
-      pincode: "99988",
-      state: "Moscow Pradesh",
-    },
-  ],
-  showAddressModal: false,
-  selectedAddress: "2354drtgf4d-7555-49cb--4b09711yujd",
-  orderDetails:[]
-};
-
-
-//824686
