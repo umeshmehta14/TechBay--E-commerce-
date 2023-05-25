@@ -16,6 +16,21 @@
     text-align: center;
 }
 
+.sd-btn{
+    z-index: 4;
+    font-size: 2.5rem;
+    position: fixed;
+    right: 0;
+    top: 9.5rem;
+    transition: transform 0.4s ease-in-out ;
+    cursor: pointer;
+}
+
+.btn-transform{
+    transform: rotateZ(180deg);
+    bottom: 24.3rem;
+}
+
 
 @media (min-width: 460px) {
     .wpl-90 {

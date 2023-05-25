@@ -5,6 +5,7 @@ import "../Authentications.css";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../Contexts/DataContext/DataContext";
 import { setShowPassword } from "../../../DataReducer/Constants";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginHandler, token } = useAuth();
@@ -20,7 +21,12 @@ const Login = () => {
   const guestPassword = "password";
   const formHandler = (event) => {
     event.preventDefault();
-    loginHandler(loginForm.email, loginForm.password);
+    if(loginForm.password.length < 8){
+      toast.warning("Password Have atleast 8 Characters",{containerId:"A", theme:"colored"});
+    }
+    else{
+      loginHandler(loginForm.email, loginForm.password);
+    }
   };
 
 useEffect(() => {

@@ -21,7 +21,7 @@ const AddressForm = () => {
     alternatemobile: "",
   };
   const [formData, setFormData] = useState(emptyFormData);
-  const {  name, address, mobile, city, state, pincode, alternatemobile } =
+  const { name, address, mobile, city, state, pincode, alternatemobile } =
     formData;
   const statesData = [
     "Andhra Pradesh",
@@ -55,15 +55,15 @@ const AddressForm = () => {
     "West Bengal",
   ];
 
-
   const handleRandomAddress = () => {
-    setFormData({...formData,
+    setFormData({
+      ...formData,
       name: faker.person.fullName(),
-      mobile: faker.number.int({min:10000000000, max:99999999999}),
+      mobile: faker.number.int({ min: 10000000000, max: 99999999999 }),
       pincode: faker.location.zipCode("######"),
       city: faker.location.city(),
       address: faker.location.streetAddress(),
-      alternatemobile: faker.number.int({min:10000000000, max:99999999999}),
+      alternatemobile: faker.number.int({ min: 10000000000, max: 99999999999 }),
       state: statesData[Math.floor(Math.random() * statesData.length - 1)],
     });
   };
@@ -148,11 +148,13 @@ const AddressForm = () => {
             value={state}
             required
           >
-            <option disabled value>
+            <option disabled value="">
               Choose State
             </option>
             {statesData.map((state) => (
-              <option key={state} value={state}>{state}</option>
+              <option key={state} value={state}>
+                {state}
+              </option>
             ))}
           </select>
         </div>
@@ -160,9 +162,11 @@ const AddressForm = () => {
           <button type="submit" className="btn">
             Add
           </button>
-          <button className="btn bg-white"
-          type="button"
-           onClick={() => formResetHandler()}>
+          <button
+            className="btn bg-white"
+            type="button"
+            onClick={() => formResetHandler()}
+          >
             Reset
           </button>
 

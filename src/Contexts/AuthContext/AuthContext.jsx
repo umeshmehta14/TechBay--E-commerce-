@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       }
       // successfully logged in
     } catch (err) {
-      console.error(err);
+      toast.error(`Invalid Credentials`, { containerId: 'A', theme: "colored" });
     }
   };
 

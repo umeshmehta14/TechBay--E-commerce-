@@ -24,7 +24,7 @@ const SignUp = () => {
     if(userDetail.password === userDetail.cPassword){
       if(userDetail.password.length < 8)
       {
-      toast.error("Password Have atleast 8 Characters",{containerId:"A", theme:"colored"});
+      toast.warning("Password Have atleast 8 Characters",{containerId:"A", theme:"colored"});
       }
       else{
         signUpHandler(userDetail.firstName, userDetail.lastName, userDetail.email, userDetail.password);

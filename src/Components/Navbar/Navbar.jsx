@@ -89,7 +89,7 @@ const Navbar = () => {
                   style={getStyle}
                   className="link-name"
                   to="/products"
-                  title="Product"
+                  title="Products"
                 >
                   <FaShoppingBag />
                 </NavLink>

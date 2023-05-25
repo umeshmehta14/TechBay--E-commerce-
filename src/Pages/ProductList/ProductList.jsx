@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
@@ -7,6 +7,7 @@ import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
 import { filterAllProducts } from "../../Utils/Utils";
 import { setCurrentPage } from "../../DataReducer/Constants";
+import {AiOutlineArrowDown} from "../../Icons/Icons";
 
 const ProductList = () => {
   const {
@@ -23,6 +24,37 @@ const ProductList = () => {
     lastPostIndex
   );
 
+  const [scrollToBottom, setScrollToBottom] = useState(false);
+
+  const handleScrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight - 1000,
+      behavior: 'smooth',
+    });
+  };
+
+  const handleScrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolledToBottom =
+        window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 1000;
+
+      setScrollToBottom(scrolledToBottom);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     if (filteredProducts.length <= 8) {
       dispatch({ type: setCurrentPage, payload: 1 });
@@ -38,6 +70,7 @@ const ProductList = () => {
   }, [filteredProducts.length, currentPage, dispatch]);
 
   return (
+    <>
     <div className="container wpl-90 top-5">
       <SortByPrice displayedProducts={displayedProducts}/>
       <div className="main-product-page">
@@ -53,6 +86,7 @@ const ProductList = () => {
           {displayedProducts.map((item) => (
             <ShowProduct key={item.id} item={item} />
           ))}
+        
         </div>
       </div>
 
@@ -65,6 +99,8 @@ const ProductList = () => {
         ""
       )}
     </div>
+    {displayedProducts.length >=6 && <AiOutlineArrowDown title={scrollToBottom ? "Scroll To Top":"Scroll To Bottom"} className={`arrow-btn sd-btn ${scrollToBottom ? "btn-transform":""}`} onClick={()=> scrollToBottom ? handleScrollToTop() : handleScrollToBottom()}/>}
+    </>
   );
 };
 
