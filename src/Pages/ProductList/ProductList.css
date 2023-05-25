@@ -22,12 +22,16 @@
     position: fixed;
     right: 0;
     top: 9.5rem;
-    transition: transform 0.4s ease-in-out ;
+    transition: transform 0.5s ease-in-out ;
     cursor: pointer;
+    -webkit-transition: transform 0.5s ease-in-out ;
+    -moz-transition: transform 0.5s ease-in-out ;
+    -ms-transition: transform 0.5s ease-in-out ;
+    -o-transition: transform 0.5s ease-in-out ;
 }
 
 .btn-transform{
-    transform: rotateZ(180deg);
+    transform: rotateZ(540deg);
     bottom: 24.3rem;
 }
 
