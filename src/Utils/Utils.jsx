@@ -19,7 +19,7 @@ export const filterAllProducts = () => {
     includeOutStock,
     arrangeType,
   } = filters;
-  
+
   const searchData =
     searchValue && showSearchedProducts ? searchedProducts : products;
 

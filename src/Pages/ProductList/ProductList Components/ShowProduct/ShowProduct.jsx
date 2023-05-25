@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -21,6 +21,7 @@ const ShowProduct = ({ item }) => {
   const {cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+  const [clicked, setClicked] = useState(false);
 
   const {
     _id,
@@ -47,16 +48,21 @@ const ShowProduct = ({ item }) => {
       >
         {token && inWishlist ? (
           <AiFillHeart
-            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
-            onClick={() => handleWishList(item)}
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"} ${clicked && "pop-out"}`}
+            onClick={() => {
+              setClicked(!clicked);
+              handleWishList(item)}}
             title="Remove from wishlist"
           />
         ) : (
           <AiOutlineHeart
             className={`wishList-icon ${wishDisable && "cursor-disable"} ${
               !inStock ? "cursor-disable" : ""
-            }`}
-            onClick={() => (inStock ? handleWishList(item) : null)}
+            } ${clicked && "pop-out"}`}
+            onClick={() => {
+              inStock ? handleWishList(item) : null
+              setClicked(!clicked);
+            }}
             title="Add to wishlist"
           />
         )}

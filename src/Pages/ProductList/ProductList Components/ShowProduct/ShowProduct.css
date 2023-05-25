@@ -60,6 +60,43 @@
     color: gray;
 }
 
+@keyframes popOut {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.6);
+}
+100%{
+    transform: scale(1);
+}
+  }
+  
+  .pop-out {
+    animation: popOut 0.8s ease-in-out;
+    -webkit-animation: popOut 0.8s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .shake-animation {
+    animation: shake 0.5s;
+  }
+
+
 .product-card-img {
     position: relative;
     text-align: center;

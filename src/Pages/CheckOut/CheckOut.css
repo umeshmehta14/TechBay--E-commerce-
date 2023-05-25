@@ -38,6 +38,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 100px;
+    margin-bottom: 0.5rem;
 }
 
 .add-address-btn-box{
@@ -136,8 +137,6 @@
 
     .address-box{
         width: 100%;
-        margin-bottom: 0.5rem;
-
     }
     .add-address-btn{
         max-width: 300px;
