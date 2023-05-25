@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
 
   const handleCartQuantity = async (updateType, product) => {
     setCartDisable(true);
-    if (product.qty >= 10) {
+    if (product.qty >= 10 && updateType === "increment") {
       toast.warning(
         "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
         { containerId: "A", theme: "colored" }

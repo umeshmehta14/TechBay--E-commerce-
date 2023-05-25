@@ -83,8 +83,8 @@ const CartDetailCard = ({ item }) => {
           <strong>Quantity:</strong>
           <span className="cart-btn-box">
             <button
-              className={`quantity-btn br ${qty === 1 ? "cursor-disable" : ""}`}
-              disabled={qty === 1}
+              className={`quantity-btn br ${qty === +1 ? "cursor-disable" : ""}`}
+              disabled={cartDisable || qty === +1}
               onClick={() => handleCartQuantity(decrement, item)}
             >
               -
@@ -93,7 +93,7 @@ const CartDetailCard = ({ item }) => {
             <span className="btn-para">{qty}</span>
 
             <button
-              disabled={cartDisable}
+              disabled={cartDisable || qty === +10}
               className="quantity-btn bl"
               onClick={() => handleCartQuantity(increment, item)}
             >
