@@ -3,6 +3,7 @@ import "./SearchBox.css";
 import { useData } from "../../../Contexts/DataContext/DataContext";
 import { IoSearch, RxCross1 } from "../../../Icons/Icons";
 import {
+  clearFilter,
   setSearchValue,
   setShowBurger,
   setShowSearch,
@@ -41,6 +42,7 @@ const SearchBox = () => {
               if (e.key === "Enter") {
                 dispatch({ type: setShowSearchedProducts, payload: true });
                 dispatch({ type: setShowBurger, payload: false });
+                dispatch({ type: clearFilter });
                 navigate("/products");
               }
             }}
