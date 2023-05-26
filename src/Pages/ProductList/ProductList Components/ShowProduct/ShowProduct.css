@@ -58,6 +58,8 @@
     z-index: 3;
     right: 0.3rem;
     color: gray;
+    animation: popOut 0.8s ease-in-out;
+    -webkit-animation: popOut 0.8s ease-in-out;
 }
 
 @keyframes popOut {
@@ -71,11 +73,6 @@
     transform: scale(1);
 }
   }
-  
-  .pop-out {
-    animation: popOut 0.8s ease-in-out;
-    -webkit-animation: popOut 0.8s ease-in-out;
-}
 
 @keyframes shake {
     0% {
@@ -91,7 +88,7 @@
       transform: translateX(0);
     }
   }
-  
+
   .shake-animation {
     animation: shake 0.5s;
   }
@@ -239,6 +236,7 @@
 
 .third-color{
     background-color: var(--third-color);
+    animation: popOut 0.6s ease-in-out;
 }
 
 @media (min-width: 768px) {
