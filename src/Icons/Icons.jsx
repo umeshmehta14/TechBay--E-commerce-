@@ -28,7 +28,11 @@ import { IoShieldHalf, IoSearch } from "react-icons/io5";
 import { RiSecurePaymentLine, RiDeleteBin5Line } from "react-icons/ri";
 import { FiInstagram, FiTwitter } from "react-icons/fi";
 import { HiOutlineFilter } from "react-icons/hi";
-import { MdOutlineFilterAltOff } from "react-icons/md";
+import {
+  MdOutlineFilterAltOff,
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { BsCartX } from "react-icons/bs";
 
@@ -66,4 +70,6 @@ export {
   AiOutlineLogout,
   BsCartX,
   RiDeleteBin5Line,
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
 };

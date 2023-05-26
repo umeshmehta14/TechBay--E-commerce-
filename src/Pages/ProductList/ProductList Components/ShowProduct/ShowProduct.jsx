@@ -6,21 +6,16 @@ import {
   ImCart,
 } from "../../../../Icons/Icons";
 import "./ShowProduct.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../../../Contexts/CartContext/CartContext";
 import { useAuth } from "../../../../Contexts/AuthContext/AuthContext";
-import { useData } from "../../../../Contexts/DataContext/DataContext";
 
 const ShowProduct = ({ item }) => {
   const { token } = useAuth();
-  const {
-    state: { cart },
-  } = useData();
   const { handleWishList, wishDisable } = useWishList();
-  const {cartDisable, handleCartButton } = useCart();
+  const { cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
-  const location = useLocation();
   const [clicked, setClicked] = useState(false);
 
   const {
@@ -48,21 +43,18 @@ const ShowProduct = ({ item }) => {
       >
         {token && inWishlist ? (
           <AiFillHeart
-            className={`c-red wishList-icon ${wishDisable && "cursor-disable"} ${clicked && "pop-out"}`}
-            onClick={() => {
-              setClicked(!clicked);
-              handleWishList(item)}}
+            className={`c-red wishList-icon ${
+              wishDisable && "cursor-disable"
+            }`}
+            onClick={() => handleWishList(item)}
             title="Remove from wishlist"
           />
         ) : (
           <AiOutlineHeart
             className={`wishList-icon ${wishDisable && "cursor-disable"} ${
               !inStock ? "cursor-disable" : ""
-            } ${clicked && "pop-out"}`}
-            onClick={() => {
-              inStock ? handleWishList(item) : null
-              setClicked(!clicked);
-            }}
+            }`}
+            onClick={() => (inStock ? handleWishList(item) : null)}
             title="Add to wishlist"
           />
         )}

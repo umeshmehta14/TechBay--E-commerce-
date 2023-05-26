@@ -1,7 +1,13 @@
+.pagination-btn-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .pagination-btn-box{
     display: flex;
     justify-content: center;
-    margin: 1rem auto;
+    /* margin: 1rem auto; */
     margin-top: 3rem;
     border: 0.5px solid rgb(179, 179, 179) ;
 }
@@ -22,10 +28,39 @@
     border: 1px solid black;
 }
 
+.nxt-prev-btn-box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.nxt-prev-btn{
+    margin: 0;
+    width: fit-content;
+    padding: 0rem 0.5rem;
+    padding-top: 0.3rem;
+    border: none;
+    background-color: #0000007e;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.nxt-prev-btn:hover{
+    background-color: #000000c2;
+    
+}
+.nxt-prev-btn[disabled]{
+    background-color: rgb(192, 192, 192);
+    cursor: not-allowed;
+}
+
 @media (min-width: 768px) {
+    .pagination-btn-container{
+        width: 50%;
+        margin: auto;
+    }
     .pagination-btn-box{
-    width: 50%;
-    position: relative;
+    width: 100%;
+    /* position: relative; */
     left: 9rem;
     }
 }

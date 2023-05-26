@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
@@ -36,6 +36,12 @@ const SingleProduct = () => {
     image,
     trending,
   } = selectedProduct;
+  
+  useEffect(()=> {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.title = title;
+  }
+  ,[]);
   return (
     <div className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card" title={title}>

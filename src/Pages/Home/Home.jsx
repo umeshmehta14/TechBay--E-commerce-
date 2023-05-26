@@ -11,6 +11,7 @@ const Home = () => {
   const {
     state: { products, category },
   } = useData();
+  document.title = "TechBay";
 
   return (
     <>

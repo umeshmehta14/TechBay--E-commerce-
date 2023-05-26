@@ -2,6 +2,8 @@ import React from "react";
 import "./Pagination.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 import { setCurrentPage } from "../../../../DataReducer/Constants";
+import {   MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,} from "../../../../Icons/Icons";
 
 const Pagination = ({ totalProducts, productsPerPage }) => {
   const {
@@ -32,9 +34,8 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
   }
 
   return (
-    <>
+    <div className="pagination-btn-container">
       <div className="pagination-btn-box">
-      <button className="btn" onClick={()=> nextPage()}>N</button>
         {pages.map((page, index) => (
           <button
             className={`page-btn ${currentPage === page ? "page-active" : ""}`}
@@ -47,9 +48,12 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
             {page}
           </button>
         ))}
-      <button className="btn" onClick={()=> prevPage()}>P</button>
       </div>
-    </>
+      <div className="nxt-prev-btn-box">
+      <button className="nxt-prev-btn" disabled={currentPage === 1} title="Previous" onClick={()=> prevPage()}><MdKeyboardDoubleArrowLeft/></button>
+      <button className="nxt-prev-btn" disabled={currentPage === pages.length} title="Next" onClick={()=> nextPage()}><MdKeyboardDoubleArrowRight/></button>
+      </div>
+    </div>
   );
 };
 

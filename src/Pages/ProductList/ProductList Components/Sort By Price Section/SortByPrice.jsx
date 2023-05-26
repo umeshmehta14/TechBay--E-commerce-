@@ -10,7 +10,7 @@ const SortByPrice = ({displayedProducts}) => {
   } = useData();
   return (
     <>
-      <div className="sort-section">
+      <div className={`sort-section`}>
         <div className="filter-button">
           <button
             className="filter-toggle-btn"

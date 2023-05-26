@@ -31,6 +31,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
+    opacity: 0;
+    animation: fade-in 1s ease-in-out forwards;
 }
 
 .cart-details {

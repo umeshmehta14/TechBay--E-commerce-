@@ -22,9 +22,10 @@ const Filters = () => {
   const ratings = [1, 2, 3, 4, 5];
   const prices = [500, 1000, 2000, 3000, 4000];
   return (
+    // p-1
     <>
       <div
-        className={`filter-container ${showFilter ? "w-90 p-1 v-1" : "v-0"}`}
+        className={`filter-container ${showFilter ? "w-90" : ""}`}
       >
         <div className="filter-clear-section">
           <h2 className="filter-heading">Filters</h2>

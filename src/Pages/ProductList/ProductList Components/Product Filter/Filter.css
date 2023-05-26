@@ -5,7 +5,7 @@
   background-color: rgb(255, 255, 255);
   max-height: 100vh;
   z-index: 5;
-  padding: 1rem;
+  /* padding: 1rem; */
   max-width: 300px;
   overflow: scroll;
   transition: all 0.5s ease-in-out;
@@ -20,10 +20,11 @@
   margin-bottom: 0.5rem;
 }
 
+.filter-container > div{
+  padding: 1rem 1rem;
+}
+
 .sort-section {
-  position: sticky;
-  z-index: 4;
-  top: 4rem;
   background-color: aliceblue;
 }
 
@@ -33,14 +34,6 @@
 
 input {
   margin: 0.2rem 0.5rem;
-}
-
-.v-0 {
-  visibility: hidden;
-}
-
-.w-90 {
-  width: 90%;
 }
 
 .filter-heading {
@@ -215,14 +208,12 @@ option {
   margin-bottom: 7rem;
 }
 
-.v-1 {
-  visibility: 1;
-}
-
 
 @media (min-width: 768px) {
   .sort-section {
     position: sticky;
+    z-index: 1;
+    top: 4rem;
     background-color: aliceblue;
   }
 
