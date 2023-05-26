@@ -18,6 +18,8 @@ const SignUp = () => {
     firstName: "",
     lastName: "",
   });
+  document.title = "SignUp";
+
 
   const signupFormHandler = (event) => {
     event.preventDefault();

@@ -18,6 +18,8 @@ const CheckOut = () => {
     state: { addressList, cart, showAddressModal, selectedAddress },
     dispatch,
   } = useData();
+  document.title = "Checkout";
+
   const { currentUser } = useAuth();
   const { clearCart } = useCart();
   const { email } = currentUser;

@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Error = () => {
+  document.title = "Error";
+
   return (
     <div>
       

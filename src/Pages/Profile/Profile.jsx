@@ -6,6 +6,8 @@ import AddressForm from "../CheckOut/Address form/AddressForm";
 
 const Profile = () => {
     const {state:{showAddressModal}} = useData();
+  document.title = "Profile";
+
   return (
     <>
     <div className="container top-6-profile main-profile-container">

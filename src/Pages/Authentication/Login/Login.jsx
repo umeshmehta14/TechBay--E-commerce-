@@ -16,6 +16,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+  document.title = "Login";
+
 
   const guestEmail = "ishaanmehta782@gmail.com";
   const guestPassword = "password";

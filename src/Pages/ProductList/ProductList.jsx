@@ -15,6 +15,7 @@ const ProductList = () => {
     dispatch,
   } = useData();
   const filteredProducts = filterAllProducts();
+  document.title = "Products";
 
   const productsPerPage = 8;
   const lastPostIndex = currentPage * productsPerPage;

@@ -15,6 +15,7 @@ const Cart = () => {
     state: { products }
   } = useData();
   const { token } = useAuth();
+  document.title = "Cart";
 
   const navigate = useNavigate();
   const location = useLocation();

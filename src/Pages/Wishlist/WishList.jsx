@@ -11,6 +11,7 @@ const WishList = () => {
   const {
     state: { products },
   } = useData();
+  document.title = "Wishlist";
 
   const navigate = useNavigate();
   console.log(products);
