@@ -1,4 +1,4 @@
-.address-form-container{
+.address-form-container {
     position: fixed;
     top: 0;
     z-index: 9999;
@@ -10,98 +10,141 @@
     align-items: center;
 }
 
-.address-inp-form{
+.address-inp-form {
     width: 100%;
     max-width: 450px;
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem;
     background-color: aliceblue;
-
+    position: relative;
+    padding-top: 3rem;
+    outline: 4px solid var(--primary-color);
 }
 
-.f-address-detail{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+.address-inp-form > p{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.address-inp-form > p svg{
+    background-color: transparent;
+    font-size: 1.5rem;
+    width: 39px;
+    height: 30px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+.address-inp-form > p svg:hover{
+    background-color: red;
+    color: white;
 }
 
-.f-address-detail input{
+.f-address-detail {
+    position: relative;
+    text-align: center;
+    width: 90%;
+}
+
+.f-address-detail input {
+    padding: 12px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: #acacac solid 2px;
+    background-color: transparent;
+    color: black;
+    transition: 0.15s all ease;
+    width: 100%;
+}
+
+.f-address-detail input:focus {
+    border-color: black;
+}
+
+.f-address-detail input::placeholder, .f-address-detail textarea::placeholder {
+    color: transparent;
+}
+
+.f-address-detail .form-label {
+    position: absolute;
+    top: 12px;
+    left: 5PX;
+    font-size: 18px;
+    padding: 0 10px;
+    color: gray;
+    pointer-events: none;
+    transition: 0.15s all ease;
+}
+
+.f-address-detail input:focus + .form-label,
+.f-address-detail textarea:focus + .form-label,
+.f-address-detail input:not(:placeholder-shown) + .form-label,
+.f-address-detail textarea:not(:placeholder-shown) + .form-label
+ {
+    transform: translate(13px, -22px);
+    background-color: aliceblue;
+    font-size: 14px;
+    color: black;
+}
+
+.f-address-detail select {
     width: 100%;
     padding: 0.5rem;
-    font-size: 1rem;
-    border: 0.5px solid gray;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-}
-.f-address-detail input:focus,  .f-address-inp textarea:focus{
-    outline: none;
-    border: 1px solid blue;
 }
 
-.f-address-detail select{
-    width: 100%;
-    padding: 0.5rem;
-}
-
-.f-address-inp{
+.f-address-inp {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 90%;
 }
- .f-address-inp textarea{
+
+.f-address-inp textarea {
     width: 100%;
     height: 100px;
     padding: 0.5rem;
-   border-radius: 12px;
-   resize: none;
+    border-radius: 12px;
+    font-size: 18px;
+    resize: none;
+    background-color: transparent;
+}
 
- }
-
- .f-address-detail-btn-box{
+.f-address-detail-btn-box {
     width: 100%;
     display: flex;
     grid-gap: 0.5rem;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
- .f-address-detail-btn-box button{
+.f-address-detail-btn-box button {
     flex-grow: 1;
- }
+}
 
- .red{
-   background-color:  rgb(255, 72, 72);
- }
 
- .bg-white{
+.bg-white {
     background-color: whitesmoke;
     color: black;
     outline: 1px solid gray;
- }
- .bg-white:hover{
+}
+
+.bg-white:hover {
     color: whitesmoke;
- }
+}
 
- @media (min-width: 768px) {
-    .address-inp-form{
-        height: 65vh;
+
+@media (min-width: 768px) {
+    .address-inp-form {
+        height: 85vh;
         border-radius: 8px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -o-border-radius: 8px;
-}
+        box-shadow: 1px 1px 12px black;
+    }
 
-.f-address-detail{
-    flex-direction: row;
+    .f-address-detail {
+        flex-direction: row;
+    }
 }
- }

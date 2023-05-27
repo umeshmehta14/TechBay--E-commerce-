@@ -27,7 +27,7 @@
   padding: 0.3rem 0rem;
 }
 
-label {
+.filter-container label {
   display: flex;
   align-items: center;
 }
@@ -37,7 +37,7 @@ label {
   align-items: baseline;
 }
 
-input {
+.filter-container input {
   margin: 0.2rem 0.5rem;
 }
 

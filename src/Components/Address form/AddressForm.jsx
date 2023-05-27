@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import "./AddressForm.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { faker } from "@faker-js/faker";
+import { RxCross1 } from "../../Icons/Icons";
 
 import { v4 as uuid } from "uuid";
-import { setShowAddressModal, setAddressList, setEditId, updateAddressList } from "../../DataReducer/Constants";
+import {
+  setShowAddressModal,
+  setAddressList,
+  setEditId,
+  updateAddressList,
+} from "../../DataReducer/Constants";
 
 const AddressForm = () => {
-  const { dispatch, state:{editId, addressList} } = useData();
+  const {
+    dispatch,
+    state: { editId, addressList },
+  } = useData();
   const emptyFormData = {
     id: "",
     name: "",
@@ -70,25 +79,23 @@ const AddressForm = () => {
   };
   const addressHandler = (e) => {
     e.preventDefault();
-    if(editId.length > 0) {
-      dispatch({type: updateAddressList, payload: {...formData}});
-    }
-    else{
+    if (editId.length > 0) {
+      dispatch({ type: updateAddressList, payload: { ...formData } });
+    } else {
       const r_id = uuid();
       dispatch({ type: setAddressList, payload: { ...formData, id: r_id } });
     }
     setFormData(emptyFormData);
     dispatch({ type: setShowAddressModal });
-    dispatch({ type: setEditId, payload:"" });
+    dispatch({ type: setEditId, payload: "" });
   };
 
-  useEffect(()=>{
-    if(editId.length > 0)
-    {
-      const selectedAddress = addressList.find(({id})=> id=== editId);
+  useEffect(() => {
+    if (editId.length > 0) {
+      const selectedAddress = addressList.find(({ id }) => id === editId);
       setFormData({
         ...formData,
-        id:editId,
+        id: editId,
         name: selectedAddress.name,
         mobile: selectedAddress.mobile,
         pincode: selectedAddress.pincode,
@@ -98,21 +105,37 @@ const AddressForm = () => {
         state: selectedAddress.state,
       });
     }
-  },[editId]);
+  }, [editId]);
 
   return (
     <div className="address-form-container">
       <form action="" className="address-inp-form" onSubmit={addressHandler}>
+        <p>
+          <RxCross1
+          title="Cancel"
+            onClick={() => {
+              dispatch({ type: setShowAddressModal });
+              dispatch({ type: setEditId, payload: "" });
+            }}
+          />
+        </p>
         <div className="f-address-detail">
           <input
+            id="name"
             type="text"
             placeholder="Name"
             value={name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
           />
+          <label className="form-label" htmlFor="name">
+            Name
+          </label>
+        </div>
+        <div className="f-address-detail">
           <input
             type="number"
+            id="number"
             placeholder="Mobile Number"
             value={mobile}
             onChange={(e) =>
@@ -120,10 +143,14 @@ const AddressForm = () => {
             }
             required
           />
+          <label className="form-label" htmlFor="number">
+            Number
+          </label>
         </div>
         <div className="f-address-detail">
           <input
             type="number"
+            id="pincode"
             placeholder="Pincode"
             value={pincode}
             onChange={(e) =>
@@ -131,29 +158,42 @@ const AddressForm = () => {
             }
             required
           />
+          <label className="form-label" htmlFor="pincode">
+            Pincode
+          </label>
+        </div>
+        <div className="f-address-detail">
           <input
             type="text"
+            id="city"
             placeholder="City"
             value={city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
             required
           />
+          <label className="form-label" htmlFor="city">
+            City
+          </label>
         </div>
-        <div className="f-address-inp">
+        <div className="f-address-inp f-address-detail">
           <textarea
-            name=""
-            id=""
-            placeholder="Address"
+            name="address"
+            id="address"
+            placeholder="Address(Area and Street)"
             value={address}
             onChange={(e) =>
               setFormData({ ...formData, address: e.target.value })
             }
             required
           />
+          <label className="form-label" htmlFor="address">
+          Address(Area and Street)
+          </label>
         </div>
         <div className="f-address-detail">
           <input
             type="number"
+            id="anumber"
             placeholder="Alternate Mobile no."
             value={alternatemobile}
             onChange={(e) =>
@@ -161,6 +201,11 @@ const AddressForm = () => {
             }
             required
           />
+          <label className="form-label" htmlFor="anumber">
+            Pincode
+          </label>
+        </div>
+        <div className="f-address-detail">
           <select
             name=""
             id=""
@@ -171,7 +216,7 @@ const AddressForm = () => {
             required
           >
             <option disabled value="">
-              Choose State
+              --Select State--
             </option>
             {statesData.map((state) => (
               <option key={state} value={state}>
@@ -182,7 +227,7 @@ const AddressForm = () => {
         </div>
         <div className="f-address-detail-btn-box">
           <button type="submit" className="btn">
-            {editId.length > 0 ? "Save":"Add"}
+            {editId.length > 0 ? "Save" : "Add"}
           </button>
           <button
             className="btn bg-white"
@@ -191,25 +236,17 @@ const AddressForm = () => {
           >
             Reset
           </button>
-
-          <button
-            className="btn bg-white"
-            type="button"
-            onClick={handleRandomAddress}
-          >
-            Random Data
-          </button>
-
-          <button
-            className="btn red"
-            type="button"
-            onClick={() => {
-              dispatch({ type: setShowAddressModal })
-              dispatch({ type: setEditId, payload:"" });
-            }}
-          >
-            Cancel
-          </button>
+          {editId.length > 0 ? (
+            ""
+          ) : (
+            <button
+              className="btn bg-white"
+              type="button"
+              onClick={handleRandomAddress}
+            >
+              Random Data
+            </button>
+          )}
         </div>
       </form>
     </div>
