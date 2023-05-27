@@ -1,16 +1,21 @@
 import React from "react";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { FaPlus, RiDeleteBin5Line } from "../../../Icons/Icons";
+import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Icons/Icons";
 import "./Addresses.css";
-import { setDeleteAddress, setShowAddressModal } from "../../../DataReducer/Constants";
+import {
+  setDeleteAddress,
+  setEditId,
+  setShowAddressModal,
+} from "../../../DataReducer/Constants";
 
 const Addresses = () => {
   const {
     state: { addressList },
     dispatch,
   } = useData();
+  console.log(addressList);
   return (
-    <div>
+    <>
       <div className="profile-address-btn">
         <button
           className="add-address-btn"
@@ -44,16 +49,30 @@ const Addresses = () => {
               </p>
               <p>
                 <strong>Pincode:</strong>
-                 {pincode}
+                {pincode}
               </p>
-              <p className="address-dlt">
-                <RiDeleteBin5Line title="Delete" onClick={()=> dispatch({type:setDeleteAddress, payload: id})}/>
+              <p className="address-btns">
+                <RiDeleteBin5Line
+                className="address-dlt"
+                  title="Delete"
+                  onClick={() =>
+                    dispatch({ type: setDeleteAddress, payload: id })
+                  }
+                />
+                <BiEdit
+                className="address-edit"
+                  title="Edit"
+                  onClick={() => {
+                    dispatch({ type: setShowAddressModal });
+                    dispatch({ type: setEditId, payload: id });
+                  }}
+                />
               </p>
             </div>
           )
         )}
       </div>
-    </div>
+    </>
   );
 };
 

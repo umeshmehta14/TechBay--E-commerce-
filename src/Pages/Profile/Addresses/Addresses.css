@@ -8,6 +8,9 @@
     flex-direction: column;
 }
 
+.profile-address-container h2{
+    text-align: center;
+}
 
 
 .profile-address{
@@ -20,12 +23,14 @@
     border: 1px dotted var(--primary-color);
 }
 
-.address-dlt{
-    text-align: center;
+.address-btns{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    align-items: center;
 }
 
-.address-dlt svg{
-    background-color: red;
+.address-btns svg{
     color: white;
     width: 40px;
     border-radius: 12px;
@@ -33,7 +38,18 @@
     font-size: 2rem;
     cursor: pointer;
 }
-.address-dlt svg:hover{
+.address-dlt{
+    background-color: red;
+}
+.address-dlt:hover{
     color: red;
+    background-color: white;
+}
+
+.address-edit {
+   background-color: var(--primary-color);
+}
+.address-edit:hover {
+    color: var(--primary-color);
     background-color: white;
 }

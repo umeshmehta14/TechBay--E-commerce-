@@ -9,6 +9,7 @@ import {
   setCategoryFilter,
   setCurrentPage,
   setDeleteAddress,
+  setEditId,
   setOrderDetails,
   setOutOfStock,
   setPrice,
@@ -24,6 +25,7 @@ import {
   setShowSignUpPassword,
   setTrending,
   sortByRating,
+  updateAddressList,
   updateProductCart,
   updateProductWishlist,
   wishlist,
@@ -216,6 +218,16 @@ export const DataReducer = (state, action) => {
           ({ id }) => id !== action.payload
         ),
       };
+    case setEditId:
+      return { ...state, editId: action.payload };
+
+    case updateAddressList:
+      return {
+        ...state,
+        addressList: state.addressList.map((address) =>
+          address.id === action.payload.id ? { ...action.payload } : address
+        ),
+      };
     case setOrderDetails:
       return {
         ...state,
@@ -223,4 +235,3 @@ export const DataReducer = (state, action) => {
       };
   }
 };
-

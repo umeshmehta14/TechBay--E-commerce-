@@ -33,10 +33,11 @@ import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle, BiEdit } from "react-icons/bi";
 import { BsCartX } from "react-icons/bs";
 
 export {
+  BiEdit,
   ImCart,
   RxCross1,
   FaPlus,

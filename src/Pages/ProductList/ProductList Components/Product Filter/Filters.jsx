@@ -22,7 +22,6 @@ const Filters = () => {
   const ratings = [1, 2, 3, 4, 5];
   const prices = [500, 1000, 2000, 3000, 4000];
   return (
-    // p-1
     <>
       <div
         className={`filter-container ${showFilter ? "w-90" : ""}`}

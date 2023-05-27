@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddressForm.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { faker } from "@faker-js/faker";
 
 import { v4 as uuid } from "uuid";
-import { setShowAddressModal, setAddressList } from "../../DataReducer/Constants";
+import { setShowAddressModal, setAddressList, setEditId, updateAddressList } from "../../DataReducer/Constants";
 
 const AddressForm = () => {
-  const { dispatch } = useData();
+  const { dispatch, state:{editId, addressList} } = useData();
   const emptyFormData = {
     id: "",
     name: "",
@@ -70,11 +70,35 @@ const AddressForm = () => {
   };
   const addressHandler = (e) => {
     e.preventDefault();
-    const r_id = uuid();
-    dispatch({ type: setAddressList, payload: { ...formData, id: r_id } });
+    if(editId.length > 0) {
+      dispatch({type: updateAddressList, payload: {...formData}});
+    }
+    else{
+      const r_id = uuid();
+      dispatch({ type: setAddressList, payload: { ...formData, id: r_id } });
+    }
     setFormData(emptyFormData);
     dispatch({ type: setShowAddressModal });
+    dispatch({ type: setEditId, payload:"" });
   };
+
+  useEffect(()=>{
+    if(editId.length > 0)
+    {
+      const selectedAddress = addressList.find(({id})=> id=== editId);
+      setFormData({
+        ...formData,
+        id:editId,
+        name: selectedAddress.name,
+        mobile: selectedAddress.mobile,
+        pincode: selectedAddress.pincode,
+        city: selectedAddress.city,
+        address: selectedAddress.address,
+        alternatemobile: selectedAddress.alternatemobile,
+        state: selectedAddress.state,
+      });
+    }
+  },[editId]);
 
   return (
     <div className="address-form-container">
@@ -158,7 +182,7 @@ const AddressForm = () => {
         </div>
         <div className="f-address-detail-btn-box">
           <button type="submit" className="btn">
-            Add
+            {editId.length > 0 ? "Save":"Add"}
           </button>
           <button
             className="btn bg-white"
@@ -179,7 +203,10 @@ const AddressForm = () => {
           <button
             className="btn red"
             type="button"
-            onClick={() => dispatch({ type: setShowAddressModal })}
+            onClick={() => {
+              dispatch({ type: setShowAddressModal })
+              dispatch({ type: setEditId, payload:"" });
+            }}
           >
             Cancel
           </button>
