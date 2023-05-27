@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./CheckOut.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useNavigate } from "react-router-dom";
-import AddressForm from "./Address form/AddressForm";
 import {
   setOrderDetails,
   setSelectedAddress,
@@ -12,6 +11,7 @@ import { FaPlus } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { popper } from "../../Utils/Popper";
+import AddressForm from "../../Components/Address form/AddressForm";
 
 const CheckOut = () => {
   const {

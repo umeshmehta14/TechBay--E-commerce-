@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./AddressForm.css";
-import { useData } from "../../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
 import { faker } from "@faker-js/faker";
-import {
-  setAddressList,
-  setShowAddressModal,
-} from "../../../DataReducer/Constants";
+
 import { v4 as uuid } from "uuid";
+import { setShowAddressModal, setAddressList } from "../../DataReducer/Constants";
 
 const AddressForm = () => {
   const { dispatch } = useData();

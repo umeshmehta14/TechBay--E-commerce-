@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -16,7 +16,7 @@ const ShowProduct = ({ item }) => {
   const { handleWishList, wishDisable } = useWishList();
   const { cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
-  const [clicked, setClicked] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const {
     _id,
@@ -32,6 +32,11 @@ const ShowProduct = ({ item }) => {
     image,
     trending,
   } = item;
+
+  useEffect(() => {
+  setDisable(cartDisable);
+  }, [cartDisable])
+  
   return (
     <>
       <div
@@ -90,7 +95,7 @@ const ShowProduct = ({ item }) => {
           </div>
           <div className="btn-box">
             <button
-              disabled={cartDisable}
+              disabled={disable}
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
               } ${inCart ? "third-color" : ""}`}
@@ -106,7 +111,7 @@ const ShowProduct = ({ item }) => {
               )}
             </button>
             <button
-              disabled={cartDisable}
+              disabled={disable}
               className="btn btn-p-w  w-fit m-0 byn-btn"
               title="Buy Now"
               onClick={() => handleCartButton(inCart, item, true)}

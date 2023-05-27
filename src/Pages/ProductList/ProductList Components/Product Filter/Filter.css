@@ -5,14 +5,9 @@
   background-color: rgb(255, 255, 255);
   max-height: 100vh;
   z-index: 5;
-  /* padding: 1rem; */
   max-width: 300px;
   overflow: scroll;
   transition: all 0.5s ease-in-out;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
 }
 
 .filter-container h3 {
@@ -20,7 +15,7 @@
   margin-bottom: 0.5rem;
 }
 
-.filter-container > div{
+.filter-container>div {
   padding: 1rem 1rem;
 }
 
@@ -30,6 +25,16 @@
 
 .filter-container label {
   padding: 0.3rem 0rem;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+.ratings-sort label {
+  flex-direction: column;
+  align-items: baseline;
 }
 
 input {
@@ -60,10 +65,6 @@ input {
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.8s ease-in-out;
-  -webkit-transition: background-color 0.8s ease-in-out;
-  -moz-transition: background-color 0.8s ease-in-out;
-  -ms-transition: background-color 0.8s ease-in-out;
-  -o-transition: background-color 0.8s ease-in-out;
 }
 
 .filter-clr-btn:hover {
@@ -76,18 +77,18 @@ input {
 }
 
 
-input[type=range] {
+.ratings-sort input[type=range] {
   height: 25px;
   -webkit-appearance: none;
   width: 100%;
   margin: 0px;
 }
 
-input[type=range]:focus {
+.ratings-sort input[type=range]:focus {
   outline: none;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+.ratings-sort input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
@@ -98,7 +99,7 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 0px solid #000000;
 }
 
-input[type=range]::-webkit-slider-thumb {
+.ratings-sort input[type=range]::-webkit-slider-thumb {
   box-shadow: 0px 0px 0px #000000;
   border: 1px solid #2497E3;
   height: 18px;
@@ -110,73 +111,10 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -7px;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
+.ratings-sort input[type=range]:focus::-webkit-slider-runnable-track {
   background: #2497E3;
 }
 
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000;
-  background: #2497E3;
-  border-radius: 1px;
-  border: 0px solid #000000;
-}
-
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 0px #000000;
-  border: 1px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #A1D0FF;
-  cursor: pointer;
-}
-
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-
-input[type=range]::-ms-fill-lower {
-  background: #2497E3;
-  border: 0px solid #000000;
-  border-radius: 2px;
-  box-shadow: 0px 0px 0px #000000;
-}
-
-input[type=range]::-ms-fill-upper {
-  background: #2497E3;
-  border: 0px solid #000000;
-  border-radius: 2px;
-  box-shadow: 0px 0px 0px #000000;
-}
-
-input[type=range]::-ms-thumb {
-  margin-top: 1px;
-  box-shadow: 0px 0px 0px #000000;
-  border: 1px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #A1D0FF;
-  cursor: pointer;
-}
-
-input[type=range]:focus::-ms-fill-lower {
-  background: #2497E3;
-}
-
-input[type=range]:focus::-ms-fill-upper {
-  background: #2497E3;
-}
 
 datalist {
   display: flex;
@@ -204,10 +142,138 @@ option {
   padding: 1rem 0px;
 }
 
+
+
 .brand-filter {
   margin-bottom: 7rem;
 }
 
+
+.price-filter input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border: 2px solid var(--primary-color);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 8px;
+}
+
+.price-filter input[type="radio"]:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.price-filter input[type="radio"]:checked:before {
+  opacity: 1;
+}
+
+.price-filter input[type="radio"]:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.price-filter input[type="radio"]:checked:after {
+  opacity: 1;
+  width: 14px;
+  height: 14px;
+}
+
+.price-filter input[type="radio"]:checked:before,
+.price-filter input[type="radio"]:focus-visible:before {
+  box-shadow: 0 0 0 4px var(--secondary-color);
+}
+
+.price-filter label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.price-filter label:hover input[type="radio"] {
+  background-color: var(--hover-color);
+}
+
+.price-filter label:hover input[type="radio"]:after {
+  opacity: 0.6;
+}
+
+.price-filter label span {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.price-filter label:hover span {
+  text-decoration: underline;
+}
+
+.category-filter input[type="checkbox"],
+.brand-filter input[type="checkbox"],
+.stock-filter input[type="checkbox"],
+.trending-filter input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  border: 2px solid var(--primary-color);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  background-color: #fff;
+}
+
+.category-filter input[type="checkbox"]:checked,
+.brand-filter input[type="checkbox"]:checked,
+.stock-filter input[type="checkbox"]:checked,
+.trending-filter input[type="checkbox"]:checked {
+  background-color: var(--secondary-color);
+}
+
+.category-filter input[type="checkbox"]:before,
+.brand-filter input[type="checkbox"]:before,
+.stock-filter input[type="checkbox"]:before,
+.trending-filter input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.category-filter input[type="checkbox"]:checked:before,
+.brand-filter input[type="checkbox"]:checked:before,
+.stock-filter input[type="checkbox"]:checked:before,
+.trending-filter input[type="checkbox"]:checked:before {
+  opacity: 1;
+}
 
 @media (min-width: 768px) {
   .sort-section {
