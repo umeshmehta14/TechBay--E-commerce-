@@ -6,41 +6,51 @@ import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../Contexts/DataContext/DataContext";
 import { setShowSignUpPassword } from "../../../DataReducer/Constants";
 import { toast } from "react-toastify";
+
 const SignUp = () => {
   const { signUpHandler, token } = useAuth();
-  const {state:{showSignUpPassword}, dispatch} = useData();
+  const {
+    state: { showSignUpPassword },
+    dispatch,
+  } = useData();
   const navigate = useNavigate();
   const location = useLocation();
   const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
-    cPassword:"",
+    cPassword: "",
     firstName: "",
     lastName: "",
   });
   document.title = "SignUp";
 
-
   const signupFormHandler = (event) => {
     event.preventDefault();
-    if(userDetail.password === userDetail.cPassword){
-      if(userDetail.password.length < 8)
-      {
-      toast.warning("Password Have atleast 8 Characters",{containerId:"A", theme:"colored"});
+    if (userDetail.password === userDetail.cPassword) {
+      if (userDetail.password.length < 8) {
+        toast.warning("Password Have Atleast 8 Characters", {
+          containerId: "A",
+          theme: "colored",
+        });
+      } else {
+        signUpHandler(
+          userDetail.firstName,
+          userDetail.lastName,
+          userDetail.email,
+          userDetail.password
+        );
       }
-      else{
-        signUpHandler(userDetail.firstName, userDetail.lastName, userDetail.email, userDetail.password);
-      }
-    }
-    else{
-      toast.error("Password Does'nt Match",{containerId:"A", theme:"colored"});
+    } else {
+      toast.error("Password Does'nt Match", {
+        containerId: "A",
+        theme: "colored",
+      });
     }
   };
-  useEffect(()=>{
-    if(token)
-        {
-          navigate(location?.pathname?.from?.state || "/");
-        }
+  useEffect(() => {
+    if (token) {
+      navigate(location?.pathname?.from?.state || "/");
+    }
   }, [token]);
   return (
     <div className="container main-login  top-6">
@@ -107,18 +117,18 @@ const SignUp = () => {
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() =>dispatch({type:setShowSignUpPassword})}
+                onClick={() => dispatch({ type: setShowSignUpPassword })}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() =>dispatch({type:setShowSignUpPassword})}
+                onClick={() => dispatch({ type: setShowSignUpPassword })}
               />
             )}
           </div>
           <div className="detail-inp-box">
-          <label htmlFor="cpassword">Confirm Password</label>
+            <label htmlFor="cpassword">Confirm Password</label>
             <input
               type="password"
               id="cpassword"
