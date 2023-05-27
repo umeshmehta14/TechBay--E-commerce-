@@ -3,15 +3,17 @@ import "./CheckOut.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useNavigate } from "react-router-dom";
 import {
+  setEditId,
   setOrderDetails,
   setSelectedAddress,
   setShowAddressModal,
 } from "../../DataReducer/Constants";
-import { FaPlus } from "../../Icons/Icons";
+import { FaPlus, BiEdit } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { popper } from "../../Utils/Popper";
 import AddressForm from "../../Components/Address form/AddressForm";
+import { toast } from "react-toastify";
 
 const CheckOut = () => {
   const {
@@ -29,8 +31,10 @@ const CheckOut = () => {
     (acc, { original_price, qty }) => (acc += original_price * qty),
     0
   );
-  const totalCost =
-    cart.reduce((acc, { price, qty }) => (acc += price * qty), 0);
+  const totalCost = cart.reduce(
+    (acc, { price, qty }) => (acc += price * qty),
+    0
+  );
   const discountedPrice = originalPrice - totalCost;
   const selectedMobileNo = addressList.find(({ id }) => id === selectedAddress);
 
@@ -62,12 +66,12 @@ const CheckOut = () => {
       "https://tse3.mm.bing.net/th?id=OIP.VH-BQwstrgYmR6vADnIlFgAAAA&pid=Api&P=0&h=180",
     handler: (response) => handlePaymentSuccess(response),
     prefill: {
-      name: selectedMobileNo.firstName,
+      name: selectedMobileNo?.firstName,
       email: email,
-      contact: selectedMobileNo.mobile,
+      contact: selectedMobileNo?.mobile,
     },
     notes: {
-      address: selectedMobileNo.address,
+      address: selectedMobileNo?.address,
     },
     theme: {
       color: "#146cda",
@@ -75,8 +79,15 @@ const CheckOut = () => {
   };
 
   const handlePayment = () => {
-    const razorpayInstance = new window.Razorpay(razorpayOptions);
-    razorpayInstance.open();
+    if (addressList.length > 0) {
+      const razorpayInstance = new window.Razorpay(razorpayOptions);
+      razorpayInstance.open();
+    } else {
+      toast.warning("Please Select a Address", {
+        theme: "colored",
+        containerId: "B",
+      });
+    }
   };
 
   useEffect(() => {
@@ -93,35 +104,50 @@ const CheckOut = () => {
         ) : (
           <div className="main-checkout-box">
             <div className="address-container">
-              {addressList.map(
-                ({ id, name, address, city, mobile, pincode, state }) => (
-                  <div
-                    key={id}
-                    className={`address-box ${
-                      selectedAddress === id ? "selected" : ""
-                    }`}
-                    onClick={() =>
-                      dispatch({ type: setSelectedAddress, payload: id })
-                    }
-                  >
-                    <label htmlFor={id}>
-                      <input
-                        type="radio"
-                        checked={selectedAddress === id}
-                        id={id}
-                        onChange={() =>
+              {addressList.length === 0
+                ? ""
+                : addressList.map(
+                    ({ id, name, address, city, mobile, pincode, state }) => (
+                      <div
+                        key={id}
+                        className={`address-box ${
+                          selectedAddress === id ? "selected" : ""
+                        }`}
+                        onClick={() =>
                           dispatch({ type: setSelectedAddress, payload: id })
                         }
-                      />
-                      <strong>{name + "     " + mobile}</strong>
-                    </label>
-                    <div className="user-address-detail">
-                      {address + ", " + city + ", " + state + "-"}
-                      <strong>{pincode}</strong>
-                    </div>
-                  </div>
-                )
-              )}
+                      >
+                        <label htmlFor={id}>
+                          <input
+                            type="radio"
+                            checked={selectedAddress === id}
+                            id={id}
+                            onChange={() =>
+                              dispatch({
+                                type: setSelectedAddress,
+                                payload: id,
+                              })
+                            }
+                          />
+                          <strong>{name + "     " + mobile}</strong>
+                        </label>
+                        <div className="user-address-detail">
+                          {address + ", " + city + ", " + state + "-"}
+                          <strong>{pincode}</strong>
+                        </div>
+                        <p className="address-btns">
+                          <BiEdit
+                            className="address-edit"
+                            title="Edit"
+                            onClick={() => {
+                              dispatch({ type: setShowAddressModal });
+                              dispatch({ type: setEditId, payload: id });
+                            }}
+                          />
+                        </p>
+                      </div>
+                    )
+                  )}
               <div className="add-address-btn-box">
                 <button
                   className="add-address-btn"
@@ -141,7 +167,7 @@ const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart.map(({_id, title, qty }) => (
+                  {cart.map(({ _id, title, qty }) => (
                     <p key={_id}>
                       <span>{title}</span>
                       <span>{qty}</span>
