@@ -59,7 +59,7 @@ const CheckOut = () => {
 
   const razorpayOptions = {
     key: "rzp_test_D85llKxUWkwbEZ",
-    amount: totalCost * 100,
+    amount: (totalCost * 100)+79,
     name: "TechBay",
     description: "Thank You For Ordering",
     image:
