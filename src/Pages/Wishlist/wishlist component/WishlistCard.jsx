@@ -10,10 +10,11 @@ import { useCart } from "../../../Contexts/CartContext/CartContext";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import "./WishlistCard.css";
 import { useNavigate } from 'react-router-dom';
+import { increment } from '../../../DataReducer/Constants';
 
 const WishlistCard = ({item}) => {
     const { handleWishList, wishDisable } = useWishList();
-    const { cartDisable, handleCartButton } = useCart();
+    const { cartDisable, handleCartButton, handleCartQuantity } = useCart();
     const { token } = useAuth();
     const navigate = useNavigate();
     const {
@@ -75,15 +76,9 @@ const WishlistCard = ({item}) => {
                      className={`btn w-fit m-0 ${ cartDisable ? "cursor-disable" : ""} ${
                       inCart ? "third-color" : ""
                     }`}
-                    onClick={()=>handleCartButton(inCart, item)}
+                    onClick={()=>handleCartQuantity(increment, item)}
                   >
-                    {inCart ? (
-                      "Go to Cart"
-                    ) : (
-                      <>
-                        <ImCart /> Add to Cart
-                      </>
-                    )}
+                        <ImCart /> Added to Cart +
                   </button>
                   <button
                     className={`btn btn-p-w  w-fit m-0 byn-btn${

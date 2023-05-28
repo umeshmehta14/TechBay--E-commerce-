@@ -5,7 +5,7 @@ import {
 } from "../../Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import "./WishList.css";
-import WishlistCard from "./wishlist componet/WishlistCard";
+import WishlistCard from "./wishlist component/WishlistCard";
 
 const WishList = () => {
   const {
@@ -14,7 +14,6 @@ const WishList = () => {
   document.title = "Wishlist";
 
   const navigate = useNavigate();
-  console.log(products);
 
   const wishlistData = products.filter(({ inWishlist }) => inWishlist);
   return (
