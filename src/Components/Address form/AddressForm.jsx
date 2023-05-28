@@ -202,7 +202,7 @@ const AddressForm = () => {
             required
           />
           <label className="form-label" htmlFor="anumber">
-            Pincode
+            Alternate Number
           </label>
         </div>
         <div className="f-address-detail">

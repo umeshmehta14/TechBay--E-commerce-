@@ -51,6 +51,8 @@
     min-height: 100px;
     padding: 0.5rem;
     background-color: white;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .order-img-box{

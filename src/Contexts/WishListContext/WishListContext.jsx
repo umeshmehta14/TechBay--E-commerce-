@@ -17,18 +17,23 @@ export const WishListProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: wishlist, payload: [] });
-          dispatch({ type: updateProductWishlist });
-    async () => {
-      try {
-        const wishlistResponse = await getWishList({ encodedToken: token });
-        if (wishlistResponse.status === 200) {
-          dispatch({ type: wishlist, payload: wishlistResponse.data.wishlist });
-          dispatch({ type: updateProductWishlist });
+    dispatch({ type: updateProductWishlist });
+    if (token) {
+      async () => {
+        try {
+          const wishlistResponse = await getWishList({ encodedToken: token });
+          if (wishlistResponse.status === 200) {
+            dispatch({
+              type: wishlist,
+              payload: wishlistResponse.data.wishlist,
+            });
+            dispatch({ type: updateProductWishlist });
+          }
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.error(err);
-      }
-    };
+      };
+    }
   }, [token]);
 
   const handleWishList = async (product) => {
@@ -39,7 +44,6 @@ export const WishListProvider = ({ children }) => {
           containerId: "A",
           theme: "colored",
         });
-        console.log("toast");
         navigate("/login", { state: { from: location } });
         return;
       }

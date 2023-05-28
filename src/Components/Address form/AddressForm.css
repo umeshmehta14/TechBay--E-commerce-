@@ -93,6 +93,12 @@
 .f-address-detail select {
     width: 100%;
     padding: 0.5rem;
+    border: 2px solid #b0b0b0;
+    border-radius: 4px;
+    color: rgb(114, 114, 114);
+    font-size: 16px;
+    background-color: transparent;
+    font-weight: bold;
 }
 
 .f-address-inp {

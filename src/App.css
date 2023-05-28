@@ -49,9 +49,9 @@ body {
     min-height: 60vh;
 }
 
-.btn:disabled{
+/* .btn:disabled{
     background-color: gray;
-}
+} */
 .btn:disabled:hover{
     background-color: gray;
 }

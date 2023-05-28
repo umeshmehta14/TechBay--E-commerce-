@@ -13,7 +13,6 @@ const Addresses = () => {
     state: { addressList },
     dispatch,
   } = useData();
-  console.log(addressList);
   return (
     <>
       <div className="profile-address-btn">

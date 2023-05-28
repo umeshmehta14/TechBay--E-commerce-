@@ -83,7 +83,9 @@ const CartDetailCard = ({ item }) => {
           <strong>Quantity:</strong>
           <span className="cart-btn-box">
             <button
-              className={`quantity-btn br ${qty === +1 ? "cursor-disable" : ""}`}
+              className={`quantity-btn br ${
+                qty === +1 || cartDisable ? "cursor-disable" : ""
+              }`}
               disabled={cartDisable || qty === +1}
               onClick={() => handleCartQuantity(decrement, item)}
             >
@@ -93,8 +95,10 @@ const CartDetailCard = ({ item }) => {
             <span className="btn-para">{qty}</span>
 
             <button
-              disabled={cartDisable || qty === +10}
-              className="quantity-btn bl"
+              disabled={cartDisable}
+              className={`quantity-btn bl ${
+                qty === +10 || cartDisable ? "cursor-disable" : ""
+              }`}
               onClick={() => handleCartQuantity(increment, item)}
             >
               +
@@ -103,11 +107,12 @@ const CartDetailCard = ({ item }) => {
         </div>
         <div className="remove-btn-box">
           <button
-            className="remove-btn btn"
+            className={`remove-btn btn ${cartDisable ? "cursor-disable" : ""}`}
             disabled={cartDisable}
+            title="Remove from Cart"
             onClick={() => handleCart(item)}
           >
-            <span className="icon" title="Remove from Cart">
+            <span className="icon" >
               <RiDeleteBin5Line />
             </span>
           </button>

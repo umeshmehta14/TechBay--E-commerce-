@@ -92,6 +92,10 @@ const CheckOut = () => {
 
   useEffect(() => {
     if (cart.length === 0) navigate("/products");
+    if(addressList.length === 1)
+    {
+      dispatch({ type: setSelectedAddress, payload: addressList[0].id })
+    }
   }, []);
 
   return (

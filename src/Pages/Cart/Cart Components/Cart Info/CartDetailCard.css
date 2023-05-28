@@ -113,7 +113,9 @@
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
-
+.cursor-disable{
+    cursor: not-allowed;
+}
 
 @media (min-width: 768px) {
     .cart-product-card {

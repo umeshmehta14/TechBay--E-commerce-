@@ -27,6 +27,7 @@ const WishlistCard = ({item}) => {
         rating,
         inWishlist,
         inCart,
+        qty,
         image,
         trending,
       } = item;
@@ -73,17 +74,23 @@ const WishlistCard = ({item}) => {
                 <div className="btn-box">
                   <button
                   disabled={cartDisable}
-                     className={`btn w-fit m-0 ${ cartDisable ? "cursor-disable" : ""} ${
+                     className={`btn w-fit m-0 ${ cartDisable || qty === +10 ? "cursor-disable" : ""} ${
                       inCart ? "third-color" : ""
                     }`}
-                    onClick={()=>handleCartQuantity(increment, item)}
+                    onClick={()=> inCart ? handleCartQuantity(increment, item) : handleCartButton(inCart, item)}
                   >
-                        <ImCart /> Added to Cart +
+                    {inCart ? (
+                      `Added (${qty}) +`
+                    ) : (
+                      <>
+                        <ImCart /> Add to Cart
+                      </>
+                    )}
                   </button>
                   <button
                     className={`btn btn-p-w  w-fit m-0 byn-btn${
                       cartDisable ? "cursor-disable" : ""
-                    } ${ inCart ? "third-color": ""}`}
+                    }`}
                     onClick={() => handleCartButton(inCart, item, true)}
                   >
                     Buy Now

@@ -25,17 +25,21 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: cart, payload: [] });
     dispatch({ type: updateProductCart });
-    (async () => {
-      try {
-        const cartResponse = await getCartList({ encodedToken: token });
-        if (cartResponse.status === 200 || cartResponse.status === 201) {
-          dispatch({ type: cart, payload: cartResponse.data.cart });
-          dispatch({ type: updateProductCart });
+    if(token)
+    {
+
+      (async () => {
+        try {
+          const cartResponse = await getCartList({ encodedToken: token });
+          if (cartResponse.status === 200 || cartResponse.status === 201) {
+            dispatch({ type: cart, payload: cartResponse.data.cart });
+            dispatch({ type: updateProductCart });
+          }
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.error(err);
-      }
-    })();
+      });
+    }
   }, [token]);
 
   const handleCart = async (product, buyNow) => {
@@ -108,7 +112,7 @@ export const CartProvider = ({ children }) => {
         dispatch({ type: updateProductCart });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
     setCartDisable(false);
   };

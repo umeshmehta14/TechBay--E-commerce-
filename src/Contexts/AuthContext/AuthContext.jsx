@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
   const signUpHandler = async (firstName, lastName, email, password) => {
     try {
       const response = await createUser(firstName, lastName, email, password);
-      console.log(response);
       const {
         status,
         data: { createdUser, encodedToken },
