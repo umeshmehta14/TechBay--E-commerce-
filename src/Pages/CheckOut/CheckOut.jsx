@@ -92,9 +92,8 @@ const CheckOut = () => {
 
   useEffect(() => {
     if (cart.length === 0) navigate("/products");
-    if(addressList.length === 1)
-    {
-      dispatch({ type: setSelectedAddress, payload: addressList[0].id })
+    if (addressList.length === 1) {
+      dispatch({ type: setSelectedAddress, payload: addressList[0].id });
     }
   }, []);
 
@@ -111,7 +110,16 @@ const CheckOut = () => {
               {addressList.length === 0
                 ? ""
                 : addressList.map(
-                    ({ id, name, address, city, mobile, pincode, state, type }) => (
+                    ({
+                      id,
+                      name,
+                      address,
+                      city,
+                      mobile,
+                      pincode,
+                      state,
+                      type,
+                    }) => (
                       <div
                         key={id}
                         className={`address-box ${

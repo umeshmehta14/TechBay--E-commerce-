@@ -1,8 +1,6 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import {
-  AiOutlineHeart,
-} from "../../Icons/Icons";
+import { AiOutlineHeart } from "../../Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import "./WishList.css";
 import WishlistCard from "./wishlist component/WishlistCard";
@@ -31,9 +29,11 @@ const WishList = () => {
       ) : (
         <h1 className="empty-wishlist">WishList</h1>
       )}
-          <div className="product-container product-container-wishlist">
-        {wishlistData.map((item) => <WishlistCard key={item._id} item={item}/> )}
-          </div>
+      <div className="product-container product-container-wishlist">
+        {wishlistData.map((item) => (
+          <WishlistCard key={item._id} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

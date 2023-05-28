@@ -71,7 +71,7 @@ const Cart = () => {
               )}
             </div>
           ) : (
-            ""
+            null
           )
         )}
       </div>

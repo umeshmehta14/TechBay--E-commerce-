@@ -28,7 +28,7 @@ const FeatureSection = ({ products }) => {
                   </div>
                   <div className="feature-item-detail">
                     <span>{title}</span>
-                    <span>${price}</span>
+                    <span>&#8377;{price}</span>
                   </div>
                 </div>
               );

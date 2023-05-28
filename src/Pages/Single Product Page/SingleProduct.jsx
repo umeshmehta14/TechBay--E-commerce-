@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   AiFillStar,
   AiOutlineHeart,
