@@ -1,15 +1,11 @@
-import { useData } from "../Contexts/DataContext/DataContext";
-
-export const filterAllProducts = () => {
+export const filterAllProducts = (state) => {
   const {
-    state: {
-      filters,
-      products,
-      searchValue,
-      searchedProducts,
-      showSearchedProducts,
-    },
-  } = useData();
+    filters,
+    products,
+    searchValue,
+    searchedProducts,
+    showSearchedProducts,
+  } = state;
   const {
     rating,
     categoryFilter,
