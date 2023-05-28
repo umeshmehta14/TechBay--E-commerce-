@@ -32,6 +32,7 @@ export const initialState = {
         alternatemobile: 123456789,
         pincode: "99988",
         state: "Moscow Pradesh",
+        type: "Home"
       },
     ],
     showAddressModal: false,

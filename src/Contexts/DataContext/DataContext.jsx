@@ -15,7 +15,6 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DataReducer, initialState);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const getData = async () => {
     try {
       const productResponse = await getAllProduct();
@@ -27,7 +26,7 @@ export const DataProvider = ({ children }) => {
         dispatch({ type: category, payload: categoryResponse.data.categories });
       }
     } catch (err) {
-      setError(error);
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -37,7 +36,7 @@ export const DataProvider = ({ children }) => {
     getData();
   }, []);
   return (
-    <DataContext.Provider value={{ state, loading, error, dispatch }}>
+    <DataContext.Provider value={{ state, loading, dispatch }}>
       {children}
     </DataContext.Provider>
   );

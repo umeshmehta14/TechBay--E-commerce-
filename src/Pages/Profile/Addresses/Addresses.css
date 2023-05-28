@@ -23,6 +23,15 @@
     border: 1px dotted var(--primary-color);
 }
 
+.profile-address-type{
+    background-color: #e4e4e4;
+    margin: 0 1rem;
+    font-size: 14px;
+    padding: 0.2rem;
+    font-weight: bold;
+    color: gray;
+}
+
 .address-btns{
     display: flex;
     justify-content: space-evenly;

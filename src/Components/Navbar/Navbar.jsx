@@ -39,6 +39,10 @@ const Navbar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if(location.pathname === "/404"){
+    return null;
+  }
   return (
     <header>
       <nav className="navbar">

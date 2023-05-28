@@ -3,6 +3,9 @@ import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Icons/Icons";
 import "./Footer.css";
 
 const Footer = () => {
+  if(location.pathname === "/404"){
+    return null;
+  }
   return (
     <footer>
       <div className="footer-info">

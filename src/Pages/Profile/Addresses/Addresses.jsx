@@ -35,10 +35,12 @@ const Addresses = () => {
             alternatemobile,
             pincode,
             state,
+            type
           }) => (
             <div key={id} className="profile-address">
               <p>
                 <strong>Name:</strong> {name}
+                <span className="profile-address-type">{type}</span>
               </p>
               <p>
                 <strong>Number:</strong> {mobile}, {alternatemobile}
