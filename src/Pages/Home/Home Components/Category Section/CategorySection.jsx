@@ -36,7 +36,7 @@ const CategorySection = ({ category }) => {
     setInterval(() => {
       setCategoryIndex((prev) => (prev === category.length - 1 ? 0 : prev + 1));
     }, 2500);
-  }, []);
+  }, [category.length]);
 
   return (
     <>

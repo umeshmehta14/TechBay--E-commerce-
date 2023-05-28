@@ -21,6 +21,7 @@ const SingleProduct = () => {
   const { productId } = useParams();
   const { token } = useAuth();
   const selectedProduct = products.find(({ _id }) => _id === productId);
+
   const {
     title,
     description,
@@ -36,12 +37,10 @@ const SingleProduct = () => {
     image,
     trending,
   } = selectedProduct;
-  
-  useEffect(()=> {
-  window.scrollTo({ top: 0, behavior: "smooth" });
   document.title = title;
-  }
-  ,[]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card" title={title}>
@@ -77,7 +76,7 @@ const SingleProduct = () => {
             </span>
             <h3 className="s-description">
               {" "}
-               <em className="pfc"> Description </em> : {description}
+              <em className="pfc"> Description </em> : {description}
             </h3>
             <h4 className="s-description">
               {" "}
@@ -104,13 +103,13 @@ const SingleProduct = () => {
           <div className="s-btn-box">
             <button
               disabled={cartDisable}
-              className={`btn w-fit m-0 ${ cartDisable ? "cursor-disable" : ""} ${
-                inCart ? "third-color" : ""
-              }`}
-              onClick={()=>handleCartButton(inCart, selectedProduct)}
+              className={`btn w-fit m-0 ${
+                cartDisable ? "cursor-disable" : ""
+              } ${inCart ? "third-color" : ""}`}
+              onClick={() => handleCartButton(inCart, selectedProduct)}
               title={inCart ? "go to cart" : "Add to cart"}
             >
-              { inCart ? (
+              {inCart ? (
                 "Go to Cart"
               ) : (
                 <>

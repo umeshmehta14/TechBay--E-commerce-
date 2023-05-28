@@ -34,7 +34,7 @@ export const WishListProvider = ({ children }) => {
         }
       })();
     }
-  }, [token]);
+  }, [token, dispatch]);
 
   const handleWishList = async (product) => {
     setWishDisable(true);

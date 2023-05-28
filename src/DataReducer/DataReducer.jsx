@@ -233,5 +233,7 @@ export const DataReducer = (state, action) => {
         ...state,
         orderDetails: [...state.orderDetails, { ...action.payload }],
       };
+    default:
+      return;
   }
 };

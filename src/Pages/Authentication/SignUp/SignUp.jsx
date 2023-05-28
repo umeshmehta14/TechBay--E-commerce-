@@ -51,7 +51,7 @@ const SignUp = () => {
     if (token) {
       navigate(location?.pathname?.from?.state || "/");
     }
-  }, [token]);
+  }, [token, location?.pathname?.from?.state]);
   return (
     <div className="container main-login  top-6">
       <div className="auth-box main-signup">

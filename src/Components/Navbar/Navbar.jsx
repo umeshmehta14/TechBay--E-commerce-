@@ -39,7 +39,7 @@ const Navbar = () => {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [dispatch]);
 
   if(location.pathname === "/404"){
     return null;

@@ -95,7 +95,7 @@ const CheckOut = () => {
     if (addressList.length === 1) {
       dispatch({ type: setSelectedAddress, payload: addressList[0].id });
     }
-  }, []);
+  }, [addressList, cart, dispatch, navigate]);
 
   return (
     <>

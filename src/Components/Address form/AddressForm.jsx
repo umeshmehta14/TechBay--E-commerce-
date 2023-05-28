@@ -108,7 +108,7 @@ const AddressForm = () => {
         type: selectedAddress.type,
       });
     }
-  }, [editId]);
+  }, [editId, addressList, formData]);
 
   return (
     <div className="address-form-container">
