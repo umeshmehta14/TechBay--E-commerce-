@@ -13,7 +13,7 @@
 .address-inp-form {
     width: 100%;
     max-width: 450px;
-    height: 80vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -145,7 +145,7 @@
 
 @media (min-width: 768px) {
     .address-inp-form {
-        height: 85vh;
+        height: 90vh;
         border-radius: 8px;
         box-shadow: 1px 1px 12px black;
     }

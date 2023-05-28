@@ -26,9 +26,10 @@ const AddressForm = () => {
     state: "",
     pincode: "",
     alternatemobile: "",
+    type: "",
   };
   const [formData, setFormData] = useState(emptyFormData);
-  const { name, address, mobile, city, state, pincode, alternatemobile } =
+  const { name, address, mobile, city, state, pincode, alternatemobile, type } =
     formData;
   const statesData = [
     "Andhra Pradesh",
@@ -72,6 +73,7 @@ const AddressForm = () => {
       address: faker.location.streetAddress(),
       alternatemobile: faker.number.int({ min: 10000000000, max: 99999999999 }),
       state: statesData[Math.floor(Math.random() * statesData.length - 1)],
+      type: "Home",
     });
   };
   const formResetHandler = () => {
@@ -103,6 +105,7 @@ const AddressForm = () => {
         address: selectedAddress.address,
         alternatemobile: selectedAddress.alternatemobile,
         state: selectedAddress.state,
+        type: selectedAddress.type,
       });
     }
   }, [editId]);
@@ -112,7 +115,7 @@ const AddressForm = () => {
       <form action="" className="address-inp-form" onSubmit={addressHandler}>
         <p>
           <RxCross1
-          title="Cancel"
+            title="Cancel"
             onClick={() => {
               dispatch({ type: setShowAddressModal });
               dispatch({ type: setEditId, payload: "" });
@@ -187,7 +190,7 @@ const AddressForm = () => {
             required
           />
           <label className="form-label" htmlFor="address">
-          Address(Area and Street)
+            Address(Area and Street)
           </label>
         </div>
         <div className="f-address-detail">
@@ -207,8 +210,6 @@ const AddressForm = () => {
         </div>
         <div className="f-address-detail">
           <select
-            name=""
-            id=""
             onChange={(e) =>
               setFormData({ ...formData, state: e.target.value })
             }
@@ -223,6 +224,21 @@ const AddressForm = () => {
                 {state}
               </option>
             ))}
+          </select>
+        </div>
+        <div className="f-address-detail">
+          <select
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            value={type}
+            required
+          >
+            <option disabled value="">
+              --Address Type
+            </option>
+            <option value="Home">Home (All Day Delivery)</option>
+            <option value="Office">
+              Office (Delivery Between 10 Am - 5 Am)
+            </option>
           </select>
         </div>
         <div className="f-address-detail-btn-box">

@@ -111,7 +111,7 @@ const CheckOut = () => {
               {addressList.length === 0
                 ? ""
                 : addressList.map(
-                    ({ id, name, address, city, mobile, pincode, state }) => (
+                    ({ id, name, address, city, mobile, pincode, state, type }) => (
                       <div
                         key={id}
                         className={`address-box ${
@@ -121,6 +121,7 @@ const CheckOut = () => {
                           dispatch({ type: setSelectedAddress, payload: id })
                         }
                       >
+                        <p className="address-box-type">{type}</p>
                         <label htmlFor={id}>
                           <input
                             type="radio"

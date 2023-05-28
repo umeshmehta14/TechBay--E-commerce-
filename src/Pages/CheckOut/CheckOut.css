@@ -32,12 +32,25 @@
 }
 
 .address-box{
+    position: relative;
     border: 2px solid #a7a7ff;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+}
+
+.address-box-type{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    padding: 0rem 0.4rem;
+    background-color: #faffeb;
+    border-radius: 6px 0px 0px 6px;
+    outline: 1px solid gray;
+    color: #606060;
+    font-weight: bold;
 }
 
 .add-address-btn-box{
