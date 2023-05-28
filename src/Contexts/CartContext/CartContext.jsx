@@ -27,7 +27,6 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: updateProductCart });
     if(token)
     {
-
       (async () => {
         try {
           const cartResponse = await getCartList({ encodedToken: token });
@@ -38,7 +37,7 @@ export const CartProvider = ({ children }) => {
         } catch (err) {
           console.error(err);
         }
-      });
+      })();
     }
   }, [token]);
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import {
   FaShoppingBag,
@@ -28,6 +28,7 @@ const Navbar = () => {
     dispatch,
   } = useData();
   const navigate = useNavigate();
+  const location = useLocation();
   const getStyle = ({ isActive }) => {
     return isActive ? { border: "1px solid white" } : {};
   };

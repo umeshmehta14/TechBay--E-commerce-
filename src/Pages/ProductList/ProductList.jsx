@@ -10,11 +10,9 @@ import { setCurrentPage } from "../../DataReducer/Constants";
 import { AiOutlineArrowDown } from "../../Icons/Icons";
 
 const ProductList = () => {
-  const {
-    state: { currentPage, searchValue },
-    dispatch,
-  } = useData();
-  const filteredProducts = filterAllProducts();
+  const { state, dispatch } = useData();
+  const { currentPage, searchValue } = state;
+  const filteredProducts = filterAllProducts(state);
   document.title = "Products";
 
   const productsPerPage = 8;

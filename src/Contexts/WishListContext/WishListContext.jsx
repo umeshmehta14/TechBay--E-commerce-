@@ -19,7 +19,7 @@ export const WishListProvider = ({ children }) => {
     dispatch({ type: wishlist, payload: [] });
     dispatch({ type: updateProductWishlist });
     if (token) {
-      async () => {
+      (async () => {
         try {
           const wishlistResponse = await getWishList({ encodedToken: token });
           if (wishlistResponse.status === 200) {
@@ -32,7 +32,7 @@ export const WishListProvider = ({ children }) => {
         } catch (err) {
           console.error(err);
         }
-      };
+      })();
     }
   }, [token]);
 

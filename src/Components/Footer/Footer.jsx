@@ -1,8 +1,10 @@
 import React from "react";
 import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Icons/Icons";
 import "./Footer.css";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
   if(location.pathname === "/404"){
     return null;
   }
