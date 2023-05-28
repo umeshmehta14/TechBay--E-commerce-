@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         toast.success(`Welcome Back ${foundUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
       }
-      // successfully logged in
     } catch (err) {
       toast.error(`Invalid Credentials`, { containerId: 'A', theme: "colored" });
     }
