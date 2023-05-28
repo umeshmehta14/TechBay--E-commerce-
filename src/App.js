@@ -1,7 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useData } from "./Contexts/DataContext/DataContext";
-import loader from "./Images-Gifs/loader.gif";
 import Error from "./Pages/Error/Error";
 import Home from "./Pages/Home/Home";
 import ProductList from "./Pages/ProductList/ProductList";
@@ -18,11 +17,12 @@ import CheckOut from "./Pages/CheckOut/CheckOut";
 import Profile from "./Pages/Profile/Profile";
 import Addresses from "./Pages/Profile/Addresses/Addresses";
 import OrderDetails from "./Pages/Profile/OrderDetail/OrderDetails";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "./Components/Loader/Loader";
 
 function App() {
-  const { error, loading } = useData();
+  const { loading } = useData();
   return (
     <>
       <ToastContainer
@@ -55,9 +55,9 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      {error ? <Error /> : <Navbar />}
+      <Navbar />
       {loading ? (
-        <img className="loader" src={loader} alt="Loading..." />
+        <Loader />
       ) : (
         <>
           {" "}
@@ -73,6 +73,8 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/404" element={<Error />} />
+            <Route path="*" element={<Navigate to={"/404"} />} />
 
             <Route
               path="/wishlist"
