@@ -51,10 +51,10 @@ const CheckOut = () => {
       },
     });
     popper();
-    clearCart();
     setTimeout(() => {
       navigate("/profile/orderDetail");
     }, 3000);
+    clearCart();
   };
 
   const razorpayOptions = {
@@ -95,7 +95,7 @@ const CheckOut = () => {
     if (addressList.length === 1) {
       dispatch({ type: setSelectedAddress, payload: addressList[0].id });
     }
-  }, [addressList, cart, dispatch, navigate]);
+  }, []);
 
   return (
     <>

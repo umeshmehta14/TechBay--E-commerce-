@@ -108,7 +108,7 @@ const AddressForm = () => {
         type: selectedAddress.type,
       });
     }
-  }, [editId, addressList, formData]);
+  }, [editId]);
 
   return (
     <div className="address-form-container">
@@ -253,7 +253,7 @@ const AddressForm = () => {
             Reset
           </button>
           {editId.length > 0 ? (
-            ""
+            null
           ) : (
             <button
               className="btn bg-white"
