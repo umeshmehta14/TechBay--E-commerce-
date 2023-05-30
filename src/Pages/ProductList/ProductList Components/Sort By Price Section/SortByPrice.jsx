@@ -1,5 +1,5 @@
 import React from "react";
-import { HiOutlineFilter } from "../../../../Icons/Icons";
+import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 import {

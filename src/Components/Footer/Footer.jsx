@@ -1,5 +1,5 @@
 import React from "react";
-import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Icons/Icons";
+import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Utils/Icons/Icons";
 import "./Footer.css";
 import { useLocation } from "react-router-dom";
 

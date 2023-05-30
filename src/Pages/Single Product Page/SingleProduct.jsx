@@ -6,7 +6,7 @@ import {
   AiOutlineHeart,
   AiFillHeart,
   ImCart,
-} from "../../Icons/Icons";
+} from "../../Utils/Icons/Icons";
 import "./SingleProduct.css";
 import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";

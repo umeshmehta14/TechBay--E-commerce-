@@ -5,7 +5,7 @@ import {
   huawei,
   facebook,
   microsoft,
-} from "../../../../Images-Gifs/Images";
+} from "../../../../Images/Images";
 import "./CompanyInfo.css";
 
 const CompanyInfo = () => {

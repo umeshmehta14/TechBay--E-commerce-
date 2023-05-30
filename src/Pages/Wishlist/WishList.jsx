@@ -1,6 +1,6 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import { AiOutlineHeart } from "../../Icons/Icons";
+import { AiOutlineHeart } from "../../Utils/Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import "./WishList.css";
 import WishlistCard from "./wishlist component/WishlistCard";

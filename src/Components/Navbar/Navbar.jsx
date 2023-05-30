@@ -11,7 +11,7 @@ import {
   IoSearch,
   FaRegUserCircle,
   TbSearchOff,
-} from "../../Icons/Icons";
+} from "../../Utils/Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import {

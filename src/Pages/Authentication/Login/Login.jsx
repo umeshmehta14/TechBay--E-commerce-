@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Icons/Icons";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
 import "../Authentications.css";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../Contexts/DataContext/DataContext";

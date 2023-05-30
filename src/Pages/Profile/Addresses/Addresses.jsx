@@ -1,6 +1,6 @@
 import React from "react";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Icons/Icons";
+import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Utils/Icons/Icons";
 import "./Addresses.css";
 import {
   setDeleteAddress,

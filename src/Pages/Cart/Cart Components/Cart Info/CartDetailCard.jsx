@@ -4,7 +4,7 @@ import {
   AiOutlineHeart,
   RiDeleteBin5Line,
   AiFillStar,
-} from "../../../../Icons/Icons";
+} from "../../../../Utils/Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../../Contexts/CartContext/CartContext";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";

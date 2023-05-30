@@ -4,7 +4,7 @@ import {
   IoShieldHalf,
   FaHandHoldingUsd,
   RiSecurePaymentLine,
-} from "../../../../Icons/Icons";
+} from "../../../../Utils/Icons/Icons";
 import "./DeliveryInfo.css";
 
 const DeliveryInfo = () => {

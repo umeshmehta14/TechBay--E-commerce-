@@ -4,7 +4,7 @@ import "./Cart.css";
 import {
   BsCartX,
   ImCart,
-} from "../../Icons/Icons";
+} from "../../Utils/Icons/Icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";

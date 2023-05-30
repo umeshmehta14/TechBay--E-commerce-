@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchBox.css";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { IoSearch, RxCross1 } from "../../../Icons/Icons";
+import { IoSearch, RxCross1 } from "../../../Utils/Icons/Icons";
 import {
   clearFilter,
   setSearchValue,

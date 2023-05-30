@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
-} from "../../../../Icons/Icons";
+} from "../../../../Utils/Icons/Icons";
 import "./CategorySection.css";
 import {
   clearFilter,

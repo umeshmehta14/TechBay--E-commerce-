@@ -3,7 +3,7 @@ import "./Pagination.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 import { setCurrentPage } from "../../../../Utils/Constants";
 import {   MdKeyboardDoubleArrowRight,
-  MdKeyboardDoubleArrowLeft,} from "../../../../Icons/Icons";
+  MdKeyboardDoubleArrowLeft,} from "../../../../Utils/Icons/Icons";
 
 const Pagination = ({ totalProducts, productsPerPage }) => {
   const {

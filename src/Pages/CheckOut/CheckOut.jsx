@@ -8,7 +8,7 @@ import {
   setSelectedAddress,
   setShowAddressModal,
 } from "../../Utils/Constants";
-import { FaPlus, BiEdit } from "../../Icons/Icons";
+import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { popper } from "../../Utils/Popper";

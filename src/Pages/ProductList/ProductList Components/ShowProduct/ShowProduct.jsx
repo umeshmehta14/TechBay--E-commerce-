@@ -4,7 +4,7 @@ import {
   AiOutlineHeart,
   AiFillHeart,
   ImCart,
-} from "../../../../Icons/Icons";
+} from "../../../../Utils/Icons/Icons";
 import "./ShowProduct.css";
 import { useNavigate } from "react-router-dom";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";

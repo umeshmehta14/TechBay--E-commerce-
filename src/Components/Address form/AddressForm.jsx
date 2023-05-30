@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AddressForm.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { faker } from "@faker-js/faker";
-import { RxCross1 } from "../../Icons/Icons";
+import { RxCross1 } from "../../Utils/Icons/Icons";
 
 import { v4 as uuid } from "uuid";
 import {
