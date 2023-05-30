@@ -3,7 +3,7 @@ import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Utils/Icons/Ico
 import "./Footer.css";
 import { useLocation } from "react-router-dom";
 
-const Footer = () => {
+export const Footer = () => {
   const location = useLocation();
   if(location.pathname === "/404"){
     return null;
@@ -45,4 +45,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;

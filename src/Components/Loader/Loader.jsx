@@ -2,7 +2,7 @@ import React from "react";
 import { TailSpin } from  'react-loader-spinner'
 import "./Loader.css";
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className="loader-box">
       <TailSpin
@@ -19,4 +19,3 @@ const Loader = () => {
   );
 };
 
-export default Loader;

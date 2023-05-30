@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./LogOut.css";
-const LogOut = () => {
+export const LogOut = () => {
   const { logoutHandler, currentUser } = useAuth();
   const navigate = useNavigate();
 
@@ -27,5 +27,3 @@ const LogOut = () => {
       </div>
   );
 };
-
-export default LogOut;

@@ -10,7 +10,7 @@ import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";
 import CartPrice from "./Cart Components/Cart Price/CartPrice";
 
-const Cart = () => {
+export const Cart = () => {
   const {
     state: { products }
   } = useData();
@@ -78,5 +78,3 @@ const Cart = () => {
     </>
   );
 };
-
-export default Cart;

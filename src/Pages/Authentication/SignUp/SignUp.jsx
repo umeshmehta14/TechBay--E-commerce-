@@ -7,7 +7,7 @@ import { useData } from "../../../Contexts/DataContext/DataContext";
 import { setShowSignUpPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
 
-const SignUp = () => {
+export const SignUp = () => {
   const { signUpHandler, token } = useAuth();
   const {
     state: { showSignUpPassword },
@@ -153,4 +153,3 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;

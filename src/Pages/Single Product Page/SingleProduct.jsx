@@ -12,7 +12,7 @@ import { useWishList } from "../../Contexts/WishListContext/WishListContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 
-const SingleProduct = () => {
+export const SingleProduct = () => {
   const {
     state: { products },
   } = useData();
@@ -130,5 +130,3 @@ const SingleProduct = () => {
     </div>
   );
 };
-
-export default SingleProduct;

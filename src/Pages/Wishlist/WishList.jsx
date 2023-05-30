@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./WishList.css";
 import WishlistCard from "./wishlist component/WishlistCard";
 
-const WishList = () => {
+export const WishList = () => {
   const {
     state: { products },
   } = useData();
@@ -37,4 +37,3 @@ const WishList = () => {
     </div>
   );
 };
-export default WishList;

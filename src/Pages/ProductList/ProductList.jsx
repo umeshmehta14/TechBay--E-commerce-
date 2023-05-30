@@ -9,7 +9,7 @@ import { filterAllProducts } from "../../Utils/Utils";
 import { setCurrentPage } from "../../Utils/Constants";
 import { AiOutlineArrowDown } from "../../Utils/Icons/Icons";
 
-const ProductList = () => {
+export const ProductList = () => {
   const { state, dispatch } = useData();
   const { currentPage, searchValue } = state;
   const filteredProducts = filterAllProducts(state);
@@ -111,5 +111,3 @@ const ProductList = () => {
     </>
   );
 };
-
-export default ProductList;

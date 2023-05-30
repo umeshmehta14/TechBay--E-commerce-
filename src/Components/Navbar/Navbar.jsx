@@ -19,9 +19,9 @@ import {
   setShowBurger,
   setScreenWidth,
 } from "../../Utils/Constants";
-import SearchBox from "./Search-Box/SearchBox";
+import {SearchBox} from "./Search-Box/SearchBox";
 
-const Navbar = () => {
+export const Navbar = () => {
   const { token } = useAuth();
   const {
     state: { wishlist, cart, showBurger, showSearch, screenWidth },
@@ -153,4 +153,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;

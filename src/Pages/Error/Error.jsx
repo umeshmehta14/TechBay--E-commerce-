@@ -2,7 +2,7 @@ import React from 'react'
 import "./Error.css";
 import { useNavigate } from 'react-router-dom';
 
-const Error = () => {
+export const Error = () => {
   document.title = "Error/404";
   const navigate = useNavigate();
   return (
@@ -13,4 +13,3 @@ const Error = () => {
   )
 }
 
-export default Error

@@ -11,7 +11,7 @@ import {
 } from "../../../Utils/Constants";
 import { useNavigate } from "react-router-dom";
 
-const SearchBox = () => {
+export const SearchBox = () => {
   const {
     state: { showSearch, searchValue, searchedProducts, showSearchedProducts },
     dispatch,
@@ -128,5 +128,3 @@ const SearchBox = () => {
     </>
   );
 };
-
-export default SearchBox;

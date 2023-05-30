@@ -7,7 +7,7 @@ import CategorySection from "./Home Components/Category Section/CategorySection"
 import DeliveryInfo from "./Home Components/DeliveryInfo Section/DeliveryInfo";
 import CompanyInfo from "./Home Components/CompanyInfo Section/CompanyInfo";
 
-const Home = () => {
+export const Home = () => {
   const {
     state: { products, category },
   } = useData();
@@ -26,4 +26,3 @@ const Home = () => {
   );
 };
 
-export default Home;

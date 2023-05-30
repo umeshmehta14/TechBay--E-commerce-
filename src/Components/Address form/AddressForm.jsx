@@ -12,7 +12,7 @@ import {
   updateAddressList,
 } from "../../Utils/Constants";
 
-const AddressForm = () => {
+export const AddressForm = () => {
   const {
     dispatch,
     state: { editId, addressList },
@@ -269,4 +269,3 @@ const AddressForm = () => {
   );
 };
 
-export default AddressForm;

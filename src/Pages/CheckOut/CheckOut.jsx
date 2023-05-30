@@ -12,10 +12,10 @@ import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";
 import { popper } from "../../Utils/Popper";
-import AddressForm from "../../Components/Address form/AddressForm";
+import {AddressForm} from "../../Components";
 import { toast } from "react-toastify";
 
-const CheckOut = () => {
+export const CheckOut = () => {
   const {
     state: { addressList, cart, showAddressModal, selectedAddress },
     dispatch,
@@ -232,4 +232,3 @@ const CheckOut = () => {
   );
 };
 
-export default CheckOut;

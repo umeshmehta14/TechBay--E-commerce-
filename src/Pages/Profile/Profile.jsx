@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "./Profile.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import AddressForm from "../../Components/Address form/AddressForm";
+import {AddressForm} from "../../Components";
 
-const Profile = () => {
+export const Profile = () => {
   const {
     state: { showAddressModal },
   } = useData();
@@ -41,5 +41,3 @@ const Profile = () => {
     </>
   );
 };
-
-export default Profile;

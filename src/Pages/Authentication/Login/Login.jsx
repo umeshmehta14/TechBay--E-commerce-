@@ -7,7 +7,7 @@ import { useData } from "../../../Contexts/DataContext/DataContext";
 import { setShowPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
 
-const Login = () => {
+export const Login = () => {
   const { loginHandler, token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -103,5 +103,3 @@ useEffect(() => {
     </div>
   );
 };
-
-export default Login;

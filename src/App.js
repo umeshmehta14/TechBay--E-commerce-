@@ -1,25 +1,24 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useData } from "./Contexts/DataContext/DataContext";
-import Error from "./Pages/Error/Error";
-import Home from "./Pages/Home/Home";
-import ProductList from "./Pages/ProductList/ProductList";
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
-import SingleProduct from "./Pages/Single Product Page/SingleProduct";
-import Login from "./Pages/Authentication/Login/Login";
-import SignUp from "./Pages/Authentication/SignUp/SignUp";
-import LogOut from "./Pages/Authentication/LogOut/LogOut";
-import RequiredAuth from "./Components/RequiredAuth/RequiredAuth";
-import WishList from "./Pages/Wishlist/WishList";
-import Cart from "./Pages/Cart/Cart";
-import CheckOut from "./Pages/CheckOut/CheckOut";
-import Profile from "./Pages/Profile/Profile";
-import Addresses from "./Pages/Profile/Addresses/Addresses";
-import OrderDetails from "./Pages/Profile/OrderDetail/OrderDetails";
+import { Navbar, Loader, Footer, RequiredAuth } from "./Components";
+import {
+  Home,
+  ProductList,
+  SignUp,
+  Login,
+  LogOut,
+  Cart,
+  CheckOut,
+  Error,
+  Profile,
+  OrderDetails,
+  Addresses,
+  SingleProduct,
+  WishList
+} from "./Pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loader from "./Components/Loader/Loader";
 
 function App() {
   const { loading } = useData();

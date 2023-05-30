@@ -3,7 +3,7 @@ import "./OrderDetails.css";
 import { useData } from "../../../Contexts/DataContext/DataContext";
 import { useNavigate } from "react-router-dom";
 
-const OrderDetails = () => {
+export const OrderDetails = () => {
   const {
     state: { orderDetails },
   } = useData();
@@ -79,4 +79,3 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;

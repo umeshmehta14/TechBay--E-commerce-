@@ -8,7 +8,7 @@ import {
   setShowAddressModal,
 } from "../../../Utils/Constants";
 
-const Addresses = () => {
+export const Addresses = () => {
   const {
     state: { addressList },
     dispatch,
@@ -76,5 +76,3 @@ const Addresses = () => {
     </>
   );
 };
-
-export default Addresses;
