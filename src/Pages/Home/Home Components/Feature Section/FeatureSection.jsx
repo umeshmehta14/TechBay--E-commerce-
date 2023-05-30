@@ -13,8 +13,8 @@ const FeatureSection = ({ products }) => {
         </div>
         <div className="feature-container">
           {products
-            .filter(({ feature }) => feature)
-            .map((product) => {
+            ?.filter(({ feature }) => feature)
+            ?.map((product) => {
               const { _id, title, price, category, image } = product;
               return (
                 <div key={_id} className="feature-item" onClick={()=>navigate(`/singleProduct/${_id}`)}>

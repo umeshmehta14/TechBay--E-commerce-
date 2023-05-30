@@ -39,7 +39,7 @@ export const DataReducer = (state, action) => {
     case wishlist:
       return {
         ...state,
-        wishlist: [...action.payload].map((item) => ({
+        wishlist: [...action.payload]?.map((item) => ({
           ...item,
           inWishlist: true,
         })),
@@ -53,7 +53,7 @@ export const DataReducer = (state, action) => {
 
       return {
         ...state,
-        products: state.products.map((product) => ({
+        products: state.products?.map((product) => ({
           ...product,
           inWishlist: !!wishlistLookup[product._id],
         })),
@@ -62,7 +62,7 @@ export const DataReducer = (state, action) => {
     case cart:
       return {
         ...state,
-        cart: [...action.payload].map((item) => ({
+        cart: [...action.payload]?.map((item) => ({
           ...item,
           inCart: true,
         })),
@@ -76,7 +76,7 @@ export const DataReducer = (state, action) => {
 
       return {
         ...state,
-        products: state.products.map((product) => ({
+        products: state.products?.map((product) => ({
           ...product,
           inCart: !!cartLookup[product._id],
           qty: (cartLookup[product._id] && cartLookup[product._id].qty) || 1,
@@ -224,7 +224,7 @@ export const DataReducer = (state, action) => {
     case updateAddressList:
       return {
         ...state,
-        addressList: state.addressList.map((address) =>
+        addressList: state.addressList?.map((address) =>
           address.id === action.payload.id ? { ...action.payload } : address
         ),
       };

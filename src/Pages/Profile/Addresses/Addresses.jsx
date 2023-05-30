@@ -25,7 +25,7 @@ const Addresses = () => {
       </div>
       <div className="profile-address-container">
         {<h2>{addressList.length === 0 && "No Address To Display"}</h2>}
-        {addressList.map(
+        {addressList?.map(
           ({
             id,
             name,

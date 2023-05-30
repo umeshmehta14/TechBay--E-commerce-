@@ -36,7 +36,7 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
   return (
     <div className="pagination-btn-container">
       <div className="pagination-btn-box">
-        {pages.map((page, index) => (
+        {pages?.map((page, index) => (
           <button
             className={`page-btn ${currentPage === page ? "page-active" : ""}`}
             onClick={() => {

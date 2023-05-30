@@ -68,7 +68,7 @@ const SearchBox = () => {
                 ) : (
                   ""
                 )}
-                {searchedProducts.map(
+                {searchedProducts?.map(
                   ({ _id, image, title, price, inStock }) => (
                     <>
                       <div
@@ -93,7 +93,7 @@ const SearchBox = () => {
                             <h2 className="pfc">
                               {title
                                 .split(new RegExp(`(${searchValue})`, "gi"))
-                                .map((substring, index) =>
+                                ?.map((substring, index) =>
                                   substring.toLowerCase() ===
                                   searchValue.toLowerCase() ? (
                                     <em

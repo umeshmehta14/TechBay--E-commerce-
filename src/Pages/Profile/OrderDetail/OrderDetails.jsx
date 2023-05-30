@@ -22,7 +22,7 @@ const OrderDetails = () => {
           </button>
         </div>
       )}
-      {orderDetails.map(
+      {orderDetails?.map(
         ({ id, orderList, amount, address: deliveyAddress, date }) => {
           const { address, city, mobile, pincode, state } = deliveyAddress;
           return (

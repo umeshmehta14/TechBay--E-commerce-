@@ -82,7 +82,7 @@ const ProductList = () => {
                   : "No Products available in this category"}
               </h1>
             ) : null}
-            {displayedProducts.map((item) => (
+            {displayedProducts?.map((item) => (
               <ShowProduct key={item.id} item={item} />
             ))}
           </div>

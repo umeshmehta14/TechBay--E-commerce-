@@ -30,7 +30,7 @@ const WishList = () => {
         <h1 className="empty-wishlist">WishList</h1>
       )}
       <div className="product-container product-container-wishlist">
-        {wishlistData.map((item) => (
+        {wishlistData?.map((item) => (
           <WishlistCard key={item._id} item={item} />
         ))}
       </div>

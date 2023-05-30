@@ -219,7 +219,7 @@ const AddressForm = () => {
             <option disabled value="">
               --Select State--
             </option>
-            {statesData.map((state) => (
+            {statesData?.map((state) => (
               <option key={state} value={state}>
                 {state}
               </option>

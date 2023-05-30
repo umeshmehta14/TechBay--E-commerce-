@@ -18,7 +18,7 @@ const Filters = () => {
     dispatch,
     state: { filters, category, products, showFilter },
   } = useData();
-  const brands = [...new Set(products.map(({ brand }) => brand))];
+  const brands = [...new Set(products?.map(({ brand }) => brand))];
   const ratings = [1, 2, 3, 4, 5];
   const prices = [500, 1000, 2000, 3000, 4000];
   return (
@@ -58,14 +58,14 @@ const Filters = () => {
             }
           />
           <datalist id="rating-inp">
-            {ratings.map((item, index) => (
+            {ratings?.map((item, index) => (
               <option key={index} value={item} label={`<${item}`}></option>
             ))}
           </datalist>
         </div>
         <div className="category-filter">
           <h3>Category</h3>
-          {category.map(({ id, categoryName }) => {
+          {category?.map(({ id, categoryName }) => {
             return (
               <label key={id} htmlFor={id}>
                 <input
@@ -84,7 +84,7 @@ const Filters = () => {
         </div>
         <div className="price-filter">
           <h3>Price</h3>
-          {prices.map((item, index) => (
+          {prices?.map((item, index) => (
             <label key={index} htmlFor={item + "rs"}>
               <input
                 type="radio"
@@ -125,7 +125,7 @@ const Filters = () => {
         </div>
         <div className="brand-filter">
           <h3>Brands</h3>
-          {brands.map((name, index) => (
+          {brands?.map((name, index) => (
             <label key={index} htmlFor={name}>
               <input
                 type="checkbox"

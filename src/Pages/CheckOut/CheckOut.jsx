@@ -109,7 +109,7 @@ const CheckOut = () => {
             <div className="address-container">
               {addressList.length === 0
                 ? ""
-                : addressList.map(
+                : addressList?.map(
                     ({
                       id,
                       name,
@@ -180,7 +180,7 @@ const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart.map(({ _id, title, qty }) => (
+                  {cart?.map(({ _id, title, qty }) => (
                     <p key={_id}>
                       <span>{title}</span>
                       <span>{qty}</span>

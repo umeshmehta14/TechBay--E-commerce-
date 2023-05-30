@@ -62,7 +62,7 @@ const Cart = () => {
           cartData.length > 0 ? (
             <div className="cart-container">
               <div className="cart-details">
-                {cartData.map((item) => <CartDetailCard key={item._id} item={item}/>)}
+                {cartData?.map((item) => <CartDetailCard key={item._id} item={item}/>)}
               </div>
               {cartData.length > 0 ? (
                 <CartPrice/>
