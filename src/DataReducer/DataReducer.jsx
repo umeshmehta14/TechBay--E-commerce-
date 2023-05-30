@@ -188,29 +188,37 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: { ...state.filters, arrangeType: action.payload },
       };
+
     case setCurrentPage:
       return { ...state, currentPage: action.payload };
+
     case setScreenWidth:
       return { ...state, screenWidth: window.innerWidth };
 
     case setShowPassword:
       return { ...state, showPassword: !state.showPassword };
+
     case setShowSignUpPassword:
       return { ...state, showSignUpPassword: !state.showSignUpPassword };
+
     case setShowFilter:
       return { ...state, showFilter: !state.showFilter };
 
     case setShowSearchedProducts:
       return { ...state, showSearchedProducts: action.payload };
+
     case setAddressList:
       return {
         ...state,
         addressList: [...state.addressList, { ...action.payload }],
       };
+
     case setShowAddressModal:
       return { ...state, showAddressModal: !state.showAddressModal };
+
     case setSelectedAddress:
       return { ...state, selectedAddress: action.payload };
+
     case setDeleteAddress:
       return {
         ...state,
@@ -218,6 +226,7 @@ export const DataReducer = (state, action) => {
           ({ id }) => id !== action.payload
         ),
       };
+
     case setEditId:
       return { ...state, editId: action.payload };
 
@@ -228,11 +237,13 @@ export const DataReducer = (state, action) => {
           address.id === action.payload.id ? { ...action.payload } : address
         ),
       };
+
     case setOrderDetails:
       return {
         ...state,
         orderDetails: [...state.orderDetails, { ...action.payload }],
       };
+
     default:
       return;
   }
