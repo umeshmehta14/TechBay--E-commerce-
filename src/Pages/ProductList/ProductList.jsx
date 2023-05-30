@@ -6,7 +6,7 @@ import Filters from "./ProductList Components/Product Filter/Filters";
 import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
 import { filterAllProducts } from "../../Utils/Utils";
-import { setCurrentPage } from "../../DataReducer/Constants";
+import { setCurrentPage } from "../../Utils/Constants";
 import { AiOutlineArrowDown } from "../../Icons/Icons";
 
 const ProductList = () => {

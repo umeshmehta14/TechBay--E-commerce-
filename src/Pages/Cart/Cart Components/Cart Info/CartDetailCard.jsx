@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../../Contexts/CartContext/CartContext";
 import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
 import "./CartDetailCard.css";
-import { decrement, increment } from "../../../../DataReducer/Constants";
+import { decrement, increment } from "../../../../Utils/Constants";
 
 const CartDetailCard = ({ item }) => {
   const { handleCart, cartDisable, handleCartQuantity } = useCart();

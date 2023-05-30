@@ -8,7 +8,7 @@ import React, {
 import { DataReducer } from "../../DataReducer/DataReducer";
 import { initialState } from "../../DataReducer/InitialState";
 import { getAllCategory, getAllProduct } from "./DataApi";
-import { category, products } from "../../DataReducer/Constants";
+import { category, products } from "../../Utils/Constants";
 
 export const DataContext = createContext();
 

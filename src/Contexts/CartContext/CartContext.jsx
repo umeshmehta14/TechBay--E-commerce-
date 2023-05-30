@@ -8,7 +8,7 @@ import {
   postCartList,
   updateCartQuantity,
 } from "./CartApi";
-import { cart, updateProductCart } from "../../DataReducer/Constants";
+import { cart, updateProductCart } from "../../Utils/Constants";
 import { toast } from "react-toastify";
 
 export const CartContext = createContext();

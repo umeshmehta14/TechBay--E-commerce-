@@ -10,7 +10,7 @@ import { useCart } from "../../../Contexts/CartContext/CartContext";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import "./WishlistCard.css";
 import { useNavigate } from "react-router-dom";
-import { increment } from "../../../DataReducer/Constants";
+import { increment } from "../../../Utils/Constants";
 
 const WishlistCard = ({ item }) => {
   const { handleWishList, wishDisable } = useWishList();

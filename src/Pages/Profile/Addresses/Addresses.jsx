@@ -6,7 +6,7 @@ import {
   setDeleteAddress,
   setEditId,
   setShowAddressModal,
-} from "../../../DataReducer/Constants";
+} from "../../../Utils/Constants";
 
 const Addresses = () => {
   const {

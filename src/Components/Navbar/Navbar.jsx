@@ -18,7 +18,7 @@ import {
   setShowSearch,
   setShowBurger,
   setScreenWidth,
-} from "../../DataReducer/Constants";
+} from "../../Utils/Constants";
 import SearchBox from "./Search-Box/SearchBox";
 
 const Navbar = () => {

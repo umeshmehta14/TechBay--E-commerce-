@@ -29,7 +29,7 @@ import {
   updateProductCart,
   updateProductWishlist,
   wishlist,
-} from "./Constants";
+} from "../Utils/Constants";
 
 export const DataReducer = (state, action) => {
   switch (action.type) {

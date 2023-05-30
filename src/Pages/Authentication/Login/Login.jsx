@@ -4,7 +4,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Icons/Icons";
 import "../Authentications.css";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { setShowPassword } from "../../../DataReducer/Constants";
+import { setShowPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
 
 const Login = () => {

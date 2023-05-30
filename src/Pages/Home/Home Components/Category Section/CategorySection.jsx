@@ -8,7 +8,7 @@ import {
   clearFilter,
   setCategoryFilter,
   setSearchValue,
-} from "../../../../DataReducer/Constants";
+} from "../../../../Utils/Constants";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
 

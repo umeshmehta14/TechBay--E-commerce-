@@ -10,7 +10,7 @@ import {
   setAddressList,
   setEditId,
   updateAddressList,
-} from "../../DataReducer/Constants";
+} from "../../Utils/Constants";
 
 const AddressForm = () => {
   const {

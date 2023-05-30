@@ -7,7 +7,7 @@ import {
   setOrderDetails,
   setSelectedAddress,
   setShowAddressModal,
-} from "../../DataReducer/Constants";
+} from "../../Utils/Constants";
 import { FaPlus, BiEdit } from "../../Icons/Icons";
 import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import { useCart } from "../../Contexts/CartContext/CartContext";

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Pagination.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
-import { setCurrentPage } from "../../../../DataReducer/Constants";
+import { setCurrentPage } from "../../../../Utils/Constants";
 import {   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,} from "../../../../Icons/Icons";
 

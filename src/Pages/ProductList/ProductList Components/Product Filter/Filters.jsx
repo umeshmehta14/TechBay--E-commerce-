@@ -11,7 +11,7 @@ import {
   setShowFilter,
   setTrending,
   sortByRating,
-} from "../../../../DataReducer/Constants";
+} from "../../../../Utils/Constants";
 
 const Filters = () => {
   const {

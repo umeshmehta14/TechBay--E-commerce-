@@ -5,7 +5,7 @@ import { useData } from "../../../../Contexts/DataContext/DataContext";
 import {
   setArrangeType,
   setShowFilter,
-} from "../../../../DataReducer/Constants";
+} from "../../../../Utils/Constants";
 
 const SortByPrice = ({ displayedProducts }) => {
   const {

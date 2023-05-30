@@ -4,7 +4,7 @@ import "../Authentications.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { setShowSignUpPassword } from "../../../DataReducer/Constants";
+import { setShowSignUpPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
 
 const SignUp = () => {

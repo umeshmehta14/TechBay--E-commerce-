@@ -8,7 +8,7 @@ import {
   setShowBurger,
   setShowSearch,
   setShowSearchedProducts,
-} from "../../../DataReducer/Constants";
+} from "../../../Utils/Constants";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
