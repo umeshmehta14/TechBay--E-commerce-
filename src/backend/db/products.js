@@ -17,7 +17,7 @@
     inStock: true,
     brand: "OnePlus",
     category: "Smartphone",
-    image: "https://tse1.mm.bing.net/th?id=OIP.5_2uU83seT7lKchCoom0zgHaEK&pid=Api&P=0",
+    image: "https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/w/s/t/-original-imagfx6hzsqu438h.jpeg?q=70",
     qty: 1,
     trending: true,
     feature:"best"
@@ -293,7 +293,7 @@
     inStock: true,
     brand: "OnePlus",
     category: "Smartphone",
-    image: "https://tse1.mm.bing.net/th?id=OIP.5_2uU83seT7lKchCoom0zgHaEK&pid=Api&P=0",
+    image: "https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/w/s/t/-original-imagfx6hzsqu438h.jpeg?q=70",
     qty: 1,
     trending: true
   },
