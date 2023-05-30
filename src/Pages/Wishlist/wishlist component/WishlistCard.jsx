@@ -1,16 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import "./WishlistCard.css";
+import { useWishList } from "../../../Contexts/WishListContext/WishListContext";
+import { useCart } from "../../../Contexts/CartContext/CartContext";
+import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
+import { increment } from "../../../Utils/Constants";
 import {
   AiFillStar,
   AiOutlineHeart,
   AiFillHeart,
   ImCart,
 } from "../../../Utils/Icons/Icons";
-import { useWishList } from "../../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
-import "./WishlistCard.css";
-import { useNavigate } from "react-router-dom";
-import { increment } from "../../../Utils/Constants";
 
 const WishlistCard = ({ item }) => {
   const { handleWishList, wishDisable } = useWishList();
@@ -53,7 +54,7 @@ const WishlistCard = ({ item }) => {
           {trending && "Trending"}
         </span>
       </div>
-      <div className="disp-info-pc disp-info-pc-wishlist">
+      <section className="disp-info-pc disp-info-pc-wishlist">
         <div
           className="product-card-info product-card-info-wishlist"
           onClick={() => navigate(`/singleProduct/${_id}`)}
@@ -99,7 +100,7 @@ const WishlistCard = ({ item }) => {
             Buy Now
           </button>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

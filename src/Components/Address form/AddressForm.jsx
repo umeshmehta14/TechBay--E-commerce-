@@ -248,7 +248,7 @@ export const AddressForm = () => {
           <button
             className="btn bg-white"
             type="button"
-            onClick={() => formResetHandler()}
+            onClick={formResetHandler}
           >
             Reset
           </button>

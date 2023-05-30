@@ -53,7 +53,7 @@ export const SignUp = () => {
     }
   }, [token, location?.pathname?.from?.state]);
   return (
-    <div className="container main-login  top-6">
+    <main className="container main-login  top-6">
       <div className="auth-box main-signup">
         <h1>Sign Up</h1>
         <form
@@ -149,7 +149,7 @@ export const SignUp = () => {
           </p>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

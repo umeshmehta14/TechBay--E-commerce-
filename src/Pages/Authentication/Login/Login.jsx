@@ -37,7 +37,7 @@ useEffect(() => {
   }
 }, [token, navigate, location?.state?.from.pathname]);
   return (
-    <div className="container main-login top-6">
+    <main className="container main-login top-6">
       <div className="auth-box">
         <h1>Sign In</h1>
         <form action="" className="auth-form d-flex" onSubmit={formHandler}>
@@ -100,6 +100,6 @@ useEffect(() => {
           </p>
         </form>
       </div>
-    </div>
+    </main>
   );
 };

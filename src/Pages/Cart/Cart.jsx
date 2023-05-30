@@ -1,21 +1,22 @@
 import React from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import "./Cart.css";
+import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";
+import CartPrice from "./Cart Components/Cart Price/CartPrice";
 import {
   BsCartX,
   ImCart,
 } from "../../Utils/Icons/Icons";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
-import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";
-import CartPrice from "./Cart Components/Cart Price/CartPrice";
 
 export const Cart = () => {
+  document.title = "Cart";
   const {
     state: { products }
   } = useData();
   const { token } = useAuth();
-  document.title = "Cart";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,9 +24,9 @@ export const Cart = () => {
 
   return (
     <>
-      <div className="container cart-top-6">
+      <main className="container cart-top-6">
         {!token ? (
-          <div className="unlog-cart">
+          <section className="unlog-cart">
             <img
               src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
               alt="Missing Cart"
@@ -42,10 +43,10 @@ export const Cart = () => {
                 Login
               </button>
             </div>
-          </div>
+          </section>
         ) : cartData.length > 0 ? (
           <h1 className="cart-heading">
-            Cart{" "}
+            Cart 
             <span className="icon">
               <ImCart />
             </span>
@@ -60,7 +61,7 @@ export const Cart = () => {
         )}
         {token && (
           cartData.length > 0 ? (
-            <div className="cart-container">
+            <section className="cart-container">
               <div className="cart-details">
                 {cartData?.map((item) => <CartDetailCard key={item._id} item={item}/>)}
               </div>
@@ -69,12 +70,12 @@ export const Cart = () => {
               ) : (
                 null
               )}
-            </div>
+            </section>
           ) : (
             null
           )
         )}
-      </div>
+      </main>
     </>
   );
 };

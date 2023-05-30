@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
+
+import { useWishList } from "../../Contexts/WishListContext/WishListContext";
+import { useCart } from "../../Contexts/CartContext/CartContext";
+import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import "./SingleProduct.css";
 import {
   AiFillStar,
   AiOutlineHeart,
   AiFillHeart,
   ImCart,
 } from "../../Utils/Icons/Icons";
-import "./SingleProduct.css";
-import { useWishList } from "../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 
 export const SingleProduct = () => {
   const {
@@ -18,8 +19,9 @@ export const SingleProduct = () => {
   } = useData();
   const { wishDisable, handleWishList } = useWishList();
   const { cartDisable, handleCartButton } = useCart();
-  const { productId } = useParams();
   const { token } = useAuth();
+
+  const { productId } = useParams();
   const selectedProduct = products.find(({ _id }) => _id === productId);
 
   const {
@@ -75,20 +77,16 @@ export const SingleProduct = () => {
               <AiFillStar />
             </span>
             <h3 className="s-description">
-              {" "}
               <em className="pfc"> Description </em> : {description}
             </h3>
             <h4 className="s-description">
-              {" "}
               <em className="pfc"> Brand </em>: {brand}
             </h4>
             <h4 className="s-description">
-              {" "}
               <em className="pfc"> Category </em>: {category}
             </h4>
             {inStock && (
               <p>
-                {" "}
                 <strong>Availability </strong> : In Stock
               </p>
             )}

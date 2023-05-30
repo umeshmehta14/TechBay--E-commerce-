@@ -67,7 +67,7 @@ const ShowProduct = ({ item }) => {
           className="product-card-img"
           onClick={() => (inStock ? navigate(`/singleProduct/${_id}`) : null)}
         >
-          <img src={image} alt="Stay Tuned" />
+          <img src={image} alt={title} />
           {inStock ? (
             <span className={trending ? "trending" : ""}>
               {trending && "Trending"}

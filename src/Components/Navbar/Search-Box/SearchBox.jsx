@@ -57,7 +57,7 @@ export const SearchBox = () => {
           )}
           {searchValue && showSearch ? (
             <>
-              {" "}
+               
               <div
                 className={`searchedOutput-container ${
                   showSearchedProducts ? "disp-none" : ""

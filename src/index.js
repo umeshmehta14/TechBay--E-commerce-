@@ -16,11 +16,11 @@ import {
 } from "./Contexts/AuthContext/AuthContext.jsx";
 import { CartProvider, CartContext } from "./Contexts/CartContext/CartContext";
 
-// Call make Server
+
 makeServer();
 
 ReactDOM.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <Router>
       <AuthProvider>
         <DataProvider>
@@ -32,7 +32,7 @@ ReactDOM.render(
         </DataProvider>
       </AuthProvider>
     </Router>
-  // </React.StrictMode>
+   </React.StrictMode>
   ,document.getElementById("root")
 );
 

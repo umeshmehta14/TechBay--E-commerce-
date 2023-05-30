@@ -1,7 +1,8 @@
 import React from "react";
-import "./CartPrice.css";
-import { useData } from "../../../../Contexts/DataContext/DataContext";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { useData } from "../../../../Contexts/DataContext/DataContext";
+import "./CartPrice.css";
 
 const CartPrice = () => {
   const {
@@ -25,18 +26,18 @@ const CartPrice = () => {
       </div>
       <div className="price-cost-section">
         <p>
-          <span>Price ({cart.length} items)</span>{" "}
+          <span>Price ({cart.length} items)</span> 
           <span>&#8377;{originalPrice}</span>
         </p>
         <p>
-          <span>Discount</span>{" "}
+          <span>Discount</span> 
           <span className="green">-&#8377;{discountedPrice}</span>
         </p>
         <p>
           <span>Delivery Charges</span> <span>&#8377;40</span>
         </p>
         <p>
-          <span>Secured Packaging Fee</span> <span>&#8377;29</span>{" "}
+          <span>Secured Packaging Fee</span> <span>&#8377;29</span> 
         </p>
       </div>
       <div className="total-cost-heading">

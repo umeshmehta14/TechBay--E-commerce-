@@ -1,7 +1,6 @@
 export {Login} from "./Authentication/Login/Login.jsx";
 export {LogOut} from "./Authentication/LogOut/LogOut.jsx";
 export {SignUp} from "./Authentication/SignUp/SignUp.jsx";
-export {Cart} from "./Cart/Cart.jsx";
 export {CheckOut} from "./CheckOut/CheckOut.jsx";
 export {Error} from "./Error/Error.jsx";
 export {Home} from "./Home/Home.jsx";
@@ -11,3 +10,4 @@ export {OrderDetails} from "./Profile/OrderDetail/OrderDetails.jsx";
 export {Addresses} from "./Profile/Addresses/Addresses.jsx";
 export {SingleProduct} from "./Single Product Page/SingleProduct.jsx";
 export {WishList} from "./Wishlist/WishList.jsx";
+export {Cart} from "./Cart/Cart.jsx";

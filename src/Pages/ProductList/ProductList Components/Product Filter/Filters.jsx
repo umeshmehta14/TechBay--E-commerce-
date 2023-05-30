@@ -58,8 +58,8 @@ const Filters = () => {
             }
           />
           <datalist id="rating-inp">
-            {ratings?.map((item, index) => (
-              <option key={index} value={item} label={`<${item}`}></option>
+            {ratings?.map((item) => (
+              <option key={item} value={item} label={`<${item}`}></option>
             ))}
           </datalist>
         </div>
@@ -84,8 +84,8 @@ const Filters = () => {
         </div>
         <div className="price-filter">
           <h3>Price</h3>
-          {prices?.map((item, index) => (
-            <label key={index} htmlFor={item + "rs"}>
+          {prices?.map((item) => (
+            <label key={item} htmlFor={item + "rs"}>
               <input
                 type="radio"
                 checked={filters.price === item}
@@ -99,12 +99,12 @@ const Filters = () => {
         </div>
         <div className="trending-filter">
           <h3>Trending</h3>
-          <label htmlFor="t-f">
+          <label htmlFor="trending-sort">
             <input
               type="checkbox"
               checked={filters.trending}
               name="trending-filter"
-              id="t-f"
+              id="trending-sort"
               onChange={() => dispatch({ type: setTrending })}
             />
             Only Trending
@@ -112,12 +112,12 @@ const Filters = () => {
         </div>
         <div className="stock-filter">
           <h3>In Stock</h3>
-          <label htmlFor="s-f">
+          <label htmlFor="stock-sort">
             <input
               type="checkbox"
               checked={filters.includeOutStock}
               name="stock-filter"
-              id="s-f"
+              id="stock-sort"
               onChange={() => dispatch({ type: setOutOfStock })}
             />
             Include Out of Stock
@@ -125,8 +125,8 @@ const Filters = () => {
         </div>
         <div className="brand-filter">
           <h3>Brands</h3>
-          {brands?.map((name, index) => (
-            <label key={index} htmlFor={name}>
+          {brands?.map((name) => (
+            <label key={name} htmlFor={name}>
               <input
                 type="checkbox"
                 name={name}

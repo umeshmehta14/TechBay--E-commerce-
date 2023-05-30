@@ -15,13 +15,13 @@ export const Home = () => {
 
   return (
     <>
-      <div className="container top-4 top-6">
+      <main className="container top-4 top-6">
         <HeroSection />
         <FeatureSection products={products} />
         <CategorySection category={category} />
         <DeliveryInfo />
         <CompanyInfo />
-      </div>
+      </main>
     </>
   );
 };

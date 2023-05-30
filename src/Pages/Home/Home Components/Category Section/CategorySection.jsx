@@ -17,20 +17,10 @@ const CategorySection = ({ category }) => {
   const { dispatch } = useData();
   const navigate = useNavigate();
 
-  const nextSlide = () => {
-    if (categoryIndex === category.length - 1) {
-      setCategoryIndex(0);
-    } else {
-      setCategoryIndex(categoryIndex + 1);
-    }
-  };
-  const previousSlide = () => {
-    if (categoryIndex === 0) {
-      setCategoryIndex(category.length - 1);
-    } else {
-      setCategoryIndex(categoryIndex - 1);
-    }
-  };
+  const nextSlide = () => categoryIndex === category.length - 1 ? setCategoryIndex(0) : setCategoryIndex(categoryIndex + 1);
+
+  const previousSlide = () => categoryIndex === 0 ? setCategoryIndex(category.length - 1) : setCategoryIndex(categoryIndex - 1);
+
   const curCategory = category[categoryIndex];
   useEffect(() => {
     setInterval(() => {
@@ -40,7 +30,7 @@ const CategorySection = ({ category }) => {
 
   return (
     <>
-      <div className="category-section">
+      <section className="category-section">
         <div className="category-heading">
           <h3>Select By</h3>
           <h1>Categories</h1>
@@ -63,14 +53,14 @@ const CategorySection = ({ category }) => {
             <img
               className="category-img"
               src={curCategory?.image}
-              alt="Categories"
+              alt={curCategory?.categoryName}
             />
             <h2>{curCategory?.categoryName}</h2>
           </div>
-          <p className="arrow-btn" onClick={() => previousSlide()}>
+          <p className="arrow-btn" onClick={previousSlide}>
             <AiOutlineArrowLeft />
           </p>
-          <p className="arrow-btn arrow-right" onClick={() => nextSlide()}>
+          <p className="arrow-btn arrow-right" onClick={nextSlide}>
             <AiOutlineArrowRight />
           </p>
         </div>
@@ -88,13 +78,13 @@ const CategorySection = ({ category }) => {
                   navigate("/products");
                 }}
               >
-                <img className="category-img" src={image} alt="Categories" />
+                <img className="category-img" src={image} alt={categoryName} />
                 <h2>{categoryName}</h2>
               </div>
             );
           })}
         </div>
-      </div>
+      </section>
     </>
   );
 };

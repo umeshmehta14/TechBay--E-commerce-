@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../../Contexts/DataContext/DataContext";
+
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";
@@ -25,19 +26,17 @@ export const ProductList = () => {
 
   const [scrollToBottom, setScrollToBottom] = useState(false);
 
-  const handleScrollToBottom = () => {
+  const handleScrollToBottom = () =>
     window.scrollTo({
       top: document.documentElement.scrollHeight - 1000,
       behavior: "smooth",
     });
-  };
 
-  const handleScrollToTop = () => {
+  const handleScrollToTop = () =>
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +93,7 @@ export const ProductList = () => {
             productsPerPage={productsPerPage}
           />
         ) : (
-          ""
+          null
         )}
       </div>
       {displayedProducts.length >= 6 && (

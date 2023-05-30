@@ -1,11 +1,5 @@
-/**
- * Product Database can be added here.
- * You can add products of your wish with different attributes
- * */
-
-
  export const products = [
-  //Best Feature
+
   {
     _id: "1e3fcd59-9572-483c-b30c-80836a3decba",
     title: "OnePlus Nord CE 5G",
@@ -748,11 +742,4 @@
 
 ];
 
-
-// smartphones: 5,
-// laptop: 11,
-// television: 9,
-// speaker: 8,
-// headphones: 10,
-// tablets: 1
 

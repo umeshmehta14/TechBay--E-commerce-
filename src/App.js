@@ -1,4 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 import "./App.css";
 import { useData } from "./Contexts/DataContext/DataContext";
 import { Navbar, Loader, Footer, RequiredAuth } from "./Components";
@@ -17,8 +20,6 @@ import {
   SingleProduct,
   WishList
 } from "./Pages";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { loading } = useData();
@@ -59,7 +60,7 @@ function App() {
         <Loader />
       ) : (
         <>
-          {" "}
+           
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductList />} />
@@ -67,7 +68,6 @@ function App() {
               path="/singleProduct/:productId"
               element={<SingleProduct />}
             />
-            <Route path="/error" element={<Error />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />

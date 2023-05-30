@@ -62,6 +62,10 @@
     -webkit-animation: popOut 0.8s ease-in-out;
 }
 
+.wishList-icon:hover{
+    color: red;
+}
+
 @keyframes popOut {
     0% {
       transform: scale(1);
