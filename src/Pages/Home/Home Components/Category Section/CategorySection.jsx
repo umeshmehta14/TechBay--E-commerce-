@@ -17,9 +17,15 @@ const CategorySection = ({ category }) => {
   const { dispatch } = useData();
   const navigate = useNavigate();
 
-  const nextSlide = () => categoryIndex === category.length - 1 ? setCategoryIndex(0) : setCategoryIndex(categoryIndex + 1);
+  const nextSlide = () =>
+    categoryIndex === category.length - 1
+      ? setCategoryIndex(0)
+      : setCategoryIndex(categoryIndex + 1);
 
-  const previousSlide = () => categoryIndex === 0 ? setCategoryIndex(category.length - 1) : setCategoryIndex(categoryIndex - 1);
+  const previousSlide = () =>
+    categoryIndex === 0
+      ? setCategoryIndex(category.length - 1)
+      : setCategoryIndex(categoryIndex - 1);
 
   const curCategory = category[categoryIndex];
   useEffect(() => {
@@ -49,6 +55,7 @@ const CategorySection = ({ category }) => {
               window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/products");
             }}
+            title={curCategory?.categoryName}
           >
             <img
               className="category-img"
@@ -77,6 +84,7 @@ const CategorySection = ({ category }) => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                   navigate("/products");
                 }}
+                title={categoryName}
               >
                 <img className="category-img" src={image} alt={categoryName} />
                 <h2>{categoryName}</h2>

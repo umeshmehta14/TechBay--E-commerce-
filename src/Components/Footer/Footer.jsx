@@ -22,9 +22,9 @@ export const Footer = () => {
           <p>
             Follow Us
           </p>
-         <a href="https://www.instagram.com/umesh_mehta_14/"><FiInstagram /></a> 
-         <a href="https://twitter.com/Umesh_mehta_14"><FiGithub /></a> 
-         <a href="https://www.linkedin.com/in/umesh-mehta-57b979250/"><AiOutlineLinkedin /></a>
+         <a href="https://www.instagram.com/umesh_mehta_14/" title="Instagram"><FiInstagram /></a> 
+         <a href="https://twitter.com/Umesh_mehta_14" title="Github"><FiGithub /></a> 
+         <a href="https://www.linkedin.com/in/umesh-mehta-57b979250/" title="LinkedIn"><AiOutlineLinkedin /></a>
         </div>
         <div className="contact-no">
           <div className="contact-phone">
