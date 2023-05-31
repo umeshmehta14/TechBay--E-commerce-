@@ -96,7 +96,7 @@ export const ProductList = () => {
           null
         )}
       </div>
-      {displayedProducts.length >= 6 && (
+      {displayedProducts.length > 6 && (
         <AiOutlineArrowDown
           title={scrollToBottom ? "Scroll To Top" : "Scroll To Bottom"}
           className={`arrow-btn sd-btn ${
