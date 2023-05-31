@@ -2,15 +2,12 @@ import React from "react";
 import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts/DataContext/DataContext";
-import {
-  setArrangeType,
-  setShowFilter,
-} from "../../../../Utils/Constants";
+import { setArrangeType, setShowFilter } from "../../../../Utils/Constants";
 
-const SortByPrice = ({ displayedProducts }) => {
+const SortByPrice = ({ displayedProducts, filteredProducts }) => {
   const {
     dispatch,
-    state: { filters, searchValue },
+    state: { filters, searchValue, products },
   } = useData();
   return (
     <>
@@ -23,13 +20,14 @@ const SortByPrice = ({ displayedProducts }) => {
             Filter <HiOutlineFilter />
           </button>
           <div className="sort-price">
-            <h3>
-              {searchValue
-                ? `Search Result for ${searchValue}`
-                : displayedProducts.length === 0
-                ? null
-                : "Showing All Products"}
-            </h3>
+            {searchValue ? (
+              <h3 className="result-heading">Search Result for ${searchValue}</h3>
+            ) : displayedProducts.length === 0 ? null : (
+              <div className="result-heading">
+                <h3>Showing All Products <small className="pfc">{`(${filteredProducts.length} of ${products.length})`}</small></h3>
+              </div>
+            )}
+
             <div className="sort-by-price-main-btn-box">
               <button
                 className={`sort-btn ${

@@ -7,23 +7,26 @@ export const LogOut = () => {
   const navigate = useNavigate();
 
   return (
-      <div className="logout-box">
-        <h2>Your Profile</h2>
-        <div className="logout-form d-flex">
-          <p><strong>
-            Name:
-            </strong> {currentUser?.firstName + " " + currentUser?.lastName}</p>
-          <p> <strong>Email:</strong> {currentUser?.email}</p>
-          <button
-            className="btn"
-            onClick={() => {
-              logoutHandler();
-              navigate("/login");
-            }}
-          >
-            Log Out
-          </button>
-        </div>
+    <div className="logout-box">
+      <h2>Your Profile</h2>
+      <div className="logout-form d-flex">
+        <p>
+          <strong>Name:</strong>
+          {currentUser?.firstName + " " + currentUser?.lastName}
+        </p>
+        <p>
+          <strong>Email:</strong> {currentUser?.email}
+        </p>
+        <button
+          className="btn"
+          onClick={() => {
+            logoutHandler();
+            navigate("/login");
+          }}
+        >
+          Log Out
+        </button>
       </div>
+    </div>
   );
 };

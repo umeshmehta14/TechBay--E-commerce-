@@ -70,7 +70,7 @@ export const ProductList = () => {
   return (
     <>
       <div className="container wpl-90 top-5">
-        <SortByPrice displayedProducts={displayedProducts} />
+        <SortByPrice displayedProducts={displayedProducts} filteredProducts={filteredProducts}/>
         <div className="main-product-page">
           <Filters />
           <div className="product-container">

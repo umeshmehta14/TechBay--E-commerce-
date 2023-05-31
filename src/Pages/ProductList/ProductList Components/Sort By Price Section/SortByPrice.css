@@ -30,7 +30,7 @@
     width: 71%;
 }
 
-.sort-price h3{
+.result-heading{
     position: absolute;
     top: 4.1rem;
     display: inline-block;
@@ -43,6 +43,10 @@
     background-color: aliceblue;
     padding: 1rem;
     padding-top: 0.5rem;
+}
+
+.result-heading small{
+    font-size: 0.5rem;
 }
 
 .sort-by-price-main-btn-box{
@@ -82,7 +86,7 @@
         align-items: center;
         width: 70%;
     }
-    .sort-price h3{
+    .result-heading{
         position: static;
         padding: 0;
         width: auto;
