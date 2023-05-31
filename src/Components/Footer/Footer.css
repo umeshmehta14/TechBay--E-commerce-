@@ -7,9 +7,6 @@ footer{
     justify-content: space-between;
     min-height: 200px;
     margin-top: 8rem;    
-    /* position: relative;
-    top: 4rem;
-    z-index: -1; */
     font-family: var(--third-font);
 }
 
