@@ -1,5 +1,5 @@
 import React from "react";
-import { FiInstagram, FiTwitter, AiOutlineLinkedin } from "../../Utils/Icons/Icons";
+import { FiInstagram, FiGithub, AiOutlineLinkedin } from "../../Utils/Icons/Icons";
 import "./Footer.css";
 import { useLocation } from "react-router-dom";
 
@@ -23,7 +23,7 @@ export const Footer = () => {
             Follow Us
           </p>
          <a href="https://www.instagram.com/umesh_mehta_14/"><FiInstagram /></a> 
-         <a href="https://twitter.com/Umesh_mehta_14"><FiTwitter /></a> 
+         <a href="https://twitter.com/Umesh_mehta_14"><FiGithub /></a> 
          <a href="https://www.linkedin.com/in/umesh-mehta-57b979250/"><AiOutlineLinkedin /></a>
         </div>
         <div className="contact-no">

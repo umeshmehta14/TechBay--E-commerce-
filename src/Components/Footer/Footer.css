@@ -6,10 +6,10 @@ footer{
     flex-direction: column;
     justify-content: space-between;
     min-height: 200px;
-    margin-top: 6rem;    
-    position: relative;
+    margin-top: 8rem;    
+    /* position: relative;
     top: 4rem;
-    z-index: -1;
+    z-index: -1; */
     font-family: var(--third-font);
 }
 
@@ -32,9 +32,9 @@ footer{
 
 .social-link a{
     color: white;
+    cursor: pointer;
 }
 .social-link svg{
-    
     font-size: 1.5rem;
 }
 

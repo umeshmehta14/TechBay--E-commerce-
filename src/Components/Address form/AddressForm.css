@@ -131,16 +131,17 @@
     flex-grow: 1;
 }
 
-
-.bg-white {
-    background-color: whitesmoke;
-    color: black;
-    outline: 1px solid gray;
+.f-address-detail-btn-box button:nth-child(2), .f-address-detail-btn-box button:nth-child(3){
+    background-color: whitesmoke ;
+    color: black ;
+    outline: 1px solid gray ;
+}
+.f-address-detail-btn-box button:nth-child(2):hover, .f-address-detail-btn-box button:nth-child(3):hover{
+    background-color: black ;
+    color: white ;
+    outline: 1px solid gray ;
 }
 
-.bg-white:hover {
-    color: whitesmoke;
-}
 
 
 @media (min-width: 768px) {

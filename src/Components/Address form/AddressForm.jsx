@@ -246,7 +246,7 @@ export const AddressForm = () => {
             {editId.length > 0 ? "Save" : "Add"}
           </button>
           <button
-            className="btn bg-white"
+            className="btn"
             type="button"
             onClick={formResetHandler}
           >
@@ -256,7 +256,7 @@ export const AddressForm = () => {
             null
           ) : (
             <button
-              className="btn bg-white"
+              className="btn"
               type="button"
               onClick={handleRandomAddress}
             >

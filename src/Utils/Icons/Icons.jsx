@@ -26,7 +26,7 @@ import { RxCross1 } from "react-icons/rx";
 import { TbTruckDelivery, TbSearchOff } from "react-icons/tb";
 import { IoShieldHalf, IoSearch } from "react-icons/io5";
 import { RiSecurePaymentLine, RiDeleteBin5Line } from "react-icons/ri";
-import { FiInstagram, FiTwitter } from "react-icons/fi";
+import { FiInstagram,  FiGithub } from "react-icons/fi";
 import { HiOutlineFilter } from "react-icons/hi";
 import {
   MdOutlineFilterAltOff,
@@ -60,7 +60,7 @@ export {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
   FiInstagram,
-  FiTwitter,
+  FiGithub,
   AiOutlineLinkedin,
   AiOutlineSearch,
   AiFillStar,
