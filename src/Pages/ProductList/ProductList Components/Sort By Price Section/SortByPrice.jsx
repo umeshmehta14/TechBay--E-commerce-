@@ -21,7 +21,7 @@ const SortByPrice = ({ displayedProducts, filteredProducts }) => {
           </button>
           <div className="sort-price">
             {searchValue ? (
-              <h3 className="result-heading">Search Result for ${searchValue}</h3>
+              <h3 className="result-heading">Search Result for {searchValue}</h3>
             ) : displayedProducts.length === 0 ? null : (
               <div className="result-heading">
                 <h3>Showing All Products <small className="pfc">{`(${filteredProducts.length} of ${products.length})`}</small></h3>
