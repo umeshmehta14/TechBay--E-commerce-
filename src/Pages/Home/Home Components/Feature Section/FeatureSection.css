@@ -64,7 +64,7 @@
     flex-direction: column;
     background-color: white;
     cursor: pointer;
-
+    max-height:220px
 }
 
 .feature-item:hover .feature-img-box::before {

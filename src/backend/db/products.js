@@ -1,21 +1,22 @@
  export const products = [
-
   {
-    _id: "1e3fcd59-9572-483c-b30c-80836a3decba",
-    title: "OnePlus Nord CE 5G",
-    description: "Fast and reliable 5G smartphone with stunning display",
-    price: 399,
-    original_price: 450,
-    discountPercentage: 12,
-    rating: 4.5,
+    _id: "c5e86cdf-f300-4346-9659-a9b65ba3545c",
+    title: "Samsung Galaxy S21",
+    description: "The Samsung Galaxy S21 is a powerful and stylish smartphone.",
+    price: 799,
+    original_price: 899,
+    discountPercentage: 10,
+    rating: 4.8,
     inStock: true,
-    brand: "OnePlus",
+    brand: "Samsung",
     category: "Smartphone",
-    image: "https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/w/s/t/-original-imagfx6hzsqu438h.jpeg?q=70",
+    image: "https://tse4.mm.bing.net/th?id=OIP.3iRYOSf6W5lk-EcweYMnAwHaHY&pid=Api&P=0",
     qty: 1,
     trending: true,
     feature:"best"
   },
+
+  
   {
     _id: "1168f3c5-db4a-46b9-8768-f2efb7e0e72b",
     title: "Asus ROG Zephyrus S17",
@@ -68,19 +69,19 @@
 
   // Product List
   {
-    _id: "c5e86cdf-f300-4346-9659-a9b65ba3545c",
-    title: "Samsung Galaxy S21",
-    description: "The Samsung Galaxy S21 is a powerful and stylish smartphone.",
-    price: 799,
-    original_price: 899,
-    discountPercentage: 10,
-    rating: 4.8,
+    _id: "1e3fcd59-9572-483c-b30c-80836a3decba",
+    title: "OnePlus Nord CE 5G",
+    description: "Fast and reliable 5G smartphone with stunning display",
+    price: 399,
+    original_price: 450,
+    discountPercentage: 12,
+    rating: 4.5,
     inStock: true,
-    brand: "Samsung",
+    brand: "OnePlus",
     category: "Smartphone",
-    image: "https://tse4.mm.bing.net/th?id=OIP.3iRYOSf6W5lk-EcweYMnAwHaHY&pid=Api&P=0",
+    image: "https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/w/s/t/-original-imagfx6hzsqu438h.jpeg?q=70",
     qty: 1,
-    trending: true
+    trending: true,
   },
   {
     _id: "d2052695-c53c-45c7-9a5c-5aa6b162d798",
