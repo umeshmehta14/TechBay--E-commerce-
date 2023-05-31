@@ -36,6 +36,7 @@
 <h2>Installation</h2>
 <ol>
 <li>Clone the repository: <code>$ git clone https://github.com/umeshmehta14/TechBay--E-commerce-.git</code></li>
+<li>Change directory <code>$ ch TechBay--E-commerce-</code></li>
 <li>Install dependencies: <code>$ npm install</code></li>
 <li>Start the development server: <code>$ npm start</code></li>
 </ol>
