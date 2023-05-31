@@ -35,7 +35,7 @@
 <hr/>
 <h2>Installation</h2>
 <ol>
-<li>Clone the repository: <code>$ git clone https://github.com/your-username/techbay.git</code></li>
+<li>Clone the repository: <code>$ git clone https://github.com/umeshmehta14/TechBay--E-commerce-.git</code></li>
 <li>Install dependencies: <code>$ npm install</code></li>
 <li>Start the development server: <code>$ npm start</code></li>
 </ol>
