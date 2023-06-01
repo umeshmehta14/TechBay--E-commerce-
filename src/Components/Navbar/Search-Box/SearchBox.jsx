@@ -112,7 +112,7 @@ export const SearchBox = () => {
                           ) : (
                             <h2 className="pfc">{title}</h2>
                           )}
-                          <h3>Price: ${price}</h3>
+                          <h3>Price: &#8377;{price}</h3>
                         </div>
                       </div>
                     </>
