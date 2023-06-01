@@ -1,12 +1,14 @@
 import React from "react";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Utils/Icons/Icons";
+import { toast } from "react-toastify";
+
 import "./Addresses.css";
 import {
   setDeleteAddress,
   setEditId,
   setShowAddressModal,
 } from "../../../Utils/Constants";
+import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Utils/Icons/Icons";
 
 export const Addresses = () => {
   const {
@@ -35,7 +37,7 @@ export const Addresses = () => {
             alternatemobile,
             pincode,
             state,
-            type
+            type,
           }) => (
             <div key={id} className="profile-address">
               <p>
@@ -54,14 +56,18 @@ export const Addresses = () => {
               </p>
               <p className="address-btns">
                 <RiDeleteBin5Line
-                className="address-dlt"
+                  className="address-dlt"
                   title="Delete"
-                  onClick={() =>
-                    dispatch({ type: setDeleteAddress, payload: id })
-                  }
+                  onClick={() => {
+                    dispatch({ type: setDeleteAddress, payload: id });
+                    toast.info("Address Removed", {
+                      containerId: "B",
+                      theme: "colored",
+                    });
+                  }}
                 />
                 <BiEdit
-                className="address-edit"
+                  className="address-edit"
                   title="Edit"
                   onClick={() => {
                     dispatch({ type: setShowAddressModal });

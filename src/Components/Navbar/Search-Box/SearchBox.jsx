@@ -1,7 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./SearchBox.css";
 import { useData } from "../../../Contexts/DataContext/DataContext";
-import { IoSearch, RxCross1 } from "../../../Utils/Icons/Icons";
 import {
   clearFilter,
   setSearchValue,
@@ -9,7 +10,7 @@ import {
   setShowSearch,
   setShowSearchedProducts,
 } from "../../../Utils/Constants";
-import { useNavigate } from "react-router-dom";
+import { IoSearch, RxCross1 } from "../../../Utils/Icons/Icons";
 
 export const SearchBox = () => {
   const {
@@ -57,7 +58,6 @@ export const SearchBox = () => {
           )}
           {searchValue && showSearch ? (
             <>
-               
               <div
                 className={`searchedOutput-container ${
                   showSearchedProducts ? "disp-none" : ""
