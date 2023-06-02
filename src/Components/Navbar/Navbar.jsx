@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
 import "./Navbar.css";
+import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import { useData } from "../../Contexts/DataContext/DataContext";
+import {SearchBox} from "./Search-Box/SearchBox";
 import {
   FaShoppingBag,
   ImCart,
@@ -12,14 +16,11 @@ import {
   FaRegUserCircle,
   TbSearchOff,
 } from "../../Utils/Icons/Icons";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
-import { useData } from "../../Contexts/DataContext/DataContext";
 import {
   setShowSearch,
   setShowBurger,
   setScreenWidth,
 } from "../../Utils/Constants";
-import {SearchBox} from "./Search-Box/SearchBox";
 
 export const Navbar = () => {
   const { token } = useAuth();
