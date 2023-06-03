@@ -42,10 +42,6 @@
     height: 100%;
     background-color: rgb(0 0 0 / 32%);
     transition: width 0.5s ease-in-out;
-    -webkit-transition: width 0.5s ease-in-out;
-    -moz-transition: width 0.5s ease-in-out;
-    -ms-transition: width 0.5s ease-in-out;
-    -o-transition: width 0.5s ease-in-out;
 }
 
 .feature-item-detail {
@@ -79,6 +75,7 @@
 .feature-item-img {
     width: 250px;
     transition: transform 0.3s ease-in-out;
+    max-height: 100%;
 }
 
 .feature-item:hover .feature-item-img {
