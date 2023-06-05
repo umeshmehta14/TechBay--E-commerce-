@@ -37,7 +37,7 @@ export const WishListProvider = ({ children }) => {
   }, [token, dispatch]);
 
   const handleWishList = async (product) => {
-    setWishDisable(true);
+    
     try {
       if (!token) {
         toast.warning(`Need To Login First`, {
@@ -47,6 +47,7 @@ export const WishListProvider = ({ children }) => {
         navigate("/login", { state: { from: location } });
         return;
       }
+      setWishDisable(true);
       let wishlistRes = null;
       if (product.inWishlist) {
         wishlistRes = await deleteWishlist({
