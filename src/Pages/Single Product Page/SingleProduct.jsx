@@ -41,7 +41,7 @@ export const SingleProduct = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
-    <div className="container w-90 m-auto s-top-6">
+    <main className="container w-90 m-auto s-top-6">
       <div className="s-product-information-card" title={title}>
         {token && inWishlist ? (
           <AiFillHeart
@@ -60,12 +60,12 @@ export const SingleProduct = () => {
             title="Add to wishlist"
           />
         )}
-        <div className="product-image-box">
+        <section className="product-image-box">
           <img src={image} alt="Currently Not Available" />
           <span className={trending && "trending s-trending"}>
             {trending && "Trending"}
           </span>
-        </div>
+        </section>
         <div className="s-product-details">
           <div className="s-product-info">
             <h1>{title}</h1>
@@ -122,6 +122,6 @@ export const SingleProduct = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

@@ -10,9 +10,9 @@ export const OrderDetails = () => {
   } = useData();
   const navigate = useNavigate();
   return (
-    <div className="order-details-container">
+    <main className="order-details-container">
       {orderDetails.length === 0 && (
-        <div className="empty-order-box">
+        <section className="empty-order-box">
           <h1 className="pfc">No orders yet?</h1>
           <p>
             "Don't worry, there's still time to find your favorite products and
@@ -21,7 +21,7 @@ export const OrderDetails = () => {
           <button className="btn" onClick={() => navigate("/products")}>
             Shop Now
           </button>
-        </div>
+        </section>
       )}
       {orderDetails?.map(
         ({ id, orderList, amount, address: deliveyAddress, date }) => {
@@ -76,7 +76,7 @@ export const OrderDetails = () => {
           );
         }
       )}
-    </div>
+    </main>
   );
 };
 

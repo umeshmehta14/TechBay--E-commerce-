@@ -47,7 +47,7 @@ export const Navbar = () => {
   return (
     <header>
       <nav className="navbar">
-        <div className="nav-top-section">
+        <section className="nav-top-section">
           <div className="logo" onClick={() => navigate("/")}>
             TechBay
           </div>
@@ -146,7 +146,7 @@ export const Navbar = () => {
               )}
             </div>
           </div>
-        </div>
+        </section>
         <SearchBox/>
       </nav>
     </header>

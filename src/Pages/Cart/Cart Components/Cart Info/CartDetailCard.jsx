@@ -48,7 +48,7 @@ const CartDetailCard = ({ item }) => {
           title="Add to wishlist"
         />
       )}
-      <div
+      <section
         className="cart-img"
         onClick={() => navigate(`/singleProduct/${_id}`)}
       >
@@ -60,9 +60,9 @@ const CartDetailCard = ({ item }) => {
         ) : (
           ""
         )}
-      </div>
+      </section>
 
-      <div className="disp-info-pc cart-info">
+      <section className="disp-info-pc cart-info">
         <div
           className="product-card-info cart-item-info"
           onClick={() => navigate(`/singleProduct/${_id}`)}
@@ -105,7 +105,7 @@ const CartDetailCard = ({ item }) => {
             </button>
           </span>
         </div>
-        <div className="remove-btn-box">
+        <section className="remove-btn-box">
           <button
             className={`remove-btn btn ${cartDisable ? "cursor-disable" : ""}`}
             disabled={cartDisable}
@@ -116,8 +116,8 @@ const CartDetailCard = ({ item }) => {
               <RiDeleteBin5Line />
             </span>
           </button>
-        </div>
-      </div>
+        </section>
+      </section>
     </div>
   );
 };

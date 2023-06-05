@@ -18,15 +18,15 @@ export const Addresses = () => {
   } = useData();
   return (
     <>
-      <div className="profile-address-btn">
+      <section className="profile-address-btn">
         <button
           className="add-address-btn"
           onClick={() => dispatch({ type: setShowAddressModal })}
         >
           <FaPlus /> Add New Address
         </button>
-      </div>
-      <div className="profile-address-container">
+      </section>
+      <section className="profile-address-container">
         {<h2>{addressList.length === 0 && "No Address To Display"}</h2>}
         {addressList?.map(
           ({
@@ -79,7 +79,7 @@ export const Addresses = () => {
             </div>
           )
         )}
-      </div>
+      </section>
     </>
   );
 };

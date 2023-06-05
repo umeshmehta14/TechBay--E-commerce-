@@ -20,11 +20,11 @@ const CartPrice = () => {
   );
   const discountedPrice = originalPrice - totalCost;
   return (
-    <div className="cart-price-box">
-      <div className="price-heading">
+    <main className="cart-price-box">
+      <section className="price-heading">
         <h3 className="pfc">Price Details</h3>
-      </div>
-      <div className="price-cost-section">
+      </section>
+      <section className="price-cost-section">
         <p>
           <span>Price ({cart.length} items)</span> 
           <span>&#8377;{originalPrice}</span>
@@ -39,7 +39,7 @@ const CartPrice = () => {
         <p>
           <span>Secured Packaging Fee</span> <span>&#8377;29</span> 
         </p>
-      </div>
+      </section>
       <div className="total-cost-heading">
         <h3>
           <span>Total Cost</span>
@@ -58,7 +58,7 @@ const CartPrice = () => {
       >
         CHECKOUT
       </button>
-    </div>
+    </main>
   );
 };
 

@@ -13,7 +13,7 @@ export const Profile = () => {
 
   return (
     <>
-      <div className="container top-6-profile main-profile-container">
+      <main className="container top-6-profile main-profile-container">
         <div className="profile-nav-box">
           <NavLink
             to="/profile/logout"
@@ -37,7 +37,7 @@ export const Profile = () => {
         <div className="outlet">
           <Outlet />
         </div>
-      </div>
+      </main>
       {showAddressModal ? <AddressForm /> : ""}
     </>
   );

@@ -4,7 +4,7 @@ import "./Loader.css";
 
 export const Loader = () => {
   return (
-    <div className="loader-box">
+    <main className="loader-box">
       <TailSpin
         height="80"
         width="80"
@@ -15,7 +15,7 @@ export const Loader = () => {
         wrapperClass=""
         visible={true}
       />
-    </div>
+    </main>
   );
 };
 

@@ -15,7 +15,6 @@ export const Home = () => {
   document.title = "TechBay";
 
   return (
-    <>
       <main className="container top-4 top-6">
         <HeroSection />
         <FeatureSection products={products} />
@@ -23,7 +22,6 @@ export const Home = () => {
         <DeliveryInfo />
         <CompanyInfo />
       </main>
-    </>
   );
 };
 

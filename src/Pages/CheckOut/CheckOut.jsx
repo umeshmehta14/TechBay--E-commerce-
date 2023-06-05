@@ -105,7 +105,7 @@ export const CheckOut = () => {
           </div>
         ) : (
           <div className="main-checkout-box">
-            <div className="address-container">
+            <section className="address-container">
               {addressList.length === 0
                 ? null
                 : addressList?.map(
@@ -168,8 +168,8 @@ export const CheckOut = () => {
                   <FaPlus /> Add New Address
                 </button>
               </div>
-            </div>
-            <div className="order-detail-container">
+            </section>
+            <section className="order-detail-container">
               <div className="c-cart-price-box ">
                 <div className="c-price-heading">
                   <h3 className="pfc">Order Details</h3>
@@ -222,11 +222,11 @@ export const CheckOut = () => {
                   Place Order
                 </button>
               </div>
-            </div>
+            </section>
           </div>
         )}
       </main>
-      {showAddressModal ? <AddressForm /> : ""}
+      {showAddressModal ? <AddressForm /> : null}
     </>
   );
 };

@@ -69,11 +69,11 @@ export const ProductList = () => {
 
   return (
     <>
-      <div className="container wpl-90 top-5">
+      <main className="container wpl-90 top-5">
         <SortByPrice displayedProducts={displayedProducts} filteredProducts={filteredProducts}/>
         <div className="main-product-page">
           <Filters />
-          <div className="product-container">
+          <section className="product-container">
             {displayedProducts.length === 0 ? (
               <h1 className="no-product-heading">
                 {searchValue
@@ -84,7 +84,7 @@ export const ProductList = () => {
             {displayedProducts?.map((item) => (
               <ShowProduct key={item.id} item={item} />
             ))}
-          </div>
+          </section>
         </div>
 
         {filteredProducts.length > 8 ? (
@@ -95,7 +95,7 @@ export const ProductList = () => {
         ) : (
           null
         )}
-      </div>
+      </main>
       {displayedProducts.length > 6 && (
         <AiOutlineArrowDown
           title={scrollToBottom ? "Scroll To Top" : "Scroll To Bottom"}

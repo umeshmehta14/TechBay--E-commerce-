@@ -11,13 +11,13 @@ export const Footer = () => {
   return (
     <footer>
       <div className="footer-info">
-        <div className="footer-detail">
+        <article className="footer-detail">
           <h2>TechBay</h2>
           <p>
             "Find your perfect tech match with TechBay - We have something for
             everyone!"
           </p>
-        </div>
+        </article>
         <div className="social-link">
           <p>
             Follow Us
