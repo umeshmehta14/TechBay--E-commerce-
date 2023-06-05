@@ -20,7 +20,7 @@ export const Cart = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const cartData = products.filter(({ inCart }) => inCart);
+  const cartData = products?.filter(({ inCart }) => inCart);
 
   return (
     <>

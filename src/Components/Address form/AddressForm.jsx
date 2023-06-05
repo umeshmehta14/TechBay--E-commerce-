@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { faker } from "@faker-js/faker";
+import { v4 as uuid } from "uuid";
+
 import "./AddressForm.css";
 import { useData } from "../../Contexts/DataContext/DataContext";
-import { faker } from "@faker-js/faker";
-import { RxCross1 } from "../../Utils/Icons/Icons";
-
-import { v4 as uuid } from "uuid";
+import {RxCross1} from "../../Utils/Icons/Icons";
 import {
   setShowAddressModal,
   setAddressList,
   setEditId,
-  updateAddressList,
+  updateAddressList
 } from "../../Utils/Constants";
 
 export const AddressForm = () => {
@@ -94,18 +94,18 @@ export const AddressForm = () => {
 
   useEffect(() => {
     if (editId.length > 0) {
-      const selectedAddress = addressList.find(({ id }) => id === editId);
+      const selectedAddress = addressList?.find(({ id }) => id === editId);
       setFormData({
         ...formData,
         id: editId,
-        name: selectedAddress.name,
-        mobile: selectedAddress.mobile,
-        pincode: selectedAddress.pincode,
-        city: selectedAddress.city,
-        address: selectedAddress.address,
-        alternatemobile: selectedAddress.alternatemobile,
-        state: selectedAddress.state,
-        type: selectedAddress.type,
+        name: selectedAddress?.name,
+        mobile: selectedAddress?.mobile,
+        pincode: selectedAddress?.pincode,
+        city: selectedAddress?.city,
+        address: selectedAddress?.address,
+        alternatemobile: selectedAddress?.alternatemobile,
+        state: selectedAddress?.state,
+        type: selectedAddress?.type,
       });
     }
   }, [editId]);

@@ -46,7 +46,7 @@ export const DataReducer = (state, action) => {
       };
 
     case updateProductWishlist:
-      const wishlistLookup = state.wishlist.reduce((lookup, wishlistItem) => {
+      const wishlistLookup = state.wishlist?.reduce((lookup, wishlistItem) => {
         lookup[wishlistItem._id] = true;
         return lookup;
       }, {});
@@ -69,7 +69,7 @@ export const DataReducer = (state, action) => {
       };
 
     case updateProductCart:
-      const cartLookup = state.cart.reduce((lookup, cartItem) => {
+      const cartLookup = state.cart?.reduce((lookup, cartItem) => {
         lookup[cartItem._id] = cartItem;
         return lookup;
       }, {});
@@ -99,7 +99,7 @@ export const DataReducer = (state, action) => {
           categoryFilter: state.filters.categoryFilter.find(
             (item) => item === action.payload
           )
-            ? state.filters.categoryFilter.filter(
+            ? state.filters.categoryFilter?.filter(
                 (item) => item !== action.payload
               )
             : [...state.filters.categoryFilter, action.payload],
@@ -114,7 +114,7 @@ export const DataReducer = (state, action) => {
           brandFilter: state.filters.brandFilter.find(
             (item) => item === action.payload
           )
-            ? state.filters.brandFilter.filter(
+            ? state.filters.brandFilter?.filter(
                 (item) => item !== action.payload
               )
             : [...state.filters.brandFilter, action.payload],
@@ -159,7 +159,7 @@ export const DataReducer = (state, action) => {
       const searchedProducts =
         searchValue === ""
           ? []
-          : state.products.filter(
+          : state.products?.filter(
               ({ title, description, price, category, brand, rating }) =>
                 title.toLowerCase().includes(searchValue) ||
                 category.toLowerCase().includes(searchValue) ||
@@ -222,7 +222,7 @@ export const DataReducer = (state, action) => {
     case setDeleteAddress:
       return {
         ...state,
-        addressList: state.addressList.filter(
+        addressList: state.addressList?.filter(
           ({ id }) => id !== action.payload
         ),
       };

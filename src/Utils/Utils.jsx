@@ -21,32 +21,32 @@ export const filterAllProducts = (state) => {
 
   const stockData = includeOutStock
     ? searchData
-    : searchData.filter(({ inStock }) => inStock);
+    : searchData?.filter(({ inStock }) => inStock);
 
   const trendingData = trending
-    ? stockData.filter(({ trending }) => trending)
+    ? stockData?.filter(({ trending }) => trending)
     : stockData;
 
   const sortedCategory =
     categoryFilter.length > 0
-      ? trendingData.filter((item) =>
+      ? trendingData?.filter((item) =>
           categoryFilter.some((category) => item.category === category)
         )
       : trendingData;
 
   const sortedBrands =
     brandFilter.length > 0
-      ? sortedCategory.filter((item) =>
+      ? sortedCategory?.filter((item) =>
           brandFilter.some((brand) => item.brand === brand)
         )
       : sortedCategory;
 
   const sortRating = rating
-    ? sortedBrands.filter((item) => item.rating <= rating)
+    ? sortedBrands?.filter((item) => item.rating <= rating)
     : sortedBrands;
 
   const sortedPrice = price
-    ? sortRating.filter((product) => product.price <= price)
+    ? sortRating?.filter((product) => product.price <= price)
     : sortRating;
 
   const arrangeByPrice = arrangeType

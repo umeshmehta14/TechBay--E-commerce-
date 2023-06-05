@@ -28,11 +28,11 @@ export const CheckOut = () => {
   const { email } = currentUser;
   const navigate = useNavigate();
   const [paymentResponse, setPaymentResponse] = useState(false);
-  const originalPrice = cart.reduce(
+  const originalPrice = cart?.reduce(
     (acc, { original_price, qty }) => (acc += original_price * qty),
     0
   );
-  const totalCost = cart.reduce(
+  const totalCost = cart?.reduce(
     (acc, { price, qty }) => (acc += price * qty),
     0
   );
@@ -109,7 +109,7 @@ export const CheckOut = () => {
           <div className="main-checkout-box">
             <div className="address-container">
               {addressList.length === 0
-                ? ""
+                ? null
                 : addressList?.map(
                     ({
                       id,
@@ -143,10 +143,10 @@ export const CheckOut = () => {
                               })
                             }
                           />
-                          <strong>{name + "     " + mobile}</strong>
+                          <strong>{`${name}    ${mobile}`}</strong>
                         </label>
                         <div className="user-address-detail">
-                          {address + ", " + city + ", " + state + "-"}
+                          {`${address}, ${city},  ${state} - `}
                           <strong>{pincode}</strong>
                         </div>
                         <p className="address-btns">

@@ -10,11 +10,11 @@ const CartPrice = () => {
   } = useData();
   const navigate = useNavigate();
   const location = useLocation();
-  const originalPrice = cart.reduce(
+  const originalPrice = cart?.reduce(
     (acc, { original_price, qty }) => (acc += original_price * qty),
     0
   );
-  const totalCost = cart.reduce(
+  const totalCost = cart?.reduce(
     (acc, { price, qty }) => (acc += price * qty),
     0
   );
