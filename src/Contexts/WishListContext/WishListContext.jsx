@@ -37,7 +37,6 @@ export const WishListProvider = ({ children }) => {
   }, [token, dispatch]);
 
   const handleWishList = async (product) => {
-    
     try {
       if (!token) {
         toast.warning(`Need To Login First`, {
