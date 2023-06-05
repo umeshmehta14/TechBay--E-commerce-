@@ -2,9 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./WishlistCard.css";
-import { useWishList } from "../../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
+import { useAuth, useCart, useWishList } from "../../../Contexts";
 import { increment } from "../../../Utils/Constants";
 import {
   AiFillStar,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useData } from "../../Contexts/DataContext/DataContext";
 
+import { useData } from "../../Contexts";
 import "./ProductList.css";
 import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";

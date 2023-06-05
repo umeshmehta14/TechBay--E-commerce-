@@ -1,11 +1,11 @@
 import React, {  useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
-import "../Authentications.css";
-import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
-import { useData } from "../../../Contexts/DataContext/DataContext";
-import { setShowPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
+
+import "../Authentications.css";
+import { useData, useAuth } from "../../../Contexts";
+import { setShowPassword } from "../../../Utils/Constants";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
 
 export const Login = () => {
   const { loginHandler, token } = useAuth();

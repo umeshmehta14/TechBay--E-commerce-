@@ -1,8 +1,9 @@
 import React from "react";
-import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
+
 import "./SortByPrice.css";
-import { useData } from "../../../../Contexts/DataContext/DataContext";
+import { useData } from "../../../../Contexts";
 import { setArrangeType, setShowFilter } from "../../../../Utils/Constants";
+import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 
 const SortByPrice = ({ displayedProducts, filteredProducts }) => {
   const {

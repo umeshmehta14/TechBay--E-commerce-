@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
-import "../Authentications.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../Contexts/AuthContext/AuthContext";
-import { useData } from "../../../Contexts/DataContext/DataContext";
-import { setShowSignUpPassword } from "../../../Utils/Constants";
 import { toast } from "react-toastify";
+
+import "../Authentications.css";
+import { useData, useAuth } from "../../../Contexts";
+import { setShowSignUpPassword } from "../../../Utils/Constants";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
 
 export const SignUp = () => {
   const { signUpHandler, token } = useAuth();

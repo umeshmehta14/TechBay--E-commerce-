@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { useData } from "../../../../Contexts/DataContext/DataContext";
+import { useData } from "../../../../Contexts";
 import "./CartPrice.css";
 
 const CartPrice = () => {

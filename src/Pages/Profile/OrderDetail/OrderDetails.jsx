@@ -1,7 +1,8 @@
 import React from "react";
-import "./OrderDetails.css";
-import { useData } from "../../../Contexts/DataContext/DataContext";
 import { useNavigate } from "react-router-dom";
+
+import "./OrderDetails.css";
+import { useData } from "../../../Contexts";
 
 export const OrderDetails = () => {
   const {

@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
 
 import "./AddressForm.css";
-import { useData } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts";
 import {RxCross1} from "../../Utils/Icons/Icons";
 import {
   setShowAddressModal,

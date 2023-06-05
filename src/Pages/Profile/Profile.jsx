@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+
 import "./Profile.css";
-import { useData } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts";
 import {AddressForm} from "../../Components";
 
 export const Profile = () => {

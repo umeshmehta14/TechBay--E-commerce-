@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useData } from "../DataContext/DataContext";
-import { useAuth } from "../AuthContext/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { useData, useAuth } from "../index";
 import {
   deleteCartList,
   getCartList,
@@ -9,7 +10,6 @@ import {
   updateCartQuantity,
 } from "./CartApi";
 import { cart, updateProductCart } from "../../Utils/Constants";
-import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 

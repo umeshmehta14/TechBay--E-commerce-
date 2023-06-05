@@ -5,17 +5,16 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { DataContext, DataProvider } from "./Contexts/DataContext/DataContext";
 import {
-  WishListContext,
-  WishListProvider,
-} from "./Contexts/WishListContext/WishListContext";
-import {
+  CartProvider,
+  CartContext,
   AuthContext,
   AuthProvider,
-} from "./Contexts/AuthContext/AuthContext.jsx";
-import { CartProvider, CartContext } from "./Contexts/CartContext/CartContext";
-
+  WishListContext,
+  WishListProvider,
+  DataContext,
+  DataProvider,
+} from "./Contexts";
 
 makeServer();
 
@@ -32,11 +31,8 @@ ReactDOM.render(
         </DataProvider>
       </AuthProvider>
     </Router>
-   </React.StrictMode>
-  ,document.getElementById("root")
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
-export { DataContext };
-export { AuthContext };
-export { WishListContext };
-export { CartContext };
+export { DataContext, AuthContext, WishListContext, CartContext };

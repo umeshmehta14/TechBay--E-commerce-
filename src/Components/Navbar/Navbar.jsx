@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
-import { useData } from "../../Contexts/DataContext/DataContext";
+import { useData, useAuth } from "../../Contexts";
 import {SearchBox} from "./Search-Box/SearchBox";
 import {
   FaShoppingBag,

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  AiOutlineArrowLeft,
-  AiOutlineArrowRight,
-} from "../../../../Utils/Icons/Icons";
+import { useNavigate } from "react-router-dom";
+
 import "./CategorySection.css";
+import { useData } from "../../../../Contexts";
 import {
   clearFilter,
   setCategoryFilter,
   setSearchValue,
 } from "../../../../Utils/Constants";
-import { useNavigate } from "react-router-dom";
-import { useData } from "../../../../Contexts/DataContext/DataContext";
+import {
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+} from "../../../../Utils/Icons/Icons";
 
 const CategorySection = ({ category }) => {
   const [categoryIndex, setCategoryIndex] = useState(0);

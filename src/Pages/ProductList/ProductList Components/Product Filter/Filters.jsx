@@ -1,7 +1,7 @@
 import React from "react";
 import { RxCross1, MdOutlineFilterAltOff } from "../../../../Utils/Icons/Icons";
 import "./Filter.css";
-import { useData } from "../../../../Contexts/DataContext/DataContext";
+import { useData } from "../../../../Contexts";
 import {
   clearFilter,
   setBrandFilter,

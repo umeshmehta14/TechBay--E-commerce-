@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
-import { useData } from "./Contexts/DataContext/DataContext";
+import { useData } from "./Contexts";
 import { Navbar, Loader, Footer, RequiredAuth } from "./Components";
 import {
   Home,

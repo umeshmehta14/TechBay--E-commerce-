@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import "./ShowProduct.css";
+import { useWishList, useAuth, useCart } from "../../../../Contexts";
 import {
   AiFillStar,
   AiOutlineHeart,
   AiFillHeart,
   ImCart,
 } from "../../../../Utils/Icons/Icons";
-import "./ShowProduct.css";
-import { useNavigate } from "react-router-dom";
-import { useWishList } from "../../../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../../../Contexts/AuthContext/AuthContext";
 
 const ShowProduct = ({ item }) => {
   const { token } = useAuth();

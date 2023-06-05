@@ -1,6 +1,7 @@
 import React from "react";
+
 import "./Home.css";
-import { useData } from "../../Contexts/DataContext/DataContext";
+import { useData } from "../../Contexts";
 import HeroSection from "./Home Components/Hero Section/HeroSection";
 import FeatureSection from "./Home Components/Feature Section/FeatureSection";
 import CategorySection from "./Home Components/Category Section/CategorySection";

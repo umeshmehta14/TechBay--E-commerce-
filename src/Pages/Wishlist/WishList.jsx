@@ -1,9 +1,10 @@
 import React from "react";
-import { useData } from "../../Contexts/DataContext/DataContext";
-import { AiOutlineHeart } from "../../Utils/Icons/Icons";
 import { useNavigate } from "react-router-dom";
+
 import "./WishList.css";
+import { useData } from "../../Contexts";
 import WishlistCard from "./wishlist component/WishlistCard";
+import { AiOutlineHeart } from "../../Utils/Icons/Icons";
 
 export const WishList = () => {
   const {

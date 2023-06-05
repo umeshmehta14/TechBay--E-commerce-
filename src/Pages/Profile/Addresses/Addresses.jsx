@@ -1,8 +1,9 @@
 import React from "react";
-import { useData } from "../../../Contexts/DataContext/DataContext";
 import { toast } from "react-toastify";
 
+
 import "./Addresses.css";
+import { useData } from "../../../Contexts";
 import {
   setDeleteAddress,
   setEditId,

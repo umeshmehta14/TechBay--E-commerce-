@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./SearchBox.css";
-import { useData } from "../../../Contexts/DataContext/DataContext";
+import { useData } from "../../../Contexts";
 import {
   clearFilter,
   setSearchValue,

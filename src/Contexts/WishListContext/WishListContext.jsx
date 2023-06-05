@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { deleteWishlist, getWishList, postWishList } from "./WishListApi";
-import { useData } from "../DataContext/DataContext";
-import { updateProductWishlist, wishlist } from "../../Utils/Constants";
-import { useAuth } from "../AuthContext/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import { deleteWishlist, getWishList, postWishList } from "./WishListApi";
+import { useData, useAuth } from "../index";
+import { updateProductWishlist, wishlist } from "../../Utils/Constants";
 
 export const WishListContext = createContext();
 

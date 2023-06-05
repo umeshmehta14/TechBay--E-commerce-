@@ -1,9 +1,8 @@
 import React from "react";
-import { useData } from "../../Contexts/DataContext/DataContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./Cart.css";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
+import { useData, useAuth } from "../../Contexts";
 import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";
 import CartPrice from "./Cart Components/Cart Price/CartPrice";
 import {

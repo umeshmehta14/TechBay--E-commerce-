@@ -3,9 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import "./CheckOut.css";
-import { useData } from "../../Contexts/DataContext/DataContext";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
-import { useCart } from "../../Contexts/CartContext/CartContext";
+import { useData, useAuth, useCart } from "../../Contexts/";
 import { popper } from "../../Utils/Popper";
 import {AddressForm} from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";

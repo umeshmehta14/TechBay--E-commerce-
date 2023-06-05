@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import { useData } from "../../Contexts/DataContext/DataContext";
 import { useParams } from "react-router-dom";
 
-import { useWishList } from "../../Contexts/WishListContext/WishListContext";
-import { useCart } from "../../Contexts/CartContext/CartContext";
-import { useAuth } from "../../Contexts/AuthContext/AuthContext";
 import "./SingleProduct.css";
+import { useWishList, useCart, useAuth, useData } from "../../Contexts";
 import {
   AiFillStar,
   AiOutlineHeart,
