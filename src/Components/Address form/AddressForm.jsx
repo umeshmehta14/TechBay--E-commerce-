@@ -4,12 +4,12 @@ import { v4 as uuid } from "uuid";
 
 import "./AddressForm.css";
 import { useData } from "../../Contexts";
-import {RxCross1} from "../../Utils/Icons/Icons";
+import { RxCross1 } from "../../Utils/Icons/Icons";
 import {
   setShowAddressModal,
   setAddressList,
   setEditId,
-  updateAddressList
+  updateAddressList,
 } from "../../Utils/Constants";
 
 export const AddressForm = () => {
@@ -245,21 +245,11 @@ export const AddressForm = () => {
           <button type="submit" className="btn">
             {editId.length > 0 ? "Save" : "Add"}
           </button>
-          <button
-            className="btn"
-            type="button"
-            onClick={formResetHandler}
-          >
+          <button className="btn" type="button" onClick={formResetHandler}>
             Reset
           </button>
-          {editId.length > 0 ? (
-            null
-          ) : (
-            <button
-              className="btn"
-              type="button"
-              onClick={handleRandomAddress}
-            >
+          {editId.length > 0 ? null : (
+            <button className="btn" type="button" onClick={handleRandomAddress}>
               Random Data
             </button>
           )}
@@ -268,4 +258,3 @@ export const AddressForm = () => {
     </div>
   );
 };
-

@@ -73,6 +73,7 @@ export const WishListProvider = ({ children }) => {
       console.error(err);
     }
   };
+
   return (
     <WishListContext.Provider value={{ handleWishList, wishDisable }}>
       {children}

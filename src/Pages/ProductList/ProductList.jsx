@@ -70,7 +70,10 @@ export const ProductList = () => {
   return (
     <>
       <main className="container wpl-90 top-5">
-        <SortByPrice displayedProducts={displayedProducts} filteredProducts={filteredProducts}/>
+        <SortByPrice
+          displayedProducts={displayedProducts}
+          filteredProducts={filteredProducts}
+        />
         <div className="main-product-page">
           <Filters />
           <section className="product-container">
@@ -92,9 +95,7 @@ export const ProductList = () => {
             totalProducts={filteredProducts.length}
             productsPerPage={productsPerPage}
           />
-        ) : (
-          null
-        )}
+        ) : null}
       </main>
       {displayedProducts.length > 6 && (
         <AiOutlineArrowDown

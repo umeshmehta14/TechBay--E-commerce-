@@ -60,7 +60,6 @@ function App() {
         <Loader />
       ) : (
         <>
-           
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductList />} />

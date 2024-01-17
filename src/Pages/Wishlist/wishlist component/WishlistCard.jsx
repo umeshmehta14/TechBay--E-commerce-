@@ -70,7 +70,7 @@ const WishlistCard = ({ item }) => {
           </div>
         </div>
         <div className="btn-box">
-          <button
+          {/* <button
             disabled={cartDisable}
             className={`btn w-fit m-0 ${
               cartDisable || qty === +10 ? "cursor-disable" : ""
@@ -83,6 +83,22 @@ const WishlistCard = ({ item }) => {
           >
             {inCart ? (
               `Added (${qty}) +`
+            ) : (
+              <>
+                <ImCart /> Add to Cart
+              </>
+            )}
+          </button> */}
+          <button
+            disabled={cartDisable}
+            className={`btn w-fit m-0 ${cartDisable ? "cursor-disable" : ""} ${
+              inCart ? "third-color" : ""
+            }`}
+            onClick={() => handleCartButton(inCart, item)}
+            title={inCart ? "go to cart" : "Add to cart"}
+          >
+            {inCart ? (
+              "Go to Cart"
             ) : (
               <>
                 <ImCart /> Add to Cart
