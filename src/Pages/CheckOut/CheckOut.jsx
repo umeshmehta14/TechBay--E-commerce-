@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./CheckOut.css";
 import { useData, useAuth, useCart } from "../../Contexts/";
 import { popper } from "../../Utils/Popper";
-import {AddressForm} from "../../Components";
+import { AddressForm } from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import {
   setEditId,
@@ -191,18 +191,18 @@ export const CheckOut = () => {
                 </div>
                 <div className="price-cost-section">
                   <p>
-                    <span>Price ({cart.length} items)</span> 
+                    <span>Price ({cart.length} items)</span>
                     <span>&#8377;{originalPrice}</span>
                   </p>
                   <p>
-                    <span>Discount</span> 
+                    <span>Discount</span>
                     <span className="green">- &#8377;{discountedPrice}</span>
                   </p>
                   <p>
                     <span>Delivery Charges</span> <span>&#8377; 40</span>
                   </p>
                   <p>
-                    <span>Secured Packaging Fee</span> <span>&#8377; 29</span> 
+                    <span>Secured Packaging Fee</span> <span>&#8377; 29</span>
                   </p>
                 </div>
                 <div className="total-cost-heading">
@@ -230,4 +230,3 @@ export const CheckOut = () => {
     </>
   );
 };
-

@@ -44,7 +44,7 @@ export const OrderDetails = () => {
                 <strong>Delivery Address</strong>: {address}, {city}, {state}
               </p>
               <p>
-                <strong>Number</strong>: {mobile} <strong>Pincode</strong>: 
+                <strong>Number</strong>: {mobile} <strong>Pincode</strong>:
                 {pincode}
               </p>
               <div className="order-cart-container">
@@ -79,4 +79,3 @@ export const OrderDetails = () => {
     </main>
   );
 };
-
