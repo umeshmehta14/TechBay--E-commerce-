@@ -16,7 +16,7 @@ import {
   DataProvider,
 } from "./Contexts";
 
-makeServer();
+// makeServer();
 
 ReactDOM.render(
   <React.StrictMode>

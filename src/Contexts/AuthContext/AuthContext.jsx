@@ -22,31 +22,45 @@ export const AuthProvider = ({ children }) => {
         );
         setCurrentUser(foundUser);
         setToken(encodedToken);
-        toast.success(`Welcome Back ${foundUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
+        toast.success(`Welcome Back ${foundUser.firstName} To TechBay`, {
+          containerId: "A",
+          theme: "colored",
+        });
       }
     } catch (err) {
-      toast.error(`Invalid Credentials`, { containerId: 'A', theme: "colored" });
+      toast.error(`Invalid Credentials`, {
+        containerId: "A",
+        theme: "colored",
+      });
     }
   };
 
-  const signUpHandler = async (firstName, lastName, email, password) => {
+  const signUpHandler = async (username, email, password, confirmPassword) => {
     try {
       const {
-        status,
-        data: { createdUser, encodedToken },
-      } = await createUser(firstName, lastName, email, password);
-       
-      if (status === 201 || status === 200) {
+        data: {
+          statusCode,
+          data: { createdUser, accessToken },
+        },
+      } = await createUser(username, email, password, confirmPassword);
+
+      if (statusCode === 201) {
         localStorage.setItem(
           "loginDetails",
-          JSON.stringify({ token: encodedToken, user: createdUser })
+          JSON.stringify({ token: accessToken, user: createdUser })
         );
         setCurrentUser(createdUser);
-        setToken(encodedToken);
-        toast.success(`Welcome ${createdUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
+        setToken(accessToken);
+        toast.success(`Welcome ${createdUser.username} To TechBay`, {
+          containerId: "A",
+          theme: "colored",
+        });
       }
-    } catch (err) {
-        toast.error(`Email Already Exist`, { containerId: 'A', theme: "colored" });
+    } catch (error) {
+      toast.error(`${error.response.data.error}`, {
+        containerId: "A",
+        theme: "colored",
+      });
     }
   };
 

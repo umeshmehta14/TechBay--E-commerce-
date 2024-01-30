@@ -31,3 +31,4 @@ export const setEditId = "setEditId";
 export const updateAddressList = "updateAddressList";
 export const setDeleteAddress = "setDeleteAddress";
 export const setOrderDetails = "setOrderDetails";
+export const ApiUrl = "https://techbayum14.onrender.com/api/v1";

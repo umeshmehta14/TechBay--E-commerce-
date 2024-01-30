@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
 import { setShowSignUpPassword } from "../../../Utils/Constants";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+} from "../../../Utils/Icons/Icons";
 
 export const SignUp = () => {
   const { signUpHandler, token } = useAuth();
@@ -18,40 +20,27 @@ export const SignUp = () => {
   const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
-    cPassword: "",
-    firstName: "",
-    lastName: "",
+    confirmPassword: "",
+    username: "",
   });
   document.title = "SignUp";
 
   const signupFormHandler = (event) => {
     event.preventDefault();
-    if (userDetail.password === userDetail.cPassword) {
-      if (userDetail.password.length < 8) {
-        toast.warning("Password Have Atleast 8 Characters", {
-          containerId: "A",
-          theme: "colored",
-        });
-      } else {
-        signUpHandler(
-          userDetail.firstName,
-          userDetail.lastName,
-          userDetail.email,
-          userDetail.password
-        );
-      }
-    } else {
-      toast.error("Password Does'nt Match", {
-        containerId: "A",
-        theme: "colored",
-      });
-    }
+
+    signUpHandler(
+      userDetail.username,
+      userDetail.email,
+      userDetail.password,
+      userDetail.confirmPassword
+    );
   };
   useEffect(() => {
     if (token) {
       navigate(location?.pathname?.from?.state || "/");
     }
   }, [token, location?.pathname?.from?.state]);
+
   return (
     <main className="container main-login  top-6">
       <div className="auth-box main-signup">
@@ -62,27 +51,14 @@ export const SignUp = () => {
           onSubmit={signupFormHandler}
         >
           <div className="detail-inp-box">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
-              id="first-name"
+              id="username"
               className="email-inp"
-              placeholder="Umesh"
+              placeholder="Umesh mehta"
               onChange={(event) =>
-                setUserDetail({ ...userDetail, firstName: event.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="detail-inp-box">
-            <label htmlFor="last-name">Last Name</label>
-            <input
-              type="text"
-              id="last-name"
-              className="email-inp"
-              placeholder="Mehta"
-              onChange={(event) =>
-                setUserDetail({ ...userDetail, lastName: event.target.value })
+                setUserDetail({ ...userDetail, username: event.target.value })
               }
               required
             />
@@ -135,7 +111,10 @@ export const SignUp = () => {
               className="password-inp"
               placeholder="1234098"
               onChange={(event) =>
-                setUserDetail({ ...userDetail, cPassword: event.target.value })
+                setUserDetail({
+                  ...userDetail,
+                  confirmPassword: event.target.value,
+                })
               }
               autoComplete="current-password"
               required
@@ -152,4 +131,3 @@ export const SignUp = () => {
     </main>
   );
 };
-
