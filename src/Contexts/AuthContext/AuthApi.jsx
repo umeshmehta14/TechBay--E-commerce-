@@ -6,10 +6,18 @@ export const getLoginInformation = async (email, password) =>
     email,
     password,
   });
+
 export const createUser = async (username, email, password, confirmPassword) =>
   await axios.post(`${ApiUrl}/users/register`, {
     email,
     password,
     confirmPassword,
     username,
+  });
+
+export const userLogout = async (accessToken) =>
+  await axios.get(`${ApiUrl}/users/logout`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
   });
