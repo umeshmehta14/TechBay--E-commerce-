@@ -2,29 +2,30 @@ import React from "react";
 
 import "./Pagination.css";
 import { useData } from "../../../../Contexts";
-import { setCurrentPage } from "../../../../Utils/Constants";
+import { SET_PAGE } from "../../../../Utils/Constants";
 import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from "../../../../Utils/Icons/Icons";
 
-const Pagination = ({ totalProducts, productsPerPage }) => {
+const Pagination = () => {
   const {
-    state: { currentPage },
+    state: {
+      productDetail: { currentPage, totalPage },
+    },
     dispatch,
   } = useData();
-  const pageCount = Math.ceil(totalProducts / productsPerPage);
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+  const pages = Array.from({ length: totalPage }, (_, index) => index + 1);
 
   const nextPage = () =>
     currentPage === 6
-      ? dispatch({ type: setCurrentPage, payload: 1 })
-      : dispatch({ type: setCurrentPage, payload: currentPage + 1 });
+      ? dispatch({ type: SET_PAGE, payload: 1 })
+      : dispatch({ type: SET_PAGE, payload: currentPage + 1 });
 
   const prevPage = () =>
     currentPage === 1
-      ? dispatch({ type: setCurrentPage, payload: 6 })
-      : dispatch({ type: setCurrentPage, payload: currentPage - 1 });
+      ? dispatch({ type: SET_PAGE, payload: 6 })
+      : dispatch({ type: SET_PAGE, payload: currentPage - 1 });
 
   return (
     <div className="pagination-btn-container">
@@ -34,7 +35,7 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
             className={`page-btn ${currentPage === page ? "page-active" : ""}`}
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              dispatch({ type: setCurrentPage, payload: page });
+              dispatch({ type: SET_PAGE, payload: page });
             }}
             key={page}
           >

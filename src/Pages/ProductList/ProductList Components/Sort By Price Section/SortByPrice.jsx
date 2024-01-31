@@ -5,10 +5,15 @@ import { useData } from "../../../../Contexts";
 import { setArrangeType, setShowFilter } from "../../../../Utils/Constants";
 import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 
-const SortByPrice = ({ displayedProducts, filteredProducts }) => {
+const SortByPrice = () => {
   const {
     dispatch,
-    state: { filters, searchValue, products },
+    state: {
+      filters,
+      searchValue,
+      products,
+      productDetail: { productFetched },
+    },
   } = useData();
   return (
     <>
@@ -22,10 +27,15 @@ const SortByPrice = ({ displayedProducts, filteredProducts }) => {
           </button>
           <div className="sort-price">
             {searchValue ? (
-              <h3 className="result-heading">Search Result for {searchValue}</h3>
-            ) : displayedProducts.length === 0 ? null : (
+              <h3 className="result-heading">
+                Search Result for {searchValue}
+              </h3>
+            ) : products?.length === 0 ? null : (
               <div className="result-heading">
-                <h3>Showing All Products <small className="pfc">{`(${filteredProducts.length} of ${products.length})`}</small></h3>
+                <h3>
+                  Showing All Products{" "}
+                  <small className="pfc">{`(${products?.length} of ${productFetched})`}</small>
+                </h3>
               </div>
             )}
 

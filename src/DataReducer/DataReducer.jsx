@@ -2,12 +2,13 @@ import {
   cart,
   category,
   clearFilter,
-  products,
+  PRODUCT_DETAIL,
+  PRODUCTS,
+  SET_PAGE,
   setAddressList,
   setArrangeType,
   setBrandFilter,
   setCategoryFilter,
-  setCurrentPage,
   setDeleteAddress,
   setEditId,
   setOrderDetails,
@@ -33,8 +34,11 @@ import {
 
 export const DataReducer = (state, action) => {
   switch (action.type) {
-    case products:
+    case PRODUCTS:
       return { ...state, products: action.payload };
+
+    case PRODUCT_DETAIL:
+      return { ...state, productDetail: action.payload };
 
     case wishlist:
       return {
@@ -84,6 +88,12 @@ export const DataReducer = (state, action) => {
       };
     case category:
       return { ...state, category: action.payload };
+
+    case SET_PAGE:
+      return {
+        ...state,
+        filters: { ...state.filters, reqPage: action.payload },
+      };
 
     case sortByRating:
       return {
@@ -188,9 +198,6 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: { ...state.filters, arrangeType: action.payload },
       };
-
-    case setCurrentPage:
-      return { ...state, currentPage: action.payload };
 
     case setScreenWidth:
       return { ...state, screenWidth: window.innerWidth };

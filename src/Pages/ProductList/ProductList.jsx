@@ -7,22 +7,18 @@ import Filters from "./ProductList Components/Product Filter/Filters";
 import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
 import { filterAllProducts } from "../../Utils/Utils";
-import { setCurrentPage } from "../../Utils/Constants";
+import { SET_PAGE } from "../../Utils/Constants";
 import { AiOutlineArrowDown } from "../../Utils/Icons/Icons";
 
 export const ProductList = () => {
   const { state, dispatch } = useData();
-  const { currentPage, searchValue } = state;
+  const {
+    searchValue,
+    productDetail: { totalPage, currentPage, productFetched },
+    products,
+  } = state;
   const filteredProducts = filterAllProducts(state);
   document.title = "Products";
-
-  const productsPerPage = 8;
-  const lastPostIndex = currentPage * productsPerPage;
-  const firstPostIndex = lastPostIndex - productsPerPage;
-  const displayedProducts = filteredProducts.slice(
-    firstPostIndex,
-    lastPostIndex
-  );
 
   const [scrollToBottom, setScrollToBottom] = useState(false);
 
@@ -54,50 +50,40 @@ export const ProductList = () => {
   }, []);
 
   useEffect(() => {
-    if (filteredProducts.length <= 8) {
-      dispatch({ type: setCurrentPage, payload: 1 });
-    } else if (
-      currentPage > Math.ceil(filteredProducts.length / productsPerPage)
-    ) {
-      dispatch({
-        type: setCurrentPage,
-        payload: Math.ceil(filteredProducts.length / productsPerPage),
-      });
-    }
+    // if (products?.length < 8) {
+    //   dispatch({ type: SET_PAGE, payload: 1 });
+    // } else if (currentPage > totalPage) {
+    //   dispatch({
+    //     type: SET_PAGE,
+    //     payload: totalPage,
+    //   });
+    // }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [filteredProducts.length, currentPage, dispatch]);
 
   return (
     <>
       <main className="container wpl-90 top-5">
-        <SortByPrice
-          displayedProducts={displayedProducts}
-          filteredProducts={filteredProducts}
-        />
+        <SortByPrice />
         <div className="main-product-page">
           <Filters />
           <section className="product-container">
-            {displayedProducts.length === 0 ? (
+            {products?.length === 0 ? (
               <h1 className="no-product-heading">
                 {searchValue
                   ? "We couldn't find what you were looking for"
                   : "No Products available in this category"}
               </h1>
             ) : null}
-            {displayedProducts?.map((item) => (
-              <ShowProduct key={item.id} item={item} />
+            {products?.map((item) => (
+              <ShowProduct key={item._id} item={item} />
             ))}
           </section>
         </div>
 
-        {filteredProducts.length > 8 ? (
-          <Pagination
-            totalProducts={filteredProducts.length}
-            productsPerPage={productsPerPage}
-          />
-        ) : null}
+        {productFetched > 8 ? <Pagination /> : null}
       </main>
-      {displayedProducts.length > 6 && (
+      {products?.length > 6 && (
         <AiOutlineArrowDown
           title={scrollToBottom ? "Scroll To Top" : "Scroll To Bottom"}
           className={`arrow-btn sd-btn ${

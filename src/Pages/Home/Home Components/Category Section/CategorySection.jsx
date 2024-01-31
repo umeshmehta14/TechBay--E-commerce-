@@ -73,11 +73,11 @@ const CategorySection = ({ category }) => {
           </p>
         </div>
         <div className="category-container">
-          {category?.map(({ id, categoryName, image }) => {
+          {category?.map(({ _id, categoryName, image }) => {
             return (
               <div
                 className="category-item"
-                key={id}
+                key={_id}
                 onClick={() => {
                   dispatch({ type: setSearchValue, payload: "" });
                   dispatch({ type: clearFilter });
