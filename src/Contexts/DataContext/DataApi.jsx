@@ -8,14 +8,17 @@ export const getAllProduct = async (
   price,
   trending,
   brand,
-  category
+  category,
+  arrangeType
 ) =>
   await axios.get(
     `${ApiUrl}/products/filter?page=${page}&limit=8&includeOutStock=${
       includeOutStock ? "1" : ""
     }&rating=${rating}&price=${price ? price : ""}&trending=${
       trending ? trending : ""
-    }&category=${category?.join()}&brand=${brand?.join()}`
+    }&category=${category?.join() || ""}&brand=${
+      brand?.join() || ""
+    }&arrangeType=${arrangeType || ""}`
   );
 
 export const getAllCategory = async () =>

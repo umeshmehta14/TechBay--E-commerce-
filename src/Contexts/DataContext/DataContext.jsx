@@ -16,6 +16,8 @@ import {
   SET_LOADER2,
 } from "../../Utils/Constants";
 
+import { toast } from "react-toastify";
+
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
@@ -31,6 +33,7 @@ export const DataProvider = ({ children }) => {
       trending,
       brand,
       category,
+      arrangeType,
     },
   } = state;
 
@@ -38,7 +41,6 @@ export const DataProvider = ({ children }) => {
     try {
       loading ? null : dispatch({ type: SET_LOADER2, payload: true });
 
-      console.log(brand.join(), "cat", category.join());
       const {
         data: {
           statusCode,
@@ -51,7 +53,8 @@ export const DataProvider = ({ children }) => {
         price,
         trending,
         brand,
-        category
+        category,
+        arrangeType
       );
       if (statusCode === 200) {
         dispatch({ type: PRODUCTS, payload: products });
@@ -65,6 +68,10 @@ export const DataProvider = ({ children }) => {
         });
       }
     } catch (error) {
+      toast.error("Internal server Error, try after sometime", {
+        containerId: "A",
+        theme: "colored",
+      });
       console.error(error);
     } finally {
       setLoading(false);

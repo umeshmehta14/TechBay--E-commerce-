@@ -27,7 +27,6 @@ function App() {
     state: { loader2 },
   } = useData();
 
-  console.log(loader2);
   return (
     <>
       <ToastContainer
