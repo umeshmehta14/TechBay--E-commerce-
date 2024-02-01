@@ -16,6 +16,7 @@ export const initialState = {
     reqPage: 1,
   },
   loader2: false,
+  searchLoader: true,
   searchValue: "",
   searchedProducts: [],
   showBurger: false,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiUrl } from "../../Utils/Constants";
+import { API_URL } from "../../Utils/Constants";
 
 export const getAllProduct = async (
   page,
@@ -12,7 +12,7 @@ export const getAllProduct = async (
   arrangeType
 ) =>
   await axios.get(
-    `${ApiUrl}/products/filter?page=${page}&limit=8&includeOutStock=${
+    `${API_URL}/products/filter?page=${page}&limit=8&includeOutStock=${
       includeOutStock ? "1" : ""
     }&rating=${rating}&price=${price ? price : ""}&trending=${
       trending ? trending : ""
@@ -22,7 +22,10 @@ export const getAllProduct = async (
   );
 
 export const getAllCategory = async () =>
-  await axios.get(`${ApiUrl}/categories/`);
+  await axios.get(`${API_URL}/categories/`);
 
 export const getBrands = async () =>
-  await axios.get(`${ApiUrl}/products/brands`);
+  await axios.get(`${API_URL}/products/brands`);
+
+export const searchProducts = async (searchValue) =>
+  axios.get(`${API_URL}/products/search/${searchValue}`);

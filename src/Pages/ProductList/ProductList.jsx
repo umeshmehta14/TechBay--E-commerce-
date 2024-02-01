@@ -6,18 +6,15 @@ import Pagination from "./ProductList Components/Pagination/Pagination";
 import Filters from "./ProductList Components/Product Filter/Filters";
 import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
-import { filterAllProducts } from "../../Utils/Utils";
-import { SET_PAGE } from "../../Utils/Constants";
 import { AiOutlineArrowDown } from "../../Utils/Icons/Icons";
 
 export const ProductList = () => {
-  const { state, dispatch } = useData();
+  const { state } = useData();
   const {
     searchValue,
-    productDetail: { totalPage, currentPage, productFetched },
+    productDetail: { currentPage, productFetched },
     products,
   } = state;
-  const filteredProducts = filterAllProducts(state);
   document.title = "Products";
 
   const [scrollToBottom, setScrollToBottom] = useState(false);
@@ -59,7 +56,7 @@ export const ProductList = () => {
     //   });
     // }
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [filteredProducts.length, currentPage, dispatch]);
+  }, [currentPage]);
 
   return (
     <>

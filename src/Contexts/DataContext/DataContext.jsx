@@ -7,13 +7,20 @@ import React, {
 } from "react";
 import { DataReducer } from "../../DataReducer/DataReducer";
 import { initialState } from "../../DataReducer/InitialState";
-import { getAllCategory, getAllProduct, getBrands } from "./DataApi";
+import {
+  getAllCategory,
+  getAllProduct,
+  getBrands,
+  searchProducts,
+} from "./DataApi";
 import {
   CATEGORY,
   PRODUCT_DETAIL,
   PRODUCTS,
   SET_BRANDS,
   SET_LOADER2,
+  SET_SEARCH_LOADER,
+  SET_SEARCH_PRODUCTS,
 } from "../../Utils/Constants";
 
 import { toast } from "react-toastify";
@@ -35,6 +42,7 @@ export const DataProvider = ({ children }) => {
       category,
       arrangeType,
     },
+    searchValue,
   } = state;
 
   const getProducts = async () => {
@@ -76,6 +84,24 @@ export const DataProvider = ({ children }) => {
     } finally {
       setLoading(false);
       dispatch({ type: SET_LOADER2, payload: false });
+    }
+  };
+
+  const getSearchProducts = async () => {
+    try {
+      dispatch({ type: SET_SEARCH_LOADER, payload: true });
+      const {
+        data: { statusCode, data },
+      } = await searchProducts(searchValue);
+
+      if (statusCode === 200) {
+        dispatch({ type: SET_SEARCH_PRODUCTS, payload: data });
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: SET_SEARCH_LOADER, payload: false });
     }
   };
 
@@ -122,7 +148,9 @@ export const DataProvider = ({ children }) => {
   }, [state.filters]);
 
   return (
-    <DataContext.Provider value={{ state, loading, dispatch, getProducts }}>
+    <DataContext.Provider
+      value={{ state, loading, dispatch, getProducts, getSearchProducts }}
+    >
       {children}
     </DataContext.Provider>
   );

@@ -17,3 +17,12 @@
     z-index: 1234;
     background-color: #00000087;
 }
+
+.search-loader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 15vh;
+    height: 100%;
+}

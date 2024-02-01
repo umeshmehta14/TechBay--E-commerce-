@@ -37,3 +37,20 @@ export const Loader2 = () => {
     </main>
   );
 };
+
+export const SearchLoader = () => {
+  return (
+    <main className="search-loader">
+      <TailSpin
+        height="80"
+        width="80"
+        color="#2a7ee5"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
+    </main>
+  );
+};

@@ -7,6 +7,8 @@ import {
   SET_BRANDS,
   SET_LOADER2,
   SET_PAGE,
+  SET_SEARCH_LOADER,
+  SET_SEARCH_PRODUCTS,
   setAddressList,
   setArrangeType,
   setBrandFilter,
@@ -106,6 +108,9 @@ export const DataReducer = (state, action) => {
     case SET_LOADER2:
       return { ...state, loader2: action.payload };
 
+    case SET_SEARCH_LOADER:
+      return { ...state, searchLoader: action.payload };
+
     case sortByRating:
       return {
         ...state,
@@ -170,25 +175,13 @@ export const DataReducer = (state, action) => {
       };
 
     case setSearchValue:
-      const searchValue = action.payload.toLowerCase();
-      const searchedProducts =
-        searchValue === ""
-          ? []
-          : state.products?.filter(
-              ({ title, description, price, category, brand, rating }) =>
-                title.toLowerCase().includes(searchValue) ||
-                category.toLowerCase().includes(searchValue) ||
-                brand.toLowerCase().includes(searchValue) ||
-                description.toLowerCase().includes(searchValue) ||
-                rating < Number(searchValue) ||
-                Number(action.payload) > price
-            );
-
       return {
         ...state,
         searchValue: action.payload,
-        searchedProducts,
       };
+
+    case SET_SEARCH_PRODUCTS:
+      return { ...state, searchedProducts: action.payload };
     case setShowBurger:
       return {
         ...state,

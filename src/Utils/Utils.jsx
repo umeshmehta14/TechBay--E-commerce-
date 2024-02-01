@@ -1,59 +1,59 @@
-export const filterAllProducts = (state) => {
-  const {
-    filters,
-    products,
-    searchValue,
-    searchedProducts,
-    showSearchedProducts,
-  } = state;
-  const {
-    rating,
-    category,
-    brand,
-    price,
-    trending,
-    includeOutStock,
-    arrangeType,
-  } = filters;
+// export const filterAllProducts = (state) => {
+//   const {
+//     filters,
+//     products,
+//     searchValue,
+//     searchedProducts,
+//     showSearchedProducts,
+//   } = state;
+//   const {
+//     rating,
+//     category,
+//     brand,
+//     price,
+//     trending,
+//     includeOutStock,
+//     arrangeType,
+//   } = filters;
 
-  const searchData =
-    searchValue && showSearchedProducts ? searchedProducts : products;
+//   const searchData =
+//     searchValue && showSearchedProducts ? searchedProducts : products;
 
-  const stockData = includeOutStock
-    ? searchData
-    : searchData?.filter(({ inStock }) => inStock);
+//   const stockData = includeOutStock
+//     ? searchData
+//     : searchData?.filter(({ inStock }) => inStock);
 
-  const trendingData = trending
-    ? stockData?.filter(({ trending }) => trending)
-    : stockData;
+//   const trendingData = trending
+//     ? stockData?.filter(({ trending }) => trending)
+//     : stockData;
 
-  const sortedCategory =
-    category.length > 0
-      ? trendingData?.filter((item) =>
-          category.some((category) => item.category === category)
-        )
-      : trendingData;
+//   const sortedCategory =
+//     category.length > 0
+//       ? trendingData?.filter((item) =>
+//           category.some((category) => item.category === category)
+//         )
+//       : trendingData;
 
-  const sortedBrands =
-    brand.length > 0
-      ? sortedCategory?.filter((item) =>
-          brand.some((brand) => item.brand === brand)
-        )
-      : sortedCategory;
+//   const sortedBrands =
+//     brand.length > 0
+//       ? sortedCategory?.filter((item) =>
+//           brand.some((brand) => item.brand === brand)
+//         )
+//       : sortedCategory;
 
-  const sortRating = rating
-    ? sortedBrands?.filter((item) => item.rating <= rating)
-    : sortedBrands;
+//   const sortRating = rating
+//     ? sortedBrands?.filter((item) => item.rating <= rating)
+//     : sortedBrands;
 
-  const sortedPrice = price
-    ? sortRating?.filter((product) => product.price <= price)
-    : sortRating;
+//   const sortedPrice = price
+//     ? sortRating?.filter((product) => product.price <= price)
+//     : sortRating;
 
-  const arrangeByPrice = arrangeType
-    ? [...sortedPrice].sort((a, b) =>
-        arrangeType === "LTH" ? a.price - b.price : b.price - a.price
-      )
-    : sortedPrice;
+//   const arrangeByPrice = arrangeType
+//     ? [...sortedPrice].sort((a, b) =>
+//         arrangeType === "LTH" ? a.price - b.price : b.price - a.price
+//       )
+//     : sortedPrice;
 
-  return arrangeByPrice;
-};
+//   return arrangeByPrice;
+// };
