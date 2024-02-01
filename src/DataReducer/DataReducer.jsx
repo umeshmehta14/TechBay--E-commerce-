@@ -5,6 +5,7 @@ import {
   PRODUCT_DETAIL,
   PRODUCTS,
   SET_BRANDS,
+  SET_FILTER_SEARCH_TEXT,
   SET_LOADER2,
   SET_PAGE,
   SET_SEARCH_LOADER,
@@ -141,6 +142,12 @@ export const DataReducer = (state, action) => {
         },
       };
 
+    case SET_FILTER_SEARCH_TEXT:
+      return {
+        ...state,
+        filters: { ...state.filters, searchText: action.payload },
+      };
+
     case setTrending:
       return {
         ...state,
@@ -165,12 +172,14 @@ export const DataReducer = (state, action) => {
       return {
         ...state,
         filters: {
+          ...state.filters,
           rating: 5,
           category: [],
           brand: [],
           price: null,
           trending: false,
           includeOutStock: false,
+          reqPage: 1,
         },
       };
 

@@ -14,6 +14,7 @@ export const initialState = {
     includeOutStock: false,
     arrangeType: "",
     reqPage: 1,
+    searchText: "",
   },
   loader2: false,
   searchLoader: true,

@@ -41,6 +41,7 @@ export const DataProvider = ({ children }) => {
       brand,
       category,
       arrangeType,
+      searchText,
     },
     searchValue,
   } = state;
@@ -62,7 +63,8 @@ export const DataProvider = ({ children }) => {
         trending,
         brand,
         category,
-        arrangeType
+        arrangeType,
+        searchText
       );
       if (statusCode === 200) {
         dispatch({ type: PRODUCTS, payload: products });
@@ -74,6 +76,7 @@ export const DataProvider = ({ children }) => {
             productFetched,
           },
         });
+        console.log(currentPage);
       }
     } catch (error) {
       toast.error("Internal server Error, try after sometime", {

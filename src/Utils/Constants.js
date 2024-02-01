@@ -8,6 +8,7 @@ export const cart = "cart";
 export const updateProductCart = "updateProductCart";
 export const SET_LOADER2 = "SET_LOADER2";
 export const SET_SEARCH_LOADER = "SET_SEARCH_LOADER";
+export const SET_FILTER_SEARCH_TEXT = "SET_FILTER_SEARCH_TEXT";
 export const increment = "increment";
 export const decrement = "decrement";
 export const SET_PAGE = "SET_PAGE";

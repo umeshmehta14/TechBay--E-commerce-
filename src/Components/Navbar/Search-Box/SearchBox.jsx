@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./SearchBox.css";
 import { useData } from "../../../Contexts";
 import {
+  SET_FILTER_SEARCH_TEXT,
   clearFilter,
   setSearchValue,
   setShowBurger,
@@ -65,6 +66,11 @@ export const SearchBox = () => {
                 dispatch({ type: setShowSearchedProducts, payload: true });
                 dispatch({ type: setShowBurger, payload: false });
                 dispatch({ type: clearFilter });
+                dispatch({
+                  type: SET_FILTER_SEARCH_TEXT,
+                  payload: searchValue,
+                });
+
                 navigate("/products");
               }
             }}
@@ -73,7 +79,13 @@ export const SearchBox = () => {
           {searchValue && (
             <RxCross1
               className="search-clr"
-              onClick={() => dispatch({ type: setSearchValue, payload: "" })}
+              onClick={() => {
+                dispatch({ type: setSearchValue, payload: "" });
+                dispatch({
+                  type: SET_FILTER_SEARCH_TEXT,
+                  payload: "",
+                });
+              }}
               title="Clear Search"
             />
           )}

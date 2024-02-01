@@ -7,12 +7,13 @@ import Filters from "./ProductList Components/Product Filter/Filters";
 import ShowProduct from "./ProductList Components/ShowProduct/ShowProduct";
 import SortByPrice from "./ProductList Components/Sort By Price Section/SortByPrice";
 import { AiOutlineArrowDown } from "../../Utils/Icons/Icons";
+import { SET_PAGE } from "../../Utils/Constants";
 
 export const ProductList = () => {
-  const { state } = useData();
+  const { state, dispatch } = useData();
   const {
     searchValue,
-    productDetail: { currentPage, productFetched },
+    productDetail: { totalPage, currentPage, productFetched },
     products,
   } = state;
   document.title = "Products";
@@ -47,14 +48,6 @@ export const ProductList = () => {
   }, []);
 
   useEffect(() => {
-    // if (products?.length < 8) {
-    //   dispatch({ type: SET_PAGE, payload: 1 });
-    // } else if (currentPage > totalPage) {
-    //   dispatch({
-    //     type: SET_PAGE,
-    //     payload: totalPage,
-    //   });
-    // }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
