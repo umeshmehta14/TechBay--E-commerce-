@@ -1,10 +1,12 @@
 export const PRODUCTS = "products";
 export const PRODUCT_DETAIL = "PRODUCT_DETAIL";
-export const category = "category";
+export const CATEGORY = "CATEGORY";
 export const wishlist = "wishlist";
+export const SET_BRANDS = "SET_BRANDS";
 export const updateProductWishlist = "updateProductWishlist";
 export const cart = "cart";
 export const updateProductCart = "updateProductCart";
+export const SET_LOADER2 = "SET_LOADER2";
 export const increment = "increment";
 export const decrement = "decrement";
 export const SET_PAGE = "SET_PAGE";

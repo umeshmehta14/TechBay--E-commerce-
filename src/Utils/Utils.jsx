@@ -8,8 +8,8 @@ export const filterAllProducts = (state) => {
   } = state;
   const {
     rating,
-    categoryFilter,
-    brandFilter,
+    category,
+    brand,
     price,
     trending,
     includeOutStock,
@@ -28,16 +28,16 @@ export const filterAllProducts = (state) => {
     : stockData;
 
   const sortedCategory =
-    categoryFilter.length > 0
+    category.length > 0
       ? trendingData?.filter((item) =>
-          categoryFilter.some((category) => item.category === category)
+          category.some((category) => item.category === category)
         )
       : trendingData;
 
   const sortedBrands =
-    brandFilter.length > 0
+    brand.length > 0
       ? sortedCategory?.filter((item) =>
-          brandFilter.some((brand) => item.brand === brand)
+          brand.some((brand) => item.brand === brand)
         )
       : sortedCategory;
 

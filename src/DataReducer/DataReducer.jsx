@@ -1,9 +1,11 @@
 import {
   cart,
-  category,
+  CATEGORY,
   clearFilter,
   PRODUCT_DETAIL,
   PRODUCTS,
+  SET_BRANDS,
+  SET_LOADER2,
   SET_PAGE,
   setAddressList,
   setArrangeType,
@@ -49,6 +51,12 @@ export const DataReducer = (state, action) => {
         })),
       };
 
+    case SET_BRANDS:
+      return {
+        ...state,
+        brands: action.payload,
+      };
+
     case updateProductWishlist:
       const wishlistLookup = state.wishlist?.reduce((lookup, wishlistItem) => {
         lookup[wishlistItem._id] = true;
@@ -86,7 +94,7 @@ export const DataReducer = (state, action) => {
           qty: (cartLookup[product._id] && cartLookup[product._id].qty) || 1,
         })),
       };
-    case category:
+    case CATEGORY:
       return { ...state, category: action.payload };
 
     case SET_PAGE:
@@ -94,6 +102,9 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: { ...state.filters, reqPage: action.payload },
       };
+
+    case SET_LOADER2:
+      return { ...state, loader2: action.payload };
 
     case sortByRating:
       return {
@@ -106,13 +117,11 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: {
           ...state.filters,
-          categoryFilter: state.filters.categoryFilter.find(
+          category: state.filters.category.find(
             (item) => item === action.payload
           )
-            ? state.filters.categoryFilter?.filter(
-                (item) => item !== action.payload
-              )
-            : [...state.filters.categoryFilter, action.payload],
+            ? state.filters.category?.filter((item) => item !== action.payload)
+            : [...state.filters.category, action.payload],
         },
       };
 
@@ -121,13 +130,9 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: {
           ...state.filters,
-          brandFilter: state.filters.brandFilter.find(
-            (item) => item === action.payload
-          )
-            ? state.filters.brandFilter?.filter(
-                (item) => item !== action.payload
-              )
-            : [...state.filters.brandFilter, action.payload],
+          brand: state.filters.brand.find((item) => item === action.payload)
+            ? state.filters.brand?.filter((item) => item !== action.payload)
+            : [...state.filters.brand, action.payload],
         },
       };
 
@@ -156,8 +161,8 @@ export const DataReducer = (state, action) => {
         ...state,
         filters: {
           rating: 5,
-          categoryFilter: [],
-          brandFilter: [],
+          category: [],
+          brand: [],
           price: null,
           trending: false,
           includeOutStock: false,

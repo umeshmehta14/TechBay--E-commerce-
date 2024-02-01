@@ -15,13 +15,12 @@ export const Home = () => {
   document.title = "TechBay";
 
   return (
-      <main className="container top-4 top-6">
-        <HeroSection />
-        <FeatureSection products={products} />
-        <CategorySection category={category} />
-        <DeliveryInfo />
-        <CompanyInfo />
-      </main>
+    <main className="container top-4 top-6">
+      <HeroSection />
+      <FeatureSection products={products} />
+      <CategorySection category={category} />
+      <DeliveryInfo />
+      <CompanyInfo />
+    </main>
   );
 };
-

@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 
 import "./App.css";
 import { useData } from "./Contexts";
-import { Navbar, Loader, Footer, RequiredAuth } from "./Components";
+import { Navbar, Loader, Footer, RequiredAuth, Loader2 } from "./Components";
 import {
   Home,
   ProductList,
@@ -18,11 +18,16 @@ import {
   OrderDetails,
   Addresses,
   SingleProduct,
-  WishList
+  WishList,
 } from "./Pages";
 
 function App() {
-  const { loading } = useData();
+  const {
+    loading,
+    state: { loader2 },
+  } = useData();
+
+  console.log(loader2);
   return (
     <>
       <ToastContainer
@@ -55,6 +60,8 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+
+      {loader2 && <Loader2 />}
       <Navbar />
       {loading ? (
         <Loader />

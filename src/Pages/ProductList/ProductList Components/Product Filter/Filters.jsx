@@ -16,16 +16,14 @@ import {
 const Filters = () => {
   const {
     dispatch,
-    state: { filters, category, products, showFilter },
+    state: { filters, category, showFilter, brands },
   } = useData();
-  const brands = [...new Set(products?.map(({ brand }) => brand))];
   const ratings = [1, 2, 3, 4, 5];
   const prices = [500, 1000, 2000, 3000, 4000];
+
   return (
     <>
-      <div
-        className={`filter-container ${showFilter ? "w-90" : ""}`}
-      >
+      <div className={`filter-container ${showFilter ? "w-90" : ""}`}>
         <div className="filter-clear-section">
           <h2 className="filter-heading">Filters</h2>
           <div
@@ -71,7 +69,7 @@ const Filters = () => {
                 <input
                   type="checkbox"
                   name={categoryName}
-                  checked={filters.categoryFilter.includes(categoryName)}
+                  checked={filters.category.includes(categoryName)}
                   id={id}
                   onChange={() =>
                     dispatch({ type: setCategoryFilter, payload: categoryName })
@@ -130,7 +128,7 @@ const Filters = () => {
               <input
                 type="checkbox"
                 name={name}
-                checked={filters.brandFilter.includes(name)}
+                checked={filters.brand.includes(name)}
                 id={name}
                 onChange={() =>
                   dispatch({ type: setBrandFilter, payload: name })

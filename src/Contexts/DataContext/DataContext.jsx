@@ -7,8 +7,14 @@ import React, {
 } from "react";
 import { DataReducer } from "../../DataReducer/DataReducer";
 import { initialState } from "../../DataReducer/InitialState";
-import { getAllCategory, getAllProduct } from "./DataApi";
-import { category, PRODUCT_DETAIL, PRODUCTS } from "../../Utils/Constants";
+import { getAllCategory, getAllProduct, getBrands } from "./DataApi";
+import {
+  CATEGORY,
+  PRODUCT_DETAIL,
+  PRODUCTS,
+  SET_BRANDS,
+  SET_LOADER2,
+} from "../../Utils/Constants";
 
 export const DataContext = createContext();
 
@@ -17,17 +23,36 @@ export const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const {
-    filters: { reqPage },
+    filters: {
+      reqPage,
+      includeOutStock,
+      rating,
+      price,
+      trending,
+      brand,
+      category,
+    },
   } = state;
 
   const getProducts = async () => {
     try {
+      loading ? null : dispatch({ type: SET_LOADER2, payload: true });
+
+      console.log(brand.join(), "cat", category.join());
       const {
         data: {
           statusCode,
           data: { products, totalPage, currentPage, productFetched },
         },
-      } = await getAllProduct(reqPage);
+      } = await getAllProduct(
+        reqPage,
+        includeOutStock,
+        rating,
+        price,
+        trending,
+        brand,
+        category
+      );
       if (statusCode === 200) {
         dispatch({ type: PRODUCTS, payload: products });
         dispatch({
@@ -43,6 +68,7 @@ export const DataProvider = ({ children }) => {
       console.error(error);
     } finally {
       setLoading(false);
+      dispatch({ type: SET_LOADER2, payload: false });
     }
   };
 
@@ -52,9 +78,8 @@ export const DataProvider = ({ children }) => {
         data: { statusCode, data },
       } = await getAllCategory();
 
-      console.log(data);
       if (statusCode === 200) {
-        dispatch({ type: category, payload: data });
+        dispatch({ type: CATEGORY, payload: data });
       }
     } catch (err) {
       console.error(err);
@@ -63,13 +88,31 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const getBrandsName = async () => {
+    try {
+      const {
+        data: {
+          statusCode,
+          data: { brands },
+        },
+      } = await getBrands();
+
+      if (statusCode === 200) {
+        dispatch({ type: SET_BRANDS, payload: brands });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getCategory();
+    getBrandsName();
   }, []);
 
   useEffect(() => {
     getProducts();
-  }, [reqPage]);
+  }, [state.filters]);
 
   return (
     <DataContext.Provider value={{ state, loading, dispatch, getProducts }}>
