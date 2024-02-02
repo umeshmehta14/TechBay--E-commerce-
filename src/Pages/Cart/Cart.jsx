@@ -5,21 +5,17 @@ import "./Cart.css";
 import { useData, useAuth } from "../../Contexts";
 import CartDetailCard from "./Cart Components/Cart Info/CartDetailCard";
 import CartPrice from "./Cart Components/Cart Price/CartPrice";
-import {
-  BsCartX,
-  ImCart,
-} from "../../Utils/Icons/Icons";
+import { BsCartX, ImCart } from "../../Utils/Icons/Icons";
 
 export const Cart = () => {
   document.title = "Cart";
   const {
-    state: { products }
+    state: { cart },
   } = useData();
   const { token } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const cartData = products?.filter(({ inCart }) => inCart);
 
   return (
     <>
@@ -43,9 +39,9 @@ export const Cart = () => {
               </button>
             </div>
           </section>
-        ) : cartData.length > 0 ? (
+        ) : cart?.length > 0 ? (
           <h1 className="cart-heading">
-            Cart 
+            Cart
             <span className="icon">
               <ImCart />
             </span>
@@ -58,22 +54,17 @@ export const Cart = () => {
             <h1 className="cart-heading">Your cart is currently empty.</h1>
           </>
         )}
-        {token && (
-          cartData.length > 0 ? (
+        {token &&
+          (cart?.length > 0 ? (
             <section className="cart-container">
               <div className="cart-details">
-                {cartData?.map((item) => <CartDetailCard key={item._id} item={item}/>)}
+                {cart?.map((item) => (
+                  <CartDetailCard key={item._id} item={item} />
+                ))}
               </div>
-              {cartData.length > 0 ? (
-                <CartPrice/>
-              ) : (
-                null
-              )}
+              {cart?.length > 0 ? <CartPrice /> : null}
             </section>
-          ) : (
-            null
-          )
-        )}
+          ) : null)}
       </main>
     </>
   );

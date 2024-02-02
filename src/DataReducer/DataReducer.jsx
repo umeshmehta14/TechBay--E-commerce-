@@ -1,5 +1,5 @@
 import {
-  cart,
+  CART,
   CATEGORY,
   clearFilter,
   FEATURED_PRODUCT,
@@ -34,7 +34,6 @@ import {
   setTrending,
   sortByRating,
   updateAddressList,
-  updateProductCart,
   WISHLIST,
 } from "../Utils/Constants";
 
@@ -64,37 +63,12 @@ export const DataReducer = (state, action) => {
         brands: action.payload,
       };
 
+    case CART:
       return {
         ...state,
-        products: state.products?.map((product) => ({
-          ...product,
-          inWishlist: !!wishlistLookup[product._id],
-        })),
+        cart: action.payload,
       };
 
-    case cart:
-      return {
-        ...state,
-        cart: [...action.payload]?.map((item) => ({
-          ...item,
-          inCart: true,
-        })),
-      };
-
-    case updateProductCart:
-      const cartLookup = state.cart?.reduce((lookup, cartItem) => {
-        lookup[cartItem._id] = cartItem;
-        return lookup;
-      }, {});
-
-      return {
-        ...state,
-        products: state.products?.map((product) => ({
-          ...product,
-          inCart: !!cartLookup[product._id],
-          qty: (cartLookup[product._id] && cartLookup[product._id].qty) || 1,
-        })),
-      };
     case CATEGORY:
       return { ...state, category: action.payload };
 

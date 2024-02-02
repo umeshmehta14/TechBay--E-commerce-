@@ -22,19 +22,21 @@ const CartDetailCard = ({ item }) => {
 
   const navigate = useNavigate();
   const {
-    _id,
-    title,
-    price,
-    discountPercentage,
-    original_price,
-    rating,
-    inStock,
-    qty,
-    image,
-    trending,
+    product: {
+      _id,
+      title,
+      price,
+      discountPercentage,
+      original_price,
+      rating,
+      inStock,
+      image,
+      trending,
+    },
+    quantity,
   } = item;
 
-  const inWishlist = wishlist?.find((elem) => elem._id === productId);
+  const inWishlist = wishlist?.find((elem) => elem._id === _id);
 
   return (
     <div key={_id} className="cart-product-card" title={title}>
@@ -86,20 +88,20 @@ const CartDetailCard = ({ item }) => {
           <span className="cart-btn-box">
             <button
               className={`quantity-btn br ${
-                qty === +1 || cartDisable ? "cursor-disable" : ""
+                quantity === +1 || cartDisable ? "cursor-disable" : ""
               }`}
-              disabled={cartDisable || qty === +1}
+              disabled={cartDisable || quantity === +1}
               onClick={() => handleCartQuantity(decrement, item)}
             >
               -
             </button>
 
-            <span className="btn-para">{qty}</span>
+            <span className="btn-para">{quantity}</span>
 
             <button
               disabled={cartDisable}
               className={`quantity-btn bl ${
-                qty === +10 || cartDisable ? "cursor-disable" : ""
+                quantity === +10 || cartDisable ? "cursor-disable" : ""
               }`}
               onClick={() => handleCartQuantity(increment, item)}
             >

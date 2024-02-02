@@ -9,7 +9,7 @@ import {
   postCartList,
   updateCartQuantity,
 } from "./CartApi";
-import { cart, updateProductCart } from "../../Utils/Constants";
+import { CART } from "../../Utils/Constants";
 
 export const CartContext = createContext();
 
@@ -23,16 +23,19 @@ export const CartProvider = ({ children }) => {
   const [cartDisable, setCartDisable] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: cart, payload: [] });
-    dispatch({ type: updateProductCart });
-    if(token)
-    {
+    // dispatch({ type: cart, payload: [] });
+    // dispatch({ type: updateProductCart });
+    if (token) {
       (async () => {
         try {
-          const cartResponse = await getCartList({ encodedToken: token });
-          if (cartResponse.status === 200 || cartResponse.status === 201) {
-            dispatch({ type: cart, payload: cartResponse.data.cart });
-            dispatch({ type: updateProductCart });
+          const {
+            data: {
+              statusCode,
+              data: { cart },
+            },
+          } = await getCartList(token);
+          if (statusCode === 200) {
+            dispatch({ type: CART, payload: cart });
           }
         } catch (err) {
           console.error(err);
@@ -75,8 +78,7 @@ export const CartProvider = ({ children }) => {
         });
       }
       if (cartRes.status === 201 || cartRes.status === 200) {
-        dispatch({ type: cart, payload: cartRes.data.cart });
-        dispatch({ type: updateProductCart });
+        dispatch({ type: CART, payload: cartRes.data.cart });
         if (buyNow) {
           setCartDisable(false);
           navigate("/checkout", { state: { from: location } });
@@ -108,7 +110,6 @@ export const CartProvider = ({ children }) => {
       });
       if (updatedCart.status === 201 || updatedCart.status === 200) {
         dispatch({ type: cart, payload: updatedCart.data.cart });
-        dispatch({ type: updateProductCart });
       }
     } catch (err) {
       console.error(err);

@@ -1,9 +1,10 @@
 import axios from "axios";
+import { API_URL } from "../../Utils/Constants";
 
-export const getCartList = async ({ encodedToken }) =>
-  await axios.get("/api/user/cart", {
+export const getCartList = async (token) =>
+  await axios.get(`${API_URL}/users/cart/`, {
     headers: {
-      authorization: encodedToken,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -25,15 +26,11 @@ export const deleteCartList = async ({ productId, encodedToken }) =>
     },
   });
 
-export const updateCartQuantity = async ({
-  type,
-  productId,
-  encodedToken,
-}) =>
-   await axios.post(
+export const updateCartQuantity = async ({ type, productId, encodedToken }) =>
+  await axios.post(
     `/api/user/cart/${productId}`,
     {
-      action: {type},
+      action: { type },
     },
     {
       headers: {
