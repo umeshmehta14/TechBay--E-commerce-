@@ -13,12 +13,13 @@ import { SELECTED_PRODUCT } from "../../Utils/Constants";
 
 export const SingleProduct = () => {
   const {
-    state: { selectedProduct },
+    state: { selectedProduct, wishlist },
     getProductById,
     dispatch,
   } = useData();
 
-  const { wishDisable, handleWishList } = useWishList();
+  const { wishDisable, removeProductFromWishList, addProductToWishList } =
+    useWishList();
   const { cartDisable, handleCartButton } = useCart();
   const { token } = useAuth();
 
@@ -34,13 +35,14 @@ export const SingleProduct = () => {
     brand,
     rating,
     inStock,
-    inWishlist,
     inCart,
     image,
     trending,
   } = selectedProduct || {};
 
   document.title = title;
+
+  const inWishlist = wishlist?.find((elem) => elem._id === productId);
 
   useEffect(() => {
     dispatch({ type: SELECTED_PRODUCT, payload: {} });
@@ -55,17 +57,17 @@ export const SingleProduct = () => {
           {token && inWishlist ? (
             <AiFillHeart
               className={`c-red wishList-icon ${
-                wishDisable ? "cursor-disable" : ""
+                wishDisable && "cursor-disable"
               }`}
-              onClick={() => handleWishList(selectedProduct)}
+              onClick={() => removeProductFromWishList(productId, title)}
               title="Remove from wishlist"
             />
           ) : (
             <AiOutlineHeart
-              className={`wishList-icon ${
-                wishDisable ? "cursor-disable" : ""
-              } ${!inStock ? "cursor-disable" : ""}`}
-              onClick={() => (inStock ? handleWishList(selectedProduct) : null)}
+              className={`wishList-icon ${wishDisable && "cursor-disable"} ${
+                !inStock ? "cursor-disable" : ""
+              }`}
+              onClick={() => addProductToWishList(productId)}
               title="Add to wishlist"
             />
           )}

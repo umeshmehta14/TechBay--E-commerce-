@@ -20,8 +20,6 @@ export const WishListProvider = ({ children }) => {
   const location = useLocation();
   const [wishDisable, setWishDisable] = useState(false);
 
-  console.log(token);
-
   const addProductToWishList = async (productId) => {
     try {
       if (!token) {
@@ -57,15 +55,19 @@ export const WishListProvider = ({ children }) => {
       setWishDisable(false);
     }
   };
+
   const removeProductFromWishList = async (productId, title) => {
     try {
       setWishDisable(true);
       const {
-        data: { statusCode },
+        data: {
+          statusCode,
+          data: { wishlist },
+        },
       } = await removeWishlist(productId, token);
 
       if (statusCode === 200) {
-        getWishlistProducts();
+        dispatch({ type: WISHLIST, payload: wishlist });
         toast.warn(`${title} Removed from Wishlist`, {
           containerId: "B",
           theme: "colored",
@@ -97,49 +99,12 @@ export const WishListProvider = ({ children }) => {
     }
   };
 
-  // const handleWishList = async (product) => {
-  //   try {
-  //     if (!token) {
-  //       toast.warning(`Need To Login First`, {
-  //         containerId: "A",
-  //         theme: "colored",
-  //       });
-  //       navigate("/login", { state: { from: location } });
-  //       return;
-  //     }
-  //     setWishDisable(true);
-  //     let wishlistRes = null;
-  //     if (product.inWishlist) {
-  //       wishlistRes = await deleteWishlist({
-  //         productId: product._id,
-  //         encodedToken: token,
-  //       });
-  //       toast.info(`${product.title} Removed From Wishlist`, {
-  //         containerId: "B",
-  //         theme: "colored",
-  //       });
-  //     } else {
-  //       wishlistRes = await postWishList({ product, encodedToken: token });
-  //       toast.success(`${product.title} Added to Wishlist`, {
-  //         containerId: "B",
-  //         theme: "colored",
-  //       });
-  //     }
-  //     if (wishlistRes.status === 201 || wishlistRes.status === 200) {
-  //       dispatch({ type: wishlist, payload: wishlistRes.data.wishlist });
-  //       dispatch({ type: updateProductWishlist });
-  //     }
-  //     setWishDisable(false);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   useEffect(() => {
     if (token) {
       getWishlistProducts();
     }
   }, [token, dispatch]);
+
   return (
     <WishListContext.Provider
       value={{ addProductToWishList, wishDisable, removeProductFromWishList }}

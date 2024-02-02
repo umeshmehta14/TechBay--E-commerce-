@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./CartDetailCard.css";
-import { useCart, useWishList } from "../../../../Contexts";
+import { useCart, useData, useWishList } from "../../../../Contexts";
 import { decrement, increment } from "../../../../Utils/Constants";
 import {
   AiFillHeart,
@@ -13,7 +13,12 @@ import {
 
 const CartDetailCard = ({ item }) => {
   const { handleCart, cartDisable, handleCartQuantity } = useCart();
-  const { handleWishList, wishDisable } = useWishList();
+  const { removeProductFromWishList, addProductToWishList, wishDisable } =
+    useWishList();
+
+  const {
+    state: { wishlist },
+  } = useData();
 
   const navigate = useNavigate();
   const {
@@ -23,28 +28,28 @@ const CartDetailCard = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inWishlist,
     inStock,
     qty,
     image,
     trending,
   } = item;
+
+  const inWishlist = wishlist?.find((elem) => elem._id === productId);
+
   return (
     <div key={_id} className="cart-product-card" title={title}>
       {inWishlist ? (
         <AiFillHeart
-          className={`c-red wishList-icon ${
-            wishDisable ? "cursor-disable" : ""
-          }`}
-          onClick={() => handleWishList(item)}
+          className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+          onClick={() => removeProductFromWishList(_id, title)}
           title="Remove from wishlist"
         />
       ) : (
         <AiOutlineHeart
-          className={`wishList-icon ${wishDisable ? "cursor-disable" : ""} ${
+          className={`wishList-icon ${wishDisable && "cursor-disable"} ${
             !inStock ? "cursor-disable" : ""
           }`}
-          onClick={() => (inStock ? handleWishList(item) : null)}
+          onClick={() => addProductToWishList(_id)}
           title="Add to wishlist"
         />
       )}

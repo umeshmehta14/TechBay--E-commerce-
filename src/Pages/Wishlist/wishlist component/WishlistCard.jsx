@@ -2,19 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./WishlistCard.css";
-import { useAuth, useCart, useWishList } from "../../../Contexts";
-import { increment } from "../../../Utils/Constants";
-import {
-  AiFillStar,
-  AiOutlineHeart,
-  AiFillHeart,
-  ImCart,
-} from "../../../Utils/Icons/Icons";
+import { useCart, useWishList } from "../../../Contexts";
+import { AiFillStar, AiFillHeart, ImCart } from "../../../Utils/Icons/Icons";
 
 const WishlistCard = ({ item }) => {
-  const { handleWishList, wishDisable } = useWishList();
-  const { cartDisable, handleCartButton, handleCartQuantity } = useCart();
-  const { token } = useAuth();
+  const { removeProductFromWishList, wishDisable } = useWishList();
+  const { cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
   const {
     _id,
@@ -24,25 +17,17 @@ const WishlistCard = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inWishlist,
     inCart,
-    qty,
     image,
     trending,
   } = item;
   return (
     <div key={_id} className={`product-card product-card-wishlist`}>
-      {token && inWishlist ? (
-        <AiFillHeart
-          className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
-          onClick={() => handleWishList(item)}
-        />
-      ) : (
-        <AiOutlineHeart
-          className={`wishList-icon ${wishDisable && "cursor-disable"}`}
-          onClick={() => handleWishList(item)}
-        />
-      )}
+      <AiFillHeart
+        className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+        onClick={() => removeProductFromWishList(_id, title)}
+        title="Remove from wishlist"
+      />
       <div
         className="product-card-img product-card-img-wishlist"
         onClick={() => navigate(`/product/${_id}`)}
@@ -70,25 +55,6 @@ const WishlistCard = ({ item }) => {
           </div>
         </div>
         <div className="btn-box">
-          {/* <button
-            disabled={cartDisable}
-            className={`btn w-fit m-0 ${
-              cartDisable || qty === +10 ? "cursor-disable" : ""
-            } ${inCart ? "third-color" : ""}`}
-            onClick={() =>
-              inCart
-                ? handleCartQuantity(increment, item)
-                : handleCartButton(inCart, item)
-            }
-          >
-            {inCart ? (
-              `Added (${qty}) +`
-            ) : (
-              <>
-                <ImCart /> Add to Cart
-              </>
-            )}
-          </button> */}
           <button
             disabled={cartDisable}
             className={`btn w-fit m-0 ${cartDisable ? "cursor-disable" : ""} ${
