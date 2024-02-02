@@ -101,7 +101,7 @@ export const removeItemFromCartHandler = function (schema, request) {
 /**
  * This handler handles adding items to user's cart.
  * send POST Request at /api/user/cart/:productId
- * body contains {action} (whose 'type' can be increment or decrement)
+ * body contains {action} (whose 'type' can be INCREMENT or DECREMENT)
  * */
 
 export const updateCartItemHandler = function (schema, request) {
@@ -119,14 +119,14 @@ export const updateCartItemHandler = function (schema, request) {
     }
     const userCart = schema.users.findBy({ _id: userId }).cart;
     const { action } = JSON.parse(request.requestBody);
-    if (action.type === "increment") {
+    if (action.type === "INCREMENT") {
       userCart.forEach((product) => {
         if (product._id === productId) {
           product.qty += 1;
           product.updatedAt = formatDate();
         }
       });
-    } else if (action.type === "decrement") {
+    } else if (action.type === "DECREMENT") {
       userCart.forEach((product) => {
         if (product._id === productId) {
           product.qty -= 1;

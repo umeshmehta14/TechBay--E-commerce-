@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./CartDetailCard.css";
 import { useCart, useData, useWishList } from "../../../../Contexts";
-import { decrement, increment } from "../../../../Utils/Constants";
+import { DECREMENT, INCREMENT } from "../../../../Utils/Constants";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -91,7 +91,7 @@ const CartDetailCard = ({ item }) => {
                 quantity === +1 || cartDisable ? "cursor-disable" : ""
               }`}
               disabled={cartDisable || quantity === +1}
-              onClick={() => handleCartQuantity(decrement, item)}
+              onClick={() => handleCartQuantity(_id, DECREMENT, quantity)}
             >
               -
             </button>
@@ -103,7 +103,7 @@ const CartDetailCard = ({ item }) => {
               className={`quantity-btn bl ${
                 quantity === +10 || cartDisable ? "cursor-disable" : ""
               }`}
-              onClick={() => handleCartQuantity(increment, item)}
+              onClick={() => handleCartQuantity(_id, INCREMENT, quantity)}
             >
               +
             </button>

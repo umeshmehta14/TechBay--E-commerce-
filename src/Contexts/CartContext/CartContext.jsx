@@ -123,25 +123,22 @@ export const CartProvider = ({ children }) => {
   //   }
   // };
 
-  const handleCartQuantity = async (updateType, product) => {
+  const handleCartQuantity = async (productId, updateType, qty) => {
     setCartDisable(true);
-    if (product.qty >= 10 && updateType === "increment") {
+    if (qty >= 10 && updateType === "INCREMENT") {
       toast.warning(
         "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
         { containerId: "A", theme: "colored" }
       );
       setCartDisable(false);
-
       return;
     }
     try {
-      const updatedCart = await updateCartQuantity({
-        type: updateType,
-        productId: product._id,
-        encodedToken: token,
-      });
-      if (updatedCart.status === 201 || updatedCart.status === 200) {
-        dispatch({ type: cart, payload: updatedCart.data.cart });
+      const {
+        data: { statusCode, data },
+      } = await updateCartQuantity(productId, updateType, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: data });
       }
     } catch (err) {
       console.error(err);

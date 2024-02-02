@@ -30,15 +30,13 @@ export const removeCartList = async (productId, token) =>
     }
   );
 
-export const updateCartQuantity = async ({ type, productId, encodedToken }) =>
-  await axios.post(
-    `/api/user/cart/${productId}`,
-    {
-      action: { type },
-    },
+export const updateCartQuantity = async (productId, type, token) =>
+  await axios.patch(
+    `${API_URL}/users/update-quantity/cart/${type.toLowerCase()}/${productId}`,
+    {},
     {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
