@@ -12,7 +12,7 @@ import {
 } from "../../../../Utils/Icons/Icons";
 
 const CartDetailCard = ({ item }) => {
-  const { handleCart, cartDisable, handleCartQuantity } = useCart();
+  const { removeProductFromCart, cartDisable, handleCartQuantity } = useCart();
   const { removeProductFromWishList, addProductToWishList, wishDisable } =
     useWishList();
 
@@ -114,7 +114,8 @@ const CartDetailCard = ({ item }) => {
             className={`remove-btn btn ${cartDisable ? "cursor-disable" : ""}`}
             disabled={cartDisable}
             title="Remove from Cart"
-            onClick={() => handleCart(item)}
+            // onClick={() => handleCart(item)}
+            onClick={() => removeProductFromCart(_id, title)}
           >
             <span className="icon">
               <RiDeleteBin5Line />

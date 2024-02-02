@@ -19,12 +19,16 @@ export const addCartList = async (productId, token) =>
     }
   );
 
-export const deleteCartList = async ({ productId, encodedToken }) =>
-  await axios.delete(`/api/user/cart/${productId}`, {
-    headers: {
-      authorization: encodedToken,
-    },
-  });
+export const removeCartList = async (productId, token) =>
+  await axios.patch(
+    `${API_URL}/users/remove/cart/${productId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
 export const updateCartQuantity = async ({ type, productId, encodedToken }) =>
   await axios.post(

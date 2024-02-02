@@ -5,9 +5,8 @@ import { toast } from "react-toastify";
 import { useData, useAuth } from "../index";
 import {
   addCartList,
-  deleteCartList,
   getCartList,
-  postCartList,
+  removeCartList,
   updateCartQuantity,
 } from "./CartApi";
 import { CART } from "../../Utils/Constants";
@@ -44,6 +43,28 @@ export const CartProvider = ({ children }) => {
       if (statusCode === 200) {
         dispatch({ type: CART, payload: cart });
         toast.success(`${cart[cart.length - 1].product.title} Added to Cart`, {
+          containerId: "B",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setCartDisable(false);
+    }
+  };
+  const removeProductFromCart = async (productId, title) => {
+    try {
+      setCartDisable(true);
+      const {
+        data: {
+          statusCode,
+          data: { cart },
+        },
+      } = await removeCartList(productId, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: cart });
+        toast.success(`${title} Removed from Cart`, {
           containerId: "B",
           theme: "colored",
         });
@@ -161,6 +182,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         addProductToCart,
+        removeProductFromCart,
         cartDisable,
         clearCart,
         handleCartQuantity,
