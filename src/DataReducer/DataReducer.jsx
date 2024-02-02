@@ -20,7 +20,7 @@ import {
   setEditId,
   setOrderDetails,
   setOutOfStock,
-  setPrice,
+  SET_PRICE,
   setScreenWidth,
   setSearchValue,
   setSelectedAddress,
@@ -32,7 +32,7 @@ import {
   setShowSearchedProducts,
   setShowSignUpPassword,
   setTrending,
-  sortByRating,
+  SORT_BY_RATING,
   updateAddressList,
   WISHLIST,
 } from "../Utils/Constants";
@@ -84,7 +84,7 @@ export const DataReducer = (state, action) => {
     case SET_SEARCH_LOADER:
       return { ...state, searchLoader: action.payload };
 
-    case sortByRating:
+    case SORT_BY_RATING:
       return {
         ...state,
         filters: { ...state.filters, rating: action.payload },
@@ -134,7 +134,7 @@ export const DataReducer = (state, action) => {
         },
       };
 
-    case setPrice:
+    case SET_PRICE:
       return {
         ...state,
         filters: { ...state.filters, price: action.payload },

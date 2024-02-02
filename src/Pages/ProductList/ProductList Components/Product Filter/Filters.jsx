@@ -7,10 +7,10 @@ import {
   setBrandFilter,
   setCategoryFilter,
   setOutOfStock,
-  setPrice,
+  SET_PRICE,
   setShowFilter,
   setTrending,
-  sortByRating,
+  SORT_BY_RATING,
 } from "../../../../Utils/Constants";
 
 const Filters = () => {
@@ -52,7 +52,7 @@ const Filters = () => {
             id="range"
             value={filters.rating}
             onChange={(e) =>
-              dispatch({ type: sortByRating, payload: e.target.value })
+              dispatch({ type: SORT_BY_RATING, payload: e.target.value })
             }
           />
           <datalist id="rating-inp">
@@ -89,7 +89,7 @@ const Filters = () => {
                 checked={filters.price === item}
                 name={item}
                 id={item + "rs"}
-                onChange={() => dispatch({ type: setPrice, payload: item })}
+                onChange={() => dispatch({ type: SET_PRICE, payload: item })}
               />
               Less Than &#8377;{item}
             </label>
