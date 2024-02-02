@@ -8,6 +8,7 @@ import React, {
 import { DataReducer } from "../../DataReducer/DataReducer";
 import { initialState } from "../../DataReducer/InitialState";
 import {
+  featuredProducts,
   getAllCategory,
   getAllProduct,
   getBrands,
@@ -15,6 +16,7 @@ import {
 } from "./DataApi";
 import {
   CATEGORY,
+  FEATURED_PRODUCT,
   PRODUCT_DETAIL,
   PRODUCTS,
   SET_BRANDS,
@@ -141,8 +143,23 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const getFeaturedProducts = async () => {
+    try {
+      const {
+        data: { statusCode, data },
+      } = await featuredProducts();
+
+      if (statusCode === 200) {
+        dispatch({ type: FEATURED_PRODUCT, payload: data });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCategory();
+    getFeaturedProducts();
     getBrandsName();
   }, []);
 

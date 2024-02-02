@@ -30,3 +30,6 @@ export const getBrands = async () =>
 
 export const searchProducts = async (searchValue) =>
   axios.get(`${API_URL}/products/search/${searchValue}`);
+
+export const featuredProducts = async () =>
+  axios.get(`${API_URL}/products/featured/`);

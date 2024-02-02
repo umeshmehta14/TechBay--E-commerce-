@@ -17,7 +17,7 @@ export const Home = () => {
   return (
     <main className="container top-4 top-6">
       <HeroSection />
-      <FeatureSection products={products} />
+      <FeatureSection />
       <CategorySection category={category} />
       <DeliveryInfo />
       <CompanyInfo />

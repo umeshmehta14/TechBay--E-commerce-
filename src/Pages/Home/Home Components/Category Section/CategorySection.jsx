@@ -13,27 +13,33 @@ import {
   AiOutlineArrowRight,
 } from "../../../../Utils/Icons/Icons";
 
-const CategorySection = ({ category }) => {
+const CategorySection = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
-  const { dispatch } = useData();
+  const {
+    dispatch,
+    state: { category },
+  } = useData();
+
   const navigate = useNavigate();
 
   const nextSlide = () =>
-    categoryIndex === category.length - 1
+    categoryIndex === category?.length - 1
       ? setCategoryIndex(0)
       : setCategoryIndex(categoryIndex + 1);
 
   const previousSlide = () =>
     categoryIndex === 0
-      ? setCategoryIndex(category.length - 1)
+      ? setCategoryIndex(category?.length - 1)
       : setCategoryIndex(categoryIndex - 1);
 
   const curCategory = category[categoryIndex];
   useEffect(() => {
     setInterval(() => {
-      setCategoryIndex((prev) => (prev === category.length - 1 ? 0 : prev + 1));
+      setCategoryIndex((prev) =>
+        prev === category?.length - 1 ? 0 : prev + 1
+      );
     }, 2500);
-  }, [category.length]);
+  }, [category?.length]);
 
   return (
     <>
@@ -45,7 +51,6 @@ const CategorySection = ({ category }) => {
         <div className="category-container-mobile">
           <div
             className="category-item"
-            key={curCategory?.id}
             onClick={() => {
               dispatch({ type: setSearchValue, payload: "" });
               dispatch({ type: clearFilter });

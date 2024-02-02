@@ -2,6 +2,7 @@ import {
   cart,
   CATEGORY,
   clearFilter,
+  FEATURED_PRODUCT,
   PRODUCT_DETAIL,
   PRODUCTS,
   SET_BRANDS,
@@ -44,6 +45,9 @@ export const DataReducer = (state, action) => {
 
     case PRODUCT_DETAIL:
       return { ...state, productDetail: action.payload };
+
+    case FEATURED_PRODUCT:
+      return { ...state, featuredProducts: action.payload };
 
     case wishlist:
       return {
