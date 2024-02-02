@@ -1,6 +1,7 @@
 export const PRODUCTS = "products";
 export const PRODUCT_DETAIL = "PRODUCT_DETAIL";
 export const FEATURED_PRODUCT = "FEATURED_PRODUCT";
+export const SELECTED_PRODUCT = "SELECTED_PRODUCT";
 export const CATEGORY = "CATEGORY";
 export const wishlist = "wishlist";
 export const SET_BRANDS = "SET_BRANDS";

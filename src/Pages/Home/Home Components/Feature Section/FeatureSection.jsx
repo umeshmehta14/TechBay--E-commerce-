@@ -23,7 +23,7 @@ const FeatureSection = () => {
                 key={_id}
                 className="feature-item"
                 title={title}
-                onClick={() => navigate(`/singleProduct/${_id}`)}
+                onClick={() => navigate(`/product/${_id}`)}
               >
                 <div className="feature-img-box">
                   <img className="feature-item-img" src={image} alt="Product" />

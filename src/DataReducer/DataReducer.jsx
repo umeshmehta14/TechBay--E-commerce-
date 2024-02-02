@@ -5,6 +5,7 @@ import {
   FEATURED_PRODUCT,
   PRODUCT_DETAIL,
   PRODUCTS,
+  SELECTED_PRODUCT,
   SET_BRANDS,
   SET_FILTER_SEARCH_TEXT,
   SET_LOADER2,
@@ -48,6 +49,9 @@ export const DataReducer = (state, action) => {
 
     case FEATURED_PRODUCT:
       return { ...state, featuredProducts: action.payload };
+
+    case SELECTED_PRODUCT:
+      return { ...state, selectedProduct: action.payload };
 
     case wishlist:
       return {

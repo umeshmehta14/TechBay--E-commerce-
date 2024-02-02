@@ -12,6 +12,7 @@ import {
   getAllCategory,
   getAllProduct,
   getBrands,
+  productById,
   searchProducts,
 } from "./DataApi";
 import {
@@ -19,6 +20,7 @@ import {
   FEATURED_PRODUCT,
   PRODUCT_DETAIL,
   PRODUCTS,
+  SELECTED_PRODUCT,
   SET_BRANDS,
   SET_LOADER2,
   SET_SEARCH_LOADER,
@@ -78,7 +80,6 @@ export const DataProvider = ({ children }) => {
             productFetched,
           },
         });
-        console.log(currentPage);
       }
     } catch (error) {
       toast.error("Internal server Error, try after sometime", {
@@ -153,7 +154,25 @@ export const DataProvider = ({ children }) => {
         dispatch({ type: FEATURED_PRODUCT, payload: data });
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    }
+  };
+
+  const getProductById = async (productId) => {
+    try {
+      dispatch({ type: SET_LOADER2, payload: true });
+      const {
+        data: { statusCode, data },
+      } = await productById(productId);
+
+      if (statusCode === 200) {
+        console.log(data);
+        dispatch({ type: SELECTED_PRODUCT, payload: data });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch({ type: SET_LOADER2, payload: false });
     }
   };
 
@@ -169,7 +188,14 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ state, loading, dispatch, getProducts, getSearchProducts }}
+      value={{
+        state,
+        loading,
+        dispatch,
+        getProducts,
+        getSearchProducts,
+        getProductById,
+      }}
     >
       {children}
     </DataContext.Provider>

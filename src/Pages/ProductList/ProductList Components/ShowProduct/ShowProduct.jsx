@@ -33,9 +33,9 @@ const ShowProduct = ({ item }) => {
   } = item;
 
   useEffect(() => {
-  setDisable(cartDisable);
-  }, [cartDisable])
-  
+    setDisable(cartDisable);
+  }, [cartDisable]);
+
   return (
     <>
       <div
@@ -47,9 +47,7 @@ const ShowProduct = ({ item }) => {
       >
         {token && inWishlist ? (
           <AiFillHeart
-            className={`c-red wishList-icon ${
-              wishDisable && "cursor-disable"
-            }`}
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
             onClick={() => handleWishList(item)}
             title="Remove from wishlist"
           />
@@ -64,7 +62,7 @@ const ShowProduct = ({ item }) => {
         )}
         <div
           className="product-card-img"
-          onClick={() => (inStock ? navigate(`/singleProduct/${_id}`) : null)}
+          onClick={() => (inStock ? navigate(`/product/${_id}`) : null)}
         >
           <img src={image} alt={title} />
           {inStock ? (
@@ -78,7 +76,7 @@ const ShowProduct = ({ item }) => {
         <div className="disp-info-pc">
           <div
             className="product-card-info"
-            onClick={() => navigate(`/singleProduct/${_id}`)}
+            onClick={() => navigate(`/product/${_id}`)}
           >
             <span className="rating">
               {rating}

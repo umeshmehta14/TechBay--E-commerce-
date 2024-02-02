@@ -4,6 +4,7 @@ export const initialState = {
   category: [],
   wishlist: [],
   productDetail: {},
+  selectedProduct: {},
   cart: [],
   brands: [],
   filters: {

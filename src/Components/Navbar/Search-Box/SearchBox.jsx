@@ -114,7 +114,7 @@ export const SearchBox = () => {
                               dispatch({ type: setSearchValue, payload: "" });
                               dispatch({ type: setShowSearch });
                               dispatch({ type: setShowBurger, payload: false });
-                              navigate(`/singleProduct/${_id}`);
+                              navigate(`/product/${_id}`);
                             }
                           }}
                         >

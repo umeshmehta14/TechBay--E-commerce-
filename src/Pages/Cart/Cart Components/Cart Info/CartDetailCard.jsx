@@ -48,10 +48,7 @@ const CartDetailCard = ({ item }) => {
           title="Add to wishlist"
         />
       )}
-      <section
-        className="cart-img"
-        onClick={() => navigate(`/singleProduct/${_id}`)}
-      >
+      <section className="cart-img" onClick={() => navigate(`/product/${_id}`)}>
         <img src={image} alt="Stay Tuned" />
         {inStock ? (
           <span className={trending ? "trending" : ""}>
@@ -65,7 +62,7 @@ const CartDetailCard = ({ item }) => {
       <section className="disp-info-pc cart-info">
         <div
           className="product-card-info cart-item-info"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => navigate(`/product/${_id}`)}
         >
           <span className="rating">
             {rating}
@@ -112,7 +109,7 @@ const CartDetailCard = ({ item }) => {
             title="Remove from Cart"
             onClick={() => handleCart(item)}
           >
-            <span className="icon" >
+            <span className="icon">
               <RiDeleteBin5Line />
             </span>
           </button>

@@ -53,7 +53,7 @@ export const OrderDetails = () => {
                     <div
                       key={_id}
                       className="order-cart-card"
-                      onClick={() => navigate(`/singleProduct/${_id}`)}
+                      onClick={() => navigate(`/product/${_id}`)}
                     >
                       <div className="order-img-box">
                         <img width={"100px"} src={image} alt="" />

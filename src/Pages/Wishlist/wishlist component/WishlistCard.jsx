@@ -45,7 +45,7 @@ const WishlistCard = ({ item }) => {
       )}
       <div
         className="product-card-img product-card-img-wishlist"
-        onClick={() => navigate(`/singleProduct/${_id}`)}
+        onClick={() => navigate(`/product/${_id}`)}
       >
         <img src={image} alt="Stay Tuned" />
         <span className={trending ? "trending" : ""}>
@@ -55,7 +55,7 @@ const WishlistCard = ({ item }) => {
       <section className="disp-info-pc disp-info-pc-wishlist">
         <div
           className="product-card-info product-card-info-wishlist"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => navigate(`/product/${_id}`)}
         >
           <span className="rating">
             {rating}
