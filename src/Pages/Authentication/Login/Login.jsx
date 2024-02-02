@@ -25,7 +25,7 @@ export const Login = () => {
   document.title = "Login";
 
   const guestEmail = "ishaanmehta782@gmail.com";
-  const guestPassword = "password";
+  const guestPassword = "umeshmehta14";
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);

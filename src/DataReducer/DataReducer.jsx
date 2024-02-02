@@ -35,8 +35,7 @@ import {
   sortByRating,
   updateAddressList,
   updateProductCart,
-  updateProductWishlist,
-  wishlist,
+  WISHLIST,
 } from "../Utils/Constants";
 
 export const DataReducer = (state, action) => {
@@ -53,13 +52,10 @@ export const DataReducer = (state, action) => {
     case SELECTED_PRODUCT:
       return { ...state, selectedProduct: action.payload };
 
-    case wishlist:
+    case WISHLIST:
       return {
         ...state,
-        wishlist: [...action.payload]?.map((item) => ({
-          ...item,
-          inWishlist: true,
-        })),
+        wishlist: action.payload,
       };
 
     case SET_BRANDS:
@@ -67,12 +63,6 @@ export const DataReducer = (state, action) => {
         ...state,
         brands: action.payload,
       };
-
-    case updateProductWishlist:
-      const wishlistLookup = state.wishlist?.reduce((lookup, wishlistItem) => {
-        lookup[wishlistItem._id] = true;
-        return lookup;
-      }, {});
 
       return {
         ...state,

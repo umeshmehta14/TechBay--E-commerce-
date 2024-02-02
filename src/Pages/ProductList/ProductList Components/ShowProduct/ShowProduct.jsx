@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./ShowProduct.css";
-import { useWishList, useAuth, useCart } from "../../../../Contexts";
+import { useWishList, useAuth, useCart, useData } from "../../../../Contexts";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -12,10 +12,14 @@ import {
 
 const ShowProduct = ({ item }) => {
   const { token } = useAuth();
-  const { handleWishList, wishDisable } = useWishList();
+  const { addProductToWishList, removeProductFromWishList, wishDisable } =
+    useWishList();
   const { cartDisable, handleCartButton } = useCart();
   const navigate = useNavigate();
   const [disable, setDisable] = useState(false);
+  const {
+    state: { wishlist },
+  } = useData();
 
   const {
     _id,
@@ -25,12 +29,13 @@ const ShowProduct = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inWishlist,
     inCart,
     inStock,
     image,
     trending,
   } = item;
+
+  const inWishlist = wishlist?.find((elem) => elem._id === _id);
 
   useEffect(() => {
     setDisable(cartDisable);
@@ -48,7 +53,7 @@ const ShowProduct = ({ item }) => {
         {token && inWishlist ? (
           <AiFillHeart
             className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
-            onClick={() => handleWishList(item)}
+            onClick={() => removeProductFromWishList(_id, title)}
             title="Remove from wishlist"
           />
         ) : (
@@ -56,7 +61,7 @@ const ShowProduct = ({ item }) => {
             className={`wishList-icon ${wishDisable && "cursor-disable"} ${
               !inStock ? "cursor-disable" : ""
             }`}
-            onClick={() => (inStock ? handleWishList(item) : null)}
+            onClick={() => (inStock ? addProductToWishList(_id) : null)}
             title="Add to wishlist"
           />
         )}

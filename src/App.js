@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
-import { useData } from "./Contexts";
+import { useAuth, useData } from "./Contexts";
 import { Navbar, Loader, Footer, RequiredAuth, Loader2 } from "./Components";
 import {
   Home,
@@ -26,6 +26,7 @@ function App() {
     loading,
     state: { loader2 },
   } = useData();
+  const { authLoading } = useAuth();
 
   return (
     <>
@@ -61,6 +62,7 @@ function App() {
       />
 
       {loader2 && <Loader2 />}
+      {authLoading && <Loader2 />}
       <Navbar />
       {loading ? (
         <Loader />

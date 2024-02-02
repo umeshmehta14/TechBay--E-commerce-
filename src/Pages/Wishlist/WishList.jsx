@@ -8,16 +8,15 @@ import { AiOutlineHeart } from "../../Utils/Icons/Icons";
 
 export const WishList = () => {
   const {
-    state: { products },
+    state: { wishlist },
   } = useData();
   document.title = "Wishlist";
 
   const navigate = useNavigate();
 
-  const wishlistData = products.filter(({ inWishlist }) => inWishlist);
   return (
     <main className="container top-wish-6 wishlist-container">
-      {wishlistData.length === 0 ? (
+      {wishlist?.length === 0 ? (
         <section className="empty-wishlist">
           <h1>
             Nothing Here Yet <AiOutlineHeart />
@@ -31,7 +30,7 @@ export const WishList = () => {
         <h1 className="empty-wishlist">WishList</h1>
       )}
       <section className="product-container product-container-wishlist">
-        {wishlistData?.map((item) => (
+        {wishlist?.map((item) => (
           <WishlistCard key={item._id} item={item} />
         ))}
       </section>

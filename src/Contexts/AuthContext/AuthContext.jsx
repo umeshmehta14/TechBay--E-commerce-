@@ -10,11 +10,13 @@ export const AuthProvider = ({ children }) => {
     token: localStorageToken?.token || "",
     currentUser: localStorageToken?.user || null,
   });
+  const [authLoading, setAuthLoading] = useState(false);
 
   const { token, currentUser } = userAuth;
 
   const loginHandler = async (email, password) => {
     try {
+      setAuthLoading(true);
       const {
         data: {
           statusCode,
@@ -39,11 +41,14 @@ export const AuthProvider = ({ children }) => {
         containerId: "A",
         theme: "colored",
       });
+    } finally {
+      setAuthLoading(false);
     }
   };
 
   const signUpHandler = async (username, email, password, confirmPassword) => {
     try {
+      setAuthLoading(true);
       const {
         data: {
           statusCode,
@@ -72,11 +77,14 @@ export const AuthProvider = ({ children }) => {
         containerId: "A",
         theme: "colored",
       });
+    } finally {
+      setAuthLoading(false);
     }
   };
 
   const logoutHandler = async () => {
     try {
+      setAuthLoading(true);
       await userLogout(token);
       localStorage.removeItem("techbayUser");
       setUserAuth({ token: "", currentUser: null });
@@ -86,11 +94,20 @@ export const AuthProvider = ({ children }) => {
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      setAuthLoading(false);
     }
   };
   return (
     <AuthContext.Provider
-      value={{ loginHandler, logoutHandler, token, signUpHandler, currentUser }}
+      value={{
+        loginHandler,
+        logoutHandler,
+        token,
+        signUpHandler,
+        currentUser,
+        authLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

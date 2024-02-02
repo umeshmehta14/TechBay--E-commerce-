@@ -1,25 +1,31 @@
 import axios from "axios";
+import { API_URL } from "../../Utils/Constants";
 
-export const getWishList = async ({encodedToken}) =>
-  await axios.get("/api/user/wishlist", {
+export const getWishList = async (accessToken) =>
+  await axios.get(`${API_URL}/users/wishlist/`, {
     headers: {
-      authorization: encodedToken,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
-export const postWishList = async ({product, encodedToken}) =>
-  await axios.post(
-    "/api/user/wishlist",
-    { product },
+
+export const addToWishList = async (productId, accessToken) =>
+  await axios.patch(
+    `${API_URL}/users/add/wishlist/${productId}`,
+    {},
     {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${accessToken}`,
       },
     }
   );
 
-export const deleteWishlist = async ({productId, encodedToken}) =>
-  await axios.delete(`/api/user/wishlist/${productId}`,{
-    headers: {
-      authorization: encodedToken,
-    },
-});
+export const removeWishlist = async (productId, accessToken) =>
+  await axios.patch(
+    `${API_URL}/users/remove/wishlist/${productId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
