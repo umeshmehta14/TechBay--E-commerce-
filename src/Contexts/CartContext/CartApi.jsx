@@ -8,13 +8,13 @@ export const getCartList = async (token) =>
     },
   });
 
-export const postCartList = async ({ product, encodedToken }) =>
-  await axios.post(
-    "/api/user/cart",
-    { product },
+export const addCartList = async (productId, token) =>
+  await axios.patch(
+    `${API_URL}/users/add/cart/${productId}`,
+    {},
     {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${token}`,
       },
     }
   );

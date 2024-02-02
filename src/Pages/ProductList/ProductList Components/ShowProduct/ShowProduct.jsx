@@ -14,11 +14,11 @@ const ShowProduct = ({ item }) => {
   const { token } = useAuth();
   const { addProductToWishList, removeProductFromWishList, wishDisable } =
     useWishList();
-  const { cartDisable, handleCartButton } = useCart();
+  const { cartDisable, handleCartButton, addProductToCart } = useCart();
   const navigate = useNavigate();
   const [disable, setDisable] = useState(false);
   const {
-    state: { wishlist },
+    state: { wishlist, cart },
   } = useData();
 
   const {
@@ -29,13 +29,13 @@ const ShowProduct = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inCart,
     inStock,
     image,
     trending,
   } = item;
 
   const inWishlist = wishlist?.find((elem) => elem._id === _id);
+  const inCart = cart.find(({ product }) => product._id === _id);
 
   useEffect(() => {
     setDisable(cartDisable);
@@ -101,7 +101,8 @@ const ShowProduct = ({ item }) => {
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
               } ${inCart ? "third-color" : ""}`}
-              onClick={() => handleCartButton(inCart, item)}
+              // onClick={() => handleCartButton(inCart, item)}
+              onClick={() => addProductToCart(_id)}
               title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? (

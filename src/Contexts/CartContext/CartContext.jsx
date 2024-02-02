@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import { useData, useAuth } from "../index";
 import {
+  addCartList,
   deleteCartList,
   getCartList,
   postCartList,
@@ -22,29 +23,7 @@ export const CartProvider = ({ children }) => {
 
   const [cartDisable, setCartDisable] = useState(false);
 
-  useEffect(() => {
-    // dispatch({ type: cart, payload: [] });
-    // dispatch({ type: updateProductCart });
-    if (token) {
-      (async () => {
-        try {
-          const {
-            data: {
-              statusCode,
-              data: { cart },
-            },
-          } = await getCartList(token);
-          if (statusCode === 200) {
-            dispatch({ type: CART, payload: cart });
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      })();
-    }
-  }, [token]);
-
-  const handleCart = async (product, buyNow) => {
+  const addProductToCart = async (productId) => {
     try {
       if (!token) {
         toast.warning(`Need To Login First`, {
@@ -55,41 +34,73 @@ export const CartProvider = ({ children }) => {
         return;
       }
       setCartDisable(true);
-      let cartRes = null;
-      if (product.inCart) {
-        if (buyNow) {
-          setCartDisable(false);
-          navigate("/checkout", { state: { from: location } });
-          return;
-        }
-        cartRes = await deleteCartList({
-          productId: product._id,
-          encodedToken: token,
-        });
-        toast.info(`${product.title} Removed From Cart`, {
-          containerId: "B",
-          theme: "colored",
-        });
-      } else {
-        cartRes = await postCartList({ product, encodedToken: token });
-        toast.success(`${product.title} Added To Cart`, {
+
+      const {
+        data: {
+          statusCode,
+          data: { cart },
+        },
+      } = await addCartList(productId, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: cart });
+        toast.success(`${cart[cart.length - 1].product.title} Added to Cart`, {
           containerId: "B",
           theme: "colored",
         });
       }
-      if (cartRes.status === 201 || cartRes.status === 200) {
-        dispatch({ type: CART, payload: cartRes.data.cart });
-        if (buyNow) {
-          setCartDisable(false);
-          navigate("/checkout", { state: { from: location } });
-          return;
-        }
-      }
+    } catch (error) {
+      console.error(error);
+    } finally {
       setCartDisable(false);
-    } catch (err) {
-      console.error(err);
     }
   };
+
+  // const handleCart = async (product, buyNow) => {
+  //   try {
+  //     if (!token) {
+  //       toast.warning(`Need To Login First`, {
+  //         containerId: "A",
+  //         theme: "colored",
+  //       });
+  //       navigate("/login", { state: { from: location } });
+  //       return;
+  //     }
+  //     setCartDisable(true);
+  //     let cartRes = null;
+  //     if (product.inCart) {
+  //       if (buyNow) {
+  //         setCartDisable(false);
+  //         navigate("/checkout", { state: { from: location } });
+  //         return;
+  //       }
+  //       cartRes = await deleteCartList({
+  //         productId: product._id,
+  //         encodedToken: token,
+  //       });
+  //       toast.info(`${product.title} Removed From Cart`, {
+  //         containerId: "B",
+  //         theme: "colored",
+  //       });
+  //     } else {
+  //       cartRes = await postCartList({ product, encodedToken: token });
+  //       toast.success(`${product.title} Added To Cart`, {
+  //         containerId: "B",
+  //         theme: "colored",
+  //       });
+  //     }
+  //     if (cartRes.status === 201 || cartRes.status === 200) {
+  //       dispatch({ type: CART, payload: cartRes.data.cart });
+  //       if (buyNow) {
+  //         setCartDisable(false);
+  //         navigate("/checkout", { state: { from: location } });
+  //         return;
+  //       }
+  //     }
+  //     setCartDisable(false);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const handleCartQuantity = async (updateType, product) => {
     setCartDisable(true);
@@ -126,10 +137,30 @@ export const CartProvider = ({ children }) => {
   const handleCartButton = (inCart, item, buyNow) =>
     inCart && !buyNow ? navigate("/cart") : handleCart(item, buyNow);
 
+  useEffect(() => {
+    if (token) {
+      (async () => {
+        try {
+          const {
+            data: {
+              statusCode,
+              data: { cart },
+            },
+          } = await getCartList(token);
+          if (statusCode === 200) {
+            dispatch({ type: CART, payload: cart });
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      })();
+    }
+  }, [token]);
+
   return (
     <CartContext.Provider
       value={{
-        handleCart,
+        addProductToCart,
         cartDisable,
         clearCart,
         handleCartQuantity,
