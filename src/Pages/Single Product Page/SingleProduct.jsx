@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 import "./SingleProduct.css";
 import { useWishList, useCart, useAuth, useData } from "../../Contexts";
@@ -25,6 +25,7 @@ export const SingleProduct = () => {
 
   const { productId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     title,
@@ -129,7 +130,11 @@ export const SingleProduct = () => {
               <button
                 className="btn w-fit m-0 s-byn-btn"
                 title="Buy Now"
-                onClick={() => handleCartButton(inCart, selectedProduct, true)}
+                onClick={() =>
+                  token
+                    ? navigate(`/checkout/${productId}`)
+                    : navigate("/login", { state: { from: location } })
+                }
               >
                 Buy Now
               </button>

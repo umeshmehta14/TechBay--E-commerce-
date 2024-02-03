@@ -166,7 +166,6 @@ export const DataProvider = ({ children }) => {
       } = await productById(productId);
 
       if (statusCode === 200) {
-        console.log(data);
         dispatch({ type: SELECTED_PRODUCT, payload: data });
       }
     } catch (error) {

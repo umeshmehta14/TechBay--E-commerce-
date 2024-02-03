@@ -1,17 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./WishlistCard.css";
-import { useCart, useData, useWishList } from "../../../Contexts";
+import { useAuth, useCart, useData, useWishList } from "../../../Contexts";
 import { AiFillStar, AiFillHeart, ImCart } from "../../../Utils/Icons/Icons";
 
 const WishlistCard = ({ item }) => {
   const {
     state: { cart },
   } = useData();
+  const { token } = useAuth();
   const { removeProductFromWishList, wishDisable } = useWishList();
   const { cartDisable, addProductToCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     _id,
     title,
@@ -24,7 +26,7 @@ const WishlistCard = ({ item }) => {
     trending,
   } = item;
 
-  const inCart = cart?.find((elem) => elem._id === _id);
+  const inCart = cart?.find(({ product }) => product._id === _id);
   return (
     <div key={_id} className={`product-card product-card-wishlist`}>
       <AiFillHeart
@@ -79,7 +81,11 @@ const WishlistCard = ({ item }) => {
             className={`btn btn-p-w  w-fit m-0 byn-btn${
               cartDisable ? "cursor-disable" : ""
             }`}
-            onClick={() => handleCartButton(inCart, item, true)}
+            onClick={() =>
+              token
+                ? navigate(`/checkout/${_id}`)
+                : navigate("/login", { state: { from: location } })
+            }
           >
             Buy Now
           </button>

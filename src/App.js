@@ -80,7 +80,7 @@ function App() {
             <Route path="*" element={<Navigate to={"/404"} />} />
 
             <Route
-              path="/checkout"
+              path="/checkout/:buyNowId?"
               element={
                 <RequiredAuth>
                   <CheckOut />

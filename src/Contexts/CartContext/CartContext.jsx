@@ -157,6 +157,7 @@ export const CartProvider = ({ children }) => {
     inCart && !buyNow ? navigate("/cart") : handleCart(item, buyNow);
 
   useEffect(() => {
+    dispatch({ type: CART, payload: [] });
     if (token) {
       (async () => {
         try {

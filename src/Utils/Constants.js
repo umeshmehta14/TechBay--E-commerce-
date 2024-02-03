@@ -6,6 +6,7 @@ export const CATEGORY = "CATEGORY";
 export const WISHLIST = "WISHLIST";
 export const SET_BRANDS = "SET_BRANDS";
 export const CART = "CART";
+export const BUY_NOW = "BUY_NOW";
 export const SET_LOADER2 = "SET_LOADER2";
 export const SET_SEARCH_LOADER = "SET_SEARCH_LOADER";
 export const SET_FILTER_SEARCH_TEXT = "SET_FILTER_SEARCH_TEXT";

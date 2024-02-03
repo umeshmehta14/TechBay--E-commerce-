@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./CheckOut.css";
 import { useData, useAuth, useCart } from "../../Contexts/";
@@ -8,6 +8,7 @@ import { popper } from "../../Utils/Popper";
 import { AddressForm } from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import {
+  SELECTED_PRODUCT,
   setEditId,
   setOrderDetails,
   setSelectedAddress,
@@ -16,26 +17,38 @@ import {
 
 export const CheckOut = () => {
   const {
-    state: { addressList, cart, showAddressModal, selectedAddress },
+    state: {
+      addressList,
+      cart,
+      showAddressModal,
+      selectedAddress,
+      selectedProduct,
+    },
     dispatch,
+    getProductById,
   } = useData();
   document.title = "Checkout";
 
+  const { buyNowId } = useParams();
   const { currentUser } = useAuth();
   const { clearCart } = useCart();
   const { email } = currentUser;
   const navigate = useNavigate();
 
   const [paymentResponse, setPaymentResponse] = useState(false);
-  const originalPrice = cart?.reduce(
-    (acc, { product: { original_price }, quantity }) =>
-      (acc += original_price * quantity),
-    0
-  );
-  const totalCost = cart?.reduce(
-    (acc, { product: { price }, quantity }) => (acc += price * quantity),
-    0
-  );
+  const originalPrice =
+    selectedProduct?.original_price ||
+    cart?.reduce(
+      (acc, { product: { original_price }, quantity }) =>
+        (acc += original_price * quantity),
+      0
+    );
+  const totalCost =
+    selectedProduct?.price ||
+    cart?.reduce(
+      (acc, { product: { price }, quantity }) => (acc += price * quantity),
+      0
+    );
   const discountedPrice = originalPrice - totalCost;
   const selectedMobileNo = addressList.find(({ id }) => id === selectedAddress);
 
@@ -45,7 +58,7 @@ export const CheckOut = () => {
       type: setOrderDetails,
       payload: {
         id: response.razorpay_payment_id,
-        orderList: [...cart],
+        orderList: selectedProduct?.title ? [selectedProduct] : [...cart],
         address: selectedMobileNo,
         amount: totalCost,
         date: new Date(),
@@ -92,10 +105,12 @@ export const CheckOut = () => {
   };
 
   useEffect(() => {
+    dispatch({ type: SELECTED_PRODUCT, payload: {} });
     if (addressList.length === 1) {
       dispatch({ type: setSelectedAddress, payload: addressList[0].id });
     }
-  }, []);
+    buyNowId && getProductById(buyNowId);
+  }, [buyNowId, dispatch]);
 
   return (
     <>
@@ -180,12 +195,19 @@ export const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart?.map(({ product: { _id, title }, quantity }) => (
-                    <p key={_id}>
-                      <span>{title}</span>
-                      <span>{quantity}</span>
+                  {selectedProduct?.title ? (
+                    <p>
+                      <span>{selectedProduct?.title}</span>
+                      <span>{selectedProduct?.quantity || 1}</span>
                     </p>
-                  ))}
+                  ) : (
+                    cart?.map(({ product: { _id, title }, quantity }) => (
+                      <p key={_id}>
+                        <span>{title}</span>
+                        <span>{quantity}</span>
+                      </p>
+                    ))
+                  )}
                 </div>
                 <div className="c-price-heading">
                   <h3 className="pfc">Price Details</h3>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./ShowProduct.css";
 import { useWishList, useAuth, useCart, useData } from "../../../../Contexts";
@@ -12,14 +12,16 @@ import {
 
 const ShowProduct = ({ item }) => {
   const { token } = useAuth();
-  const { addProductToWishList, removeProductFromWishList, wishDisable } =
-    useWishList();
-  const { cartDisable, handleCartButton, addProductToCart } = useCart();
-  const navigate = useNavigate();
-  const [disable, setDisable] = useState(false);
   const {
     state: { wishlist, cart },
   } = useData();
+  const { addProductToWishList, removeProductFromWishList, wishDisable } =
+    useWishList();
+  const { cartDisable, addProductToCart } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [disable, setDisable] = useState(false);
 
   const {
     _id,
@@ -118,7 +120,11 @@ const ShowProduct = ({ item }) => {
               disabled={disable}
               className="btn btn-p-w  w-fit m-0 byn-btn"
               title="Buy Now"
-              onClick={() => handleCartButton(inCart, item, true)}
+              onClick={() =>
+                token
+                  ? navigate(`/checkout/${_id}`)
+                  : navigate("/login", { state: { from: location } })
+              }
             >
               Buy Now
             </button>
