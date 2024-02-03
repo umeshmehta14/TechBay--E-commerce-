@@ -30,9 +30,9 @@ export const removeCartList = async (productId, token) =>
     }
   );
 
-export const updateCartQuantity = async (productId, type, token) =>
+export const updateCartQuantity = async (productId, quantity, token) =>
   await axios.patch(
-    `${API_URL}/users/update-quantity/cart/${type.toLowerCase()}/${productId}`,
+    `${API_URL}/users/update-quantity/cart/${quantity}/${productId}`,
     {},
     {
       headers: {

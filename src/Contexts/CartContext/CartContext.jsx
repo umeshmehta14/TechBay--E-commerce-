@@ -123,27 +123,22 @@ export const CartProvider = ({ children }) => {
   //   }
   // };
 
-  const handleCartQuantity = async (productId, updateType, qty) => {
+  const handleCartQuantity = async (productId, quantity) => {
     setCartDisable(true);
-    if (qty >= 10 && updateType === "INCREMENT") {
-      toast.warning(
-        "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
-        { containerId: "A", theme: "colored" }
-      );
-      setCartDisable(false);
-      return;
-    }
     try {
+      document.body.style.cursor = "progress";
       const {
         data: { statusCode, data },
-      } = await updateCartQuantity(productId, updateType, token);
+      } = await updateCartQuantity(productId, quantity, token);
       if (statusCode === 200) {
         dispatch({ type: CART, payload: data });
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      document.body.style.cursor = "default";
+      setCartDisable(false);
     }
-    setCartDisable(false);
   };
 
   const clearCart = () => {

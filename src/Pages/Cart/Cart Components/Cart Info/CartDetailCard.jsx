@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./CartDetailCard.css";
@@ -15,6 +15,7 @@ const CartDetailCard = ({ item }) => {
   const { removeProductFromCart, cartDisable, handleCartQuantity } = useCart();
   const { removeProductFromWishList, addProductToWishList, wishDisable } =
     useWishList();
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const {
     state: { wishlist },
@@ -37,6 +38,7 @@ const CartDetailCard = ({ item }) => {
   } = item;
 
   const inWishlist = wishlist?.find((elem) => elem._id === _id);
+  const quantityArr = Array.from({ length: 10 }, (_, index) => index + 1);
 
   return (
     <div key={_id} className="cart-product-card" title={title}>
@@ -86,7 +88,20 @@ const CartDetailCard = ({ item }) => {
         <div className="quantity-box">
           <strong>Quantity:</strong>
           <span className="cart-btn-box">
-            <button
+            <select
+              className={`${cartDisable ? "cursor-disable" : ""}`}
+              name=""
+              id=""
+              value={quantity}
+              onChange={({ target }) => handleCartQuantity(_id, target.value)}
+            >
+              {quantityArr?.map((qty) => (
+                <option key={qty} value={qty}>
+                  {qty}
+                </option>
+              ))}
+            </select>
+            {/* <button
               className={`quantity-btn br ${
                 quantity === +1 || cartDisable ? "cursor-disable" : ""
               }`}
@@ -106,7 +121,7 @@ const CartDetailCard = ({ item }) => {
               onClick={() => handleCartQuantity(_id, INCREMENT, quantity)}
             >
               +
-            </button>
+            </button> */}
           </span>
         </div>
         <section className="remove-btn-box">
