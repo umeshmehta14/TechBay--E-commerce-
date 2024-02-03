@@ -2,12 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./WishlistCard.css";
-import { useCart, useWishList } from "../../../Contexts";
+import { useCart, useData, useWishList } from "../../../Contexts";
 import { AiFillStar, AiFillHeart, ImCart } from "../../../Utils/Icons/Icons";
 
 const WishlistCard = ({ item }) => {
+  const {
+    state: { cart },
+  } = useData();
   const { removeProductFromWishList, wishDisable } = useWishList();
-  const { cartDisable, handleCartButton } = useCart();
+  const { cartDisable, addProductToCart } = useCart();
   const navigate = useNavigate();
   const {
     _id,
@@ -17,10 +20,11 @@ const WishlistCard = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inCart,
     image,
     trending,
   } = item;
+
+  const inCart = cart?.find((elem) => elem._id === _id);
   return (
     <div key={_id} className={`product-card product-card-wishlist`}>
       <AiFillHeart
@@ -60,7 +64,7 @@ const WishlistCard = ({ item }) => {
             className={`btn w-fit m-0 ${cartDisable ? "cursor-disable" : ""} ${
               inCart ? "third-color" : ""
             }`}
-            onClick={() => handleCartButton(inCart, item)}
+            onClick={() => (inCart ? navigate("/cart") : addProductToCart(_id))}
             title={inCart ? "go to cart" : "Add to cart"}
           >
             {inCart ? (

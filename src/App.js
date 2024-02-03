@@ -75,10 +75,18 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<CheckOut />} />
+
             <Route path="/404" element={<Error />} />
             <Route path="*" element={<Navigate to={"/404"} />} />
 
+            <Route
+              path="/checkout"
+              element={
+                <RequiredAuth>
+                  <CheckOut />
+                </RequiredAuth>
+              }
+            />
             <Route
               path="/wishlist"
               element={

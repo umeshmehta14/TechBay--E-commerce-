@@ -101,8 +101,9 @@ const ShowProduct = ({ item }) => {
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
               } ${inCart ? "third-color" : ""}`}
-              // onClick={() => handleCartButton(inCart, item)}
-              onClick={() => addProductToCart(_id)}
+              onClick={() =>
+                inCart ? navigate("/cart") : addProductToCart(_id)
+              }
               title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? (

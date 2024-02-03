@@ -101,27 +101,6 @@ const CartDetailCard = ({ item }) => {
                 </option>
               ))}
             </select>
-            {/* <button
-              className={`quantity-btn br ${
-                quantity === +1 || cartDisable ? "cursor-disable" : ""
-              }`}
-              disabled={cartDisable || quantity === +1}
-              onClick={() => handleCartQuantity(_id, DECREMENT, quantity)}
-            >
-              -
-            </button>
-
-            <span className="btn-para">{quantity}</span>
-
-            <button
-              disabled={cartDisable}
-              className={`quantity-btn bl ${
-                quantity === +10 || cartDisable ? "cursor-disable" : ""
-              }`}
-              onClick={() => handleCartQuantity(_id, INCREMENT, quantity)}
-            >
-              +
-            </button> */}
           </span>
         </div>
         <section className="remove-btn-box">
@@ -129,7 +108,6 @@ const CartDetailCard = ({ item }) => {
             className={`remove-btn btn ${cartDisable ? "cursor-disable" : ""}`}
             disabled={cartDisable}
             title="Remove from Cart"
-            // onClick={() => handleCart(item)}
             onClick={() => removeProductFromCart(_id, title)}
           >
             <span className="icon">

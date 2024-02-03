@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "./SingleProduct.css";
 import { useWishList, useCart, useAuth, useData } from "../../Contexts";
@@ -13,17 +13,18 @@ import { SELECTED_PRODUCT } from "../../Utils/Constants";
 
 export const SingleProduct = () => {
   const {
-    state: { selectedProduct, wishlist },
+    state: { selectedProduct, wishlist, cart },
     getProductById,
     dispatch,
   } = useData();
 
   const { wishDisable, removeProductFromWishList, addProductToWishList } =
     useWishList();
-  const { cartDisable, handleCartButton } = useCart();
+  const { cartDisable, addProductToCart } = useCart();
   const { token } = useAuth();
 
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   const {
     title,
@@ -35,14 +36,14 @@ export const SingleProduct = () => {
     brand,
     rating,
     inStock,
-    inCart,
     image,
     trending,
   } = selectedProduct || {};
 
-  document.title = title;
+  document.title = title || "TechBay";
 
   const inWishlist = wishlist?.find((elem) => elem._id === productId);
+  const inCart = cart?.find(({ product }) => product._id === productId);
 
   useEffect(() => {
     dispatch({ type: SELECTED_PRODUCT, payload: {} });
@@ -112,7 +113,9 @@ export const SingleProduct = () => {
                 className={`btn w-fit m-0 ${
                   cartDisable ? "cursor-disable" : ""
                 } ${inCart ? "third-color" : ""}`}
-                onClick={() => handleCartButton(inCart, selectedProduct)}
+                onClick={() =>
+                  inCart ? navigate("/cart") : addProductToCart(productId)
+                }
                 title={inCart ? "go to cart" : "Add to cart"}
               >
                 {inCart ? (

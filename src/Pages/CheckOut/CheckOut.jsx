@@ -25,13 +25,15 @@ export const CheckOut = () => {
   const { clearCart } = useCart();
   const { email } = currentUser;
   const navigate = useNavigate();
+
   const [paymentResponse, setPaymentResponse] = useState(false);
   const originalPrice = cart?.reduce(
-    (acc, { original_price, qty }) => (acc += original_price * qty),
+    (acc, { product: { original_price }, quantity }) =>
+      (acc += original_price * quantity),
     0
   );
   const totalCost = cart?.reduce(
-    (acc, { price, qty }) => (acc += price * qty),
+    (acc, { product: { price }, quantity }) => (acc += price * quantity),
     0
   );
   const discountedPrice = originalPrice - totalCost;
@@ -90,7 +92,6 @@ export const CheckOut = () => {
   };
 
   useEffect(() => {
-    if (cart.length === 0) navigate("/products");
     if (addressList.length === 1) {
       dispatch({ type: setSelectedAddress, payload: addressList[0].id });
     }
@@ -179,10 +180,10 @@ export const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart?.map(({ _id, title, qty }) => (
+                  {cart?.map(({ product: { _id, title }, quantity }) => (
                     <p key={_id}>
                       <span>{title}</span>
-                      <span>{qty}</span>
+                      <span>{quantity}</span>
                     </p>
                   ))}
                 </div>
@@ -191,7 +192,7 @@ export const CheckOut = () => {
                 </div>
                 <div className="price-cost-section">
                   <p>
-                    <span>Price ({cart.length} items)</span>
+                    <span>Price ({cart?.length} items)</span>
                     <span>&#8377;{originalPrice}</span>
                   </p>
                   <p>

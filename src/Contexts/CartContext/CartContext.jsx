@@ -24,6 +24,8 @@ export const CartProvider = ({ children }) => {
 
   const addProductToCart = async (productId) => {
     try {
+      document.body.style.cursor = "progress";
+
       if (!token) {
         toast.warning(`Need To Login First`, {
           containerId: "A",
@@ -50,11 +52,14 @@ export const CartProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     } finally {
+      document.body.style.cursor = "default";
       setCartDisable(false);
     }
   };
   const removeProductFromCart = async (productId, title) => {
     try {
+      document.body.style.cursor = "progress";
+
       setCartDisable(true);
       const {
         data: {
@@ -72,6 +77,7 @@ export const CartProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     } finally {
+      document.body.style.cursor = "default";
       setCartDisable(false);
     }
   };
