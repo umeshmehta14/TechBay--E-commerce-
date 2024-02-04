@@ -3,13 +3,13 @@ import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
 
 import "./AddressForm.css";
-import { useData } from "../../Contexts";
+import { useCheckout, useData } from "../../Contexts";
 import { RxCross1 } from "../../Utils/Icons/Icons";
 import {
-  setShowAddressModal,
+  SET_SHOW_ADDRESS_MODAL,
   SET_ADDRESS_LIST,
-  setEditId,
-  updateAddressList,
+  SET_EDIT_ID,
+  UPDATE_ADDRESS,
 } from "../../Utils/Constants";
 
 export const AddressForm = () => {
@@ -17,6 +17,9 @@ export const AddressForm = () => {
     dispatch,
     state: { editId, addressList },
   } = useData();
+
+  const { addAddress } = useCheckout();
+
   const emptyFormData = {
     id: "",
     name: "",
@@ -82,14 +85,13 @@ export const AddressForm = () => {
   const addressHandler = (e) => {
     e.preventDefault();
     if (editId.length > 0) {
-      dispatch({ type: updateAddressList, payload: { ...formData } });
+      dispatch({ type: UPDATE_ADDRESS, payload: { ...formData } });
     } else {
-      const r_id = uuid();
-      dispatch({ type: SET_ADDRESS_LIST, payload: { ...formData, id: r_id } });
+      addAddress(formData);
     }
     setFormData(emptyFormData);
-    dispatch({ type: setShowAddressModal });
-    dispatch({ type: setEditId, payload: "" });
+    dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+    dispatch({ type: SET_EDIT_ID, payload: "" });
   };
 
   useEffect(() => {
@@ -117,8 +119,8 @@ export const AddressForm = () => {
           <RxCross1
             title="Cancel"
             onClick={() => {
-              dispatch({ type: setShowAddressModal });
-              dispatch({ type: setEditId, payload: "" });
+              dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+              dispatch({ type: SET_EDIT_ID, payload: "" });
             }}
           />
         </p>

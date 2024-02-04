@@ -17,14 +17,14 @@ import {
   setBrandFilter,
   setCategoryFilter,
   setDeleteAddress,
-  setEditId,
+  SET_EDIT_ID,
   setOrderDetails,
   setOutOfStock,
   SET_PRICE,
   setScreenWidth,
   setSearchValue,
-  setSelectedAddress,
-  setShowAddressModal,
+  SET_SELECTED_ADDRESS,
+  SET_SHOW_ADDRESS_MODAL,
   setShowBurger,
   setShowFilter,
   setShowPassword,
@@ -33,7 +33,7 @@ import {
   setShowSignUpPassword,
   setTrending,
   SORT_BY_RATING,
-  updateAddressList,
+  UPDATE_ADDRESS,
   WISHLIST,
 } from "../Utils/Constants";
 
@@ -199,10 +199,10 @@ export const DataReducer = (state, action) => {
         addressList: action.payload,
       };
 
-    case setShowAddressModal:
+    case SET_SHOW_ADDRESS_MODAL:
       return { ...state, showAddressModal: !state.showAddressModal };
 
-    case setSelectedAddress:
+    case SET_SELECTED_ADDRESS:
       return { ...state, selectedAddress: action.payload };
 
     case setDeleteAddress:
@@ -213,10 +213,10 @@ export const DataReducer = (state, action) => {
         ),
       };
 
-    case setEditId:
+    case SET_EDIT_ID:
       return { ...state, editId: action.payload };
 
-    case updateAddressList:
+    case UPDATE_ADDRESS:
       return {
         ...state,
         addressList: state.addressList?.map((address) =>

@@ -9,10 +9,10 @@ import { AddressForm } from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import {
   SELECTED_PRODUCT,
-  setEditId,
+  SET_EDIT_ID,
   setOrderDetails,
-  setSelectedAddress,
-  setShowAddressModal,
+  SET_SELECTED_ADDRESS,
+  SET_SHOW_ADDRESS_MODAL,
 } from "../../Utils/Constants";
 
 export const CheckOut = () => {
@@ -106,11 +106,11 @@ export const CheckOut = () => {
 
   useEffect(() => {
     dispatch({ type: SELECTED_PRODUCT, payload: {} });
-    if (addressList.length === 1) {
-      dispatch({ type: setSelectedAddress, payload: addressList[0].id });
+    if (addressList?.length === 1) {
+      dispatch({ type: SET_SELECTED_ADDRESS, payload: addressList[0]._id });
     }
     buyNowId && getProductById(buyNowId);
-  }, [buyNowId, dispatch]);
+  }, [buyNowId, addressList, dispatch]);
 
   return (
     <>
@@ -122,11 +122,11 @@ export const CheckOut = () => {
         ) : (
           <div className="main-checkout-box">
             <section className="address-container">
-              {addressList.length === 0
+              {addressList?.length === 0
                 ? null
                 : addressList?.map(
                     ({
-                      id,
+                      _id,
                       name,
                       address,
                       city,
@@ -136,24 +136,24 @@ export const CheckOut = () => {
                       type,
                     }) => (
                       <div
-                        key={id}
+                        key={_id}
                         className={`address-box ${
-                          selectedAddress === id ? "selected" : ""
+                          selectedAddress === _id ? "selected" : ""
                         }`}
                         onClick={() =>
-                          dispatch({ type: setSelectedAddress, payload: id })
+                          dispatch({ type: SET_SELECTED_ADDRESS, payload: _id })
                         }
                       >
                         <p className="address-box-type">{type}</p>
-                        <label htmlFor={id}>
+                        <label htmlFor={_id}>
                           <input
                             type="radio"
-                            checked={selectedAddress === id}
-                            id={id}
+                            checked={selectedAddress === _id}
+                            id={_id}
                             onChange={() =>
                               dispatch({
-                                type: setSelectedAddress,
-                                payload: id,
+                                type: SET_SELECTED_ADDRESS,
+                                payload: _id,
                               })
                             }
                           />
@@ -168,8 +168,8 @@ export const CheckOut = () => {
                             className="address-edit"
                             title="Edit"
                             onClick={() => {
-                              dispatch({ type: setShowAddressModal });
-                              dispatch({ type: setEditId, payload: id });
+                              dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+                              dispatch({ type: SET_EDIT_ID, payload: _id });
                             }}
                           />
                         </p>
@@ -179,7 +179,7 @@ export const CheckOut = () => {
               <div className="add-address-btn-box">
                 <button
                   className="add-address-btn"
-                  onClick={() => dispatch({ type: setShowAddressModal })}
+                  onClick={() => dispatch({ type: SET_SHOW_ADDRESS_MODAL })}
                 >
                   <FaPlus /> Add New Address
                 </button>

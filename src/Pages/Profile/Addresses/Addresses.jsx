@@ -1,13 +1,12 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-
 import "./Addresses.css";
 import { useData } from "../../../Contexts";
 import {
   setDeleteAddress,
-  setEditId,
-  setShowAddressModal,
+  SET_EDIT_ID,
+  SET_SHOW_ADDRESS_MODAL,
 } from "../../../Utils/Constants";
 import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Utils/Icons/Icons";
 
@@ -21,7 +20,7 @@ export const Addresses = () => {
       <section className="profile-address-btn">
         <button
           className="add-address-btn"
-          onClick={() => dispatch({ type: setShowAddressModal })}
+          onClick={() => dispatch({ type: SET_SHOW_ADDRESS_MODAL })}
         >
           <FaPlus /> Add New Address
         </button>
@@ -71,8 +70,8 @@ export const Addresses = () => {
                   className="address-edit"
                   title="Edit"
                   onClick={() => {
-                    dispatch({ type: setShowAddressModal });
-                    dispatch({ type: setEditId, payload: id });
+                    dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+                    dispatch({ type: SET_EDIT_ID, payload: id });
                   }}
                 />
               </p>
