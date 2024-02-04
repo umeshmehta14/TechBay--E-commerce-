@@ -15,10 +15,7 @@ export const CheckoutContext = createContext();
 
 export const CheckoutProvider = ({ children }) => {
   const { token } = useAuth();
-  const {
-    dispatch,
-    state: { addressList },
-  } = useData();
+  const { dispatch } = useData();
 
   const getAllAddress = async () => {
     try {
