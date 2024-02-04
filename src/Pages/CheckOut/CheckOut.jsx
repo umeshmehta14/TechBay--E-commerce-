@@ -93,7 +93,7 @@ export const CheckOut = () => {
   };
 
   const handlePayment = () => {
-    if (addressList.length > 0) {
+    if (addressList?.length > 0) {
       const razorpayInstance = new window.Razorpay(razorpayOptions);
       razorpayInstance.open();
     } else {

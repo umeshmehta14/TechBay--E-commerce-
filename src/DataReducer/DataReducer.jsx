@@ -1,7 +1,7 @@
 import {
   CART,
   CATEGORY,
-  clearFilter,
+  CLEAR_FILTER,
   FEATURED_PRODUCT,
   PRODUCT_DETAIL,
   PRODUCTS,
@@ -13,25 +13,25 @@ import {
   SET_SEARCH_LOADER,
   SET_SEARCH_PRODUCTS,
   SET_ADDRESS_LIST,
-  setArrangeType,
-  setBrandFilter,
-  setCategoryFilter,
+  SET_ARRANGE_TYPE,
+  SET_BRAND_FILTER,
+  SET_CATEGORY_FILTER,
   setDeleteAddress,
   SET_EDIT_ID,
   setOrderDetails,
-  setOutOfStock,
+  SET_OUT_OF_STOCK,
   SET_PRICE,
   setScreenWidth,
-  setSearchValue,
+  SET_SEARCH_VALUE,
   SET_SELECTED_ADDRESS,
   SET_SHOW_ADDRESS_MODAL,
-  setShowBurger,
+  SET_SHOW_BURGER,
   setShowFilter,
   setShowPassword,
   setShowSearch,
   setShowSearchedProducts,
   setShowSignUpPassword,
-  setTrending,
+  SET_TRENDING,
   SORT_BY_RATING,
   UPDATE_ADDRESS,
   WISHLIST,
@@ -90,7 +90,7 @@ export const DataReducer = (state, action) => {
         filters: { ...state.filters, rating: action.payload },
       };
 
-    case setCategoryFilter:
+    case SET_CATEGORY_FILTER:
       return {
         ...state,
         filters: {
@@ -103,7 +103,7 @@ export const DataReducer = (state, action) => {
         },
       };
 
-    case setBrandFilter:
+    case SET_BRAND_FILTER:
       return {
         ...state,
         filters: {
@@ -120,12 +120,12 @@ export const DataReducer = (state, action) => {
         filters: { ...state.filters, searchText: action.payload },
       };
 
-    case setTrending:
+    case SET_TRENDING:
       return {
         ...state,
         filters: { ...state.filters, trending: !state.filters.trending },
       };
-    case setOutOfStock:
+    case SET_OUT_OF_STOCK:
       return {
         ...state,
         filters: {
@@ -140,7 +140,7 @@ export const DataReducer = (state, action) => {
         filters: { ...state.filters, price: action.payload },
       };
 
-    case clearFilter:
+    case CLEAR_FILTER:
       return {
         ...state,
         filters: {
@@ -155,7 +155,7 @@ export const DataReducer = (state, action) => {
         },
       };
 
-    case setSearchValue:
+    case SET_SEARCH_VALUE:
       return {
         ...state,
         searchValue: action.payload,
@@ -163,7 +163,7 @@ export const DataReducer = (state, action) => {
 
     case SET_SEARCH_PRODUCTS:
       return { ...state, searchedProducts: action.payload };
-    case setShowBurger:
+    case SET_SHOW_BURGER:
       return {
         ...state,
         showBurger:
@@ -172,7 +172,7 @@ export const DataReducer = (state, action) => {
     case setShowSearch:
       return { ...state, showSearch: !state.showSearch };
 
-    case setArrangeType:
+    case SET_ARRANGE_TYPE:
       return {
         ...state,
         filters: { ...state.filters, arrangeType: action.payload },
@@ -204,14 +204,6 @@ export const DataReducer = (state, action) => {
 
     case SET_SELECTED_ADDRESS:
       return { ...state, selectedAddress: action.payload };
-
-    case setDeleteAddress:
-      return {
-        ...state,
-        addressList: state.addressList?.filter(
-          ({ id }) => id !== action.payload
-        ),
-      };
 
     case SET_EDIT_ID:
       return { ...state, editId: action.payload };

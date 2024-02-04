@@ -3,13 +3,13 @@ import { RxCross1, MdOutlineFilterAltOff } from "../../../../Utils/Icons/Icons";
 import "./Filter.css";
 import { useData } from "../../../../Contexts";
 import {
-  clearFilter,
-  setBrandFilter,
-  setCategoryFilter,
-  setOutOfStock,
+  CLEAR_FILTER,
+  SET_BRAND_FILTER,
+  SET_CATEGORY_FILTER,
+  SET_OUT_OF_STOCK,
   SET_PRICE,
   setShowFilter,
-  setTrending,
+  SET_TRENDING,
   SORT_BY_RATING,
 } from "../../../../Utils/Constants";
 
@@ -34,7 +34,7 @@ const Filters = () => {
           </div>
           <button
             className="filter-clr-btn"
-            onClick={() => dispatch({ type: clearFilter })}
+            onClick={() => dispatch({ type: CLEAR_FILTER })}
           >
             Clear <MdOutlineFilterAltOff />
           </button>
@@ -72,7 +72,10 @@ const Filters = () => {
                   checked={filters.category.includes(categoryName)}
                   id={id}
                   onChange={() =>
-                    dispatch({ type: setCategoryFilter, payload: categoryName })
+                    dispatch({
+                      type: SET_CATEGORY_FILTER,
+                      payload: categoryName,
+                    })
                   }
                 />
                 {categoryName}
@@ -103,7 +106,7 @@ const Filters = () => {
               checked={filters.trending}
               name="trending-filter"
               id="trending-sort"
-              onChange={() => dispatch({ type: setTrending })}
+              onChange={() => dispatch({ type: SET_TRENDING })}
             />
             Only Trending
           </label>
@@ -116,7 +119,7 @@ const Filters = () => {
               checked={filters.includeOutStock}
               name="stock-filter"
               id="stock-sort"
-              onChange={() => dispatch({ type: setOutOfStock })}
+              onChange={() => dispatch({ type: SET_OUT_OF_STOCK })}
             />
             Include Out of Stock
           </label>
@@ -131,7 +134,7 @@ const Filters = () => {
                 checked={filters.brand.includes(name)}
                 id={name}
                 onChange={() =>
-                  dispatch({ type: setBrandFilter, payload: name })
+                  dispatch({ type: SET_BRAND_FILTER, payload: name })
                 }
               />
               {name}

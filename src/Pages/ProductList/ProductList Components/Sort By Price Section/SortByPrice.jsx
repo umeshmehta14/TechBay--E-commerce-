@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts";
-import { setArrangeType, setShowFilter } from "../../../../Utils/Constants";
+import { SET_ARRANGE_TYPE, setShowFilter } from "../../../../Utils/Constants";
 import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 
 const SortByPrice = () => {
@@ -45,7 +45,7 @@ const SortByPrice = () => {
                   filters.arrangeType === "LTH" ? "sort-btn-focus" : ""
                 }`}
                 onClick={() =>
-                  dispatch({ type: setArrangeType, payload: "LTH" })
+                  dispatch({ type: SET_ARRANGE_TYPE, payload: "LTH" })
                 }
               >
                 Price- Low to High
@@ -55,7 +55,7 @@ const SortByPrice = () => {
                   filters.arrangeType === "HTL" ? "sort-btn-focus" : ""
                 }`}
                 onClick={() =>
-                  dispatch({ type: setArrangeType, payload: "HTL" })
+                  dispatch({ type: SET_ARRANGE_TYPE, payload: "HTL" })
                 }
               >
                 Price- High to Low

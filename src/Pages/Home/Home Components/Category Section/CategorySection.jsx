@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./CategorySection.css";
 import { useData } from "../../../../Contexts";
 import {
-  clearFilter,
-  setCategoryFilter,
-  setSearchValue,
+  CLEAR_FILTER,
+  SET_CATEGORY_FILTER,
+  SET_SEARCH_VALUE,
 } from "../../../../Utils/Constants";
 import {
   AiOutlineArrowLeft,
@@ -52,10 +52,10 @@ const CategorySection = () => {
           <div
             className="category-item"
             onClick={() => {
-              dispatch({ type: setSearchValue, payload: "" });
-              dispatch({ type: clearFilter });
+              dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+              dispatch({ type: CLEAR_FILTER });
               dispatch({
-                type: setCategoryFilter,
+                type: SET_CATEGORY_FILTER,
                 payload: curCategory?.categoryName,
               });
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -84,9 +84,12 @@ const CategorySection = () => {
                 className="category-item"
                 key={_id}
                 onClick={() => {
-                  dispatch({ type: setSearchValue, payload: "" });
-                  dispatch({ type: clearFilter });
-                  dispatch({ type: setCategoryFilter, payload: categoryName });
+                  dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+                  dispatch({ type: CLEAR_FILTER });
+                  dispatch({
+                    type: SET_CATEGORY_FILTER,
+                    payload: categoryName,
+                  });
                   window.scrollTo({ top: 0, behavior: "smooth" });
                   navigate("/products");
                 }}

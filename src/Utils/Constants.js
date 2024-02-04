@@ -12,16 +12,16 @@ export const SET_SEARCH_LOADER = "SET_SEARCH_LOADER";
 export const SET_FILTER_SEARCH_TEXT = "SET_FILTER_SEARCH_TEXT";
 export const SET_PAGE = "SET_PAGE";
 export const SORT_BY_RATING = "SORT_BY_RATING";
-export const setCategoryFilter = "setCategoryFilter";
-export const setBrandFilter = "setBrandFilter";
-export const setOutOfStock = "setOutOfStock";
-export const setTrending = "setTrending";
+export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
+export const SET_BRAND_FILTER = "SET_BRAND_FILTER";
+export const SET_OUT_OF_STOCK = "SET_OUT_OF_STOCK";
+export const SET_TRENDING = "SET_TRENDING";
 export const SET_PRICE = "SET_PRICE";
-export const setArrangeType = "setArrangeType";
-export const setSearchValue = "setSearchValue";
+export const SET_ARRANGE_TYPE = "SET_ARRANGE_TYPE";
+export const SET_SEARCH_VALUE = "SET_SEARCH_VALUE";
 export const SET_SEARCH_PRODUCTS = "SET_SEARCH_PRODUCTS";
-export const clearFilter = "clearFilter";
-export const setShowBurger = "setShowBurger";
+export const CLEAR_FILTER = "CLEAR_FILTER";
+export const SET_SHOW_BURGER = "SET_SHOW_BURGER";
 export const setShowSearch = "setShowSearch";
 export const setShowSearchedProducts = "setShowSearchedProducts";
 export const setScreenWidth = "setScreenWidth";
@@ -33,6 +33,36 @@ export const SET_SHOW_ADDRESS_MODAL = "SET_SHOW_ADDRESS_MODAL";
 export const SET_SELECTED_ADDRESS = "SET_SELECTED_ADDRESS";
 export const SET_EDIT_ID = "SET_EDIT_ID";
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
-export const setDeleteAddress = "setDeleteAddress";
 export const setOrderDetails = "setOrderDetails";
 export const API_URL = "https://techbayum14.onrender.com/api/v1";
+export const STATE_DATA = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];

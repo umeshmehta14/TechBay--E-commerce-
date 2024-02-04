@@ -1,5 +1,12 @@
 import { createContext, useContext, useEffect } from "react";
-import { addUserAddress, getAddress } from "./CheckoutApi";
+import { toast } from "react-toastify";
+
+import {
+  addUserAddress,
+  getAddress,
+  removeUserAddress,
+  updateUserAddress,
+} from "./CheckoutApi";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useData } from "../DataContext/DataContext";
 import { SET_ADDRESS_LIST } from "../../Utils/Constants";
@@ -8,7 +15,10 @@ export const CheckoutContext = createContext();
 
 export const CheckoutProvider = ({ children }) => {
   const { token } = useAuth();
-  const { dispatch } = useData();
+  const {
+    dispatch,
+    state: { addressList },
+  } = useData();
 
   const getAllAddress = async () => {
     try {
@@ -34,6 +44,10 @@ export const CheckoutProvider = ({ children }) => {
 
       if (statusCode === 201) {
         dispatch({ type: SET_ADDRESS_LIST, payload: data });
+        toast.success("Address Added", {
+          containerId: "B",
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error(error);
@@ -47,10 +61,35 @@ export const CheckoutProvider = ({ children }) => {
     try {
       const {
         data: { statusCode, data },
-      } = await addUserAddress(token, addressId);
+      } = await removeUserAddress(token, addressId);
 
-      if (statusCode === 201) {
+      if (statusCode === 200) {
         dispatch({ type: SET_ADDRESS_LIST, payload: data });
+        toast.info("Address Removed", {
+          containerId: "B",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      document.body.style.cursor = "default";
+    }
+  };
+
+  const updateAddress = async (address) => {
+    document.body.style.cursor = "progress";
+    try {
+      const {
+        data: { statusCode, data },
+      } = await updateUserAddress(token, address);
+
+      if (statusCode === 200) {
+        dispatch({ type: SET_ADDRESS_LIST, payload: data });
+        toast.info("Address Updated", {
+          containerId: "B",
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error(error);
@@ -64,7 +103,9 @@ export const CheckoutProvider = ({ children }) => {
   }, []);
 
   return (
-    <CheckoutContext.Provider value={{ addAddress, removeAddress }}>
+    <CheckoutContext.Provider
+      value={{ addAddress, removeAddress, updateAddress }}
+    >
       {children}
     </CheckoutContext.Provider>
   );

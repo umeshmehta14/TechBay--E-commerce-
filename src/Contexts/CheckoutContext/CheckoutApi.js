@@ -18,13 +18,21 @@ export const addUserAddress = async (token, address) =>
       },
     }
   );
-// export const addUserAddress = async (token, address) =>
-//   await axios.post(
-//     `http://localhost:8000/api/v1/address/`,
-//     { ...address },
-//     {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     }
-//   );
+
+export const removeUserAddress = async (token, addressId) =>
+  await axios.delete(`${API_URL}/address/${addressId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const updateUserAddress = async (token, address) =>
+  await axios.patch(
+    `${API_URL}/address/${address?._id}`,
+    { ...address },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );

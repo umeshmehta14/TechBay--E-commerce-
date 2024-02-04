@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
 import { useData, useAuth } from "../../Contexts";
-import {SearchBox} from "./Search-Box/SearchBox";
+import { SearchBox } from "./Search-Box/SearchBox";
 import {
   FaShoppingBag,
   ImCart,
@@ -17,7 +17,7 @@ import {
 } from "../../Utils/Icons/Icons";
 import {
   setShowSearch,
-  setShowBurger,
+  SET_SHOW_BURGER,
   setScreenWidth,
 } from "../../Utils/Constants";
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch]);
 
-  if(location.pathname === "/404"){
+  if (location.pathname === "/404") {
     return null;
   }
   return (
@@ -74,7 +74,7 @@ export const Navbar = () => {
                     }
                   : {}
               }
-              onClick={() => dispatch({ type: setShowBurger })}
+              onClick={() => dispatch({ type: SET_SHOW_BURGER })}
             >
               {screenWidth > 768 ? (
                 <li
@@ -137,7 +137,7 @@ export const Navbar = () => {
 
             <div
               className="hamburger-menu"
-              onClick={() => dispatch({ type: setShowBurger })}
+              onClick={() => dispatch({ type: SET_SHOW_BURGER })}
             >
               {showBurger ? (
                 <RxCross1 className="hamburger-icon" />
@@ -147,9 +147,8 @@ export const Navbar = () => {
             </div>
           </div>
         </section>
-        <SearchBox/>
+        <SearchBox />
       </nav>
     </header>
   );
 };
-

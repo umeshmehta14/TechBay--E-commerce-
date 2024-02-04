@@ -5,9 +5,9 @@ import "./SearchBox.css";
 import { useData } from "../../../Contexts";
 import {
   SET_FILTER_SEARCH_TEXT,
-  clearFilter,
-  setSearchValue,
-  setShowBurger,
+  CLEAR_FILTER,
+  SET_SEARCH_VALUE,
+  SET_SHOW_BURGER,
   setShowSearch,
   setShowSearchedProducts,
 } from "../../../Utils/Constants";
@@ -57,15 +57,15 @@ export const SearchBox = () => {
             id="search"
             value={searchValue}
             onChange={(e) => {
-              dispatch({ type: setSearchValue, payload: e.target.value });
+              dispatch({ type: SET_SEARCH_VALUE, payload: e.target.value });
               dispatch({ type: setShowSearchedProducts, payload: false });
               debouncedFetchData();
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 dispatch({ type: setShowSearchedProducts, payload: true });
-                dispatch({ type: setShowBurger, payload: false });
-                dispatch({ type: clearFilter });
+                dispatch({ type: SET_SHOW_BURGER, payload: false });
+                dispatch({ type: CLEAR_FILTER });
                 dispatch({
                   type: SET_FILTER_SEARCH_TEXT,
                   payload: searchValue,
@@ -80,7 +80,7 @@ export const SearchBox = () => {
             <RxCross1
               className="search-clr"
               onClick={() => {
-                dispatch({ type: setSearchValue, payload: "" });
+                dispatch({ type: SET_SEARCH_VALUE, payload: "" });
                 dispatch({
                   type: SET_FILTER_SEARCH_TEXT,
                   payload: "",
@@ -111,9 +111,12 @@ export const SearchBox = () => {
                           key={_id}
                           onClick={() => {
                             if (inStock) {
-                              dispatch({ type: setSearchValue, payload: "" });
+                              dispatch({ type: SET_SEARCH_VALUE, payload: "" });
                               dispatch({ type: setShowSearch });
-                              dispatch({ type: setShowBurger, payload: false });
+                              dispatch({
+                                type: SET_SHOW_BURGER,
+                                payload: false,
+                              });
                               navigate(`/product/${_id}`);
                             }
                           }}
