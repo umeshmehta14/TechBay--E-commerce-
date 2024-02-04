@@ -12,7 +12,7 @@ import {
   SET_PAGE,
   SET_SEARCH_LOADER,
   SET_SEARCH_PRODUCTS,
-  setAddressList,
+  SET_ADDRESS_LIST,
   setArrangeType,
   setBrandFilter,
   setCategoryFilter,
@@ -193,10 +193,10 @@ export const DataReducer = (state, action) => {
     case setShowSearchedProducts:
       return { ...state, showSearchedProducts: action.payload };
 
-    case setAddressList:
+    case SET_ADDRESS_LIST:
       return {
         ...state,
-        addressList: [...state.addressList, { ...action.payload }],
+        addressList: action.payload,
       };
 
     case setShowAddressModal:

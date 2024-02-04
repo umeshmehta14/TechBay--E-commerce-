@@ -7,7 +7,7 @@ import { useData } from "../../Contexts";
 import { RxCross1 } from "../../Utils/Icons/Icons";
 import {
   setShowAddressModal,
-  setAddressList,
+  SET_ADDRESS_LIST,
   setEditId,
   updateAddressList,
 } from "../../Utils/Constants";
@@ -85,7 +85,7 @@ export const AddressForm = () => {
       dispatch({ type: updateAddressList, payload: { ...formData } });
     } else {
       const r_id = uuid();
-      dispatch({ type: setAddressList, payload: { ...formData, id: r_id } });
+      dispatch({ type: SET_ADDRESS_LIST, payload: { ...formData, id: r_id } });
     }
     setFormData(emptyFormData);
     dispatch({ type: setShowAddressModal });

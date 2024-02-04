@@ -14,6 +14,8 @@ import {
   WishListProvider,
   DataContext,
   DataProvider,
+  CheckoutProvider,
+  CheckoutContext,
 } from "./Contexts";
 
 // makeServer();
@@ -25,7 +27,9 @@ ReactDOM.render(
         <DataProvider>
           <CartProvider>
             <WishListProvider>
-              <App />
+              <CheckoutProvider>
+                <App />
+              </CheckoutProvider>
             </WishListProvider>
           </CartProvider>
         </DataProvider>
@@ -35,4 +39,10 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-export { DataContext, AuthContext, WishListContext, CartContext };
+export {
+  DataContext,
+  AuthContext,
+  WishListContext,
+  CartContext,
+  CheckoutContext,
+};

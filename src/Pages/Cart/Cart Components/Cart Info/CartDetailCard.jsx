@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import "./CartDetailCard.css";
 import { useCart, useData, useWishList } from "../../../../Contexts";
-import { DECREMENT, INCREMENT } from "../../../../Utils/Constants";
 import {
   AiFillHeart,
   AiOutlineHeart,
