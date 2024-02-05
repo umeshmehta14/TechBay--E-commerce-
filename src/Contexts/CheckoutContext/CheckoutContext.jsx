@@ -105,7 +105,6 @@ export const CheckoutProvider = ({ children }) => {
       } = await getUserOrders(token);
 
       if (statusCode === 200) {
-        console.log(data);
         dispatch({ type: SET_ORDER_DETAIL, payload: data });
       }
     } catch (error) {

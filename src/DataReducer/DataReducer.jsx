@@ -28,8 +28,8 @@ import {
   SET_SHOW_BURGER,
   setShowFilter,
   setShowPassword,
-  setShowSearch,
-  setShowSearchedProducts,
+  SET_SHOW_SEARCH,
+  SET_SHOW_SEARCHED_PRODUCTS,
   setShowSignUpPassword,
   SET_TRENDING,
   SORT_BY_RATING,
@@ -169,7 +169,7 @@ export const DataReducer = (state, action) => {
         showBurger:
           action.payload !== undefined ? action.payload : !state.showBurger,
       };
-    case setShowSearch:
+    case SET_SHOW_SEARCH:
       return { ...state, showSearch: !state.showSearch };
 
     case SET_ARRANGE_TYPE:
@@ -190,7 +190,7 @@ export const DataReducer = (state, action) => {
     case setShowFilter:
       return { ...state, showFilter: !state.showFilter };
 
-    case setShowSearchedProducts:
+    case SET_SHOW_SEARCHED_PRODUCTS:
       return { ...state, showSearchedProducts: action.payload };
 
     case SET_ADDRESS_LIST:

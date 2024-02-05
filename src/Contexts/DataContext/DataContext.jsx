@@ -47,7 +47,6 @@ export const DataProvider = ({ children }) => {
       arrangeType,
       searchText,
     },
-    searchValue,
   } = state;
 
   const getProducts = async () => {
@@ -93,19 +92,18 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const getSearchProducts = async () => {
+  const getSearchProducts = async (query) => {
     try {
       dispatch({ type: SET_SEARCH_LOADER, payload: true });
       const {
         data: { statusCode, data },
-      } = await searchProducts(searchValue);
+      } = await searchProducts(query);
 
       if (statusCode === 200) {
         dispatch({ type: SET_SEARCH_PRODUCTS, payload: data });
-        console.log(data);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       dispatch({ type: SET_SEARCH_LOADER, payload: false });
     }

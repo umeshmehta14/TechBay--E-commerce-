@@ -16,7 +16,7 @@ import {
   TbSearchOff,
 } from "../../Utils/Icons/Icons";
 import {
-  setShowSearch,
+  SET_SHOW_SEARCH,
   SET_SHOW_BURGER,
   setScreenWidth,
 } from "../../Utils/Constants";
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <div className="navbar-icons-section">
             {screenWidth < 768 ? (
               <div
-                onClick={() => dispatch({ type: setShowSearch })}
+                onClick={() => dispatch({ type: SET_SHOW_SEARCH })}
                 className="search-icon"
               >
                 {showSearch ? <TbSearchOff /> : <IoSearch />}
@@ -78,7 +78,7 @@ export const Navbar = () => {
             >
               {screenWidth > 768 ? (
                 <li
-                  onClick={() => dispatch({ type: setShowSearch })}
+                  onClick={() => dispatch({ type: SET_SHOW_SEARCH })}
                   className="link-name"
                   id="f-search"
                   title="Search"
