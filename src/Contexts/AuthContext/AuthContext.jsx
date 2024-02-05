@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getLoginInformation, createUser, userLogout } from "./AuthApi";
 import { toast } from "react-toastify";
 
@@ -98,6 +98,7 @@ export const AuthProvider = ({ children }) => {
       setAuthLoading(false);
     }
   };
+
   return (
     <AuthContext.Provider
       value={{

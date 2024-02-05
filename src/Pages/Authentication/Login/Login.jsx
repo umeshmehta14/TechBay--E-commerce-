@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
-import { setShowPassword } from "../../../Utils/Constants";
+import { GUEST_DATA, setShowPassword } from "../../../Utils/Constants";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -24,8 +24,6 @@ export const Login = () => {
   });
   document.title = "Login";
 
-  const guestEmail = "ishaanmehta782@gmail.com";
-  const guestPassword = "umeshmehta14";
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);
@@ -89,7 +87,10 @@ export const Login = () => {
           <button
             type="submit"
             onClick={() =>
-              setLoginForm({ email: guestEmail, password: guestPassword })
+              setLoginForm({
+                email: GUEST_DATA.email,
+                password: GUEST_DATA.password,
+              })
             }
             className="btn"
           >

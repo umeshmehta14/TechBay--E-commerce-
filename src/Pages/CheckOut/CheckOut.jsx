@@ -3,14 +3,14 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 
 import "./CheckOut.css";
-import { useData, useAuth, useCart } from "../../Contexts/";
+import { useData, useAuth, useCart, useCheckout } from "../../Contexts/";
 import { popper } from "../../Utils/Popper";
 import { AddressForm } from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import {
   SELECTED_PRODUCT,
   SET_EDIT_ID,
-  setOrderDetails,
+  SET_ORDER_DETAIL,
   SET_SELECTED_ADDRESS,
   SET_SHOW_ADDRESS_MODAL,
 } from "../../Utils/Constants";
@@ -27,6 +27,9 @@ export const CheckOut = () => {
     dispatch,
     getProductById,
   } = useData();
+
+  const { addOrders } = useCheckout();
+
   document.title = "Checkout";
 
   const { buyNowId } = useParams();
@@ -50,19 +53,19 @@ export const CheckOut = () => {
       0
     );
   const discountedPrice = originalPrice - totalCost;
-  const selectedMobileNo = addressList.find(({ id }) => id === selectedAddress);
+  const selectedMobileNo = addressList.find(
+    ({ _id }) => _id === selectedAddress
+  );
 
   const handlePaymentSuccess = (response) => {
     setPaymentResponse(true);
-    dispatch({
-      type: setOrderDetails,
-      payload: {
-        id: response.razorpay_payment_id,
-        orderList: selectedProduct?.title ? [selectedProduct] : [...cart],
-        address: selectedMobileNo,
-        amount: totalCost,
-        date: new Date(),
-      },
+    addOrders({
+      paymentId: response.razorpay_payment_id,
+      products: selectedProduct?.title
+        ? [{ product: selectedProduct, quantity: 1 }]
+        : [...cart],
+      address: selectedMobileNo?._id,
+      amount: totalCost,
     });
     popper();
     setTimeout(() => {
@@ -80,7 +83,7 @@ export const CheckOut = () => {
       "https://tse3.mm.bing.net/th?id=OIP.VH-BQwstrgYmR6vADnIlFgAAAA&pid=Api&P=0&h=180",
     handler: (response) => handlePaymentSuccess(response),
     prefill: {
-      name: selectedMobileNo?.firstName,
+      name: selectedMobileNo?.username,
       email: email,
       contact: selectedMobileNo?.mobile,
     },
@@ -106,7 +109,7 @@ export const CheckOut = () => {
 
   useEffect(() => {
     dispatch({ type: SELECTED_PRODUCT, payload: {} });
-    if (addressList?.length === 1) {
+    if (addressList?.length !== 0) {
       dispatch({ type: SET_SELECTED_ADDRESS, payload: addressList[0]._id });
     }
     buyNowId && getProductById(buyNowId);

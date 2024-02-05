@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useData, useAuth } from "../index";
 import {
   addCartList,
+  clearUserCart,
   getCartList,
   removeCartList,
   updateCartQuantity,
@@ -81,54 +82,6 @@ export const CartProvider = ({ children }) => {
       setCartDisable(false);
     }
   };
-
-  // const handleCart = async (product, buyNow) => {
-  //   try {
-  //     if (!token) {
-  //       toast.warning(`Need To Login First`, {
-  //         containerId: "A",
-  //         theme: "colored",
-  //       });
-  //       navigate("/login", { state: { from: location } });
-  //       return;
-  //     }
-  //     setCartDisable(true);
-  //     let cartRes = null;
-  //     if (product.inCart) {
-  //       if (buyNow) {
-  //         setCartDisable(false);
-  //         navigate("/checkout", { state: { from: location } });
-  //         return;
-  //       }
-  //       cartRes = await deleteCartList({
-  //         productId: product._id,
-  //         encodedToken: token,
-  //       });
-  //       toast.info(`${product.title} Removed From Cart`, {
-  //         containerId: "B",
-  //         theme: "colored",
-  //       });
-  //     } else {
-  //       cartRes = await postCartList({ product, encodedToken: token });
-  //       toast.success(`${product.title} Added To Cart`, {
-  //         containerId: "B",
-  //         theme: "colored",
-  //       });
-  //     }
-  //     if (cartRes.status === 201 || cartRes.status === 200) {
-  //       dispatch({ type: CART, payload: cartRes.data.cart });
-  //       if (buyNow) {
-  //         setCartDisable(false);
-  //         navigate("/checkout", { state: { from: location } });
-  //         return;
-  //       }
-  //     }
-  //     setCartDisable(false);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   const handleCartQuantity = async (productId, quantity) => {
     setCartDisable(true);
     try {
@@ -147,10 +100,20 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const clearCart = () => {
-    state.cart.forEach((element) => {
-      handleCart(element);
-    });
+  const clearCart = async () => {
+    try {
+      document.body.style.cursor = "progress";
+      const {
+        data: { statusCode, data },
+      } = await clearUserCart(token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: data });
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      document.body.style.cursor = "default";
+    }
   };
 
   const handleCartButton = (inCart, item, buyNow) =>

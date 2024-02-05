@@ -3,13 +3,15 @@ import { toast } from "react-toastify";
 
 import {
   addUserAddress,
+  addUserOrder,
   getAddress,
+  getUserOrders,
   removeUserAddress,
   updateUserAddress,
 } from "./CheckoutApi";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useData } from "../DataContext/DataContext";
-import { SET_ADDRESS_LIST } from "../../Utils/Constants";
+import { SET_ADDRESS_LIST, SET_ORDER_DETAIL } from "../../Utils/Constants";
 
 export const CheckoutContext = createContext();
 
@@ -95,13 +97,63 @@ export const CheckoutProvider = ({ children }) => {
     }
   };
 
+  const getOrders = async () => {
+    try {
+      const {
+        data: { statusCode, data },
+      } = await getUserOrders(token);
+
+      if (statusCode === 200) {
+        console.log(data);
+        dispatch({ type: SET_ORDER_DETAIL, payload: data });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addOrders = async (order) => {
+    try {
+      const {
+        data: { statusCode },
+      } = await addUserOrder(token, order);
+
+      if (statusCode === 201) {
+        getOrders();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const removeOrders = async (orderId) => {
+    try {
+      const {
+        data: { statusCode },
+      } = await getUserOrders(token, orderId);
+
+      if (statusCode === 200) {
+        getOrders();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getAllAddress();
-  }, []);
+    getOrders();
+  }, [token]);
 
   return (
     <CheckoutContext.Provider
-      value={{ addAddress, removeAddress, updateAddress }}
+      value={{
+        addAddress,
+        removeAddress,
+        updateAddress,
+        addOrders,
+        removeOrders,
+      }}
     >
       {children}
     </CheckoutContext.Provider>

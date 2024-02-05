@@ -40,3 +40,14 @@ export const updateCartQuantity = async (productId, quantity, token) =>
       },
     }
   );
+
+export const clearUserCart = async (token) =>
+  await axios.patch(
+    `${API_URL}/users/clear/cart`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );

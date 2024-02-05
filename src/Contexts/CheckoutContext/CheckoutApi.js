@@ -36,3 +36,28 @@ export const updateUserAddress = async (token, address) =>
       },
     }
   );
+
+export const getUserOrders = async (token) =>
+  await axios.get(`${API_URL}/order`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const addUserOrder = async (token, order) =>
+  await axios.post(
+    `${API_URL}/order`,
+    { ...order },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+export const deleteUserOrder = async (token, orderId) =>
+  await axios.post(`${API_URL}/order/${orderId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

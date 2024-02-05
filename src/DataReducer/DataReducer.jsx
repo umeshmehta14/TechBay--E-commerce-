@@ -18,7 +18,7 @@ import {
   SET_CATEGORY_FILTER,
   setDeleteAddress,
   SET_EDIT_ID,
-  setOrderDetails,
+  SET_ORDER_DETAIL,
   SET_OUT_OF_STOCK,
   SET_PRICE,
   setScreenWidth,
@@ -216,10 +216,10 @@ export const DataReducer = (state, action) => {
         ),
       };
 
-    case setOrderDetails:
+    case SET_ORDER_DETAIL:
       return {
         ...state,
-        orderDetails: [...state.orderDetails, { ...action.payload }],
+        orderDetails: action.payload,
       };
 
     default:
