@@ -2,12 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./OrderDetails.css";
-import { useData } from "../../../Contexts";
+import { FaCheck } from "../../../Utils/Icons/Icons";
+import { useCheckout, useData } from "../../../Contexts";
 
 export const OrderDetails = () => {
   const {
     state: { orderDetails },
   } = useData();
+  const { removeOrders } = useCheckout();
   const navigate = useNavigate();
 
   return (
@@ -61,6 +63,12 @@ export const OrderDetails = () => {
                 <strong>Number</strong>: {mobile} <strong>Pincode</strong>:
                 {pincode}
               </p>
+              <button
+                className="btn deliver-btn"
+                onClick={() => removeOrders(_id)}
+              >
+                Delivered <FaCheck />
+              </button>
               <div className="order-cart-container">
                 {products?.map(
                   ({ product: { _id, image, title, price }, quantity }) => {

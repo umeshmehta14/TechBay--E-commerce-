@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {
   addUserAddress,
   addUserOrder,
+  deleteUserOrder,
   getAddress,
   getUserOrders,
   removeUserAddress,
@@ -127,16 +128,23 @@ export const CheckoutProvider = ({ children }) => {
   };
 
   const removeOrders = async (orderId) => {
+    document.body.style.cursor = "progress";
     try {
       const {
         data: { statusCode },
-      } = await getUserOrders(token, orderId);
+      } = await deleteUserOrder(token, orderId);
 
       if (statusCode === 200) {
         getOrders();
+        toast.success("Thank you for shopping with us!", {
+          containerId: "A",
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      document.body.style.cursor = "default";
     }
   };
 

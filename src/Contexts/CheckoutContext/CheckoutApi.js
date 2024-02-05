@@ -56,7 +56,7 @@ export const addUserOrder = async (token, order) =>
   );
 
 export const deleteUserOrder = async (token, orderId) =>
-  await axios.post(`${API_URL}/order/${orderId}`, {
+  await axios.delete(`${API_URL}/order/${orderId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
