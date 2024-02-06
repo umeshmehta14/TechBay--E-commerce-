@@ -21,16 +21,16 @@ import {
   SET_ORDER_DETAIL,
   SET_OUT_OF_STOCK,
   SET_PRICE,
-  setScreenWidth,
+  SET_SCREEN_WIDTH,
   SET_SEARCH_VALUE,
   SET_SELECTED_ADDRESS,
   SET_SHOW_ADDRESS_MODAL,
   SET_SHOW_BURGER,
-  setShowFilter,
-  setShowPassword,
+  SET_SHOW_FILTER,
+  SET_SHOW_PASSWORD,
   SET_SHOW_SEARCH,
   SET_SHOW_SEARCHED_PRODUCTS,
-  setShowSignUpPassword,
+  SET_SHOW_SIGNUP_PASSWORD,
   SET_TRENDING,
   SORT_BY_RATING,
   UPDATE_ADDRESS,
@@ -178,16 +178,16 @@ export const DataReducer = (state, action) => {
         filters: { ...state.filters, arrangeType: action.payload },
       };
 
-    case setScreenWidth:
+    case SET_SCREEN_WIDTH:
       return { ...state, screenWidth: window.innerWidth };
 
-    case setShowPassword:
+    case SET_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword };
 
-    case setShowSignUpPassword:
+    case SET_SHOW_SIGNUP_PASSWORD:
       return { ...state, showSignUpPassword: !state.showSignUpPassword };
 
-    case setShowFilter:
+    case SET_SHOW_FILTER:
       return { ...state, showFilter: !state.showFilter };
 
     case SET_SHOW_SEARCHED_PRODUCTS:

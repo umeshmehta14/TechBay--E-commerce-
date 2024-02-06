@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
-import { GUEST_DATA, setShowPassword } from "../../../Utils/Constants";
+import { GUEST_DATA, SET_SHOW_PASSWORD } from "../../../Utils/Constants";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -71,13 +71,13 @@ export const Login = () => {
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() => dispatch({ type: setShowPassword })}
+                onClick={() => dispatch({ type: SET_SHOW_PASSWORD })}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() => dispatch({ type: setShowPassword })}
+                onClick={() => dispatch({ type: SET_SHOW_PASSWORD })}
               />
             )}
           </div>

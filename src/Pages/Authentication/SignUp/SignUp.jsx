@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
-import { setShowSignUpPassword } from "../../../Utils/Constants";
+import { SET_SHOW_SIGNUP_PASSWORD } from "../../../Utils/Constants";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -93,13 +93,13 @@ export const SignUp = () => {
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() => dispatch({ type: setShowSignUpPassword })}
+                onClick={() => dispatch({ type: SET_SHOW_SIGNUP_PASSWORD })}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() => dispatch({ type: setShowSignUpPassword })}
+                onClick={() => dispatch({ type: SET_SHOW_SIGNUP_PASSWORD })}
               />
             )}
           </div>

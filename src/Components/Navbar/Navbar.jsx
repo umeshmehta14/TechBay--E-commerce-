@@ -18,7 +18,7 @@ import {
 import {
   SET_SHOW_SEARCH,
   SET_SHOW_BURGER,
-  setScreenWidth,
+  SET_SCREEN_WIDTH,
 } from "../../Utils/Constants";
 
 export const Navbar = () => {
@@ -35,7 +35,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      dispatch({ type: setScreenWidth });
+      dispatch({ type: SET_SCREEN_WIDTH });
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

@@ -8,7 +8,7 @@ import {
   SET_CATEGORY_FILTER,
   SET_OUT_OF_STOCK,
   SET_PRICE,
-  setShowFilter,
+  SET_SHOW_FILTER,
   SET_TRENDING,
   SORT_BY_RATING,
 } from "../../../../Utils/Constants";
@@ -27,7 +27,7 @@ const Filters = () => {
         <h2 className="filter-heading">Filters</h2>
         <div
           className="cross-filter d-none"
-          onClick={() => dispatch({ type: setShowFilter })}
+          onClick={() => dispatch({ type: SET_SHOW_FILTER })}
         >
           <RxCross1 />
         </div>
