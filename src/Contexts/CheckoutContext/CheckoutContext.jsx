@@ -148,8 +148,10 @@ export const CheckoutProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getAllAddress();
-    getOrders();
+    if (token) {
+      getAllAddress();
+      getOrders();
+    }
   }, [token]);
 
   return (

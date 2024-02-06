@@ -106,11 +106,14 @@ export const AuthProvider = ({ children }) => {
   const refreshTokens = async () => {
     try {
       const {
-        statusCode,
-        data: { accessToken, refreshToken },
+        data: {
+          statusCode,
+          data: { accessToken, refreshToken, user },
+        },
       } = await refreshUserToken(localStorageToken?.refreshToken);
 
       if (statusCode === 200) {
+        setUserAuth({ user, token: accessToken, currentUser: user });
         localStorage.setItem(
           "techbayUser",
           JSON.stringify({ token: accessToken, refreshToken })
