@@ -1,5 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getLoginInformation, createUser, userLogout } from "./AuthApi";
+import {
+  getLoginInformation,
+  createUser,
+  userLogout,
+  refreshUserToken,
+} from "./AuthApi";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
@@ -25,7 +30,6 @@ export const AuthProvider = ({ children }) => {
       } = await getLoginInformation(email, password);
 
       if (statusCode === 200) {
-        console.log("user logged in", user);
         localStorage.setItem(
           "techbayUser",
           JSON.stringify({ user, token: accessToken, refreshToken })
@@ -98,6 +102,35 @@ export const AuthProvider = ({ children }) => {
       setAuthLoading(false);
     }
   };
+
+  const refreshTokens = async () => {
+    try {
+      const {
+        statusCode,
+        data: { accessToken, refreshToken },
+      } = await refreshUserToken(localStorageToken?.refreshToken);
+
+      if (statusCode === 200) {
+        localStorage.setItem(
+          "techbayUser",
+          JSON.stringify({ token: accessToken, refreshToken })
+        );
+      }
+    } catch (error) {
+      logoutHandler();
+      toast.error(`Session Expired Login Again`, {
+        containerId: "A",
+        theme: "colored",
+      });
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      refreshTokens();
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

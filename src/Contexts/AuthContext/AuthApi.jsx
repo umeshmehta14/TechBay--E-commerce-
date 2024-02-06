@@ -21,3 +21,8 @@ export const userLogout = async (accessToken) =>
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
+export const refreshUserToken = async (refreshToken) =>
+  await axios.post(`${API_URL}/users/refresh-token`, {
+    refreshToken,
+  });

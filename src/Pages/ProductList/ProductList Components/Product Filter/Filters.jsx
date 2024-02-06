@@ -49,7 +49,7 @@ const Filters = () => {
           min="1"
           max="5"
           id="range"
-          value={filters.rating}
+          value={filters?.rating}
           onChange={(e) =>
             dispatch({ type: SORT_BY_RATING, payload: e.target.value })
           }
