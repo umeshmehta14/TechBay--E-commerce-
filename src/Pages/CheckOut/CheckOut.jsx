@@ -71,7 +71,7 @@ export const CheckOut = () => {
     setTimeout(() => {
       navigate("/profile/orderDetail");
     }, 3000);
-    clearCart();
+    selectedProduct?.title ? "" : clearCart();
   };
 
   const razorpayOptions = {
