@@ -2,16 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./OrderDetails.css";
-import { useData } from "../../../Contexts";
+import { FaCheck } from "../../../Utils/Icons/Icons";
+import { useCheckout, useData } from "../../../Contexts";
 
 export const OrderDetails = () => {
   const {
     state: { orderDetails },
   } = useData();
+  const { removeOrders } = useCheckout();
   const navigate = useNavigate();
+
   return (
     <main className="order-details-container">
-      {orderDetails.length === 0 && (
+      {orderDetails?.length === 0 && (
         <section className="empty-order-box">
           <h1 className="pfc">No orders yet?</h1>
           <p>
@@ -24,18 +27,31 @@ export const OrderDetails = () => {
         </section>
       )}
       {orderDetails?.map(
-        ({ id, orderList, amount, address: deliveyAddress, date }) => {
-          const { address, city, mobile, pincode, state } = deliveyAddress;
+        ({
+          _id,
+          products,
+          paymentId,
+          amount,
+          address: deliveryAddress,
+          createdAt,
+        }) => {
+          const { address, city, mobile, pincode, state } = deliveryAddress;
           return (
-            <div key={id} className="order-detail-box">
+            <div key={_id} className="order-detail-box">
               <p>
-                <strong>Payment Id</strong>: {id}
+                <strong>Payment Id</strong>: {paymentId}
               </p>
               <p>
                 <strong>Amount</strong>: &#8377;{amount}
               </p>
               <p>
-                <strong>Date</strong>: {date.toDateString()}
+                <strong>Date</strong>:{" "}
+                {new Date(createdAt).toLocaleDateString("en-US", {
+                  weekday: "short",
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
               </p>
               <p>
                 <strong>Expected Delivery</strong>: Within 7 Days
@@ -44,33 +60,41 @@ export const OrderDetails = () => {
                 <strong>Delivery Address</strong>: {address}, {city}, {state}
               </p>
               <p>
-                <strong>Number</strong>: {mobile} <strong>Pincode</strong>: 
+                <strong>Number</strong>: {mobile} <strong>Pincode</strong>:
                 {pincode}
               </p>
+              <button
+                className="btn deliver-btn"
+                onClick={() => removeOrders(_id)}
+              >
+                Delivered <FaCheck />
+              </button>
               <div className="order-cart-container">
-                {orderList.map(({ _id, image, title, price, qty }) => {
-                  return (
-                    <div
-                      key={_id}
-                      className="order-cart-card"
-                      onClick={() => navigate(`/singleProduct/${_id}`)}
-                    >
-                      <div className="order-img-box">
-                        <img width={"100px"} src={image} alt="" />
+                {products?.map(
+                  ({ product: { _id, image, title, price }, quantity }) => {
+                    return (
+                      <div
+                        key={_id}
+                        className="order-cart-card"
+                        onClick={() => navigate(`/product/${_id}`)}
+                      >
+                        <div className="order-img-box">
+                          <img width={"100px"} src={image} alt="" />
+                        </div>
+                        <div className="order-cart-detail-box">
+                          <h3 className="pfc">{title}</h3>
+                          <p>
+                            <strong>Price:</strong> &#8377;{price}
+                          </p>
+                          <p>
+                            <strong>Quantity:</strong>
+                            {quantity}
+                          </p>
+                        </div>
                       </div>
-                      <div className="order-cart-detail-box">
-                        <h3 className="pfc">{title}</h3>
-                        <p>
-                          <strong>Price:</strong> &#8377;{price}
-                        </p>
-                        <p>
-                          <strong>Quantity:</strong>
-                          {qty}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  }
+                )}
               </div>
             </div>
           );
@@ -79,4 +103,3 @@ export const OrderDetails = () => {
     </main>
   );
 };
-

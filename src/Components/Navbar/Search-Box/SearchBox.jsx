@@ -1,74 +1,109 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./SearchBox.css";
 import { useData } from "../../../Contexts";
 import {
-  clearFilter,
-  setSearchValue,
-  setShowBurger,
-  setShowSearch,
-  setShowSearchedProducts,
+  SET_FILTER_SEARCH_TEXT,
+  CLEAR_FILTER,
+  SET_SEARCH_VALUE,
+  SET_SHOW_BURGER,
+  SET_SHOW_SEARCH,
+  SET_SHOW_SEARCHED_PRODUCTS,
 } from "../../../Utils/Constants";
 import { IoSearch, RxCross1 } from "../../../Utils/Icons/Icons";
+import { SearchLoader } from "../../Loader/Loader";
 
 export const SearchBox = () => {
   const {
-    state: { showSearch, searchValue, searchedProducts, showSearchedProducts },
+    state: {
+      showSearch,
+      searchValue,
+      searchedProducts,
+      showSearchedProducts,
+      searchLoader,
+    },
     dispatch,
+    getSearchProducts,
   } = useData();
   const navigate = useNavigate();
-  return (
-    <>
-      <div
-        className={`search-input-box ${
-          showSearch ? "show slide-in" : "slide-out"
-        }`}
-      >
-        <div className="search-main-box">
-          <label htmlFor="search">
-            <IoSearch />
-          </label>
 
-          <input
-            type="text"
-            className="search-btn"
-            id="search"
-            value={searchValue}
-            onChange={(e) => {
-              dispatch({ type: setSearchValue, payload: e.target.value });
-              dispatch({ type: setShowSearchedProducts, payload: false });
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(args);
+      }, delay);
+    };
+  };
+
+  const debouncedFetchData = useCallback(debounce(getSearchProducts, 500), [
+    getSearchProducts,
+  ]);
+
+  return (
+    <div
+      className={`search-input-box ${
+        showSearch ? "show slide-in" : "slide-out"
+      }`}
+    >
+      <div className="search-main-box">
+        <label htmlFor="search">
+          <IoSearch />
+        </label>
+
+        <input
+          type="text"
+          className="search-btn"
+          id="search"
+          value={searchValue}
+          onChange={(e) => {
+            dispatch({ type: SET_SEARCH_VALUE, payload: e.target.value });
+            dispatch({ type: SET_SHOW_SEARCHED_PRODUCTS, payload: false });
+            debouncedFetchData(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              dispatch({ type: SET_SHOW_SEARCHED_PRODUCTS, payload: true });
+              dispatch({ type: SET_SHOW_BURGER, payload: false });
+              dispatch({ type: CLEAR_FILTER });
+              dispatch({
+                type: SET_FILTER_SEARCH_TEXT,
+                payload: searchValue,
+              });
+
+              navigate("/products");
+            }
+          }}
+          placeholder="What are you looking for ?"
+        />
+        {searchValue && (
+          <RxCross1
+            className="search-clr"
+            onClick={() => {
+              dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+              dispatch({
+                type: SET_FILTER_SEARCH_TEXT,
+                payload: "",
+              });
             }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                dispatch({ type: setShowSearchedProducts, payload: true });
-                dispatch({ type: setShowBurger, payload: false });
-                dispatch({ type: clearFilter });
-                navigate("/products");
-              }
-            }}
-            placeholder="What are you looking for ?"
+            title="Clear Search"
           />
-          {searchValue && (
-            <RxCross1
-              className="search-clr"
-              onClick={() => dispatch({ type: setSearchValue, payload: "" })}
-              title="Clear Search"
-            />
-          )}
-          {searchValue && showSearch ? (
-            <>
-              <div
-                className={`searchedOutput-container ${
-                  showSearchedProducts ? "disp-none" : ""
-                }`}
-              >
-                {searchedProducts.length === 0 ? (
-                  <h1>We couldn't find what you were looking for</h1>
-                ) : (
-                  ""
-                )}
-                {searchedProducts?.map(
+        )}
+        {searchValue && showSearch ? (
+          <>
+            <div
+              className={`searchedOutput-container ${
+                showSearchedProducts ? "disp-none" : ""
+              }`}
+            >
+              {searchLoader ? (
+                <SearchLoader />
+              ) : searchedProducts?.length === 0 ? (
+                <h1>We couldn't find what you were looking for</h1>
+              ) : (
+                searchedProducts?.map(
                   ({ _id, image, title, price, inStock }) => (
                     <>
                       <div
@@ -78,10 +113,13 @@ export const SearchBox = () => {
                         key={_id}
                         onClick={() => {
                           if (inStock) {
-                            dispatch({ type: setSearchValue, payload: "" });
-                            dispatch({ type: setShowSearch });
-                            dispatch({ type: setShowBurger, payload: false });
-                            navigate(`/singleProduct/${_id}`);
+                            dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+                            dispatch({ type: SET_SHOW_SEARCH });
+                            dispatch({
+                              type: SET_SHOW_BURGER,
+                              payload: false,
+                            });
+                            navigate(`/product/${_id}`);
                           }
                         }}
                       >
@@ -117,14 +155,14 @@ export const SearchBox = () => {
                       </div>
                     </>
                   )
-                )}
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-        </div>
+                )
+              )}
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
-    </>
+    </div>
   );
 };

@@ -1,41 +1,39 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
-import { setShowPassword } from "../../../Utils/Constants";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "../../../Utils/Icons/Icons";
+import { GUEST_DATA, SET_SHOW_PASSWORD } from "../../../Utils/Constants";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+} from "../../../Utils/Icons/Icons";
 
 export const Login = () => {
   const { loginHandler, token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const {state:{showPassword}, dispatch} = useData();
+  const {
+    state: { showPassword },
+    dispatch,
+  } = useData();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
   document.title = "Login";
 
-
-  const guestEmail = "ishaanmehta782@gmail.com";
-  const guestPassword = "password";
   const formHandler = (event) => {
     event.preventDefault();
-    if(loginForm.password.length < 8){
-      toast.warning("Password Have atleast 8 Characters",{containerId:"A", theme:"colored"});
-    }
-    else{
-      loginHandler(loginForm.email, loginForm.password);
-    }
+    loginHandler(loginForm.email, loginForm.password);
   };
 
-useEffect(() => {
-  if (token) {
-    navigate(location?.state?.from.pathname || "/", { replace: true });
-  }
-}, [token, navigate, location?.state?.from.pathname]);
+  useEffect(() => {
+    if (token) {
+      navigate(location?.state?.from.pathname || "/", { replace: true });
+    }
+  }, [token, navigate, location?.state?.from.pathname]);
   return (
     <main className="container main-login top-6">
       <div className="auth-box">
@@ -73,13 +71,13 @@ useEffect(() => {
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
-                onClick={() => dispatch({type:setShowPassword})}
+                onClick={() => dispatch({ type: SET_SHOW_PASSWORD })}
               />
             ) : (
               <AiOutlineEye
                 className="eye-icon"
                 title="Show"
-                onClick={() => dispatch({type:setShowPassword})}
+                onClick={() => dispatch({ type: SET_SHOW_PASSWORD })}
               />
             )}
           </div>
@@ -89,7 +87,10 @@ useEffect(() => {
           <button
             type="submit"
             onClick={() =>
-              setLoginForm({ email: guestEmail, password: guestPassword })
+              setLoginForm({
+                email: GUEST_DATA.email,
+                password: GUEST_DATA.password,
+              })
             }
             className="btn"
           >

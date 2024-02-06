@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
 import { useData, useAuth } from "../../Contexts";
-import {SearchBox} from "./Search-Box/SearchBox";
+import { SearchBox } from "./Search-Box/SearchBox";
 import {
   FaShoppingBag,
   ImCart,
@@ -16,9 +16,9 @@ import {
   TbSearchOff,
 } from "../../Utils/Icons/Icons";
 import {
-  setShowSearch,
-  setShowBurger,
-  setScreenWidth,
+  SET_SHOW_SEARCH,
+  SET_SHOW_BURGER,
+  SET_SCREEN_WIDTH,
 } from "../../Utils/Constants";
 
 export const Navbar = () => {
@@ -35,13 +35,13 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      dispatch({ type: setScreenWidth });
+      dispatch({ type: SET_SCREEN_WIDTH });
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch]);
 
-  if(location.pathname === "/404"){
+  if (location.pathname === "/404") {
     return null;
   }
   return (
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <div className="navbar-icons-section">
             {screenWidth < 768 ? (
               <div
-                onClick={() => dispatch({ type: setShowSearch })}
+                onClick={() => dispatch({ type: SET_SHOW_SEARCH })}
                 className="search-icon"
               >
                 {showSearch ? <TbSearchOff /> : <IoSearch />}
@@ -74,11 +74,11 @@ export const Navbar = () => {
                     }
                   : {}
               }
-              onClick={() => dispatch({ type: setShowBurger })}
+              onClick={() => dispatch({ type: SET_SHOW_BURGER })}
             >
               {screenWidth > 768 ? (
                 <li
-                  onClick={() => dispatch({ type: setShowSearch })}
+                  onClick={() => dispatch({ type: SET_SHOW_SEARCH })}
                   className="link-name"
                   id="f-search"
                   title="Search"
@@ -137,7 +137,7 @@ export const Navbar = () => {
 
             <div
               className="hamburger-menu"
-              onClick={() => dispatch({ type: setShowBurger })}
+              onClick={() => dispatch({ type: SET_SHOW_BURGER })}
             >
               {showBurger ? (
                 <RxCross1 className="hamburger-icon" />
@@ -147,9 +147,8 @@ export const Navbar = () => {
             </div>
           </div>
         </section>
-        <SearchBox/>
+        <SearchBox />
       </nav>
     </header>
   );
 };
-

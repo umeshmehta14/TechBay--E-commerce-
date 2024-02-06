@@ -1,14 +1,6 @@
-import React from "react";
-import { toast } from "react-toastify";
-
-
 import "./Addresses.css";
-import { useData } from "../../../Contexts";
-import {
-  setDeleteAddress,
-  setEditId,
-  setShowAddressModal,
-} from "../../../Utils/Constants";
+import { useCheckout, useData } from "../../../Contexts";
+import { SET_EDIT_ID, SET_SHOW_ADDRESS_MODAL } from "../../../Utils/Constants";
 import { FaPlus, RiDeleteBin5Line, BiEdit } from "../../../Utils/Icons/Icons";
 
 export const Addresses = () => {
@@ -16,21 +8,23 @@ export const Addresses = () => {
     state: { addressList },
     dispatch,
   } = useData();
+
+  const { removeAddress } = useCheckout();
   return (
     <>
       <section className="profile-address-btn">
         <button
           className="add-address-btn"
-          onClick={() => dispatch({ type: setShowAddressModal })}
+          onClick={() => dispatch({ type: SET_SHOW_ADDRESS_MODAL })}
         >
           <FaPlus /> Add New Address
         </button>
       </section>
       <section className="profile-address-container">
-        {<h2>{addressList.length === 0 && "No Address To Display"}</h2>}
+        {<h2>{addressList?.length === 0 && "No Address To Display"}</h2>}
         {addressList?.map(
           ({
-            id,
+            _id,
             name,
             address,
             city,
@@ -40,7 +34,7 @@ export const Addresses = () => {
             state,
             type,
           }) => (
-            <div key={id} className="profile-address">
+            <div key={_id} className="profile-address">
               <p>
                 <strong>Name:</strong> {name}
                 <span className="profile-address-type">{type}</span>
@@ -59,20 +53,14 @@ export const Addresses = () => {
                 <RiDeleteBin5Line
                   className="address-dlt"
                   title="Delete"
-                  onClick={() => {
-                    dispatch({ type: setDeleteAddress, payload: id });
-                    toast.info("Address Removed", {
-                      containerId: "B",
-                      theme: "colored",
-                    });
-                  }}
+                  onClick={() => removeAddress(_id)}
                 />
                 <BiEdit
                   className="address-edit"
                   title="Edit"
                   onClick={() => {
-                    dispatch({ type: setShowAddressModal });
-                    dispatch({ type: setEditId, payload: id });
+                    dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+                    dispatch({ type: SET_EDIT_ID, payload: _id });
                   }}
                 />
               </p>

@@ -11,11 +11,11 @@ export const LogOut = () => {
       <h2>Your Profile</h2>
       <div className="logout-form d-flex">
         <p>
-          <strong>Name:</strong>
-          {currentUser?.firstName + " " + currentUser?.lastName}
+          <strong>Name: </strong>
+          {currentUser?.username}
         </p>
         <p>
-          <strong>Email:</strong> {currentUser?.email}
+          <strong>Email: </strong> {currentUser?.email}
         </p>
         <button
           className="btn"

@@ -1,132 +1,131 @@
 import {
-  cart,
-  category,
-  clearFilter,
-  products,
-  setAddressList,
-  setArrangeType,
-  setBrandFilter,
-  setCategoryFilter,
-  setCurrentPage,
+  CART,
+  CATEGORY,
+  CLEAR_FILTER,
+  FEATURED_PRODUCT,
+  PRODUCT_DETAIL,
+  PRODUCTS,
+  SELECTED_PRODUCT,
+  SET_BRANDS,
+  SET_FILTER_SEARCH_TEXT,
+  SET_LOADER2,
+  SET_PAGE,
+  SET_SEARCH_LOADER,
+  SET_SEARCH_PRODUCTS,
+  SET_ADDRESS_LIST,
+  SET_ARRANGE_TYPE,
+  SET_BRAND_FILTER,
+  SET_CATEGORY_FILTER,
   setDeleteAddress,
-  setEditId,
-  setOrderDetails,
-  setOutOfStock,
-  setPrice,
-  setScreenWidth,
-  setSearchValue,
-  setSelectedAddress,
-  setShowAddressModal,
-  setShowBurger,
-  setShowFilter,
-  setShowPassword,
-  setShowSearch,
-  setShowSearchedProducts,
-  setShowSignUpPassword,
-  setTrending,
-  sortByRating,
-  updateAddressList,
-  updateProductCart,
-  updateProductWishlist,
-  wishlist,
+  SET_EDIT_ID,
+  SET_ORDER_DETAIL,
+  SET_OUT_OF_STOCK,
+  SET_PRICE,
+  SET_SCREEN_WIDTH,
+  SET_SEARCH_VALUE,
+  SET_SELECTED_ADDRESS,
+  SET_SHOW_ADDRESS_MODAL,
+  SET_SHOW_BURGER,
+  SET_SHOW_FILTER,
+  SET_SHOW_PASSWORD,
+  SET_SHOW_SEARCH,
+  SET_SHOW_SEARCHED_PRODUCTS,
+  SET_SHOW_SIGNUP_PASSWORD,
+  SET_TRENDING,
+  SORT_BY_RATING,
+  UPDATE_ADDRESS,
+  WISHLIST,
 } from "../Utils/Constants";
 
 export const DataReducer = (state, action) => {
   switch (action.type) {
-    case products:
+    case PRODUCTS:
       return { ...state, products: action.payload };
 
-    case wishlist:
+    case PRODUCT_DETAIL:
+      return { ...state, productDetail: action.payload };
+
+    case FEATURED_PRODUCT:
+      return { ...state, featuredProducts: action.payload };
+
+    case SELECTED_PRODUCT:
+      return { ...state, selectedProduct: action.payload };
+
+    case WISHLIST:
       return {
         ...state,
-        wishlist: [...action.payload]?.map((item) => ({
-          ...item,
-          inWishlist: true,
-        })),
+        wishlist: action.payload,
       };
 
-    case updateProductWishlist:
-      const wishlistLookup = state.wishlist?.reduce((lookup, wishlistItem) => {
-        lookup[wishlistItem._id] = true;
-        return lookup;
-      }, {});
-
+    case SET_BRANDS:
       return {
         ...state,
-        products: state.products?.map((product) => ({
-          ...product,
-          inWishlist: !!wishlistLookup[product._id],
-        })),
+        brands: action.payload,
       };
 
-    case cart:
+    case CART:
       return {
         ...state,
-        cart: [...action.payload]?.map((item) => ({
-          ...item,
-          inCart: true,
-        })),
+        cart: action.payload,
       };
 
-    case updateProductCart:
-      const cartLookup = state.cart?.reduce((lookup, cartItem) => {
-        lookup[cartItem._id] = cartItem;
-        return lookup;
-      }, {});
-
-      return {
-        ...state,
-        products: state.products?.map((product) => ({
-          ...product,
-          inCart: !!cartLookup[product._id],
-          qty: (cartLookup[product._id] && cartLookup[product._id].qty) || 1,
-        })),
-      };
-    case category:
+    case CATEGORY:
       return { ...state, category: action.payload };
 
-    case sortByRating:
+    case SET_PAGE:
+      return {
+        ...state,
+        filters: { ...state.filters, reqPage: action.payload },
+      };
+
+    case SET_LOADER2:
+      return { ...state, loader2: action.payload };
+
+    case SET_SEARCH_LOADER:
+      return { ...state, searchLoader: action.payload };
+
+    case SORT_BY_RATING:
       return {
         ...state,
         filters: { ...state.filters, rating: action.payload },
       };
 
-    case setCategoryFilter:
+    case SET_CATEGORY_FILTER:
       return {
         ...state,
         filters: {
           ...state.filters,
-          categoryFilter: state.filters.categoryFilter.find(
+          category: state.filters.category.find(
             (item) => item === action.payload
           )
-            ? state.filters.categoryFilter?.filter(
-                (item) => item !== action.payload
-              )
-            : [...state.filters.categoryFilter, action.payload],
+            ? state.filters.category?.filter((item) => item !== action.payload)
+            : [...state.filters.category, action.payload],
         },
       };
 
-    case setBrandFilter:
+    case SET_BRAND_FILTER:
       return {
         ...state,
         filters: {
           ...state.filters,
-          brandFilter: state.filters.brandFilter.find(
-            (item) => item === action.payload
-          )
-            ? state.filters.brandFilter?.filter(
-                (item) => item !== action.payload
-              )
-            : [...state.filters.brandFilter, action.payload],
+          brand: state.filters.brand.find((item) => item === action.payload)
+            ? state.filters.brand?.filter((item) => item !== action.payload)
+            : [...state.filters.brand, action.payload],
         },
       };
 
-    case setTrending:
+    case SET_FILTER_SEARCH_TEXT:
+      return {
+        ...state,
+        filters: { ...state.filters, searchText: action.payload },
+      };
+
+    case SET_TRENDING:
       return {
         ...state,
         filters: { ...state.filters, trending: !state.filters.trending },
       };
-    case setOutOfStock:
+    case SET_OUT_OF_STOCK:
       return {
         ...state,
         filters: {
@@ -135,102 +134,81 @@ export const DataReducer = (state, action) => {
         },
       };
 
-    case setPrice:
+    case SET_PRICE:
       return {
         ...state,
         filters: { ...state.filters, price: action.payload },
       };
 
-    case clearFilter:
+    case CLEAR_FILTER:
       return {
         ...state,
         filters: {
+          ...state.filters,
           rating: 5,
-          categoryFilter: [],
-          brandFilter: [],
+          category: [],
+          brand: [],
           price: null,
           trending: false,
           includeOutStock: false,
+          reqPage: 1,
         },
       };
 
-    case setSearchValue:
-      const searchValue = action.payload.toLowerCase();
-      const searchedProducts =
-        searchValue === ""
-          ? []
-          : state.products?.filter(
-              ({ title, description, price, category, brand, rating }) =>
-                title.toLowerCase().includes(searchValue) ||
-                category.toLowerCase().includes(searchValue) ||
-                brand.toLowerCase().includes(searchValue) ||
-                description.toLowerCase().includes(searchValue) ||
-                rating < Number(searchValue) ||
-                Number(action.payload) > price
-            );
-
+    case SET_SEARCH_VALUE:
       return {
         ...state,
         searchValue: action.payload,
-        searchedProducts,
       };
-    case setShowBurger:
+
+    case SET_SEARCH_PRODUCTS:
+      return { ...state, searchedProducts: action.payload };
+    case SET_SHOW_BURGER:
       return {
         ...state,
         showBurger:
           action.payload !== undefined ? action.payload : !state.showBurger,
       };
-    case setShowSearch:
+    case SET_SHOW_SEARCH:
       return { ...state, showSearch: !state.showSearch };
 
-    case setArrangeType:
+    case SET_ARRANGE_TYPE:
       return {
         ...state,
         filters: { ...state.filters, arrangeType: action.payload },
       };
 
-    case setCurrentPage:
-      return { ...state, currentPage: action.payload };
-
-    case setScreenWidth:
+    case SET_SCREEN_WIDTH:
       return { ...state, screenWidth: window.innerWidth };
 
-    case setShowPassword:
+    case SET_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword };
 
-    case setShowSignUpPassword:
+    case SET_SHOW_SIGNUP_PASSWORD:
       return { ...state, showSignUpPassword: !state.showSignUpPassword };
 
-    case setShowFilter:
+    case SET_SHOW_FILTER:
       return { ...state, showFilter: !state.showFilter };
 
-    case setShowSearchedProducts:
+    case SET_SHOW_SEARCHED_PRODUCTS:
       return { ...state, showSearchedProducts: action.payload };
 
-    case setAddressList:
+    case SET_ADDRESS_LIST:
       return {
         ...state,
-        addressList: [...state.addressList, { ...action.payload }],
+        addressList: action.payload,
       };
 
-    case setShowAddressModal:
+    case SET_SHOW_ADDRESS_MODAL:
       return { ...state, showAddressModal: !state.showAddressModal };
 
-    case setSelectedAddress:
+    case SET_SELECTED_ADDRESS:
       return { ...state, selectedAddress: action.payload };
 
-    case setDeleteAddress:
-      return {
-        ...state,
-        addressList: state.addressList?.filter(
-          ({ id }) => id !== action.payload
-        ),
-      };
-
-    case setEditId:
+    case SET_EDIT_ID:
       return { ...state, editId: action.payload };
 
-    case updateAddressList:
+    case UPDATE_ADDRESS:
       return {
         ...state,
         addressList: state.addressList?.map((address) =>
@@ -238,10 +216,10 @@ export const DataReducer = (state, action) => {
         ),
       };
 
-    case setOrderDetails:
+    case SET_ORDER_DETAIL:
       return {
         ...state,
-        orderDetails: [...state.orderDetails, { ...action.payload }],
+        orderDetails: action.payload,
       };
 
     default:

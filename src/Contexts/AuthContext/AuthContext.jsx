@@ -1,63 +1,147 @@
-import { createContext, useContext, useState } from "react";
-import { getLoginInformation, createUser } from "./AuthApi";
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  getLoginInformation,
+  createUser,
+  userLogout,
+  refreshUserToken,
+} from "./AuthApi";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const localStorageToken = JSON.parse(localStorage.getItem("loginDetails"));
-  const [token, setToken] = useState(localStorageToken?.token);
-  const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
+  const localStorageToken = JSON.parse(localStorage.getItem("techbayUser"));
+  const [userAuth, setUserAuth] = useState({
+    token: localStorageToken?.token || "",
+    currentUser: localStorageToken?.user || null,
+  });
+  const [authLoading, setAuthLoading] = useState(false);
+
+  const { token, currentUser } = userAuth;
 
   const loginHandler = async (email, password) => {
     try {
+      setAuthLoading(true);
       const {
-        status,
-        data: { foundUser, encodedToken },
+        data: {
+          statusCode,
+          data: { user, refreshToken, accessToken },
+        },
       } = await getLoginInformation(email, password);
-      if (status === 200 || status === 201) {
+
+      if (statusCode === 200) {
         localStorage.setItem(
-          "loginDetails",
-          JSON.stringify({ user: foundUser, token: encodedToken })
+          "techbayUser",
+          JSON.stringify({ user, token: accessToken, refreshToken })
         );
-        setCurrentUser(foundUser);
-        setToken(encodedToken);
-        toast.success(`Welcome Back ${foundUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
+        setUserAuth({ token: accessToken, currentUser: user });
+        toast.success(`Welcome Back ${user.username} To TechBay`, {
+          containerId: "A",
+          theme: "colored",
+        });
       }
-    } catch (err) {
-      toast.error(`Invalid Credentials`, { containerId: 'A', theme: "colored" });
+    } catch (error) {
+      toast.error(`${error.response.data.error}`, {
+        containerId: "A",
+        theme: "colored",
+      });
+    } finally {
+      setAuthLoading(false);
     }
   };
 
-  const signUpHandler = async (firstName, lastName, email, password) => {
+  const signUpHandler = async (username, email, password, confirmPassword) => {
+    try {
+      setAuthLoading(true);
+      const {
+        data: {
+          statusCode,
+          data: { createdUser, refreshToken, accessToken },
+        },
+      } = await createUser(username, email, password, confirmPassword);
+
+      if (statusCode === 201) {
+        localStorage.setItem(
+          "techbayUser",
+          JSON.stringify({
+            token: accessToken,
+            refreshToken,
+            user: createdUser,
+          })
+        );
+        setUserAuth({ token: accessToken, currentUser: createdUser });
+
+        toast.success(`Welcome ${createdUser.username} To TechBay`, {
+          containerId: "A",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      toast.error("Internal server Error, try after sometime", {
+        containerId: "A",
+        theme: "colored",
+      });
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const logoutHandler = async () => {
+    try {
+      setAuthLoading(true);
+      await userLogout(token);
+      localStorage.removeItem("techbayUser");
+      setUserAuth({ token: "", currentUser: null });
+      toast.success(`Logout successful`, {
+        containerId: "A",
+        theme: "colored",
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const refreshTokens = async () => {
     try {
       const {
-        status,
-        data: { createdUser, encodedToken },
-      } = await createUser(firstName, lastName, email, password);
-       
-      if (status === 201 || status === 200) {
+        statusCode,
+        data: { accessToken, refreshToken },
+      } = await refreshUserToken(localStorageToken?.refreshToken);
+
+      if (statusCode === 200) {
         localStorage.setItem(
-          "loginDetails",
-          JSON.stringify({ token: encodedToken, user: createdUser })
+          "techbayUser",
+          JSON.stringify({ token: accessToken, refreshToken })
         );
-        setCurrentUser(createdUser);
-        setToken(encodedToken);
-        toast.success(`Welcome ${createdUser.firstName} To TechBay`, { containerId: 'A', theme: "colored" });
       }
-    } catch (err) {
-        toast.error(`Email Already Exist`, { containerId: 'A', theme: "colored" });
+    } catch (error) {
+      logoutHandler();
+      toast.error(`Session Expired Login Again`, {
+        containerId: "A",
+        theme: "colored",
+      });
+      console.error(error);
     }
   };
 
-  const logoutHandler = () => {
-    localStorage.removeItem("loginDetails");
-    setToken(null);
-    setCurrentUser(null);
-  };
+  useEffect(() => {
+    if (token) {
+      refreshTokens();
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
-      value={{ loginHandler, logoutHandler, token, signUpHandler, currentUser }}
+      value={{
+        loginHandler,
+        logoutHandler,
+        token,
+        signUpHandler,
+        currentUser,
+        authLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

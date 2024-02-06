@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import { v4 as uuid } from "uuid";
 
 import "./AddressForm.css";
-import { useData } from "../../Contexts";
+import { useCheckout, useData } from "../../Contexts";
 import { RxCross1 } from "../../Utils/Icons/Icons";
 import {
-  setShowAddressModal,
-  setAddressList,
-  setEditId,
-  updateAddressList,
+  SET_SHOW_ADDRESS_MODAL,
+  SET_EDIT_ID,
+  UPDATE_ADDRESS,
+  STATE_DATA,
 } from "../../Utils/Constants";
 
 export const AddressForm = () => {
@@ -17,6 +16,9 @@ export const AddressForm = () => {
     dispatch,
     state: { editId, addressList },
   } = useData();
+
+  const { addAddress, updateAddress } = useCheckout();
+
   const emptyFormData = {
     id: "",
     name: "",
@@ -31,37 +33,6 @@ export const AddressForm = () => {
   const [formData, setFormData] = useState(emptyFormData);
   const { name, address, mobile, city, state, pincode, alternatemobile, type } =
     formData;
-  const statesData = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Delhi",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-  ];
 
   const handleRandomAddress = () => {
     setFormData({
@@ -72,29 +43,30 @@ export const AddressForm = () => {
       city: faker.location.city(),
       address: faker.location.streetAddress(),
       alternatemobile: faker.number.int({ min: 10000000000, max: 99999999999 }),
-      state: statesData[Math.floor(Math.random() * statesData.length - 1)],
+      state: STATE_DATA[Math.floor(Math.random() * STATE_DATA.length - 1)],
       type: "Home",
     });
   };
+
   const formResetHandler = () => {
     setFormData(emptyFormData);
   };
+
   const addressHandler = (e) => {
     e.preventDefault();
-    if (editId.length > 0) {
-      dispatch({ type: updateAddressList, payload: { ...formData } });
+    if (editId?.length > 0) {
+      updateAddress({ _id: editId, ...formData });
     } else {
-      const r_id = uuid();
-      dispatch({ type: setAddressList, payload: { ...formData, id: r_id } });
+      addAddress(formData);
     }
     setFormData(emptyFormData);
-    dispatch({ type: setShowAddressModal });
-    dispatch({ type: setEditId, payload: "" });
+    dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+    dispatch({ type: SET_EDIT_ID, payload: "" });
   };
 
   useEffect(() => {
-    if (editId.length > 0) {
-      const selectedAddress = addressList?.find(({ id }) => id === editId);
+    if (editId?.length > 0) {
+      const selectedAddress = addressList?.find(({ _id }) => _id === editId);
       setFormData({
         ...formData,
         id: editId,
@@ -117,8 +89,8 @@ export const AddressForm = () => {
           <RxCross1
             title="Cancel"
             onClick={() => {
-              dispatch({ type: setShowAddressModal });
-              dispatch({ type: setEditId, payload: "" });
+              dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+              dispatch({ type: SET_EDIT_ID, payload: "" });
             }}
           />
         </p>
@@ -219,7 +191,7 @@ export const AddressForm = () => {
             <option disabled value="">
               --Select State--
             </option>
-            {statesData?.map((state) => (
+            {STATE_DATA?.map((state) => (
               <option key={state} value={state}>
                 {state}
               </option>

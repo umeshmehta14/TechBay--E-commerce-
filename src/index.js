@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import {
@@ -14,9 +13,9 @@ import {
   WishListProvider,
   DataContext,
   DataProvider,
+  CheckoutProvider,
+  CheckoutContext,
 } from "./Contexts";
-
-makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +24,9 @@ ReactDOM.render(
         <DataProvider>
           <CartProvider>
             <WishListProvider>
-              <App />
+              <CheckoutProvider>
+                <App />
+              </CheckoutProvider>
             </WishListProvider>
           </CartProvider>
         </DataProvider>
@@ -35,4 +36,10 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-export { DataContext, AuthContext, WishListContext, CartContext };
+export {
+  DataContext,
+  AuthContext,
+  WishListContext,
+  CartContext,
+  CheckoutContext,
+};

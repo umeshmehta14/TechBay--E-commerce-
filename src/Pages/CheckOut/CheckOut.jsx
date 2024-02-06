@@ -1,53 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./CheckOut.css";
-import { useData, useAuth, useCart } from "../../Contexts/";
+import { useData, useAuth, useCart, useCheckout } from "../../Contexts/";
 import { popper } from "../../Utils/Popper";
-import {AddressForm} from "../../Components";
+import { AddressForm } from "../../Components";
 import { FaPlus, BiEdit } from "../../Utils/Icons/Icons";
 import {
-  setEditId,
-  setOrderDetails,
-  setSelectedAddress,
-  setShowAddressModal,
+  SELECTED_PRODUCT,
+  SET_EDIT_ID,
+  SET_ORDER_DETAIL,
+  SET_SELECTED_ADDRESS,
+  SET_SHOW_ADDRESS_MODAL,
 } from "../../Utils/Constants";
 
 export const CheckOut = () => {
   const {
-    state: { addressList, cart, showAddressModal, selectedAddress },
+    state: {
+      addressList,
+      cart,
+      showAddressModal,
+      selectedAddress,
+      selectedProduct,
+    },
     dispatch,
+    getProductById,
   } = useData();
+
+  const { addOrders } = useCheckout();
+
   document.title = "Checkout";
 
+  const { buyNowId } = useParams();
   const { currentUser } = useAuth();
   const { clearCart } = useCart();
   const { email } = currentUser;
   const navigate = useNavigate();
+
   const [paymentResponse, setPaymentResponse] = useState(false);
-  const originalPrice = cart?.reduce(
-    (acc, { original_price, qty }) => (acc += original_price * qty),
-    0
-  );
-  const totalCost = cart?.reduce(
-    (acc, { price, qty }) => (acc += price * qty),
-    0
-  );
+  const originalPrice =
+    selectedProduct?.original_price ||
+    cart?.reduce(
+      (acc, { product: { original_price }, quantity }) =>
+        (acc += original_price * quantity),
+      0
+    );
+  const totalCost =
+    selectedProduct?.price ||
+    cart?.reduce(
+      (acc, { product: { price }, quantity }) => (acc += price * quantity),
+      0
+    );
   const discountedPrice = originalPrice - totalCost;
-  const selectedMobileNo = addressList.find(({ id }) => id === selectedAddress);
+  const selectedMobileNo = addressList.find(
+    ({ _id }) => _id === selectedAddress
+  );
 
   const handlePaymentSuccess = (response) => {
     setPaymentResponse(true);
-    dispatch({
-      type: setOrderDetails,
-      payload: {
-        id: response.razorpay_payment_id,
-        orderList: [...cart],
-        address: selectedMobileNo,
-        amount: totalCost,
-        date: new Date(),
-      },
+    addOrders({
+      paymentId: response.razorpay_payment_id,
+      products: selectedProduct?.title
+        ? [{ product: selectedProduct, quantity: 1 }]
+        : [...cart],
+      address: selectedMobileNo?._id,
+      amount: totalCost,
     });
     popper();
     setTimeout(() => {
@@ -65,7 +83,7 @@ export const CheckOut = () => {
       "https://tse3.mm.bing.net/th?id=OIP.VH-BQwstrgYmR6vADnIlFgAAAA&pid=Api&P=0&h=180",
     handler: (response) => handlePaymentSuccess(response),
     prefill: {
-      name: selectedMobileNo?.firstName,
+      name: selectedMobileNo?.username,
       email: email,
       contact: selectedMobileNo?.mobile,
     },
@@ -78,7 +96,7 @@ export const CheckOut = () => {
   };
 
   const handlePayment = () => {
-    if (addressList.length > 0) {
+    if (addressList?.length > 0) {
       const razorpayInstance = new window.Razorpay(razorpayOptions);
       razorpayInstance.open();
     } else {
@@ -90,11 +108,12 @@ export const CheckOut = () => {
   };
 
   useEffect(() => {
-    if (cart.length === 0) navigate("/products");
-    if (addressList.length === 1) {
-      dispatch({ type: setSelectedAddress, payload: addressList[0].id });
+    dispatch({ type: SELECTED_PRODUCT, payload: {} });
+    if (addressList?.length !== 0) {
+      dispatch({ type: SET_SELECTED_ADDRESS, payload: addressList[0]._id });
     }
-  }, []);
+    buyNowId && getProductById(buyNowId);
+  }, [buyNowId, addressList, dispatch]);
 
   return (
     <>
@@ -106,11 +125,11 @@ export const CheckOut = () => {
         ) : (
           <div className="main-checkout-box">
             <section className="address-container">
-              {addressList.length === 0
+              {addressList?.length === 0
                 ? null
                 : addressList?.map(
                     ({
-                      id,
+                      _id,
                       name,
                       address,
                       city,
@@ -120,24 +139,24 @@ export const CheckOut = () => {
                       type,
                     }) => (
                       <div
-                        key={id}
+                        key={_id}
                         className={`address-box ${
-                          selectedAddress === id ? "selected" : ""
+                          selectedAddress === _id ? "selected" : ""
                         }`}
                         onClick={() =>
-                          dispatch({ type: setSelectedAddress, payload: id })
+                          dispatch({ type: SET_SELECTED_ADDRESS, payload: _id })
                         }
                       >
                         <p className="address-box-type">{type}</p>
-                        <label htmlFor={id}>
+                        <label htmlFor={_id}>
                           <input
                             type="radio"
-                            checked={selectedAddress === id}
-                            id={id}
+                            checked={selectedAddress === _id}
+                            id={_id}
                             onChange={() =>
                               dispatch({
-                                type: setSelectedAddress,
-                                payload: id,
+                                type: SET_SELECTED_ADDRESS,
+                                payload: _id,
                               })
                             }
                           />
@@ -152,8 +171,8 @@ export const CheckOut = () => {
                             className="address-edit"
                             title="Edit"
                             onClick={() => {
-                              dispatch({ type: setShowAddressModal });
-                              dispatch({ type: setEditId, payload: id });
+                              dispatch({ type: SET_SHOW_ADDRESS_MODAL });
+                              dispatch({ type: SET_EDIT_ID, payload: _id });
                             }}
                           />
                         </p>
@@ -163,7 +182,7 @@ export const CheckOut = () => {
               <div className="add-address-btn-box">
                 <button
                   className="add-address-btn"
-                  onClick={() => dispatch({ type: setShowAddressModal })}
+                  onClick={() => dispatch({ type: SET_SHOW_ADDRESS_MODAL })}
                 >
                   <FaPlus /> Add New Address
                 </button>
@@ -179,30 +198,37 @@ export const CheckOut = () => {
                     <span>Item</span>
                     <span>Qty</span>
                   </h4>
-                  {cart?.map(({ _id, title, qty }) => (
-                    <p key={_id}>
-                      <span>{title}</span>
-                      <span>{qty}</span>
+                  {selectedProduct?.title ? (
+                    <p>
+                      <span>{selectedProduct?.title}</span>
+                      <span>{selectedProduct?.quantity || 1}</span>
                     </p>
-                  ))}
+                  ) : (
+                    cart?.map(({ product: { _id, title }, quantity }) => (
+                      <p key={_id}>
+                        <span>{title}</span>
+                        <span>{quantity}</span>
+                      </p>
+                    ))
+                  )}
                 </div>
                 <div className="c-price-heading">
                   <h3 className="pfc">Price Details</h3>
                 </div>
                 <div className="price-cost-section">
                   <p>
-                    <span>Price ({cart.length} items)</span> 
+                    <span>Price ({cart?.length} items)</span>
                     <span>&#8377;{originalPrice}</span>
                   </p>
                   <p>
-                    <span>Discount</span> 
+                    <span>Discount</span>
                     <span className="green">- &#8377;{discountedPrice}</span>
                   </p>
                   <p>
                     <span>Delivery Charges</span> <span>&#8377; 40</span>
                   </p>
                   <p>
-                    <span>Secured Packaging Fee</span> <span>&#8377; 29</span> 
+                    <span>Secured Packaging Fee</span> <span>&#8377; 29</span>
                   </p>
                 </div>
                 <div className="total-cost-heading">
@@ -230,4 +256,3 @@ export const CheckOut = () => {
     </>
   );
 };
-

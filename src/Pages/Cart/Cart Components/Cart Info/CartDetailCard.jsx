@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./CartDetailCard.css";
-import { useCart, useWishList } from "../../../../Contexts";
-import { decrement, increment } from "../../../../Utils/Constants";
+import { useCart, useData, useWishList } from "../../../../Contexts";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -12,46 +11,52 @@ import {
 } from "../../../../Utils/Icons/Icons";
 
 const CartDetailCard = ({ item }) => {
-  const { handleCart, cartDisable, handleCartQuantity } = useCart();
-  const { handleWishList, wishDisable } = useWishList();
+  const { removeProductFromCart, cartDisable, handleCartQuantity } = useCart();
+  const { removeProductFromWishList, addProductToWishList, wishDisable } =
+    useWishList();
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  const {
+    state: { wishlist },
+  } = useData();
 
   const navigate = useNavigate();
   const {
-    _id,
-    title,
-    price,
-    discountPercentage,
-    original_price,
-    rating,
-    inWishlist,
-    inStock,
-    qty,
-    image,
-    trending,
+    product: {
+      _id,
+      title,
+      price,
+      discountPercentage,
+      original_price,
+      rating,
+      inStock,
+      image,
+      trending,
+    },
+    quantity,
   } = item;
+
+  const inWishlist = wishlist?.find((elem) => elem._id === _id);
+  const quantityArr = Array.from({ length: 10 }, (_, index) => index + 1);
+
   return (
     <div key={_id} className="cart-product-card" title={title}>
       {inWishlist ? (
         <AiFillHeart
-          className={`c-red wishList-icon ${
-            wishDisable ? "cursor-disable" : ""
-          }`}
-          onClick={() => handleWishList(item)}
+          className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+          onClick={() => removeProductFromWishList(_id, title)}
           title="Remove from wishlist"
         />
       ) : (
         <AiOutlineHeart
-          className={`wishList-icon ${wishDisable ? "cursor-disable" : ""} ${
+          className={`wishList-icon ${wishDisable && "cursor-disable"} ${
             !inStock ? "cursor-disable" : ""
           }`}
-          onClick={() => (inStock ? handleWishList(item) : null)}
+          onClick={() => addProductToWishList(_id)}
           title="Add to wishlist"
         />
       )}
-      <section
-        className="cart-img"
-        onClick={() => navigate(`/singleProduct/${_id}`)}
-      >
+      <section className="cart-img" onClick={() => navigate(`/product/${_id}`)}>
         <img src={image} alt="Stay Tuned" />
         {inStock ? (
           <span className={trending ? "trending" : ""}>
@@ -65,7 +70,7 @@ const CartDetailCard = ({ item }) => {
       <section className="disp-info-pc cart-info">
         <div
           className="product-card-info cart-item-info"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => navigate(`/product/${_id}`)}
         >
           <span className="rating">
             {rating}
@@ -82,27 +87,19 @@ const CartDetailCard = ({ item }) => {
         <div className="quantity-box">
           <strong>Quantity:</strong>
           <span className="cart-btn-box">
-            <button
-              className={`quantity-btn br ${
-                qty === +1 || cartDisable ? "cursor-disable" : ""
-              }`}
-              disabled={cartDisable || qty === +1}
-              onClick={() => handleCartQuantity(decrement, item)}
+            <select
+              className={`${cartDisable ? "cursor-disable" : ""}`}
+              name=""
+              id=""
+              value={quantity}
+              onChange={({ target }) => handleCartQuantity(_id, target.value)}
             >
-              -
-            </button>
-
-            <span className="btn-para">{qty}</span>
-
-            <button
-              disabled={cartDisable}
-              className={`quantity-btn bl ${
-                qty === +10 || cartDisable ? "cursor-disable" : ""
-              }`}
-              onClick={() => handleCartQuantity(increment, item)}
-            >
-              +
-            </button>
+              {quantityArr?.map((qty) => (
+                <option key={qty} value={qty}>
+                  {qty}
+                </option>
+              ))}
+            </select>
           </span>
         </div>
         <section className="remove-btn-box">
@@ -110,9 +107,9 @@ const CartDetailCard = ({ item }) => {
             className={`remove-btn btn ${cartDisable ? "cursor-disable" : ""}`}
             disabled={cartDisable}
             title="Remove from Cart"
-            onClick={() => handleCart(item)}
+            onClick={() => removeProductFromCart(_id, title)}
           >
-            <span className="icon" >
+            <span className="icon">
               <RiDeleteBin5Line />
             </span>
           </button>

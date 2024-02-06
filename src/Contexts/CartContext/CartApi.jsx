@@ -1,43 +1,53 @@
 import axios from "axios";
+import { API_URL } from "../../Utils/Constants";
 
-export const getCartList = async ({ encodedToken }) =>
-  await axios.get("/api/user/cart", {
+export const getCartList = async (token) =>
+  await axios.get(`${API_URL}/users/cart/`, {
     headers: {
-      authorization: encodedToken,
+      Authorization: `Bearer ${token}`,
     },
   });
 
-export const postCartList = async ({ product, encodedToken }) =>
-  await axios.post(
-    "/api/user/cart",
-    { product },
+export const addCartList = async (productId, token) =>
+  await axios.patch(
+    `${API_URL}/users/add/cart/${productId}`,
+    {},
     {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
 
-export const deleteCartList = async ({ productId, encodedToken }) =>
-  await axios.delete(`/api/user/cart/${productId}`, {
-    headers: {
-      authorization: encodedToken,
-    },
-  });
-
-export const updateCartQuantity = async ({
-  type,
-  productId,
-  encodedToken,
-}) =>
-   await axios.post(
-    `/api/user/cart/${productId}`,
-    {
-      action: {type},
-    },
+export const removeCartList = async (productId, token) =>
+  await axios.patch(
+    `${API_URL}/users/remove/cart/${productId}`,
+    {},
     {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+export const updateCartQuantity = async (productId, quantity, token) =>
+  await axios.patch(
+    `${API_URL}/users/update-quantity/cart/${quantity}/${productId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+export const clearUserCart = async (token) =>
+  await axios.patch(
+    `${API_URL}/users/clear/cart`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     }
   );

@@ -4,12 +4,13 @@ import { toast } from "react-toastify";
 
 import { useData, useAuth } from "../index";
 import {
-  deleteCartList,
+  addCartList,
+  clearUserCart,
   getCartList,
-  postCartList,
+  removeCartList,
   updateCartQuantity,
 } from "./CartApi";
-import { cart, updateProductCart } from "../../Utils/Constants";
+import { CART } from "../../Utils/Constants";
 
 export const CartContext = createContext();
 
@@ -22,27 +23,10 @@ export const CartProvider = ({ children }) => {
 
   const [cartDisable, setCartDisable] = useState(false);
 
-  useEffect(() => {
-    dispatch({ type: cart, payload: [] });
-    dispatch({ type: updateProductCart });
-    if(token)
-    {
-      (async () => {
-        try {
-          const cartResponse = await getCartList({ encodedToken: token });
-          if (cartResponse.status === 200 || cartResponse.status === 201) {
-            dispatch({ type: cart, payload: cartResponse.data.cart });
-            dispatch({ type: updateProductCart });
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      })();
-    }
-  }, [token]);
-
-  const handleCart = async (product, buyNow) => {
+  const addProductToCart = async (productId) => {
     try {
+      document.body.style.cursor = "progress";
+
       if (!token) {
         toast.warning(`Need To Login First`, {
           containerId: "A",
@@ -52,83 +36,115 @@ export const CartProvider = ({ children }) => {
         return;
       }
       setCartDisable(true);
-      let cartRes = null;
-      if (product.inCart) {
-        if (buyNow) {
-          setCartDisable(false);
-          navigate("/checkout", { state: { from: location } });
-          return;
-        }
-        cartRes = await deleteCartList({
-          productId: product._id,
-          encodedToken: token,
-        });
-        toast.info(`${product.title} Removed From Cart`, {
-          containerId: "B",
-          theme: "colored",
-        });
-      } else {
-        cartRes = await postCartList({ product, encodedToken: token });
-        toast.success(`${product.title} Added To Cart`, {
+
+      const {
+        data: {
+          statusCode,
+          data: { cart },
+        },
+      } = await addCartList(productId, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: cart });
+        toast.success(`${cart[cart.length - 1].product.title} Added to Cart`, {
           containerId: "B",
           theme: "colored",
         });
       }
-      if (cartRes.status === 201 || cartRes.status === 200) {
-        dispatch({ type: cart, payload: cartRes.data.cart });
-        dispatch({ type: updateProductCart });
-        if (buyNow) {
-          setCartDisable(false);
-          navigate("/checkout", { state: { from: location } });
-          return;
-        }
-      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      document.body.style.cursor = "default";
       setCartDisable(false);
-    } catch (err) {
-      console.error(err);
     }
   };
-
-  const handleCartQuantity = async (updateType, product) => {
-    setCartDisable(true);
-    if (product.qty >= 10 && updateType === "increment") {
-      toast.warning(
-        "Oops! Quantity Exceeded: The maximum allowed quantity for this product is 10",
-        { containerId: "A", theme: "colored" }
-      );
-      setCartDisable(false);
-
-      return;
-    }
+  const removeProductFromCart = async (productId, title) => {
     try {
-      const updatedCart = await updateCartQuantity({
-        type: updateType,
-        productId: product._id,
-        encodedToken: token,
-      });
-      if (updatedCart.status === 201 || updatedCart.status === 200) {
-        dispatch({ type: cart, payload: updatedCart.data.cart });
-        dispatch({ type: updateProductCart });
+      document.body.style.cursor = "progress";
+
+      setCartDisable(true);
+      const {
+        data: {
+          statusCode,
+          data: { cart },
+        },
+      } = await removeCartList(productId, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: cart });
+        toast.success(`${title} Removed from Cart`, {
+          containerId: "B",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      document.body.style.cursor = "default";
+      setCartDisable(false);
+    }
+  };
+  const handleCartQuantity = async (productId, quantity) => {
+    setCartDisable(true);
+    try {
+      document.body.style.cursor = "progress";
+      const {
+        data: { statusCode, data },
+      } = await updateCartQuantity(productId, quantity, token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: data });
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      document.body.style.cursor = "default";
+      setCartDisable(false);
     }
-    setCartDisable(false);
   };
 
-  const clearCart = () => {
-    state.cart.forEach((element) => {
-      handleCart(element);
-    });
+  const clearCart = async () => {
+    try {
+      document.body.style.cursor = "progress";
+      const {
+        data: { statusCode, data },
+      } = await clearUserCart(token);
+      if (statusCode === 200) {
+        dispatch({ type: CART, payload: data });
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      document.body.style.cursor = "default";
+    }
   };
 
   const handleCartButton = (inCart, item, buyNow) =>
     inCart && !buyNow ? navigate("/cart") : handleCart(item, buyNow);
 
+  useEffect(() => {
+    dispatch({ type: CART, payload: [] });
+    if (token) {
+      (async () => {
+        try {
+          const {
+            data: {
+              statusCode,
+              data: { cart },
+            },
+          } = await getCartList(token);
+          if (statusCode === 200) {
+            dispatch({ type: CART, payload: cart });
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      })();
+    }
+  }, [token]);
+
   return (
     <CartContext.Provider
       value={{
-        handleCart,
+        addProductToCart,
+        removeProductFromCart,
         cartDisable,
         clearCart,
         handleCartQuantity,

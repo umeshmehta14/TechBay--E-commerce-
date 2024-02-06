@@ -11,11 +11,12 @@ const CartPrice = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const originalPrice = cart?.reduce(
-    (acc, { original_price, qty }) => (acc += original_price * qty),
+    (acc, { product: { original_price }, quantity }) =>
+      (acc += original_price * quantity),
     0
   );
   const totalCost = cart?.reduce(
-    (acc, { price, qty }) => (acc += price * qty),
+    (acc, { product: { price }, quantity }) => (acc += price * quantity),
     0
   );
   const discountedPrice = originalPrice - totalCost;
@@ -26,18 +27,18 @@ const CartPrice = () => {
       </section>
       <section className="price-cost-section">
         <p>
-          <span>Price ({cart.length} items)</span> 
+          <span>Price ({cart.length} items)</span>
           <span>&#8377;{originalPrice}</span>
         </p>
         <p>
-          <span>Discount</span> 
+          <span>Discount</span>
           <span className="green">-&#8377;{discountedPrice}</span>
         </p>
         <p>
           <span>Delivery Charges</span> <span>&#8377;40</span>
         </p>
         <p>
-          <span>Secured Packaging Fee</span> <span>&#8377;29</span> 
+          <span>Secured Packaging Fee</span> <span>&#8377;29</span>
         </p>
       </section>
       <div className="total-cost-heading">

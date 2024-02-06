@@ -1,21 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./WishlistCard.css";
-import { useAuth, useCart, useWishList } from "../../../Contexts";
-import { increment } from "../../../Utils/Constants";
-import {
-  AiFillStar,
-  AiOutlineHeart,
-  AiFillHeart,
-  ImCart,
-} from "../../../Utils/Icons/Icons";
+import { useAuth, useCart, useData, useWishList } from "../../../Contexts";
+import { AiFillStar, AiFillHeart, ImCart } from "../../../Utils/Icons/Icons";
 
 const WishlistCard = ({ item }) => {
-  const { handleWishList, wishDisable } = useWishList();
-  const { cartDisable, handleCartButton, handleCartQuantity } = useCart();
+  const {
+    state: { cart },
+  } = useData();
   const { token } = useAuth();
+  const { removeProductFromWishList, wishDisable } = useWishList();
+  const { cartDisable, addProductToCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     _id,
     title,
@@ -24,28 +22,21 @@ const WishlistCard = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inWishlist,
-    inCart,
-    qty,
     image,
     trending,
   } = item;
+
+  const inCart = cart?.find(({ product }) => product._id === _id);
   return (
     <div key={_id} className={`product-card product-card-wishlist`}>
-      {token && inWishlist ? (
-        <AiFillHeart
-          className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
-          onClick={() => handleWishList(item)}
-        />
-      ) : (
-        <AiOutlineHeart
-          className={`wishList-icon ${wishDisable && "cursor-disable"}`}
-          onClick={() => handleWishList(item)}
-        />
-      )}
+      <AiFillHeart
+        className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+        onClick={() => removeProductFromWishList(_id, title)}
+        title="Remove from wishlist"
+      />
       <div
         className="product-card-img product-card-img-wishlist"
-        onClick={() => navigate(`/singleProduct/${_id}`)}
+        onClick={() => navigate(`/product/${_id}`)}
       >
         <img src={image} alt="Stay Tuned" />
         <span className={trending ? "trending" : ""}>
@@ -55,7 +46,7 @@ const WishlistCard = ({ item }) => {
       <section className="disp-info-pc disp-info-pc-wishlist">
         <div
           className="product-card-info product-card-info-wishlist"
-          onClick={() => navigate(`/singleProduct/${_id}`)}
+          onClick={() => navigate(`/product/${_id}`)}
         >
           <span className="rating">
             {rating}
@@ -70,31 +61,12 @@ const WishlistCard = ({ item }) => {
           </div>
         </div>
         <div className="btn-box">
-          {/* <button
-            disabled={cartDisable}
-            className={`btn w-fit m-0 ${
-              cartDisable || qty === +10 ? "cursor-disable" : ""
-            } ${inCart ? "third-color" : ""}`}
-            onClick={() =>
-              inCart
-                ? handleCartQuantity(increment, item)
-                : handleCartButton(inCart, item)
-            }
-          >
-            {inCart ? (
-              `Added (${qty}) +`
-            ) : (
-              <>
-                <ImCart /> Add to Cart
-              </>
-            )}
-          </button> */}
           <button
             disabled={cartDisable}
             className={`btn w-fit m-0 ${cartDisable ? "cursor-disable" : ""} ${
               inCart ? "third-color" : ""
             }`}
-            onClick={() => handleCartButton(inCart, item)}
+            onClick={() => (inCart ? navigate("/cart") : addProductToCart(_id))}
             title={inCart ? "go to cart" : "Add to cart"}
           >
             {inCart ? (
@@ -109,7 +81,11 @@ const WishlistCard = ({ item }) => {
             className={`btn btn-p-w  w-fit m-0 byn-btn${
               cartDisable ? "cursor-disable" : ""
             }`}
-            onClick={() => handleCartButton(inCart, item, true)}
+            onClick={() =>
+              token
+                ? navigate(`/checkout/${_id}`)
+                : navigate("/login", { state: { from: location } })
+            }
           >
             Buy Now
           </button>

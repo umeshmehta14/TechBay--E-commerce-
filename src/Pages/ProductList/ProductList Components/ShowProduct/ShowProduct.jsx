@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./ShowProduct.css";
-import { useWishList, useAuth, useCart } from "../../../../Contexts";
+import { useWishList, useAuth, useCart, useData } from "../../../../Contexts";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -12,9 +12,15 @@ import {
 
 const ShowProduct = ({ item }) => {
   const { token } = useAuth();
-  const { handleWishList, wishDisable } = useWishList();
-  const { cartDisable, handleCartButton } = useCart();
+  const {
+    state: { wishlist, cart },
+  } = useData();
+  const { addProductToWishList, removeProductFromWishList, wishDisable } =
+    useWishList();
+  const { cartDisable, addProductToCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [disable, setDisable] = useState(false);
 
   const {
@@ -25,17 +31,18 @@ const ShowProduct = ({ item }) => {
     discountPercentage,
     original_price,
     rating,
-    inWishlist,
-    inCart,
     inStock,
     image,
     trending,
   } = item;
 
+  const inWishlist = wishlist?.find((elem) => elem._id === _id);
+  const inCart = cart.find(({ product }) => product._id === _id);
+
   useEffect(() => {
-  setDisable(cartDisable);
-  }, [cartDisable])
-  
+    setDisable(cartDisable);
+  }, [cartDisable]);
+
   return (
     <>
       <div
@@ -47,10 +54,8 @@ const ShowProduct = ({ item }) => {
       >
         {token && inWishlist ? (
           <AiFillHeart
-            className={`c-red wishList-icon ${
-              wishDisable && "cursor-disable"
-            }`}
-            onClick={() => handleWishList(item)}
+            className={`c-red wishList-icon ${wishDisable && "cursor-disable"}`}
+            onClick={() => removeProductFromWishList(_id, title)}
             title="Remove from wishlist"
           />
         ) : (
@@ -58,13 +63,13 @@ const ShowProduct = ({ item }) => {
             className={`wishList-icon ${wishDisable && "cursor-disable"} ${
               !inStock ? "cursor-disable" : ""
             }`}
-            onClick={() => (inStock ? handleWishList(item) : null)}
+            onClick={() => (inStock ? addProductToWishList(_id) : null)}
             title="Add to wishlist"
           />
         )}
         <div
           className="product-card-img"
-          onClick={() => (inStock ? navigate(`/singleProduct/${_id}`) : null)}
+          onClick={() => (inStock ? navigate(`/product/${_id}`) : null)}
         >
           <img src={image} alt={title} />
           {inStock ? (
@@ -78,7 +83,7 @@ const ShowProduct = ({ item }) => {
         <div className="disp-info-pc">
           <div
             className="product-card-info"
-            onClick={() => navigate(`/singleProduct/${_id}`)}
+            onClick={() => navigate(`/product/${_id}`)}
           >
             <span className="rating">
               {rating}
@@ -98,7 +103,9 @@ const ShowProduct = ({ item }) => {
               className={`btn btn-p-w w-fit m-0 ${
                 cartDisable ? "cursor-disable" : ""
               } ${inCart ? "third-color" : ""}`}
-              onClick={() => handleCartButton(inCart, item)}
+              onClick={() =>
+                inCart ? navigate("/cart") : addProductToCart(_id)
+              }
               title={inCart ? "go to cart" : "Add to cart"}
             >
               {inCart ? (
@@ -113,7 +120,11 @@ const ShowProduct = ({ item }) => {
               disabled={disable}
               className="btn btn-p-w  w-fit m-0 byn-btn"
               title="Buy Now"
-              onClick={() => handleCartButton(inCart, item, true)}
+              onClick={() =>
+                token
+                  ? navigate(`/checkout/${_id}`)
+                  : navigate("/login", { state: { from: location } })
+              }
             >
               Buy Now
             </button>

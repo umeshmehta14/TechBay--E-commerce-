@@ -2,13 +2,18 @@ import React from "react";
 
 import "./SortByPrice.css";
 import { useData } from "../../../../Contexts";
-import { setArrangeType, setShowFilter } from "../../../../Utils/Constants";
+import { SET_ARRANGE_TYPE, SET_SHOW_FILTER } from "../../../../Utils/Constants";
 import { HiOutlineFilter } from "../../../../Utils/Icons/Icons";
 
-const SortByPrice = ({ displayedProducts, filteredProducts }) => {
+const SortByPrice = () => {
   const {
     dispatch,
-    state: { filters, searchValue, products },
+    state: {
+      filters,
+      searchValue,
+      products,
+      productDetail: { productFetched },
+    },
   } = useData();
   return (
     <>
@@ -16,16 +21,21 @@ const SortByPrice = ({ displayedProducts, filteredProducts }) => {
         <div className="filter-button">
           <button
             className="filter-toggle-btn"
-            onClick={() => dispatch({ type: setShowFilter })}
+            onClick={() => dispatch({ type: SET_SHOW_FILTER })}
           >
             Filter <HiOutlineFilter />
           </button>
           <div className="sort-price">
             {searchValue ? (
-              <h3 className="result-heading">Search Result for {searchValue}</h3>
-            ) : displayedProducts.length === 0 ? null : (
+              <h3 className="result-heading">
+                Search Result for {searchValue}
+              </h3>
+            ) : products?.length === 0 ? null : (
               <div className="result-heading">
-                <h3>Showing All Products <small className="pfc">{`(${filteredProducts.length} of ${products.length})`}</small></h3>
+                <h3>
+                  Showing All Products{" "}
+                  <small className="pfc">{`(${products?.length} of ${productFetched})`}</small>
+                </h3>
               </div>
             )}
 
@@ -35,7 +45,7 @@ const SortByPrice = ({ displayedProducts, filteredProducts }) => {
                   filters.arrangeType === "LTH" ? "sort-btn-focus" : ""
                 }`}
                 onClick={() =>
-                  dispatch({ type: setArrangeType, payload: "LTH" })
+                  dispatch({ type: SET_ARRANGE_TYPE, payload: "LTH" })
                 }
               >
                 Price- Low to High
@@ -45,7 +55,7 @@ const SortByPrice = ({ displayedProducts, filteredProducts }) => {
                   filters.arrangeType === "HTL" ? "sort-btn-focus" : ""
                 }`}
                 onClick={() =>
-                  dispatch({ type: setArrangeType, payload: "HTL" })
+                  dispatch({ type: SET_ARRANGE_TYPE, payload: "HTL" })
                 }
               >
                 Price- High to Low

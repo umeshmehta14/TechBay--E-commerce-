@@ -3,8 +3,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
-import { useData } from "./Contexts";
-import { Navbar, Loader, Footer, RequiredAuth } from "./Components";
+import { useAuth, useData } from "./Contexts";
+import { Navbar, Loader, Footer, RequiredAuth, Loader2 } from "./Components";
 import {
   Home,
   ProductList,
@@ -18,11 +18,16 @@ import {
   OrderDetails,
   Addresses,
   SingleProduct,
-  WishList
+  WishList,
 } from "./Pages";
 
 function App() {
-  const { loading } = useData();
+  const {
+    loading,
+    state: { loader2 },
+  } = useData();
+  const { authLoading } = useAuth();
+
   return (
     <>
       <ToastContainer
@@ -55,6 +60,9 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+
+      {loader2 && <Loader2 />}
+      {authLoading && <Loader2 />}
       <Navbar />
       {loading ? (
         <Loader />
@@ -63,17 +71,22 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductList />} />
-            <Route
-              path="/singleProduct/:productId"
-              element={<SingleProduct />}
-            />
+            <Route path="/product/:productId" element={<SingleProduct />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<CheckOut />} />
+
             <Route path="/404" element={<Error />} />
             <Route path="*" element={<Navigate to={"/404"} />} />
 
+            <Route
+              path="/checkout/:buyNowId?"
+              element={
+                <RequiredAuth>
+                  <CheckOut />
+                </RequiredAuth>
+              }
+            />
             <Route
               path="/wishlist"
               element={

@@ -4,36 +4,42 @@ import { useNavigate } from "react-router-dom";
 import "./CategorySection.css";
 import { useData } from "../../../../Contexts";
 import {
-  clearFilter,
-  setCategoryFilter,
-  setSearchValue,
+  CLEAR_FILTER,
+  SET_CATEGORY_FILTER,
+  SET_SEARCH_VALUE,
 } from "../../../../Utils/Constants";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
 } from "../../../../Utils/Icons/Icons";
 
-const CategorySection = ({ category }) => {
+const CategorySection = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
-  const { dispatch } = useData();
+  const {
+    dispatch,
+    state: { category },
+  } = useData();
+
   const navigate = useNavigate();
 
   const nextSlide = () =>
-    categoryIndex === category.length - 1
+    categoryIndex === category?.length - 1
       ? setCategoryIndex(0)
       : setCategoryIndex(categoryIndex + 1);
 
   const previousSlide = () =>
     categoryIndex === 0
-      ? setCategoryIndex(category.length - 1)
+      ? setCategoryIndex(category?.length - 1)
       : setCategoryIndex(categoryIndex - 1);
 
   const curCategory = category[categoryIndex];
   useEffect(() => {
     setInterval(() => {
-      setCategoryIndex((prev) => (prev === category.length - 1 ? 0 : prev + 1));
+      setCategoryIndex((prev) =>
+        prev === category?.length - 1 ? 0 : prev + 1
+      );
     }, 2500);
-  }, [category.length]);
+  }, [category?.length]);
 
   return (
     <>
@@ -45,12 +51,11 @@ const CategorySection = ({ category }) => {
         <div className="category-container-mobile">
           <div
             className="category-item"
-            key={curCategory?.id}
             onClick={() => {
-              dispatch({ type: setSearchValue, payload: "" });
-              dispatch({ type: clearFilter });
+              dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+              dispatch({ type: CLEAR_FILTER });
               dispatch({
-                type: setCategoryFilter,
+                type: SET_CATEGORY_FILTER,
                 payload: curCategory?.categoryName,
               });
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -73,15 +78,18 @@ const CategorySection = ({ category }) => {
           </p>
         </div>
         <div className="category-container">
-          {category?.map(({ id, categoryName, image }) => {
+          {category?.map(({ _id, categoryName, image }) => {
             return (
               <div
                 className="category-item"
-                key={id}
+                key={_id}
                 onClick={() => {
-                  dispatch({ type: setSearchValue, payload: "" });
-                  dispatch({ type: clearFilter });
-                  dispatch({ type: setCategoryFilter, payload: categoryName });
+                  dispatch({ type: SET_SEARCH_VALUE, payload: "" });
+                  dispatch({ type: CLEAR_FILTER });
+                  dispatch({
+                    type: SET_CATEGORY_FILTER,
+                    payload: categoryName,
+                  });
                   window.scrollTo({ top: 0, behavior: "smooth" });
                   navigate("/products");
                 }}
