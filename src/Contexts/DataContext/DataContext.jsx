@@ -28,10 +28,12 @@ import {
 } from "../../Utils/Constants";
 
 import { toast } from "react-toastify";
+import { useAuth } from "../AuthContext/AuthContext";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const { token } = useAuth();
   const [state, dispatch] = useReducer(DataReducer, initialState);
   const [loading, setLoading] = useState(true);
 

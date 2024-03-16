@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 import {
   getLoginInformation,
   createUser,
@@ -6,7 +8,6 @@ import {
   refreshUserToken,
   handleGoogleLogin,
 } from "./AuthApi";
-import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -16,11 +17,10 @@ export const AuthProvider = ({ children }) => {
     token: localStorageToken?.token || "",
     currentUser: localStorageToken?.user || null,
   });
+
   const [authLoading, setAuthLoading] = useState(false);
 
   const { token, currentUser } = userAuth;
-
-  console.log(currentUser);
 
   const loginHandler = async (email, password) => {
     try {
@@ -139,7 +139,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const googleLogin = async (credentialResponse) => {
+  const googleLogin = async (codeResponse) => {
     setAuthLoading(true);
     try {
       const {
@@ -147,7 +147,7 @@ export const AuthProvider = ({ children }) => {
           statusCode,
           data: { user, refreshToken, accessToken },
         },
-      } = await handleGoogleLogin(credentialResponse);
+      } = await handleGoogleLogin(codeResponse);
       if (statusCode === 200) {
         setUserAuth({ token: accessToken, currentUser: user });
         localStorage.setItem(
@@ -164,6 +164,10 @@ export const AuthProvider = ({ children }) => {
         });
       }
     } catch (error) {
+      toast.error(`${error.response.data.error}`, {
+        containerId: "A",
+        theme: "colored",
+      });
       console.error(error);
     } finally {
       setAuthLoading(false);
@@ -182,8 +186,8 @@ export const AuthProvider = ({ children }) => {
         loginHandler,
         logoutHandler,
         googleLogin,
-        token,
         signUpHandler,
+        token,
         currentUser,
         authLoading,
       }}

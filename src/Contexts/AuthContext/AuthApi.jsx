@@ -27,7 +27,7 @@ export const refreshUserToken = async (refreshToken) =>
     refreshToken,
   });
 
-export const handleGoogleLogin = async (credential) =>
+export const handleGoogleLogin = async (codeResponse) =>
   await axios.post(`${API_URL}/users/google-login`, {
-    credential,
+    codeResponse,
   });

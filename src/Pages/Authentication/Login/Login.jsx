@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
@@ -22,12 +23,16 @@ export const Login = () => {
     email: "",
     password: "",
   });
-  document.title = "Login";
+  document.title = "Techbay | Login";
 
   const formHandler = (event) => {
     event.preventDefault();
     loginHandler(loginForm.email, loginForm.password);
   };
+
+  const login = useGoogleLogin({
+    onSuccess: async (codeResponse) => googleLogin(codeResponse),
+  });
 
   useEffect(() => {
     if (token) {
@@ -84,12 +89,9 @@ export const Login = () => {
           <button type="submit" className="btn">
             Login
           </button>
-          <GoogleLogin
-            onSuccess={(res) => googleLogin(res)}
-            onError={() => {
-              console.error("Login Failed");
-            }}
-          />
+          <button type="button" className="btn" onClick={login}>
+            Sign in with Google 🚀
+          </button>
           <p>
             Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
           </p>
