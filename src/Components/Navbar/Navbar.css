@@ -90,6 +90,11 @@
 }
 
 
+.avt-img {
+    width: 26px;
+    border-radius: 50%;
+}
+
 
 @media (min-width: 768px) {
     .logo {

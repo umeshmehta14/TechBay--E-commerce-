@@ -4,6 +4,7 @@ import {
   createUser,
   userLogout,
   refreshUserToken,
+  handleGoogleLogin,
 } from "./AuthApi";
 import { toast } from "react-toastify";
 
@@ -18,6 +19,8 @@ export const AuthProvider = ({ children }) => {
   const [authLoading, setAuthLoading] = useState(false);
 
   const { token, currentUser } = userAuth;
+
+  console.log(currentUser);
 
   const loginHandler = async (email, password) => {
     try {
@@ -89,15 +92,18 @@ export const AuthProvider = ({ children }) => {
   const logoutHandler = async () => {
     try {
       setAuthLoading(true);
-      await userLogout(token);
+      console.log("before logout");
       localStorage.removeItem("techbayUser");
       setUserAuth({ token: "", currentUser: null });
+      await userLogout(token);
+
+      console.log("logout running");
       toast.success(`Logout successful`, {
         containerId: "A",
         theme: "colored",
       });
     } catch (error) {
-      console.error(error);
+      console.error("logout ", error);
     } finally {
       setAuthLoading(false);
     }
@@ -113,10 +119,14 @@ export const AuthProvider = ({ children }) => {
       } = await refreshUserToken(localStorageToken?.refreshToken);
 
       if (statusCode === 200) {
-        setUserAuth({ user, token: accessToken, currentUser: user });
+        setUserAuth({ token: accessToken, currentUser: user });
         localStorage.setItem(
           "techbayUser",
-          JSON.stringify({ token: accessToken, refreshToken })
+          JSON.stringify({
+            token: accessToken,
+            refreshToken,
+            user,
+          })
         );
       }
     } catch (error) {
@@ -126,6 +136,37 @@ export const AuthProvider = ({ children }) => {
         theme: "colored",
       });
       console.error(error);
+    }
+  };
+
+  const googleLogin = async (credentialResponse) => {
+    setAuthLoading(true);
+    try {
+      const {
+        data: {
+          statusCode,
+          data: { user, refreshToken, accessToken },
+        },
+      } = await handleGoogleLogin(credentialResponse);
+      if (statusCode === 200) {
+        setUserAuth({ token: accessToken, currentUser: user });
+        localStorage.setItem(
+          "techbayUser",
+          JSON.stringify({
+            token: accessToken,
+            refreshToken,
+            user,
+          })
+        );
+        toast.success(`Welcome Back ${user.username} To TechBay`, {
+          containerId: "A",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setAuthLoading(false);
     }
   };
 
@@ -140,6 +181,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         loginHandler,
         logoutHandler,
+        googleLogin,
         token,
         signUpHandler,
         currentUser,

@@ -66,8 +66,3 @@ export const STATE_DATA = [
   "Uttarakhand",
   "West Bengal",
 ];
-
-export const GUEST_DATA = {
-  email: "ishaanmehta782@gmail.com",
-  password: "umeshmehta14",
-};

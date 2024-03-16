@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
-import { GUEST_DATA, SET_SHOW_PASSWORD } from "../../../Utils/Constants";
+import { SET_SHOW_PASSWORD } from "../../../Utils/Constants";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "../../../Utils/Icons/Icons";
 
 export const Login = () => {
-  const { loginHandler, token } = useAuth();
+  const { loginHandler, token, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -84,18 +84,12 @@ export const Login = () => {
           <button type="submit" className="btn">
             Login
           </button>
-          <button
-            type="submit"
-            onClick={() =>
-              setLoginForm({
-                email: GUEST_DATA.email,
-                password: GUEST_DATA.password,
-              })
-            }
-            className="btn"
-          >
-            Login as Guest
-          </button>
+          <GoogleLogin
+            onSuccess={(res) => googleLogin(res)}
+            onError={() => {
+              console.error("Login Failed");
+            }}
+          />
           <p>
             Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
           </p>

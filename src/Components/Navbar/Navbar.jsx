@@ -22,7 +22,7 @@ import {
 } from "../../Utils/Constants";
 
 export const Navbar = () => {
-  const { token } = useAuth();
+  const { token, currentUser } = useAuth();
   const {
     state: { wishlist, cart, showBurger, showSearch, screenWidth },
     dispatch,
@@ -130,7 +130,19 @@ export const Navbar = () => {
                   to={token ? "/profile/logout" : "/login"}
                   title={token ? "Profile" : "Login"}
                 >
-                  {token ? <FaRegUserCircle /> : <AiOutlineLogin />}
+                  {token ? (
+                    currentUser?.image?.length > 0 ? (
+                      <img
+                        src={currentUser?.image}
+                        alt={currentUser?.username}
+                        className="avt-img"
+                      />
+                    ) : (
+                      <FaRegUserCircle />
+                    )
+                  ) : (
+                    <AiOutlineLogin />
+                  )}
                 </NavLink>
               </li>
             </ul>
