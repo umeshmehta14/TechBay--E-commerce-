@@ -23,17 +23,15 @@ export const SignUp = () => {
     confirmPassword: "",
     username: "",
   });
+
+  const { email, password, confirmPassword, username } = userDetail;
+
   document.title = "SignUp";
 
   const signupFormHandler = (event) => {
     event.preventDefault();
 
-    signUpHandler(
-      userDetail.username,
-      userDetail.email,
-      userDetail.password,
-      userDetail.confirmPassword
-    );
+    signUpHandler(username, email, password, confirmPassword);
   };
   useEffect(() => {
     if (token) {
@@ -89,7 +87,7 @@ export const SignUp = () => {
               autoComplete="current-password"
               required
             />
-            {showSignUpPassword ? (
+            {password?.length === 0 ? null : showSignUpPassword ? (
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"

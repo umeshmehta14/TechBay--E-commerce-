@@ -1,8 +1,8 @@
-.main-login{
+.main-login {
     top: 4rem;
 }
 
-.main-signup{
+.main-signup {
     height: 80vh;
 }
 
@@ -21,7 +21,7 @@
     width: 80%;
 }
 
-.detail-inp-box{
+.detail-inp-box {
     position: relative;
 }
 
@@ -34,12 +34,12 @@
     width: 100%;
     padding: 0.5rem 0.8rem;
     margin: 0.2rem 0px;
-    border:none;
+    border: none;
     outline: 0.5px solid var(--secondary-color);
     border-radius: 12px;
 }
 
-.password-inp{
+.password-inp {
     padding-right: 2.5rem;
 }
 
@@ -47,8 +47,9 @@
 .password-inp:hover {
     outline: 1px solid gray;
 }
+
 .email-inp:focus,
-.password-inp:focus{
+.password-inp:focus {
     outline: 1px solid gray;
 }
 
@@ -58,7 +59,7 @@
     justify-content: space-evenly;
 }
 
-.eye-icon{
+.eye-icon {
     position: absolute;
     top: 1.8rem;
     font-size: 1.5rem;
@@ -73,6 +74,18 @@
     margin: 0px auto;
 }
 
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem !important;
+    gap: 0.5rem;
+}
+
+.google-btn img {
+    width: 30px;
+}
+
 @media (min-width: 768px) {
     .auth-box {
         width: 60%;
@@ -80,7 +93,8 @@
         margin: auto;
         max-width: 561px;
     }
-    .main-signup{
+
+    .main-signup {
         height: 80vh;
     }
 }

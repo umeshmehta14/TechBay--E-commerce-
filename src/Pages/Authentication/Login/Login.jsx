@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
+import google_logo from "../../../Utils/Images/google_logo.png";
 
 import "../Authentications.css";
 import { useData, useAuth } from "../../../Contexts";
@@ -23,11 +23,14 @@ export const Login = () => {
     email: "",
     password: "",
   });
+
+  const { email, password } = loginForm;
+
   document.title = "Techbay | Login";
 
   const formHandler = (event) => {
     event.preventDefault();
-    loginHandler(loginForm.email, loginForm.password);
+    loginHandler(email, password);
   };
 
   const login = useGoogleLogin({
@@ -51,7 +54,7 @@ export const Login = () => {
               id="email-address"
               className="email-inp"
               placeholder="techiTechBay@.com"
-              value={loginForm.email}
+              value={email}
               required
               onChange={(event) =>
                 setLoginForm({ ...loginForm, email: event.target.value })
@@ -65,14 +68,15 @@ export const Login = () => {
               id="password"
               className="password-inp"
               placeholder="1234098"
-              value={loginForm.password}
+              value={password}
               required
               onChange={(event) =>
                 setLoginForm({ ...loginForm, password: event.target.value })
               }
             />
+            {console.log(password?.length)}
 
-            {showPassword ? (
+            {password?.length === 0 ? null : showPassword ? (
               <AiOutlineEyeInvisible
                 className="eye-icon"
                 title="Hide"
@@ -89,8 +93,8 @@ export const Login = () => {
           <button type="submit" className="btn">
             Login
           </button>
-          <button type="button" className="btn" onClick={login}>
-            Sign in with Google 🚀
+          <button type="button" className="btn google-btn" onClick={login}>
+            Sign in with Google <img src={google_logo} alt="🚀" />
           </button>
           <p>
             Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
