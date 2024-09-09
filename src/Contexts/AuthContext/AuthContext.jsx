@@ -92,12 +92,10 @@ export const AuthProvider = ({ children }) => {
   const logoutHandler = async () => {
     try {
       setAuthLoading(true);
-      console.log("before logout");
       localStorage.removeItem("techbayUser");
       setUserAuth({ token: "", currentUser: null });
       await userLogout(token);
 
-      console.log("logout running");
       toast.success(`Logout successful`, {
         containerId: "A",
         theme: "colored",

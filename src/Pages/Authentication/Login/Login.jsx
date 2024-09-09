@@ -74,7 +74,6 @@ export const Login = () => {
                 setLoginForm({ ...loginForm, password: event.target.value })
               }
             />
-            {console.log(password?.length)}
 
             {password?.length === 0 ? null : showPassword ? (
               <AiOutlineEyeInvisible

@@ -34,7 +34,8 @@ export const SET_SELECTED_ADDRESS = "SET_SELECTED_ADDRESS";
 export const SET_EDIT_ID = "SET_EDIT_ID";
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 export const SET_ORDER_DETAIL = "SET_ORDER_DETAIL";
-export const API_URL = "https://techbayum14.onrender.com/api/v1";
+export const API_URL = "https://techbay-backend.up.railway.app/api/v1";
+// export const API_URL = "https://techbayum14.onrender.com/api/v1";
 export const STATE_DATA = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
